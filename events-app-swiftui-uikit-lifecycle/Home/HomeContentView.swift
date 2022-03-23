@@ -11,7 +11,7 @@ import SwiftUI
 
 struct HomeContentView: View {
     let categories: [String] = ["All", "Business", "Culture", "Music", "Conference"]
-    let eventStubs: [Event] = Event.fakes(repeat: 5)
+    let eventStubs: [Event]
     
     var body: some View {
         ScrollView {
@@ -72,7 +72,7 @@ struct HomeContentView_Previews: PreviewProvider {
             ColorScheme.light,
             ColorScheme.dark
         ], id: \.self) { scheme in
-            HomeContentView()
+            HomeContentView(eventStubs: Event.fakes(repeat: 5))
                 .preferredColorScheme(scheme)
         }
         .previewLayout(.sizeThatFits)

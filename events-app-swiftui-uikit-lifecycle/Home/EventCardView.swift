@@ -27,10 +27,10 @@ struct EventCardView: View {
                 .foregroundColor(.card)
         )
         .onTapGesture {
-            isActive.toggle()
-                
+            event.select?()
             print("clicked")
         }
+        /*
         .background(
             NavigationLink(isActive: $isActive, destination: {
                 EventDetails()
@@ -38,6 +38,7 @@ struct EventCardView: View {
                 EmptyView()
             })
         )
+         */
         
     }
 }

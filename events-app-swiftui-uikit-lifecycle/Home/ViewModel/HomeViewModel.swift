@@ -10,7 +10,8 @@ import Foundation
 
 class HomeViewModel: ObservableObject {
     @Published var user: User?
-
+    var onEventSelection: (() -> Void)?
+    
     init() {
         Auth.shared.userPublisher
             .map({result in
@@ -24,6 +25,12 @@ class HomeViewModel: ObservableObject {
                 }
             })
             .assign(to: &$user)
+    }
+    
+    var events: [Event] {
+        return Event.fakes(repeat: 5).map {
+            Event(id: $0.id, title: $0.title, address: $0.address, date: $0.date, image: $0.image, select: onEventSelection)
+        }
     }
     
     

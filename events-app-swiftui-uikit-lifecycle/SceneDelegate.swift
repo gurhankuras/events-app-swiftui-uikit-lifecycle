@@ -31,11 +31,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func homeController() -> UINavigationController {
-        let homeController = UINavigationController(rootViewController: UIHostingController(rootView: Home(viewModel: HomeViewModel())))
+        let viewModel = HomeViewModel()
+        let homeController = UINavigationController(rootViewController: UIHostingController(rootView: Home(viewModel: viewModel)))
+        viewModel.onEventSelection = {
+            homeController.pushViewController(UIHostingController(rootView: EventDetails()), animated: true)
+        }
+        homeController.isToolbarHidden = true
         homeController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
         homeController.navigationBar.prefersLargeTitles = false
         homeController.navigationBar.isHidden = true
         return homeController
+    }
+    
+    func blankController() -> UIViewController {
+        let blankController = UINavigationController(rootViewController: UIHostingController(rootView: Blank()))
+        blankController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
+        return blankController
     }
     
     func chatController() -> UIViewController {
@@ -46,11 +57,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return chatController
     }
     
-    func blankController() -> UIViewController {
-        let blankController = UINavigationController(rootViewController: UIHostingController(rootView: Blank()))
-        blankController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
-        return blankController
-    }
+   
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
