@@ -21,6 +21,7 @@ class ChatUsersViewModel: ObservableObject {
     
     var cancellable: AnyCancellable?
     let logger = AppLogger(type: ChatUsersViewModel.self)
+    
     init(fetcher: ChatUserFetcher) {
         logger.i(#function)
         self.fetcher = fetcher
@@ -50,21 +51,21 @@ class ChatUsersViewModel: ObservableObject {
                return self.fetcher.fetch(q: q)
             }
             .switchToLatest()
-            .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 }
 
 class RemoteChatUsersAdapter: ChatUserFetcher {
+    var onSelect: ((RecentChat?) -> Void)?
     let fetcher: RemoteChatUsersFetcher
     init(fetcher: RemoteChatUsersFetcher) {
         self.fetcher = fetcher
     }
     func fetch(q: String) -> AnyPublisher<[ChatUser], Error> {
         return fetcher.fetch(q: q)
-            .map { remoteUsers in
-            return remoteUsers.map({ ChatUser(id: $0.id, name: $0.name, image: $0.image ?? "no-image") })
+            .map { [weak self] remoteUsers -> [ChatUser] in
+                return remoteUsers.map({ ChatUser(id: $0.id, name: $0.name, image: $0.image ?? "no-image", select: self?.onSelect) })
         }
         .eraseToAnyPublisher()
     }

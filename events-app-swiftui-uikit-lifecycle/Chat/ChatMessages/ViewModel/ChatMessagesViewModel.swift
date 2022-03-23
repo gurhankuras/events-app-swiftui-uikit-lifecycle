@@ -11,16 +11,14 @@ import SwiftUI
 
 
 class ChatMessagesViewModel: ObservableObject {
-    // TODO: Dependency injection
     let logger = AppLogger(type: ChatMessagesViewModel.self)
-    let service = RemoteChatMessageFetcher(session: .shared)
+    let service: RemoteChatMessageFetcher
     let apiClient: ChatMessagesApiClient
     
-    let chat: RecentChat
+    let chat: RecentChatViewModel
     let scrollToEnd = PassthroughSubject<String, Never>()
-    @Published var text: String = ""
     
-    // MARK: Image
+    @Published var text: String = ""
     @Published var image: UIImage?
     @Published var loadingImage = false
 
@@ -35,12 +33,12 @@ class ChatMessagesViewModel: ObservableObject {
     var authCancellable: AnyCancellable?
     var currentUser: User?
 
-    init(chat: RecentChat) {
+    init(for chat: RecentChatViewModel, service: RemoteChatMessageFetcher, apiClient: ChatMessagesApiClient) {
         self.chat = chat
+        self.service = service
+        self.apiClient = apiClient
         print("chat: \(chat)")
-        let network = JsonPostAuthDecorator(decoratee: URLSession.shared, store: SecureTokenStore(keychain: .standard))
-        
-        self.apiClient = ChatMessagesApiClient(network: network)
+       
         authCancellable = Auth.shared.userPublisher.sink { [weak self] result in
             switch result {
             case .loggedIn(let user):

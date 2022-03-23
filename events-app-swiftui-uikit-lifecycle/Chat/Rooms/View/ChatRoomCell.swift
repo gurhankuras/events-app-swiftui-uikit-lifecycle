@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 
 struct ChatRoomCell: View {
-    let chat: RecentChat
+    let chat: RecentChatViewModel
     var body: some View {
         VStack {
             HStack {

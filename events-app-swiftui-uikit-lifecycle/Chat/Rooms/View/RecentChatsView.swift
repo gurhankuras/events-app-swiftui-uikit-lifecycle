@@ -8,69 +8,23 @@
 import SwiftUI
 
 struct RecentChatsView: View {
-    @StateObject var viewModel = ChatRoomsViewModel()
-    @EnvironmentObject var root: ChatRoot
-    
-   
+    @StateObject var viewModel: ChatRoomsViewModel
+    let onStartNewChat: () -> Void
     
     var body: some View {
         let _ = print("RecentChatsView body")
-        NavigationView {
-            VStack {
-                ChatRoomList(rooms: viewModel.rooms,
-                             onChatDeleted: deleteChatHandler,
-                             onChatTapped: selectChatHandler)
+        VStack(spacing: 0) {
+            RecentChatsToolbar {
+                onStartNewChat()
             }
-
-            .background(
-                chatLogsLink
-            )
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        viewModel.showingNewChatSelection.toggle()
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                }
-                ToolbarItem(placement: .principal) {
-                    Text("Chat")
-                        .fontWeight(.medium)
-                }
-            }
-            .sheet(isPresented: $viewModel.showingNewChatSelection) {
-                ChatUsersView()
-                    .environmentObject(root)
-            }
-            .navigationBarTitleDisplayMode(.inline)
-        }
-        .navigationViewStyle(.stack)
-        .actionSheet(isPresented: $viewModel.showingOptions) {
-            actionSheet
+            ChatRoomList(rooms: viewModel.rooms,
+                         onChatDeleted: deleteChatHandler)
         }
     }
     
     private func deleteChatHandler() {
         viewModel.showingOptions.toggle()
     }
-    
-    private func selectChatHandler(chat: RecentChat) {
-
-        root.tappedChat(for: chat)
-    }
-    
-    private var chatLogsLink: some View {
-        NavigationLink(isActive: $root.showChatMessages, destination: {
-            LazyView {
-                root.chatLogs()
-                //ChatLogsView(roomId: $roomId)
-            }
-        }, label: {
-            EmptyView()
-        })
-         
-    }
-    
     
     private var actionSheet: ActionSheet {
         ActionSheet(
@@ -86,19 +40,18 @@ struct RecentChatsView: View {
 
 struct RecentChatsView_Previews: PreviewProvider {
     static var previews: some View {
-        RecentChatsView()
+        RecentChatsView(viewModel: .init(), onStartNewChat: {})
     }
 }
 
 struct ChatRoomList: View {
-    let rooms: [RecentChat]
+    let rooms: [RecentChatViewModel]
     let onChatDeleted: () -> Void
-    let onChatTapped: (RecentChat) -> Void
     var body: some View {
         List {
             ForEach(rooms) { chat in
                 Button {
-                    onChatTapped(chat)
+                    chat.select?(chat)
                 } label: {
                     ChatRoomCell(chat: chat)
                 }
@@ -114,3 +67,25 @@ struct ChatRoomList: View {
     }
 }
 
+
+struct RecentChatsToolbar: View {
+    let onStartConversation: () -> Void
+    var body: some View {
+        HStack(spacing: 0) {
+            Image(systemName: "plus")
+                .font(.body)
+                .hidden()
+            Spacer()
+            Text("Chat")
+                .fontWeight(.medium)
+            Spacer()
+            Button {
+                onStartConversation()
+            } label: {
+                Image(systemName: "plus")
+                    .font(.system(size: 20))
+            }
+        }
+        .padding()
+    }
+}

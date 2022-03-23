@@ -49,27 +49,3 @@ class RemoteChatMessageFetcher: ChatMessageFetcher {
     
     
 }
-
-
-
-/*
-class ChatMessagesService {
-    let api: ChatMessagesApiClient = ChatMessagesApiClient()
-    let repository: CoreDataChatMessageRepository = CoreDataChatMessageRepository()
-    
-    init() {
-        
-    }
-    
-    func get() -> AnyPublisher<[ChatMessage], Error> {
-        api.get()
-            .map({ remoteMessages in
-                // TODO: fix date
-                return remoteMessages.map { $0.asMessage }
-            })
-            .eraseToAnyPublisher()
-    }
-    
-    
-}
-*/

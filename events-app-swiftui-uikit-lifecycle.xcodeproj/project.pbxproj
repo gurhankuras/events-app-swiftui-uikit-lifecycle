@@ -116,8 +116,6 @@
 		22D3AD7127EB81CC00A5B08C /* EventCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD6A27EB81CC00A5B08C /* EventCreationViewModel.swift */; };
 		22D3AD7227EB81CC00A5B08C /* EventCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD6B27EB81CC00A5B08C /* EventCreateView.swift */; };
 		22D3AD7327EB81CC00A5B08C /* EventDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD6D27EB81CC00A5B08C /* EventDetails.swift */; };
-		22D3AD7427EB81CC00A5B08C /* ThirdPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD6E27EB81CC00A5B08C /* ThirdPage.swift */; };
-		22D3AD7A27EB826600A5B08C /* ChatRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD7927EB826600A5B08C /* ChatRoot.swift */; };
 		22D3AE3027EB865A00A5B08C /* playTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE0A27EB865A00A5B08C /* playTests.swift */; };
 		22D3AE3127EB865A00A5B08C /* JsonPostTokenSaverDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE0C27EB865A00A5B08C /* JsonPostTokenSaverDecorator.swift */; };
 		22D3AE3227EB865A00A5B08C /* UserRegistererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE0E27EB865A00A5B08C /* UserRegistererTests.swift */; };
@@ -146,7 +144,8 @@
 		22D3AE4A27EB865A00A5B08C /* SignupViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE2C27EB865A00A5B08C /* SignupViewModelTest.swift */; };
 		22D3AE4B27EB865A00A5B08C /* RemoteChatRoomMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE2E27EB865A00A5B08C /* RemoteChatRoomMapperTests.swift */; };
 		22D3AE4D27EB886D00A5B08C /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 22D3AE4C27EB886D00A5B08C /* sample.mp4 */; };
-		22D3AE4F27EB895100A5B08C /* playApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE4E27EB895100A5B08C /* playApp.swift */; };
+		22D3AE5127EBAC3500A5B08C /* ChatToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE5027EBAC3500A5B08C /* ChatToolbar.swift */; };
+		22D3AE5327EBB0A600A5B08C /* ImageAttachmentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE5227EBB0A600A5B08C /* ImageAttachmentPreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -271,8 +270,6 @@
 		22D3AD6A27EB81CC00A5B08C /* EventCreationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCreationViewModel.swift; sourceTree = "<group>"; };
 		22D3AD6B27EB81CC00A5B08C /* EventCreateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCreateView.swift; sourceTree = "<group>"; };
 		22D3AD6D27EB81CC00A5B08C /* EventDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetails.swift; sourceTree = "<group>"; };
-		22D3AD6E27EB81CC00A5B08C /* ThirdPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdPage.swift; sourceTree = "<group>"; };
-		22D3AD7927EB826600A5B08C /* ChatRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoot.swift; sourceTree = "<group>"; };
 		22D3AD7F27EB83AA00A5B08C /* events-app-swiftui-uikit-lifecycleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "events-app-swiftui-uikit-lifecycleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D3AE0A27EB865A00A5B08C /* playTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playTests.swift; sourceTree = "<group>"; };
 		22D3AE0C27EB865A00A5B08C /* JsonPostTokenSaverDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonPostTokenSaverDecorator.swift; sourceTree = "<group>"; };
@@ -302,7 +299,8 @@
 		22D3AE2C27EB865A00A5B08C /* SignupViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModelTest.swift; sourceTree = "<group>"; };
 		22D3AE2E27EB865A00A5B08C /* RemoteChatRoomMapperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteChatRoomMapperTests.swift; sourceTree = "<group>"; };
 		22D3AE4C27EB886D00A5B08C /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
-		22D3AE4E27EB895100A5B08C /* playApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playApp.swift; sourceTree = "<group>"; };
+		22D3AE5027EBAC3500A5B08C /* ChatToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatToolbar.swift; sourceTree = "<group>"; };
+		22D3AE5227EBB0A600A5B08C /* ImageAttachmentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAttachmentPreview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,8 +356,6 @@
 				22D3AC6B27EB7E5900A5B08C /* Info.plist */,
 				22D3AC5F27EB7E5800A5B08C /* SceneDelegate.swift */,
 				22D3AC7127EB7F8300A5B08C /* LaunchScreen.storyboard */,
-				22D3AD7927EB826600A5B08C /* ChatRoot.swift */,
-				22D3AE4E27EB895100A5B08C /* playApp.swift */,
 			);
 			path = "events-app-swiftui-uikit-lifecycle";
 			sourceTree = "<group>";
@@ -405,6 +401,8 @@
 				22D3AC7C27EB803C00A5B08C /* ChatMessagesList.swift */,
 				22D3AC7D27EB803C00A5B08C /* ChatMessagesView.swift */,
 				22D3AC7E27EB803C00A5B08C /* ChatBubble.swift */,
+				22D3AE5027EBAC3500A5B08C /* ChatToolbar.swift */,
+				22D3AE5227EBB0A600A5B08C /* ImageAttachmentPreview.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -734,14 +732,9 @@
 		22D3AD5427EB81A300A5B08C /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				22D3AD5527EB81A300A5B08C /* HomeAppBar.swift */,
-				22D3AD5627EB81A300A5B08C /* EventCardView.swift */,
-				22D3AD5727EB81A300A5B08C /* ViewModel */,
 				22D3AD5927EB81A300A5B08C /* Home.swift */,
-				22D3AD5A27EB81A300A5B08C /* EventsShowcase.swift */,
-				22D3AD5B27EB81A300A5B08C /* SearchBar.swift */,
-				22D3AD5C27EB81A300A5B08C /* HomeContentView.swift */,
-				22D3AD5D27EB81A300A5B08C /* EventRemainderView.swift */,
+				22D3AE5427EBB7E900A5B08C /* View */,
+				22D3AD5727EB81A300A5B08C /* ViewModel */,
 				22D3AD5E27EB81A300A5B08C /* Service */,
 			);
 			path = Home;
@@ -777,7 +770,6 @@
 			isa = PBXGroup;
 			children = (
 				22D3AD6D27EB81CC00A5B08C /* EventDetails.swift */,
-				22D3AD6E27EB81CC00A5B08C /* ThirdPage.swift */,
 			);
 			path = EventDetails;
 			sourceTree = "<group>";
@@ -886,6 +878,19 @@
 				22D3AE2E27EB865A00A5B08C /* RemoteChatRoomMapperTests.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		22D3AE5427EBB7E900A5B08C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				22D3AD5627EB81A300A5B08C /* EventCardView.swift */,
+				22D3AD5B27EB81A300A5B08C /* SearchBar.swift */,
+				22D3AD5C27EB81A300A5B08C /* HomeContentView.swift */,
+				22D3AD5D27EB81A300A5B08C /* EventRemainderView.swift */,
+				22D3AD5A27EB81A300A5B08C /* EventsShowcase.swift */,
+				22D3AD5527EB81A300A5B08C /* HomeAppBar.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1014,7 +1019,6 @@
 				22D3AD6527EB81A300A5B08C /* HomeContentView.swift in Sources */,
 				22D3ACA927EB803C00A5B08C /* ChatMessagesService.swift in Sources */,
 				22D3AD1A27EB80C200A5B08C /* JsonPostAuthDecorator.swift in Sources */,
-				22D3AD7427EB81CC00A5B08C /* ThirdPage.swift in Sources */,
 				22D3AD1B27EB80C200A5B08C /* NetworkingUtils.swift in Sources */,
 				22D3ACFA27EB80C200A5B08C /* KeychainWrapper+.swift in Sources */,
 				22D3ACA527EB803C00A5B08C /* AnimatedToolBox.swift in Sources */,
@@ -1022,6 +1026,7 @@
 				22D3AD3B27EB814400A5B08C /* RemoteUser.swift in Sources */,
 				22D3AD6127EB81A300A5B08C /* HomeViewModel.swift in Sources */,
 				22D3ACB727EB803C00A5B08C /* ChatRoomsViewModel.swift in Sources */,
+				22D3AE5327EBB0A600A5B08C /* ImageAttachmentPreview.swift in Sources */,
 				22D3ACA427EB803C00A5B08C /* ChatMessagesViewModel.swift in Sources */,
 				22D3AD3A27EB814400A5B08C /* UserSignInAuthenticator.swift in Sources */,
 				22D3AD1E27EB80C200A5B08C /* S3BucketFileFacade.swift in Sources */,
@@ -1045,6 +1050,7 @@
 				22D3AD0727EB80C200A5B08C /* Date+CurrentTimeZoneFormatted.swift in Sources */,
 				22D3AD0127EB80C200A5B08C /* Color+RGBConstructor.swift in Sources */,
 				22D3AD6427EB81A300A5B08C /* SearchBar.swift in Sources */,
+				22D3AE5127EBAC3500A5B08C /* ChatToolbar.swift in Sources */,
 				22D3AD4227EB814400A5B08C /* SigningIllustration.swift in Sources */,
 				22D3ACB527EB803C00A5B08C /* RecentChat+StubExtension.swift in Sources */,
 				22D3AD7027EB81CC00A5B08C /* ImageSaver.swift in Sources */,
@@ -1057,7 +1063,6 @@
 				22D3ACBB27EB803C00A5B08C /* ChatRoomsService.swift in Sources */,
 				22D3ACB627EB803C00A5B08C /* ChatMessage+Stub.swift in Sources */,
 				22D3AD1827EB80C200A5B08C /* JsonPostTokenSaverDecorator.swift in Sources */,
-				22D3AE4F27EB895100A5B08C /* playApp.swift in Sources */,
 				22D3AD0C27EB80C200A5B08C /* View+Size.swift in Sources */,
 				22D3AD6227EB81A300A5B08C /* Home.swift in Sources */,
 				22D3ACBA27EB803C00A5B08C /* ChatRoomCell.swift in Sources */,
@@ -1102,7 +1107,6 @@
 				22D3AD0E27EB80C200A5B08C /* WebView.swift in Sources */,
 				22D3AD1627EB80C200A5B08C /* Auth.swift in Sources */,
 				22D3AD0D27EB80C200A5B08C /* ImagePicker.swift in Sources */,
-				22D3AD7A27EB826600A5B08C /* ChatRoot.swift in Sources */,
 				22D3ACF927EB80C200A5B08C /* CustomShape.swift in Sources */,
 				22D3AD4527EB814400A5B08C /* ErrorView.swift in Sources */,
 			);

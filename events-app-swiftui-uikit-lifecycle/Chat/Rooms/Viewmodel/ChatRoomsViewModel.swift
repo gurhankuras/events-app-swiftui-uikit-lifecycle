@@ -12,8 +12,9 @@ class ChatRoomsViewModel: ObservableObject {
     let fetcher: ChatRoomFetcher
     var cancellable: AnyCancellable?
     var authCancellable: AnyCancellable?
+    var onChatSelected: ((RecentChatViewModel) -> Void)?
     
-    @Published var rooms = [RecentChat]()
+    @Published var rooms = [RecentChatViewModel]()
     @Published var showingNewChatSelection = false
     @Published var showingOptions = false
     
@@ -45,8 +46,9 @@ class ChatRoomsViewModel: ObservableObject {
                 case .finished:
                     print("finished")
                 }
-            }, receiveValue: { rooms in
-                self.rooms.append(contentsOf: rooms)
+            }, receiveValue: { [weak self] rooms in
+                let vms = rooms.map({ RecentChatViewModel(id: $0.id, imageUrl: $0.imageUrl, name: $0.name, message: $0.message, timestamp: $0.timestamp, lastSender: $0.lastSender, select: self?.onChatSelected)})
+                self?.rooms.append(contentsOf: vms)
             })
     }
 }

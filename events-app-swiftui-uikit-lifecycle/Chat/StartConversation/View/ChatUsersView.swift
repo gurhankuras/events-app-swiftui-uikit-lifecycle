@@ -9,16 +9,15 @@ import SwiftUI
 import Combine
 
 struct ChatUsersView: View {
-    @StateObject var viewModel = ChatUsersViewModel(fetcher: RemoteChatUsersAdapter(fetcher: RemoteChatUsersFetcher(network: JsonGetAuthDecorator(decoratee: URLSession.shared, store: SecureTokenStore(keychain: .standard))  )))
-    @Environment(\.presentationMode) var dismiss
+    @StateObject var viewModel: ChatUsersViewModel
+    let dismiss: () -> Void
     
     var body: some View {
         VStack(spacing: 0) {
-            ChatUsersToolbar()
+            ChatUsersToolbar(dismiss: dismiss)
             SearchBar(placeholder: "Search User", text: $viewModel.query)
             ChatUsersList(
-                users: viewModel.users,
-                onDismiss: { dismiss.wrappedValue.dismiss() }
+                users: viewModel.users
             )
         }
         
@@ -29,18 +28,20 @@ struct ChatUsersView: View {
 
 
 
+/*
 struct ChatUsersView_Previews: PreviewProvider {
     static var previews: some View {
         ChatUsersView()
     }
 }
+*/
 
 fileprivate struct ChatUsersToolbar: View {
-    @Environment(\.presentationMode) var dismiss
+    let dismiss: () -> Void
 
     var body: some View {
         HStack {
-            CloseButton(action: { dismiss.wrappedValue.dismiss() },
+            CloseButton(action: dismiss,
                         color: Color.white)
             Spacer()
             Text("New Chat")

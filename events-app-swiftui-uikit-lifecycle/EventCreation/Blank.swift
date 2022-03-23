@@ -43,7 +43,6 @@ struct Blank: View {
             }
             .sheet(isPresented: $showingWebView) {
                 ControlledWebView()
-                    //.navigationBarHidden(true)
             }
 
         }

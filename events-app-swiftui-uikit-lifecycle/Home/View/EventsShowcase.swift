@@ -45,18 +45,10 @@ struct EventsViewHeader: View {
 
             Spacer()
             
-            NavigationLink {
-                Text("Events")
-            } label: {
-                Text("View All")
-                    .font(.caption)
-                    .foregroundColor(.appLightPurple)
-                    .fontWeight(.semibold)
-            }
-           //.isDetailLink(false)
-
-           
-
+            Text("View All")
+                .font(.caption)
+                .foregroundColor(.appLightPurple)
+                .fontWeight(.semibold)
         }
         .padding(.horizontal)
     }

@@ -11,8 +11,10 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    let root = CompositionRoot()
-
+    var chatViewController: UINavigationController!
+    var homeViewController: UINavigationController!
+    var blankViewController: UIViewController!
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow()
@@ -20,11 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
         let tabViewController = UITabBarController()
         
-        let homeController = homeController()
-        let chatController = chatController()
-        let blankController = blankController()
+        homeViewController = homeController()
+        chatViewController = chatController()
+        blankViewController = blankController()
         
-        tabViewController.setViewControllers([homeController, blankController, chatController], animated: true)
+        tabViewController.setViewControllers([homeViewController, chatViewController, blankViewController], animated: true)
         
         window?.rootViewController = tabViewController
         window?.makeKeyAndVisible()
@@ -43,50 +45,59 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return homeController
     }
     
+    func chatUsersController() -> UIViewController {
+        let decoratedSession = JsonGetAuthDecorator(decoratee: URLSession.shared, store: SecureTokenStore(keychain: .standard))
+        let fetcher = RemoteChatUsersFetcher(network:  decoratedSession)
+        let adapter = RemoteChatUsersAdapter(fetcher: fetcher)
+        adapter.onSelect = { [weak self] chat in
+            print("BURDA")
+            self?.chatViewController.dismiss(animated: true)
+            let vc = UIViewController()
+            vc.view.backgroundColor = .white
+            self?.chatViewController.pushViewController(vc, animated: true)
+        }
+        let viewModel = ChatUsersViewModel(fetcher: adapter)
+        let view = ChatUsersView(viewModel: viewModel, dismiss: { [weak self] in self?.chatViewController.dismiss(animated: true) })
+        let controller = UIHostingController(rootView: view)
+        return controller
+    }
+    
+    func showChatUsers() {
+        chatViewController.present(chatUsersController(), animated: true)
+    }
+    
     func blankController() -> UIViewController {
         let blankController = UINavigationController(rootViewController: UIHostingController(rootView: Blank()))
         blankController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
         return blankController
     }
     
-    func chatController() -> UIViewController {
-        let chatController = UIHostingController(rootView: RecentChatsView()
-                                                    .environmentObject(root)
-                                                    .environmentObject(root.chat))
+    func chatController() -> UINavigationController {
+        let viewModel = ChatRoomsViewModel()
+        let view = RecentChatsView(viewModel: viewModel) { [weak self] in self?.showChatUsers() }
+        let chatController = UINavigationController(rootViewController: UIHostingController(rootView: view))
+        viewModel.onChatSelected = { [weak self] chat in
+            self?.pushChatMessagesViewController(presentingController: chatController, chat: chat)
+        }
         chatController.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(systemName: "bubble.left.fill"), tag: 2)
+        chatController.navigationBar.prefersLargeTitles = false
+        chatController.navigationBar.isHidden = true
         return chatController
     }
     
-   
-
-    func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+    func chatMessagesView(chat: RecentChatViewModel, onDismiss: @escaping () -> Void) -> UIViewController {
+        let network = JsonPostAuthDecorator(decoratee: URLSession.shared, store: SecureTokenStore(keychain: .standard))
+        let apiClient = ChatMessagesApiClient(network: network)
+        let service =  RemoteChatMessageFetcher(session: .shared)
+        let viewModel = ChatMessagesViewModel(for: chat, service: service, apiClient: apiClient)
+        let controller = UIHostingController(rootView: ChatMessagesView(viewModel: viewModel, onDismiss: onDismiss))
+        return controller
     }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+    
+    
+    func pushChatMessagesViewController(presentingController: UINavigationController, chat: RecentChatViewModel) {
+        presentingController.pushViewController(chatMessagesView(chat: chat, onDismiss: { presentingController.popViewController(animated: true)
+        }), animated: true)
     }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
-    }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
-    }
-
-
 }
 

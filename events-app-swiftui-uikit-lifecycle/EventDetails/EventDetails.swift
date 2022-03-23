@@ -16,14 +16,9 @@ struct EventDetails: View {
         VStack {
             ScrollView(.vertical) {
                 GeometryReader { proxy in
-                    
-                    EventHeaderImage(url: urlStr,
-                                     height: UIScreen.main.bounds.height * 0.3)
+                    EventHeaderImage(url: urlStr, height: UIScreen.main.bounds.height * 0.3)
                 }
-
                 .frame(height: UIScreen.main.bounds.height * 0.3)
-                //.background(.green)
-                //InterestedUsers(gap: 50)
                 InterestedUsers(users: ["concert", "concert", "concert"], gap: 20)
                 .padding(.horizontal)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -31,15 +26,8 @@ struct EventDetails: View {
                     .lineLimit(4)
                 watchButton
                 joinButton
-                
             }
-            
-            
-
         }
-        
-        .navigationBarHidden(true)
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     
@@ -102,7 +90,6 @@ struct EventDetails: View {
 struct EventDetails_Previews: PreviewProvider {
     static var previews: some View {
         EventDetails()
-            //.previewInterfaceOrientation(.portrait)
     }
 }
 

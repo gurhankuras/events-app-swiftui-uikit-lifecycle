@@ -8,21 +8,20 @@
 import SwiftUI
 
 struct ChatMessagesView: View {
+    let onDismiss: () -> Void
     @State private var showOptions: Bool = false
-    @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel: ChatMessagesViewModel
-    @State var height: CGFloat = 0
 
-    init(viewModel: ChatMessagesViewModel) {
+    init(viewModel: ChatMessagesViewModel, onDismiss: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        print("ChatLogsView init")
+        self.onDismiss = onDismiss
     }
-    
-    
-    
+
     var body: some View {
         let _ = print("ChatLogsView CALISTI")
-        VStack(spacing: 0) {
+        VStack {
+            ChatToolbar(chat: viewModel.chat, onBack: onDismiss)
+                .padding(.horizontal)
             ChatMessagesList(viewModel.messages,
                              scrollPublisher: viewModel.scrollToEnd,
                              onMessageAppear: handle,
@@ -31,44 +30,9 @@ struct ChatMessagesView: View {
                     UIApplication.shared.endEditing()
                 }
                 .overlay(
-                    ImagePreview(image: $viewModel.image)
-                      
-                    ,
-                    
-                    alignment: .bottom
+                    ImageAttachmentPreview(image: $viewModel.image), alignment: .bottom
                 )
             textBar
-        }
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    Image(systemName: "chevron.backward")
-                }
-            }
-            ToolbarItem(placement: .navigation) {
-                HStack {
-                    Button {
-                        // TODO: Show fullscreen profile image
-                    } label: {
-                        
-                        Image(viewModel.chat.imageUrl)
-                            .resizable()
-                            .scaledToFill()
-                            .size(40)
-                            .clipped()
-                            .clipShape(Circle())
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                        
-                    .padding(.trailing, 5)
-                    Text(viewModel.chat.name)
-                        .font(.system(size: 16))
-                        .fontWeight(.medium)
-                }
-            }
         }
         .onAppear {
             viewModel.load()
@@ -84,12 +48,7 @@ struct ChatMessagesView: View {
     private var textBar: some View {
         HStack(alignment: .center) {
             AnimatedToolBox(isOpen: $showOptions, image: $viewModel.image)
-
-            ResizableTextField(text: $viewModel.text, height: $height)
-                .frame(height: min(height, 100))
-                .padding(.horizontal)
-                .background(Color.white)
-                .cornerRadius(15)
+            MessageTextField(text: $viewModel.text)
             Button {
                 viewModel.send()
             } label: {
@@ -108,57 +67,17 @@ struct ChatMessagesView: View {
     }
 }
 
-/*
-struct ChatLogsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatMessagesView(viewModel: .init(roomId: "1234"))
-    }
-}
- */
 
 
 
-struct ImagePreview: View {
-    @Binding var image: UIImage?
-    
+struct MessageTextField: View {
+    @Binding var text: String
+    @State var height: CGFloat = 0
     var body: some View {
-        if let im = image {
-            HStack {
-                Image(uiImage: im)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxHeight: 155)
-                    //.transition(.move(edge: .bottom))
-                    //.animation(.default)
-                Spacer()
-            }
-            .padding(20)
-            .frame(maxWidth: .infinity)
-            .frame(height: 175)
-            .background(image != nil ? Color.black.opacity(0.5) : .clear)
-            .clipShape(CustomShape(corner: [.topLeft, .topRight], radii: 15))
-            .overlay(
-                
-                CloseButton(action: {
-                    withAnimation {
-                        image = nil
-                    }
-                })
-                    .padding(5)
-                    .background(Color.white.opacity(0.5))
-                    .clipShape(Circle())
-                    .offset(x: -5, y: 5)
-                ,
-                alignment: .topTrailing
-            )
-            .transition(.move(edge: .bottom))
-            .animation(.default)
-            //.animation(.default)
-        }
-        else {
-            EmptyView()
-        }
-        
-        
+        ResizableTextField(text: $text, height: $height)
+            .frame(height: min(height, 100))
+            .padding(.horizontal)
+            .background(Color.white)
+            .cornerRadius(15)
     }
 }

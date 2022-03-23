@@ -95,16 +95,13 @@ struct HomeUserInfo: View {
                     .cornerRadius(10)
                     .shadow(radius: 1)
                 
-                NavigationLink {
-                    Text("sadasd")
-                } label: {
-                    Image(systemName: "bell")
-                        .imageScale(.large)
-                        .padding(.all, 11)
-                        .background(Color.appLightPurple)
-                        .cornerRadius(10)
-                        .shadow(radius: 1)
-                }
+                Image(systemName: "bell")
+                    .imageScale(.large)
+                    .padding(.all, 11)
+                    .background(Color.appLightPurple)
+                    .cornerRadius(10)
+                    .shadow(radius: 1)
+                
             }
         }
         .padding(.bottom, 12)

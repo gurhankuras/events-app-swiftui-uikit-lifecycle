@@ -30,16 +30,6 @@ struct EventCardView: View {
             event.select?()
             print("clicked")
         }
-        /*
-        .background(
-            NavigationLink(isActive: $isActive, destination: {
-                EventDetails()
-            }, label: {
-                EmptyView()
-            })
-        )
-         */
-        
     }
 }
 
