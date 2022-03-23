@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "d7f101fd99343404fef06efb5997ea7c--pikachu-tattoo-pikachu-drawing.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -6,17 +6,37 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    let root = CompositionRoot()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow()
+        window?.windowScene = windowScene
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+       
+        let tabViewController = UITabBarController()
+        
+        let homeController = UIHostingController(rootView: Home())
+        homeController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
+        
+        let blankController = UINavigationController(rootViewController: UIHostingController(rootView: Blank()))
+        blankController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
+        
+        let chatController = UIHostingController(rootView: RecentChatsView()
+                                                    .environmentObject(root)
+                                                    .environmentObject(root.chat))
+        chatController.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(systemName: "bubble.left.fill"), tag: 2)
+        
+        tabViewController.setViewControllers([homeController, blankController, chatController], animated: true)
+        
+        window?.rootViewController = tabViewController
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
