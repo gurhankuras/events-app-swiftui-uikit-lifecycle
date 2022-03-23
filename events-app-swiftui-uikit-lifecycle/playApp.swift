@@ -13,6 +13,7 @@ import Foundation
 //  Created by Gürhan Kuraş on 1/13/22.
 //
 
+/*
 import SwiftUI
 
 @main
@@ -31,3 +32,4 @@ struct playApp: App {
         }
     }
 }
+*/

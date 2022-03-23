@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/*
 enum Tabs {
     case home
     case profile
@@ -51,5 +52,5 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
+*/
 

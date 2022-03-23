@@ -7,7 +7,7 @@
 
 import UIKit
 
-//@main
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     static var orientationLock = UIInterfaceOrientationMask.portrait
 

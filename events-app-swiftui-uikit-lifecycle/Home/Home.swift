@@ -10,11 +10,11 @@ import UserNotifications
 
 
 struct Home: View {
-    @StateObject var viewModel = HomeViewModel()
+    @StateObject var viewModel: HomeViewModel
+    
     let logger = AppLogger(type: Home.self)
     var body: some View {
         let _ = logger.i("body rebuild")
-        NavigationView {
             VStack(spacing: 0) {
                 HomeAppBar(user: viewModel.user,
                            onSignOut: viewModel.signOut)
@@ -25,9 +25,7 @@ struct Home: View {
                 HomeContentView()
             }
             .background(Color.background)
-            .navigationBarHidden(true)
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
+        
         
     }
 }
@@ -41,7 +39,7 @@ struct Home_Previews: PreviewProvider {
             ColorScheme.light,
             ColorScheme.dark
         ], id: \.self) { scheme in
-            Home()
+            Home(viewModel: .init())
                 .preferredColorScheme(scheme)
         }
     }
