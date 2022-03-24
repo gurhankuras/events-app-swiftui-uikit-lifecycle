@@ -17,3 +17,12 @@ extension Color {
     static let colorScheme = Color("colorSchemaColor")
     static let card = Color("cardColor")
 }
+
+extension UIColor {
+    static let appPurple = UIColor(named: "purple")
+    static let appLightPurple = UIColor(named: "lightPurple")
+    static let appTextColor = UIColor(named: "textColor")
+    static let background = UIColor(named: "backgroundColor")
+    static let colorScheme = UIColor(named: "colorSchemaColor")
+    static let card = UIColor(named: "cardColor")
+}

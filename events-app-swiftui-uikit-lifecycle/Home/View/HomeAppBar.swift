@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 struct HomeAppBar: View {
     let user: User?
     let onSignOut: () -> Void
+    let onSignIn: () -> Void
     @State var searchText: String = ""
     
     var body: some View {
@@ -31,7 +32,7 @@ struct HomeAppBar: View {
                     SignOutButton(onTap: onSignOut)
                 }
                 else {
-                    LoginButton()
+                    LoginButton(onLogin: onSignIn)
                 }
                 
             }
@@ -124,7 +125,7 @@ struct HomeAppBar_Previews: PreviewProvider {
             ColorScheme.light,
             ColorScheme.dark
         ], id: \.self) { scheme in
-            HomeAppBar(user: .init(id: "1", email: "gurhankuras"), onSignOut: {})
+            HomeAppBar(user: .init(id: "1", email: "gurhankuras"), onSignOut: {}, onSignIn: {})
                 .preferredColorScheme(scheme)
         }
         .previewLayout(.sizeThatFits)
@@ -136,7 +137,8 @@ struct HomeAppBar_Previews: PreviewProvider {
 
 
 struct LoginButton: View {
-    @State private var isPresented = false
+    let onLogin: () -> Void
+    
     var body: some View {
         Image(systemName: "person.crop.circle.fill.badge.plus")
             .imageScale(.large)
@@ -146,11 +148,9 @@ struct LoginButton: View {
             .cornerRadius(10)
             .shadow(radius: 1)
             .onTapGesture {
-                isPresented.toggle()
+                onLogin()
             }
-            .sheet(isPresented: $isPresented) {
-                SignView(isPresented: $isPresented)
-            }
+            
     }
 }
 

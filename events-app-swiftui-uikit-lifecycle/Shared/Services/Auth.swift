@@ -23,15 +23,19 @@ class Auth {
     private let registerer: UserAuthenticator
     private let userLogin: UserAuthenticator
     
+    /*
     static var shared: Auth {
         _shared
     }
+     */
     
-    static private var _shared: Auth!
+    //static private var _shared: Auth!
     
+    /*
     static func configure(registerer: UserAuthenticator, userLogin: UserAuthenticator, tokenStore: TokenStore) {
         _shared = Auth(registerer: registerer, userLogin: userLogin, tokenStore: tokenStore)
     }
+     */
     
     init(registerer: UserAuthenticator, userLogin: UserAuthenticator, tokenStore: TokenStore) {
         self.tokenStore = tokenStore

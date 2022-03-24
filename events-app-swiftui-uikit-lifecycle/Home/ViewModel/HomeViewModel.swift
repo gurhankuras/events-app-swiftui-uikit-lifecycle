@@ -11,9 +11,12 @@ import Foundation
 class HomeViewModel: ObservableObject {
     @Published var user: User?
     var onEventSelection: (() -> Void)?
-    
-    init() {
-        Auth.shared.userPublisher
+    var onSignClick: (() -> Void)?
+
+    let auth: Auth
+    init(auth: Auth) {
+        self.auth = auth
+        auth.userPublisher
             .map({result in
                 switch result {
                 case .loggedIn(let user):
@@ -40,6 +43,6 @@ class HomeViewModel: ObservableObject {
     }
     
     func signOut() {
-        Auth.shared.signOut()
+        auth.signOut()
     }
 }

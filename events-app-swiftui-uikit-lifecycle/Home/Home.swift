@@ -17,7 +17,9 @@ struct Home: View {
         let _ = logger.i("body rebuild")
         VStack(spacing: 0) {
             HomeAppBar(user: viewModel.user,
-                       onSignOut: viewModel.signOut)
+                       onSignOut: viewModel.signOut,
+                       onSignIn: { viewModel.onSignClick?() }
+            )
             EventRemainderView(count: 5)
                 .offset(y: -25)
                 .foregroundColor(.white)
@@ -32,7 +34,7 @@ struct Home: View {
 
 
 
-
+/*
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([
@@ -44,6 +46,7 @@ struct Home_Previews: PreviewProvider {
         }
     }
 }
+ */
 
 
 

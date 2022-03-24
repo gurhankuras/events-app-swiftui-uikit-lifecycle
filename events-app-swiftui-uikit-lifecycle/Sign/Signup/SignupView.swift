@@ -63,8 +63,10 @@ struct SignupView: View {
     }
 }
 
+/*
 struct SignupView_Previews: PreviewProvider {
     static var previews: some View {
         SignupView(viewModel: .init(auth: Auth.shared, didSignIn: {}), next: .constant(true))
     }
 }
+*/

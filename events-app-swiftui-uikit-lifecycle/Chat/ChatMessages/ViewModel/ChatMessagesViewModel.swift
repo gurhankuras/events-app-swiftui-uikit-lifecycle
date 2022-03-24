@@ -14,6 +14,7 @@ class ChatMessagesViewModel: ObservableObject {
     let logger = AppLogger(type: ChatMessagesViewModel.self)
     let service: RemoteChatMessageFetcher
     let apiClient: ChatMessagesApiClient
+    let auth: Auth
     
     let chat: ChatRepresentation
     let scrollToEnd = PassthroughSubject<String, Never>()
@@ -33,13 +34,14 @@ class ChatMessagesViewModel: ObservableObject {
     var authCancellable: AnyCancellable?
     var currentUser: User?
 
-    init(for chat: ChatRepresentation, service: RemoteChatMessageFetcher, apiClient: ChatMessagesApiClient) {
+    init(for chat: ChatRepresentation, service: RemoteChatMessageFetcher, apiClient: ChatMessagesApiClient, auth: Auth) {
         self.chat = chat
         self.service = service
         self.apiClient = apiClient
+        self.auth = auth
         print("chat: \(chat)")
        
-        authCancellable = Auth.shared.userPublisher.sink { [weak self] result in
+        authCancellable = auth.userPublisher.sink { [weak self] result in
             switch result {
             case .loggedIn(let user):
                 self?.currentUser = user

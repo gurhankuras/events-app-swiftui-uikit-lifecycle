@@ -40,6 +40,7 @@ struct SigninView: View {
     }
 }
 
+/*
 struct SigninView_Previews: PreviewProvider {
     static var previews: some View {
         SigninView(viewModel:
@@ -47,6 +48,7 @@ struct SigninView_Previews: PreviewProvider {
                    next: .constant(true))
     }
 }
+ */
 
 struct SigningTransationText: View {
     let text: String

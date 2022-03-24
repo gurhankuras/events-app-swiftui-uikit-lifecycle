@@ -10,21 +10,24 @@ import Combine
 
 class ChatRoomsViewModel: ObservableObject {
     let fetcher: ChatRoomFetcher
+    let auth: Auth
     var cancellable: AnyCancellable?
     var authCancellable: AnyCancellable?
     var onChatSelected: ((ChatRepresentation) -> Void)?
+    
     
     @Published var rooms = [RecentChatViewModel]()
     @Published var showingNewChatSelection = false
     @Published var showingOptions = false
     
-    init(/*fetcher: ChatRoomFetcher*/) {
-        self.fetcher = RemoteChatRoomFetcher(network: URLSession.shared.restrictedAccess())
+    init(fetcher: ChatRoomFetcher, auth: Auth) {
+        self.fetcher = fetcher
+        self.auth = auth
         listenAuth()
     }
     
     private func listenAuth() {
-        authCancellable = Auth.shared.userPublisher.sink { [weak self] result in
+        authCancellable = auth.userPublisher.sink { [weak self] result in
             switch result {
             case .loggedIn(let user):
                 self?.load(for: user)

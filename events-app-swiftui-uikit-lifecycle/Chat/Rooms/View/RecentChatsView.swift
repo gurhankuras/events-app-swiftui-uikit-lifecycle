@@ -38,11 +38,13 @@ struct RecentChatsView: View {
     }
 }
 
+/*
 struct RecentChatsView_Previews: PreviewProvider {
     static var previews: some View {
         RecentChatsView(viewModel: .init(), onStartNewChat: {})
     }
 }
+ */
 
 struct ChatRoomList: View {
     let rooms: [RecentChatViewModel]

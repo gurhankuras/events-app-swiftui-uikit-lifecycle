@@ -133,8 +133,12 @@ class Singup: XCTestCase {
 
 // MARK: Test Helpers
 extension Singup {
+    func makeAuth() -> Auth {
+        let auth = Auth(registerer: UserSignUpAuthenticator(network: URLSession.shared), userLogin: UserSignInAuthenticator(network: URLSession.shared), tokenStore: FakeTokenStore())
+        return auth
+    }
     func makeInputValidationSUT() -> (SignupViewModel, TestSpyNever<Bool>) {
-        let sut = SignupViewModel(auth: Auth.shared, didSignIn: {})
+        let sut = SignupViewModel(auth: makeAuth(), didSignIn: {})
         let spy = TestSpyNever(sut.$formValid.eraseToAnyPublisher())
         sut.start()
         return (sut, spy)

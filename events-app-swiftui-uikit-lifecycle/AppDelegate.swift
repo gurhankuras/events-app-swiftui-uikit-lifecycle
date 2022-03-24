@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let appearence = UITabBarAppearance()
             appearence.configureWithOpaqueBackground()
             UITabBar.appearance().scrollEdgeAppearance = appearence
+            UITabBar.appearance().tintColor = .appPurple
         }
     }
 
