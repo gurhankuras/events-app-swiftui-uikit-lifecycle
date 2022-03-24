@@ -86,7 +86,6 @@
 		22D3AD3927EB814400A5B08C /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD2727EB814400A5B08C /* SignupView.swift */; };
 		22D3AD3A27EB814400A5B08C /* UserSignInAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD2827EB814400A5B08C /* UserSignInAuthenticator.swift */; };
 		22D3AD3B27EB814400A5B08C /* RemoteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD2927EB814400A5B08C /* RemoteUser.swift */; };
-		22D3AD3C27EB814400A5B08C /* BasicUserAuthenticatorComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD2A27EB814400A5B08C /* BasicUserAuthenticatorComposite.swift */; };
 		22D3AD3D27EB814400A5B08C /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD2C27EB814400A5B08C /* SigninView.swift */; };
 		22D3AD3E27EB814400A5B08C /* UserSignUpAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD2D27EB814400A5B08C /* UserSignUpAuthenticator.swift */; };
 		22D3AD3F27EB814400A5B08C /* BasicPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD2F27EB814400A5B08C /* BasicPassword.swift */; };
@@ -240,7 +239,6 @@
 		22D3AD2727EB814400A5B08C /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		22D3AD2827EB814400A5B08C /* UserSignInAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignInAuthenticator.swift; sourceTree = "<group>"; };
 		22D3AD2927EB814400A5B08C /* RemoteUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUser.swift; sourceTree = "<group>"; };
-		22D3AD2A27EB814400A5B08C /* BasicUserAuthenticatorComposite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicUserAuthenticatorComposite.swift; sourceTree = "<group>"; };
 		22D3AD2C27EB814400A5B08C /* SigninView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
 		22D3AD2D27EB814400A5B08C /* UserSignUpAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignUpAuthenticator.swift; sourceTree = "<group>"; };
 		22D3AD2F27EB814400A5B08C /* BasicPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicPassword.swift; sourceTree = "<group>"; };
@@ -661,7 +659,6 @@
 				22D3AD2627EB814400A5B08C /* Signup */,
 				22D3AD2827EB814400A5B08C /* UserSignInAuthenticator.swift */,
 				22D3AD2927EB814400A5B08C /* RemoteUser.swift */,
-				22D3AD2A27EB814400A5B08C /* BasicUserAuthenticatorComposite.swift */,
 				22D3AD2B27EB814400A5B08C /* Signin */,
 				22D3AD2D27EB814400A5B08C /* UserSignUpAuthenticator.swift */,
 				22D3AD2E27EB814400A5B08C /* Model */,
@@ -1073,7 +1070,6 @@
 				22D3AD6627EB81A300A5B08C /* EventRemainderView.swift in Sources */,
 				22D3AD3827EB814400A5B08C /* SignupViewModel.swift in Sources */,
 				22D3AD4327EB814400A5B08C /* SigningTextField.swift in Sources */,
-				22D3AD3C27EB814400A5B08C /* BasicUserAuthenticatorComposite.swift in Sources */,
 				22D3AD7327EB81CC00A5B08C /* EventDetails.swift in Sources */,
 				22D3AD1127EB80C200A5B08C /* LongRoundedButton.swift in Sources */,
 				22D3AD1027EB80C200A5B08C /* ResizableTextField.swift in Sources */,

@@ -51,7 +51,7 @@ struct ChatRoomList: View {
         List {
             ForEach(rooms) { chat in
                 Button {
-                    chat.select?(chat)
+                    chat.select?(chat.asChatRepresentation)
                 } label: {
                     ChatRoomCell(chat: chat)
                 }

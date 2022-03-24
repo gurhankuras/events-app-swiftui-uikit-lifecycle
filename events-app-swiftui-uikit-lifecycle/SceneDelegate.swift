@@ -14,12 +14,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var chatViewController: UINavigationController!
     var homeViewController: UINavigationController!
     var blankViewController: UIViewController!
+    var auth: Auth!
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow()
         window?.windowScene = windowScene
-       
+        let network = URLSession.shared
+        let store = SecureTokenStore(keychain: .standard)
+        let decoratedNetwork = JsonPostTokenSaverDecorator(decoratee: network, store: store)
+        let registerer = UserSignUpAuthenticator(network: decoratedNetwork)
+        let userLogin = UserSignInAuthenticator(network: decoratedNetwork)
+        Auth.configure(registerer: registerer, userLogin: userLogin, tokenStore: store)
+        Auth.shared.trySignIn()
+        
         let tabViewController = UITabBarController()
         
         homeViewController = homeController()
@@ -30,6 +38,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.rootViewController = tabViewController
         window?.makeKeyAndVisible()
+        AppLogger.level = .debug
+        
+        
     }
     
     func homeController() -> UINavigationController {
@@ -51,10 +62,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let adapter = RemoteChatUsersAdapter(fetcher: fetcher)
         adapter.onSelect = { [weak self] chat in
             print("BURDA")
-            self?.chatViewController.dismiss(animated: true)
-            let vc = UIViewController()
-            vc.view.backgroundColor = .white
-            self?.chatViewController.pushViewController(vc, animated: true)
+            guard let self = self else {
+                return
+            }
+            
+            self.chatViewController.dismiss(animated: true)
+            self.chatViewController.pushViewController(self.chatMessagesView(chat: chat, onDismiss: {
+                self.chatViewController.popViewController(animated: true)
+            }), animated: true)
         }
         let viewModel = ChatUsersViewModel(fetcher: adapter)
         let view = ChatUsersView(viewModel: viewModel, dismiss: { [weak self] in self?.chatViewController.dismiss(animated: true) })
@@ -85,7 +100,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return chatController
     }
     
-    func chatMessagesView(chat: RecentChatViewModel, onDismiss: @escaping () -> Void) -> UIViewController {
+    func chatMessagesView(chat: ChatRepresentation, onDismiss: @escaping () -> Void) -> UIViewController {
         let network = JsonPostAuthDecorator(decoratee: URLSession.shared, store: SecureTokenStore(keychain: .standard))
         let apiClient = ChatMessagesApiClient(network: network)
         let service =  RemoteChatMessageFetcher(session: .shared)
@@ -95,7 +110,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     
-    func pushChatMessagesViewController(presentingController: UINavigationController, chat: RecentChatViewModel) {
+    func pushChatMessagesViewController(presentingController: UINavigationController, chat: ChatRepresentation) {
         presentingController.pushViewController(chatMessagesView(chat: chat, onDismiss: { presentingController.popViewController(animated: true)
         }), animated: true)
     }

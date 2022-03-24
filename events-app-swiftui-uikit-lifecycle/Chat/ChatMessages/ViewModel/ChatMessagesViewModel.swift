@@ -15,7 +15,7 @@ class ChatMessagesViewModel: ObservableObject {
     let service: RemoteChatMessageFetcher
     let apiClient: ChatMessagesApiClient
     
-    let chat: RecentChatViewModel
+    let chat: ChatRepresentation
     let scrollToEnd = PassthroughSubject<String, Never>()
     
     @Published var text: String = ""
@@ -33,7 +33,7 @@ class ChatMessagesViewModel: ObservableObject {
     var authCancellable: AnyCancellable?
     var currentUser: User?
 
-    init(for chat: RecentChatViewModel, service: RemoteChatMessageFetcher, apiClient: ChatMessagesApiClient) {
+    init(for chat: ChatRepresentation, service: RemoteChatMessageFetcher, apiClient: ChatMessagesApiClient) {
         self.chat = chat
         self.service = service
         self.apiClient = apiClient
@@ -69,12 +69,14 @@ class ChatMessagesViewModel: ObservableObject {
     
     
     func send() {
-        guard let currentUser = currentUser else {
+        guard let currentUser = currentUser,
+                let id = chat.roomId
+        else {
             return
         }
 
         
-        sendMessageCancellable = self.apiClient.send(message: .init(sender: currentUser.id, text: self.text, image: nil), roomId: chat.id)
+        sendMessageCancellable = self.apiClient.send(message: .init(sender: currentUser.id, text: self.text, image: nil), roomId: id)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 guard let self = self else { return  }
@@ -117,13 +119,13 @@ extension ChatMessagesViewModel {
     }
     
     func load() {
-        guard !isLoading && canLoadMore else {
+        guard let id = chat.roomId, !isLoading && canLoadMore else {
             print("page: \(page), isLoading: \(isLoading), canLoadMore: \(canLoadMore)")
             return
         }
         
         isLoading = true
-        cancellable = service.fetch(for: chat.id, at: page)
+        cancellable = service.fetch(for: id, at: page)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {

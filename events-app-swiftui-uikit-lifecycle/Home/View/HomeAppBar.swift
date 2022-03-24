@@ -155,7 +155,6 @@ struct LoginButton: View {
 }
 
 struct SignOutButton: View {
-    @State private var isPresented = false
     let onTap: () -> Void
     var body: some View {
         Image(systemName: "rectangle.portrait.and.arrow.right")

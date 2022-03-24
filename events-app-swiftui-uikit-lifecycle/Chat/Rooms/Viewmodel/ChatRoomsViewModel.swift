@@ -12,7 +12,7 @@ class ChatRoomsViewModel: ObservableObject {
     let fetcher: ChatRoomFetcher
     var cancellable: AnyCancellable?
     var authCancellable: AnyCancellable?
-    var onChatSelected: ((RecentChatViewModel) -> Void)?
+    var onChatSelected: ((ChatRepresentation) -> Void)?
     
     @Published var rooms = [RecentChatViewModel]()
     @Published var showingNewChatSelection = false
