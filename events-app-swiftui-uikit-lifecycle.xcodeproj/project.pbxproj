@@ -145,6 +145,7 @@
 		22D3AE4D27EB886D00A5B08C /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 22D3AE4C27EB886D00A5B08C /* sample.mp4 */; };
 		22D3AE5127EBAC3500A5B08C /* ChatToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE5027EBAC3500A5B08C /* ChatToolbar.swift */; };
 		22D3AE5327EBB0A600A5B08C /* ImageAttachmentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE5227EBB0A600A5B08C /* ImageAttachmentPreview.swift */; };
+		22F94C3B27EE386F00428210 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F94C3A27EE386F00428210 /* ViewControllerFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -299,6 +300,7 @@
 		22D3AE4C27EB886D00A5B08C /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
 		22D3AE5027EBAC3500A5B08C /* ChatToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatToolbar.swift; sourceTree = "<group>"; };
 		22D3AE5227EBB0A600A5B08C /* ImageAttachmentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAttachmentPreview.swift; sourceTree = "<group>"; };
+		22F94C3A27EE386F00428210 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +343,7 @@
 		22D3AC5C27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle */ = {
 			isa = PBXGroup;
 			children = (
+				22F94C3927EE385100428210 /* Main */,
 				22D3AE4C27EB886D00A5B08C /* sample.mp4 */,
 				22D3AD6727EB81CC00A5B08C /* EventCreation */,
 				22D3AD6C27EB81CC00A5B08C /* EventDetails */,
@@ -349,10 +352,7 @@
 				22D3AD2327EB814400A5B08C /* Sign */,
 				22D3ACC227EB80C200A5B08C /* Shared */,
 				22D3AC7327EB803C00A5B08C /* Chat */,
-				22D3AC5D27EB7E5800A5B08C /* AppDelegate.swift */,
-				22D3AC6627EB7E5900A5B08C /* Assets.xcassets */,
 				22D3AC6B27EB7E5900A5B08C /* Info.plist */,
-				22D3AC5F27EB7E5800A5B08C /* SceneDelegate.swift */,
 				22D3AC7127EB7F8300A5B08C /* LaunchScreen.storyboard */,
 			);
 			path = "events-app-swiftui-uikit-lifecycle";
@@ -890,6 +890,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		22F94C3927EE385100428210 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				22D3AC6627EB7E5900A5B08C /* Assets.xcassets */,
+				22D3AC5F27EB7E5800A5B08C /* SceneDelegate.swift */,
+				22D3AC5D27EB7E5800A5B08C /* AppDelegate.swift */,
+				22F94C3A27EE386F00428210 /* ViewControllerFactory.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1019,6 +1030,7 @@
 				22D3AD1B27EB80C200A5B08C /* NetworkingUtils.swift in Sources */,
 				22D3ACFA27EB80C200A5B08C /* KeychainWrapper+.swift in Sources */,
 				22D3ACA527EB803C00A5B08C /* AnimatedToolBox.swift in Sources */,
+				22F94C3B27EE386F00428210 /* ViewControllerFactory.swift in Sources */,
 				22D3AD0427EB80C200A5B08C /* Color+AppColors.swift in Sources */,
 				22D3AD3B27EB814400A5B08C /* RemoteUser.swift in Sources */,
 				22D3AD6127EB81A300A5B08C /* HomeViewModel.swift in Sources */,

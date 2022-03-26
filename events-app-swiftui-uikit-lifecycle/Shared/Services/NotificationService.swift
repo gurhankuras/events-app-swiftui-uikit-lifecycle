@@ -84,32 +84,14 @@ extension NotificationService: NotificationServiceProtocol {
 }
 
 
-class NotificationService: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
+class NotificationService: NSObject {
     private let logger = AppLogger(type: NotificationService.self)
     private let notificationCenter: UNUserNotificationCenter
     
     init(notificationCenter: UNUserNotificationCenter) {
         self.notificationCenter = notificationCenter
         super.init()
-        self.notificationCenter.delegate = self
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                        didReceive response: UNNotificationResponse,
-                                        withCompletionHandler completionHandler: @escaping () -> Void) {
-        guard let deneme = response.notification.request.content.userInfo["deneme"] else {
-            completionHandler()
-            return
-        };
-        print(deneme)
-        completionHandler()
-    }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                   willPresent notification: UNNotification,
-                                   withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-            let userInfo = notification.request.content.userInfo
-            print(userInfo)
-            completionHandler([.banner])
-       }
 }

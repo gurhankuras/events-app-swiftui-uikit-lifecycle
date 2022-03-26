@@ -9,17 +9,16 @@ import SwiftUI
 import Combine
 
 struct Blank: View {
+    @State var notificationService: NotificationService
     @State private var showingWebView = false
-    
-    init() {
-        print("Blank init")        
-    }
     
     var body: some View {
         NavigationView {
             VStack {
                 Button("Hello") {
-                    showingWebView = true
+                    //showingWebView = true
+                    notificationService.requestPermission()
+                    notificationService.send()
                 }
                 
                 Button("Get Presigned Url") {
@@ -51,6 +50,6 @@ struct Blank: View {
 
 struct Blank_Previews: PreviewProvider {
     static var previews: some View {
-        Blank()
+        Blank(notificationService: .init(notificationCenter: .current()))
     }
 }
