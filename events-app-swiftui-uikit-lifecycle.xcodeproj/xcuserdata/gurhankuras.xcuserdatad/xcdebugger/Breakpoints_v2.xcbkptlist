@@ -7,32 +7,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "557739A5-495C-4333-87FD-41BF4BDAE1DC"
+            uuid = "2DB81BE0-B917-47F6-B3DC-C2AD043F02CE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/AppDelegate.swift"
+            filePath = "events-app-swiftui-uikit-lifecycle/Chat/ChatMessages/Services/SocketIOChatCommunicator.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "userNotificationCenter(_:didReceive:withCompletionHandler:)"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "receive(on:callback:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "95C13205-6222-4CDF-AF87-66B24D358EA3"
+            uuid = "13D0E671-4646-48ED-859F-0FFAC27245AB"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/AppDelegate.swift"
+            filePath = "events-app-swiftui-uikit-lifecycle/Chat/ChatMessages/ViewModel/ChatMessagesViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "userNotificationCenter(_:willPresent:withCompletionHandler:)"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "init(for:service:apiClient:auth:communicator:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DCE041D6-F88E-4030-A5E6-069A0955889E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "events-app-swiftui-uikit-lifecycle/Chat/ChatMessages/Services/SocketIOChatCommunicator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "init(roomId:manager:tokenStore:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -9,13 +9,12 @@ import Combine
 import SwiftUI
 
 
-
 class ChatMessagesViewModel: ObservableObject {
     let logger = AppLogger(type: ChatMessagesViewModel.self)
     let service: RemoteChatMessageFetcher
     let apiClient: ChatMessagesApiClient
     let auth: Auth
-    
+    let communicator: ChatCommunicator
     let chat: ChatRepresentation
     let scrollToEnd = PassthroughSubject<String, Never>()
     
@@ -34,11 +33,12 @@ class ChatMessagesViewModel: ObservableObject {
     var authCancellable: AnyCancellable?
     var currentUser: User?
 
-    init(for chat: ChatRepresentation, service: RemoteChatMessageFetcher, apiClient: ChatMessagesApiClient, auth: Auth) {
+    init(for chat: ChatRepresentation, service: RemoteChatMessageFetcher, apiClient: ChatMessagesApiClient, auth: Auth, communicator: ChatCommunicator) {
         self.chat = chat
         self.service = service
         self.apiClient = apiClient
         self.auth = auth
+        self.communicator = communicator
         print("chat: \(chat)")
        
         authCancellable = auth.userPublisher.sink { [weak self] result in
@@ -51,6 +51,24 @@ class ChatMessagesViewModel: ObservableObject {
             }
         
         }
+        
+        communicator.receive(on: .send) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                    
+                case .success(let message):
+                    withAnimation {
+                        self?.messages.insert(.init(id: message.id, sender: .init(id: message.sender.id, name: message.sender.name, image: nil, select: {_ in}), message: message.text, timestamp: Date(), image: nil), at: 0)
+                    }
+                    self?.image = nil
+                    self?.scrollToEnd.send(message.id)
+                    
+                case .failure(_):
+                    return
+                }
+            }
+        }
+        
         logger.i(#function)
     }
     
@@ -69,41 +87,14 @@ class ChatMessagesViewModel: ObservableObject {
         logger.e(#function)
     }
     
-    
     func send() {
         guard let currentUser = currentUser,
-                let id = chat.roomId
-        else {
-            return
+                let id = chat.roomId else { return }
+        communicator.send(message: .text(text.trimmed()), to: id) { [weak self] in
+            print("SENT")
+            self?.text = ""
         }
-
-        
-        sendMessageCancellable = self.apiClient.send(message: .init(sender: currentUser.id, text: self.text, image: nil), roomId: id)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] completion in
-                guard let self = self else { return  }
-                switch completion {
-                case .finished:
-                    print("SUCCESS")
-                    let msg: ChatMessage = .init(id: UUID().uuidString, sender: ChatUser(id: currentUser.id, name: "Demo", image: nil), message: self.text, timestamp: Date(), image: nil)
-                    DispatchQueue.main.async {
-                        
-                        withAnimation {
-                            self.messages.insert(msg, at: 0)
-                        }
-                        self.text = ""
-                        self.image = nil
-                        self.scrollToEnd.send(msg.id)
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-                self.sendMessageCancellable?.cancel()
-            } receiveValue: { _ in
-                
-            }
     }
-    
 }
 
 // MARK: Loading Messages

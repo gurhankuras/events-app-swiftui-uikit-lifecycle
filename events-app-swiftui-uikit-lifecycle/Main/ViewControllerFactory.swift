@@ -39,7 +39,7 @@ class AppViewControllerFactory: ViewControllerFactory {
         let fetcher = RemoteChatRoomFetcher(network: URLSession.shared.restrictedAccess())
         let viewModel = ChatRoomsViewModel(fetcher: fetcher, auth: auth)
         viewModel.onChatSelected = onChatSelected
-        let view = RecentChatsView(viewModel: viewModel, onStartNewChat: onStartNewChat)
+        let view = RoomsView(viewModel: viewModel, onStartNewChat: onStartNewChat)
         let chatController = UINavigationController(rootViewController: UIHostingController(rootView: view))
         
         

@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import SocketIO
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -102,7 +103,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let network = JsonPostAuthDecorator(decoratee: URLSession.shared, store: SecureTokenStore(keychain: .standard))
         let apiClient = ChatMessagesApiClient(network: network)
         let service =  RemoteChatMessageFetcher(session: .shared)
-        let viewModel = ChatMessagesViewModel(for: chat, service: service, apiClient: apiClient, auth: auth)
+        let manager =  SocketManager(socketURL: URL(string: "http://gkevents.com/api/chat")!, config: [.log(false)])
+        
+        let communicator = SocketIOChatCommunicator(roomId: chat.roomId ?? "", manager: manager, tokenStore: SecureTokenStore(keychain: .standard))
+        
+        let viewModel = ChatMessagesViewModel(for: chat, service: service, apiClient: apiClient, auth: auth, communicator: communicator)
         let controller = UIHostingController(rootView: ChatMessagesView(viewModel: viewModel, onDismiss: onDismiss))
         return controller
     }

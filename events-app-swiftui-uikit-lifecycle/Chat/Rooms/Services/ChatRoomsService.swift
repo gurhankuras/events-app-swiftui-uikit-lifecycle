@@ -9,17 +9,17 @@ import Foundation
 import Combine
 
 protocol ChatRoomFetcher {
-    func fetch(for user: User) -> AnyPublisher<[RecentChat], Error>
+    func fetch(for user: User) -> AnyPublisher<[Room], Error>
 }
 
 class ChatRoomFetcherStub: ChatRoomFetcher {
-    let result: Result<[RecentChat], Error>
+    let result: Result<[Room], Error>
     
-    init(result: Result<[RecentChat], Error>) {
+    init(result: Result<[Room], Error>) {
         self.result = result
     }
     
-    func fetch(for user: User) -> AnyPublisher<[RecentChat], Error> {
+    func fetch(for user: User) -> AnyPublisher<[Room], Error> {
         switch result {
         case .failure(let error):
             return Fail(error: error).eraseToAnyPublisher()
@@ -33,10 +33,10 @@ class ChatRoomFetcherStub: ChatRoomFetcher {
 
 // MARK: sample stubs
 extension ChatRoomFetcherStub {
-    static var stubs: [RecentChat] {
+    static var stubs: [Room] {
         return [
-            RecentChat(id: "123", imageUrl: "pikachu", name: "Julia", message: "Nice!", timestamp: .init(), lastSender: .init(id: "2", name: "Eren", image: nil)),
-            RecentChat(id: "234", imageUrl: "pikachu", name: "Julia", message: "What's up", timestamp: .init(), lastSender: .init(id: "2", name: "Eren", image: nil))
+            Room(id: "123", imageUrl: "pikachu", name: "Julia", message: "Nice!", timestamp: .init(), lastSender: .init(id: "2", name: "Eren", image: nil)),
+            Room(id: "234", imageUrl: "pikachu", name: "Julia", message: "What's up", timestamp: .init(), lastSender: .init(id: "2", name: "Eren", image: nil))
         ]
     }
 }
@@ -48,7 +48,7 @@ class RemoteChatRoomFetcher: ChatRoomFetcher {
         self.network = network
     }
     
-    func fetch(for user: User) -> AnyPublisher<[RecentChat], Error> {
+    func fetch(for user: User) -> AnyPublisher<[Room], Error> {
         guard let url = URL(string: "http://gkevents.com/api/chat/rooms") else {
             return Fail(error: URLError.init(URLError.badURL))
                 .eraseToAnyPublisher()

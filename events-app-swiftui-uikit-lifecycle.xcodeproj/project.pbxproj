@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2255292B27EF18FB00C63C35 /* SocketIOChatCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255292A27EF18FB00C63C35 /* SocketIOChatCommunicator.swift */; };
+		2255292E27EF229300C63C35 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2255292D27EF229300C63C35 /* SocketIO */; };
+		2255293027EF326000C63C35 /* ChatCommunicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255292F27EF326000C63C35 /* ChatCommunicatorTests.swift */; };
 		22D3AC5E27EB7E5800A5B08C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC5D27EB7E5800A5B08C /* AppDelegate.swift */; };
 		22D3AC6027EB7E5800A5B08C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC5F27EB7E5800A5B08C /* SceneDelegate.swift */; };
 		22D3AC6727EB7E5900A5B08C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22D3AC6627EB7E5900A5B08C /* Assets.xcassets */; };
@@ -25,13 +28,11 @@
 		22D3ACAF27EB803C00A5B08C /* ChatUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC8A27EB803C00A5B08C /* ChatUserCell.swift */; };
 		22D3ACB027EB803C00A5B08C /* ChatUsersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC8B27EB803C00A5B08C /* ChatUsersList.swift */; };
 		22D3ACB127EB803C00A5B08C /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC8D27EB803C00A5B08C /* ChatMessage.swift */; };
-		22D3ACB227EB803C00A5B08C /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC8E27EB803C00A5B08C /* RecentChat.swift */; };
+		22D3ACB227EB803C00A5B08C /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC8E27EB803C00A5B08C /* Room.swift */; };
 		22D3ACB327EB803C00A5B08C /* RemoteChatBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC9027EB803C00A5B08C /* RemoteChatBucket.swift */; };
 		22D3ACB427EB803C00A5B08C /* RemoteChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC9127EB803C00A5B08C /* RemoteChatRoom.swift */; };
-		22D3ACB527EB803C00A5B08C /* RecentChat+StubExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC9327EB803C00A5B08C /* RecentChat+StubExtension.swift */; };
 		22D3ACB627EB803C00A5B08C /* ChatMessage+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC9427EB803C00A5B08C /* ChatMessage+Stub.swift */; };
 		22D3ACB727EB803C00A5B08C /* ChatRoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC9727EB803C00A5B08C /* ChatRoomsViewModel.swift */; };
-		22D3ACB827EB803C00A5B08C /* RemoteChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC9827EB803C00A5B08C /* RemoteChatMessage.swift */; };
 		22D3ACB927EB803C00A5B08C /* RecentChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC9A27EB803C00A5B08C /* RecentChatsView.swift */; };
 		22D3ACBA27EB803C00A5B08C /* ChatRoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC9B27EB803C00A5B08C /* ChatRoomCell.swift */; };
 		22D3ACBB27EB803C00A5B08C /* ChatRoomsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC9D27EB803C00A5B08C /* ChatRoomsService.swift */; };
@@ -159,6 +160,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2255292A27EF18FB00C63C35 /* SocketIOChatCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOChatCommunicator.swift; sourceTree = "<group>"; };
+		2255292F27EF326000C63C35 /* ChatCommunicatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCommunicatorTests.swift; sourceTree = "<group>"; };
 		22D3AC5A27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "events-app-swiftui-uikit-lifecycle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D3AC5D27EB7E5800A5B08C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22D3AC5F27EB7E5800A5B08C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -180,13 +183,11 @@
 		22D3AC8A27EB803C00A5B08C /* ChatUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatUserCell.swift; sourceTree = "<group>"; };
 		22D3AC8B27EB803C00A5B08C /* ChatUsersList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatUsersList.swift; sourceTree = "<group>"; };
 		22D3AC8D27EB803C00A5B08C /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
-		22D3AC8E27EB803C00A5B08C /* RecentChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
+		22D3AC8E27EB803C00A5B08C /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		22D3AC9027EB803C00A5B08C /* RemoteChatBucket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteChatBucket.swift; sourceTree = "<group>"; };
 		22D3AC9127EB803C00A5B08C /* RemoteChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteChatRoom.swift; sourceTree = "<group>"; };
-		22D3AC9327EB803C00A5B08C /* RecentChat+StubExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecentChat+StubExtension.swift"; sourceTree = "<group>"; };
 		22D3AC9427EB803C00A5B08C /* ChatMessage+Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatMessage+Stub.swift"; sourceTree = "<group>"; };
 		22D3AC9727EB803C00A5B08C /* ChatRoomsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewModel.swift; sourceTree = "<group>"; };
-		22D3AC9827EB803C00A5B08C /* RemoteChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteChatMessage.swift; sourceTree = "<group>"; };
 		22D3AC9A27EB803C00A5B08C /* RecentChatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentChatsView.swift; sourceTree = "<group>"; };
 		22D3AC9B27EB803C00A5B08C /* ChatRoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomCell.swift; sourceTree = "<group>"; };
 		22D3AC9D27EB803C00A5B08C /* ChatRoomsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsService.swift; sourceTree = "<group>"; };
@@ -309,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22D3ACC127EB807600A5B08C /* SDWebImageSwiftUI in Frameworks */,
+				2255292E27EF229300C63C35 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +324,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2255293127EF3E2E00C63C35 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2255293327EF3E8500C63C35 /* Remote */,
+				2255293227EF3E7E00C63C35 /* Domain */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2255293227EF3E7E00C63C35 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				22D3AC8D27EB803C00A5B08C /* ChatMessage.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		2255293327EF3E8500C63C35 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				22D3AC9027EB803C00A5B08C /* RemoteChatBucket.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		2255293427EF3E9A00C63C35 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				22D3AC8E27EB803C00A5B08C /* Room.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		22D3AC5127EB7E5700A5B08C = {
 			isa = PBXGroup;
 			children = (
@@ -353,7 +388,6 @@
 				22D3ACC227EB80C200A5B08C /* Shared */,
 				22D3AC7327EB803C00A5B08C /* Chat */,
 				22D3AC6B27EB7E5900A5B08C /* Info.plist */,
-				22D3AC7127EB7F8300A5B08C /* LaunchScreen.storyboard */,
 			);
 			path = "events-app-swiftui-uikit-lifecycle";
 			sourceTree = "<group>";
@@ -361,15 +395,12 @@
 		22D3AC7327EB803C00A5B08C /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				22D3AC7427EB803C00A5B08C /* ChatMessageContainer.xcdatamodeld */,
-				22D3AC7727EB803C00A5B08C /* ChatMessages */,
-				22D3AC8327EB803C00A5B08C /* ChatContainer.xcdatamodeld */,
-				22D3AC8527EB803C00A5B08C /* StartConversation */,
-				22D3AC8C27EB803C00A5B08C /* Model */,
-				22D3AC9227EB803C00A5B08C /* Stub */,
 				22D3AC9527EB803C00A5B08C /* Rooms */,
-				22D3AC9F27EB803C00A5B08C /* Service */,
-				22D3ACA227EB803C00A5B08C /* NewChat */,
+				22D3AC7727EB803C00A5B08C /* ChatMessages */,
+				22D3AC8527EB803C00A5B08C /* NewChat */,
+				22D3AC7427EB803C00A5B08C /* ChatMessageContainer.xcdatamodeld */,
+				22D3AC8327EB803C00A5B08C /* ChatContainer.xcdatamodeld */,
+				22D3AC9227EB803C00A5B08C /* Stub */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -377,8 +408,9 @@
 		22D3AC7727EB803C00A5B08C /* ChatMessages */ = {
 			isa = PBXGroup;
 			children = (
-				22D3AC7827EB803C00A5B08C /* ViewModel */,
+				2255293127EF3E2E00C63C35 /* Model */,
 				22D3AC7A27EB803C00A5B08C /* View */,
+				22D3AC7827EB803C00A5B08C /* ViewModel */,
 				22D3AC7F27EB803C00A5B08C /* Services */,
 			);
 			path = ChatMessages;
@@ -408,19 +440,22 @@
 		22D3AC7F27EB803C00A5B08C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				22D3ACA027EB803C00A5B08C /* ChatMessagesApiClient.swift */,
+				22D3ACA127EB803C00A5B08C /* CoreDataChatMessageRepository.swift */,
 				22D3AC8027EB803C00A5B08C /* ChatMessagesService.swift */,
 				22D3AC8127EB803C00A5B08C /* MessageSocket.swift */,
+				2255292A27EF18FB00C63C35 /* SocketIOChatCommunicator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		22D3AC8527EB803C00A5B08C /* StartConversation */ = {
+		22D3AC8527EB803C00A5B08C /* NewChat */ = {
 			isa = PBXGroup;
 			children = (
 				22D3AC8627EB803C00A5B08C /* ViewModel */,
 				22D3AC8827EB803C00A5B08C /* View */,
 			);
-			path = StartConversation;
+			path = NewChat;
 			sourceTree = "<group>";
 		};
 		22D3AC8627EB803C00A5B08C /* ViewModel */ = {
@@ -444,8 +479,7 @@
 		22D3AC8C27EB803C00A5B08C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				22D3AC8D27EB803C00A5B08C /* ChatMessage.swift */,
-				22D3AC8E27EB803C00A5B08C /* RecentChat.swift */,
+				2255293427EF3E9A00C63C35 /* Domain */,
 				22D3AC8F27EB803C00A5B08C /* Remote */,
 			);
 			path = Model;
@@ -454,7 +488,6 @@
 		22D3AC8F27EB803C00A5B08C /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				22D3AC9027EB803C00A5B08C /* RemoteChatBucket.swift */,
 				22D3AC9127EB803C00A5B08C /* RemoteChatRoom.swift */,
 			);
 			path = Remote;
@@ -463,7 +496,6 @@
 		22D3AC9227EB803C00A5B08C /* Stub */ = {
 			isa = PBXGroup;
 			children = (
-				22D3AC9327EB803C00A5B08C /* RecentChat+StubExtension.swift */,
 				22D3AC9427EB803C00A5B08C /* ChatMessage+Stub.swift */,
 			);
 			path = Stub;
@@ -472,9 +504,9 @@
 		22D3AC9527EB803C00A5B08C /* Rooms */ = {
 			isa = PBXGroup;
 			children = (
-				22D3AC9627EB803C00A5B08C /* Viewmodel */,
-				22D3AC9827EB803C00A5B08C /* RemoteChatMessage.swift */,
+				22D3AC8C27EB803C00A5B08C /* Model */,
 				22D3AC9927EB803C00A5B08C /* View */,
+				22D3AC9627EB803C00A5B08C /* Viewmodel */,
 				22D3AC9C27EB803C00A5B08C /* Services */,
 			);
 			path = Rooms;
@@ -504,22 +536,6 @@
 				22D3AC9E27EB803C00A5B08C /* RemoteChatRoomMapper.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		22D3AC9F27EB803C00A5B08C /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				22D3ACA027EB803C00A5B08C /* ChatMessagesApiClient.swift */,
-				22D3ACA127EB803C00A5B08C /* CoreDataChatMessageRepository.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
-		22D3ACA227EB803C00A5B08C /* NewChat */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NewChat;
 			sourceTree = "<group>";
 		};
 		22D3ACC227EB80C200A5B08C /* Shared */ = {
@@ -873,6 +889,7 @@
 			isa = PBXGroup;
 			children = (
 				22D3AE2E27EB865A00A5B08C /* RemoteChatRoomMapperTests.swift */,
+				2255292F27EF326000C63C35 /* ChatCommunicatorTests.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -894,6 +911,7 @@
 			isa = PBXGroup;
 			children = (
 				22D3AC6627EB7E5900A5B08C /* Assets.xcassets */,
+				22D3AC7127EB7F8300A5B08C /* LaunchScreen.storyboard */,
 				22D3AC5F27EB7E5800A5B08C /* SceneDelegate.swift */,
 				22D3AC5D27EB7E5800A5B08C /* AppDelegate.swift */,
 				22F94C3A27EE386F00428210 /* ViewControllerFactory.swift */,
@@ -919,6 +937,7 @@
 			name = "events-app-swiftui-uikit-lifecycle";
 			packageProductDependencies = (
 				22D3ACC027EB807600A5B08C /* SDWebImageSwiftUI */,
+				2255292D27EF229300C63C35 /* SocketIO */,
 			);
 			productName = "events-app-swiftui-uikit-lifecycle";
 			productReference = 22D3AC5A27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle.app */;
@@ -972,6 +991,7 @@
 			mainGroup = 22D3AC5127EB7E5700A5B08C;
 			packageReferences = (
 				22D3ACBF27EB807600A5B08C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				2255292C27EF229300C63C35 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = 22D3AC5B27EB7E5800A5B08C /* Products */;
 			projectDirPath = "";
@@ -1055,13 +1075,12 @@
 				22D3AD6327EB81A300A5B08C /* EventsShowcase.swift in Sources */,
 				22D3AD4627EB814400A5B08C /* Credentials.swift in Sources */,
 				22D3ACF827EB80C200A5B08C /* EmailRegex.swift in Sources */,
-				22D3ACB227EB803C00A5B08C /* RecentChat.swift in Sources */,
+				22D3ACB227EB803C00A5B08C /* Room.swift in Sources */,
 				22D3AD0727EB80C200A5B08C /* Date+CurrentTimeZoneFormatted.swift in Sources */,
 				22D3AD0127EB80C200A5B08C /* Color+RGBConstructor.swift in Sources */,
 				22D3AD6427EB81A300A5B08C /* SearchBar.swift in Sources */,
 				22D3AE5127EBAC3500A5B08C /* ChatToolbar.swift in Sources */,
 				22D3AD4227EB814400A5B08C /* SigningIllustration.swift in Sources */,
-				22D3ACB527EB803C00A5B08C /* RecentChat+StubExtension.swift in Sources */,
 				22D3AD7027EB81CC00A5B08C /* ImageSaver.swift in Sources */,
 				22D3AD4127EB814400A5B08C /* FormField.swift in Sources */,
 				22D3AD0927EB80C200A5B08C /* PreviewProvider.swift in Sources */,
@@ -1083,6 +1102,7 @@
 				22D3AD3827EB814400A5B08C /* SignupViewModel.swift in Sources */,
 				22D3AD4327EB814400A5B08C /* SigningTextField.swift in Sources */,
 				22D3AD7327EB81CC00A5B08C /* EventDetails.swift in Sources */,
+				2255292B27EF18FB00C63C35 /* SocketIOChatCommunicator.swift in Sources */,
 				22D3AD1127EB80C200A5B08C /* LongRoundedButton.swift in Sources */,
 				22D3AD1027EB80C200A5B08C /* ResizableTextField.swift in Sources */,
 				22D3ACBD27EB803C00A5B08C /* ChatMessagesApiClient.swift in Sources */,
@@ -1100,7 +1120,6 @@
 				22D3AD5327EB817800A5B08C /* VideoOverlayPanel.swift in Sources */,
 				22D3AD1927EB80C200A5B08C /* JsonGetAuthDecorator.swift in Sources */,
 				22D3AD0A27EB80C200A5B08C /* View+RotationViewModifier.swift in Sources */,
-				22D3ACB827EB803C00A5B08C /* RemoteChatMessage.swift in Sources */,
 				22D3AD3F27EB814400A5B08C /* BasicPassword.swift in Sources */,
 				22D3AD0327EB80C200A5B08C /* AppDelegate+Rotation.swift in Sources */,
 				22D3ACAF27EB803C00A5B08C /* ChatUserCell.swift in Sources */,
@@ -1140,6 +1159,7 @@
 				22D3AE3627EB865A00A5B08C /* FakeUserRegisterer.swift in Sources */,
 				22D3AE4427EB865A00A5B08C /* JsonPostAuthDecoratorTests.swift in Sources */,
 				22D3AE3427EB865A00A5B08C /* JsonGetNetworkStub.swift in Sources */,
+				2255293027EF326000C63C35 /* ChatCommunicatorTests.swift in Sources */,
 				22D3AE3927EB865A00A5B08C /* UserRegistererStub.swift in Sources */,
 				22D3AE4527EB865A00A5B08C /* makeRequestTests.swift in Sources */,
 				22D3AE4727EB865A00A5B08C /* PresignedURLFetcherTests.swift in Sources */,
@@ -1413,6 +1433,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2255292C27EF229300C63C35 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				kind = revision;
+				revision = 36db2ff0ebc7239187f9b382fd318e122da71caa;
+			};
+		};
 		22D3ACBF27EB807600A5B08C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -1424,6 +1452,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2255292D27EF229300C63C35 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2255292C27EF229300C63C35 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
+		};
 		22D3ACC027EB807600A5B08C /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 22D3ACBF27EB807600A5B08C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

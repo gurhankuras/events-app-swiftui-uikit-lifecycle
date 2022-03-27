@@ -50,7 +50,7 @@ struct ChatToolbar: View {
 /*
 struct ChatToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        ChatToolbar(chat: <#T##RecentChatViewModel#>)
+        ChatToolbar(chat: <#T##RoomViewModel#>)
     }
 }
 */

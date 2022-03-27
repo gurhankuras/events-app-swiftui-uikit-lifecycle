@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct RecentChat: Identifiable {
+struct Room: Identifiable {
 
     var id: String
     
@@ -26,10 +26,9 @@ struct RecentChat: Identifiable {
     }
 }
 
-struct RecentChatViewModel: Identifiable {
+struct RoomViewModel: Identifiable {
 
     var id: String
-    
     let imageUrl: String
     let name: String
     let message: String

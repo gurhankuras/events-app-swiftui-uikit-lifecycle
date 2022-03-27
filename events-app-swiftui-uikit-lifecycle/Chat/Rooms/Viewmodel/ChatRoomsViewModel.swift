@@ -16,7 +16,7 @@ class ChatRoomsViewModel: ObservableObject {
     var onChatSelected: ((ChatRepresentation) -> Void)?
     
     
-    @Published var rooms = [RecentChatViewModel]()
+    @Published var rooms = [RoomViewModel]()
     @Published var showingNewChatSelection = false
     @Published var showingOptions = false
     
@@ -50,7 +50,7 @@ class ChatRoomsViewModel: ObservableObject {
                     print("finished")
                 }
             }, receiveValue: { [weak self] rooms in
-                let vms = rooms.map({ RecentChatViewModel(id: $0.id, imageUrl: $0.imageUrl, name: $0.name, message: $0.message, timestamp: $0.timestamp, lastSender: $0.lastSender, select: self?.onChatSelected)})
+                let vms = rooms.map({ RoomViewModel(id: $0.id, imageUrl: $0.imageUrl, name: $0.name, message: $0.message, timestamp: $0.timestamp, lastSender: $0.lastSender, select: self?.onChatSelected)})
                 self?.rooms.append(contentsOf: vms)
             })
     }

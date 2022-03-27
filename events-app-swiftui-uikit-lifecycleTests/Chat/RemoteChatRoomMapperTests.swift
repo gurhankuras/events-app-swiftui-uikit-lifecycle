@@ -21,9 +21,9 @@ class RemoteChatRoomMapperTests: XCTestCase {
                                             lastMessage: nil)
         
         let mapper = RemoteChatRoomMapper(for: User(id: "1", email: "test@test.com"))
-        let recentChat = mapper.map(room: remoteChatRoom)
+        let Room = mapper.map(room: remoteChatRoom)
     
-        XCTAssertEqual(recentChat.imageUrl, mapper.defaults.image)
+        XCTAssertEqual(Room.imageUrl, mapper.defaults.image)
     }
     
     func test_map_shouldReturnCorrectFormat() {
@@ -35,11 +35,11 @@ class RemoteChatRoomMapperTests: XCTestCase {
         
         let mapper = RemoteChatRoomMapper(for: User(id: "1", email: "test@test.com"))
         
-        let recentChat = mapper.map(room: remoteChatRoom)
+        let Room = mapper.map(room: remoteChatRoom)
     
-        XCTAssertEqual(recentChat.imageUrl, otherUser.image)
-        XCTAssertEqual(recentChat.id, remoteChatRoom.id)
-        XCTAssertEqual(recentChat.name, otherUser.name)
+        XCTAssertEqual(Room.imageUrl, otherUser.image)
+        XCTAssertEqual(Room.id, remoteChatRoom.id)
+        XCTAssertEqual(Room.name, otherUser.name)
     }
     
     func test_map_messageAndDateDefaults_whenThereIsNoLastMessage() {
@@ -51,10 +51,10 @@ class RemoteChatRoomMapperTests: XCTestCase {
         
         let mapper = RemoteChatRoomMapper(for: User(id: "1", email: "test@test.com"))
         
-        let recentChat = mapper.map(room: remoteChatRoom)
+        let Room = mapper.map(room: remoteChatRoom)
         
-        XCTAssertEqual(recentChat.message, mapper.defaults.text)
-        XCTAssertEqual(recentChat.timestamp, nil)
+        XCTAssertEqual(Room.message, mapper.defaults.text)
+        XCTAssertEqual(Room.timestamp, nil)
     }
     
     func test_map_messageAndDateAssignedFromLastMessage_whenThereIsLastMessage() {
@@ -68,10 +68,10 @@ class RemoteChatRoomMapperTests: XCTestCase {
         
         let mapper = RemoteChatRoomMapper(for: User(id: "1", email: "test@test.com"))
         
-        let recentChat = mapper.map(room: remoteChatRoom)
+        let Room = mapper.map(room: remoteChatRoom)
         
-        XCTAssertEqual(recentChat.message, remoteChatRoom.lastMessage?.text)
-        XCTAssertEqual(recentChat.timestamp, lastMessageSentAt)
+        XCTAssertEqual(Room.message, remoteChatRoom.lastMessage?.text)
+        XCTAssertEqual(Room.timestamp, lastMessageSentAt)
     }
 
     func test_map_imageAndRoomNameDefaults_whenTheOnlyOneInTheRoomIsMe() {
@@ -82,9 +82,9 @@ class RemoteChatRoomMapperTests: XCTestCase {
         
         let mapper = RemoteChatRoomMapper(for: User(id: "1", email: "test@test.com"))
         
-        let recentChat = mapper.map(room: remoteChatRoom)
+        let Room = mapper.map(room: remoteChatRoom)
 
-        XCTAssertEqual(recentChat.imageUrl, mapper.defaults.image)
-        XCTAssertEqual(recentChat.name, mapper.defaults.name)
+        XCTAssertEqual(Room.imageUrl, mapper.defaults.image)
+        XCTAssertEqual(Room.name, mapper.defaults.name)
     }
 }

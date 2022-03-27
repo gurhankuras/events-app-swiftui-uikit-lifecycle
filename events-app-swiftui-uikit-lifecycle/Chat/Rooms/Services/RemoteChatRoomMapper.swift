@@ -27,7 +27,7 @@ struct RemoteChatRoomMapper {
         self.defaults = defaults
     }
     
-    func map(room: RemoteChatRoom) -> RecentChat {
+    func map(room: RemoteChatRoom) -> Room {
         let roomName = name(for: room)
         let message = text(for: room)
         let image = image(for: room)
@@ -38,7 +38,7 @@ struct RemoteChatRoomMapper {
             lastSender = ChatUser(id: room.lastMessage!.sender.id, name: room.lastMessage!.sender.name, image: room.lastMessage!.sender.image)
         }
         
-        return RecentChat(id: room.id,
+        return Room(id: room.id,
                           imageUrl: image,
                           name: roomName,
                           message: message,

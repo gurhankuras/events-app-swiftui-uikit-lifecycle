@@ -18,7 +18,7 @@ struct ChatMessagesView: View {
     }
 
     var body: some View {
-        let _ = print("ChatLogsView CALISTI")
+        // let _ = print("ChatLogsView CALISTI")
         VStack {
             ChatToolbar(chat: viewModel.chat, onBack: onDismiss)
                 .padding(.horizontal)

@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct RecentChatsView: View {
+struct RoomsView: View {
     @StateObject var viewModel: ChatRoomsViewModel
     let onStartNewChat: () -> Void
     
     var body: some View {
-        let _ = print("RecentChatsView body")
+        let _ = print("RoomsView body")
         VStack(spacing: 0) {
-            RecentChatsToolbar {
+            RoomsToolbar {
                 onStartNewChat()
             }
             ChatRoomList(rooms: viewModel.rooms,
@@ -39,15 +39,15 @@ struct RecentChatsView: View {
 }
 
 /*
-struct RecentChatsView_Previews: PreviewProvider {
+struct RoomsView_Previews: PreviewProvider {
     static var previews: some View {
-        RecentChatsView(viewModel: .init(), onStartNewChat: {})
+        RoomsView(viewModel: .init(), onStartNewChat: {})
     }
 }
  */
 
 struct ChatRoomList: View {
-    let rooms: [RecentChatViewModel]
+    let rooms: [RoomViewModel]
     let onChatDeleted: () -> Void
     var body: some View {
         List {
@@ -70,7 +70,7 @@ struct ChatRoomList: View {
 }
 
 
-struct RecentChatsToolbar: View {
+struct RoomsToolbar: View {
     let onStartConversation: () -> Void
     var body: some View {
         HStack(spacing: 0) {

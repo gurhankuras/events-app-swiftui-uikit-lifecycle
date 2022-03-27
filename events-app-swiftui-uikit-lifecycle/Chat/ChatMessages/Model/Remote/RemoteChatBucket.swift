@@ -26,5 +26,19 @@ struct RemoteChatBucketMessage: Codable {
     let text: String
     let sender: RemoteChatRoomUser
     let sentAt: Date
-   
 }
+
+/*
+ {
+         text: 'hello',
+         sender: {
+           _id: new ObjectId("507f191e810c19729de860ec"),
+           name: 'Gurhan',
+           __v: 0
+         },
+         nonce: '710f5f1061',
+         sentAt: 2022-03-27T17:24:05.943Z,
+         _id: new ObjectId("62409db5c1407281662a79fa")
+       }
+ */
+ 

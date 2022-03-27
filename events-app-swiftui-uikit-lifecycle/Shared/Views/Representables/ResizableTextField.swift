@@ -31,7 +31,7 @@ struct ResizableTextField: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UITextView, context: Context) {
-        print(#function)
+        // print(#function)
         DispatchQueue.main.async {
             self.height = uiView.contentSize.height
             uiView.text = text
@@ -47,7 +47,7 @@ struct ResizableTextField: UIViewRepresentable {
         }
         
         func textViewDidBeginEditing(_ textView: UITextView) {
-            print(#function)
+            // print(#function)
             if self.parent.text == "" {
                 textView.text = ""
                 textView.textColor = .black
@@ -55,7 +55,7 @@ struct ResizableTextField: UIViewRepresentable {
         }
         
         func textViewDidChange(_ textView: UITextView) {
-            print(#function)
+            // print(#function)
             
             DispatchQueue.main.async {
                 self.parent.height = textView.contentSize.height
