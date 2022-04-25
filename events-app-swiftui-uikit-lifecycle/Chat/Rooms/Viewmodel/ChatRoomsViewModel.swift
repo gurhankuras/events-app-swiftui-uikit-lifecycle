@@ -8,21 +8,28 @@
 import Foundation
 import Combine
 
+
+
+
 class ChatRoomsViewModel: ObservableObject {
     let fetcher: ChatRoomFetcher
     let auth: Auth
+    var realTimeListener: RoomRealTimeListener
     var cancellable: AnyCancellable?
     var authCancellable: AnyCancellable?
-    var onChatSelected: ((ChatRepresentation) -> Void)?
+    var onChatSelected: ((RoomViewModel) -> Void)?
+    
     
     
     @Published var rooms = [RoomViewModel]()
     @Published var showingNewChatSelection = false
     @Published var showingOptions = false
     
-    init(fetcher: ChatRoomFetcher, auth: Auth) {
+    init(fetcher: ChatRoomFetcher, auth: Auth, realTimeListener: RoomRealTimeListener) {
         self.fetcher = fetcher
         self.auth = auth
+        self.realTimeListener = realTimeListener
+        
         listenAuth()
     }
     

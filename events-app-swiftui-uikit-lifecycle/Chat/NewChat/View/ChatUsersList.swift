@@ -15,7 +15,7 @@ struct ChatUsersList: View {
                 VStack {
                     ForEach(users) { user in
                         Button {
-                            user.select?(user.asDeneme)
+                            user.select?(user)
                         } label: {
                             ChatUserCell(user: user)
                         }

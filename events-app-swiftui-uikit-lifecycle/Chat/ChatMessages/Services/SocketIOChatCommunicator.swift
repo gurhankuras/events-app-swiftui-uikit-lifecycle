@@ -20,14 +20,15 @@ enum ClientChatEvent: String {
 }
 
 enum ServerChatEvent: String {
-    class MyType {
-        
-    }
+
     case send
+    case roomUpdated
     var rawValue: String {
         switch self {
         case .send:
             return "server:send"
+        case .roomUpdated:
+            return "server:room-updated"
         }
     }
 }
@@ -109,8 +110,12 @@ class SocketIOChatCommunicator: ChatCommunicator {
     }
     
     func receive(on event: ServerChatEvent, callback: @escaping (Result<RemoteChatBucketMessage, Error>) -> Void) {
+        socket.on(ServerChatEvent.roomUpdated.rawValue) { [weak self] data, ack in
+                print(data)
+        }
         socket.on(event.rawValue) { [weak self] message, ack in
-            self?.logger.d(message)
+            //self?.logger.d(message)
+    
             DispatchQueue.global(qos: .default).async {
                 guard let jsonString = message[0] as? String,
                       let data = jsonString.data(using: .utf8),

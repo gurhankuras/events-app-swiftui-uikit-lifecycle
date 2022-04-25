@@ -57,7 +57,7 @@ class ChatUsersViewModel: ObservableObject {
 }
 
 class RemoteChatUsersAdapter: ChatUserFetcher {
-    var onSelect: ((ChatRepresentation) -> Void)?
+    var onSelect: ((ChatUser) -> Void)?
     let fetcher: RemoteChatUsersFetcher
     init(fetcher: RemoteChatUsersFetcher) {
         self.fetcher = fetcher

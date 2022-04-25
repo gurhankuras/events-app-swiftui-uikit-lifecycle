@@ -12,7 +12,7 @@ import SwiftUI
 protocol ViewControllerFactory {
     func homeController(auth: Auth, onEventSelection: @escaping () -> Void, onSignClick: @escaping () -> Void) -> UINavigationController
     func blankController(notificationService: NotificationService) -> UIViewController
-    func chatController(auth: Auth, onStartNewChat: @escaping () -> Void, onChatSelected: @escaping (ChatRepresentation) -> Void) -> UINavigationController
+    func chatController(auth: Auth, realTimeListener: RoomRealTimeListener, onStartNewChat: @escaping () -> Void, onChatSelected: @escaping (RoomViewModel) -> Void) -> UINavigationController
     
 }
 
@@ -35,9 +35,9 @@ class AppViewControllerFactory: ViewControllerFactory {
         return blankController
     }
     
-    func chatController(auth: Auth, onStartNewChat: @escaping () -> Void, onChatSelected: @escaping (ChatRepresentation) -> Void) -> UINavigationController {
+    func chatController(auth: Auth, realTimeListener: RoomRealTimeListener, onStartNewChat: @escaping () -> Void, onChatSelected: @escaping (RoomViewModel) -> Void) -> UINavigationController {
         let fetcher = RemoteChatRoomFetcher(network: URLSession.shared.restrictedAccess())
-        let viewModel = ChatRoomsViewModel(fetcher: fetcher, auth: auth)
+        let viewModel = ChatRoomsViewModel(fetcher: fetcher, auth: auth, realTimeListener: realTimeListener)
         viewModel.onChatSelected = onChatSelected
         let view = RoomsView(viewModel: viewModel, onStartNewChat: onStartNewChat)
         let chatController = UINavigationController(rootViewController: UIHostingController(rootView: view))

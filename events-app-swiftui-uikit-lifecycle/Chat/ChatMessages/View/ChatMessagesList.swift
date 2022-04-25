@@ -10,20 +10,20 @@ import Combine
 
 struct ChatMessagesList: View {
     let messages: [ChatMessage]
-    let scrollPublisher: PassthroughSubject<String, Never>
+    let scroller: ChatScroller
     let onMessageAppear: (ChatMessage) -> Void
-    let belongsToUser: (ChatMessage) -> Bool
+    let userOwnsMessage: (ChatMessage) -> Bool
     
     init(_ messages: [ChatMessage],
-         scrollPublisher: PassthroughSubject<String, Never>,
+         scroller: ChatScroller,
          onMessageAppear: @escaping (ChatMessage) -> Void,
-         belongsToUser: @escaping (ChatMessage) -> Bool
+         userOwnsMessage: @escaping (ChatMessage) -> Bool
     ) {
         
         self.messages = messages
-        self.scrollPublisher = scrollPublisher
+        self.scroller = scroller
         self.onMessageAppear = onMessageAppear
-        self.belongsToUser = belongsToUser
+        self.userOwnsMessage = userOwnsMessage
     }
     
     var body: some View {
@@ -33,7 +33,7 @@ struct ChatMessagesList: View {
                     Spacer().frame(height: 15)
 
                     ForEach(messages) { message in
-                        ChatBubble(message, isMe: belongsToUser(message))
+                        ChatBubble(message, isMe: userOwnsMessage(message))
                             .id(message.id)
                             .reverseScroll()
                             .transition(.move(edge: .top))
@@ -41,7 +41,7 @@ struct ChatMessagesList: View {
                                 onMessageAppear(message)
                             }
                     }
-                    .onReceive(scrollPublisher) { id in
+                    .onReceive(scroller.publisher) { id in
                         scrollToBottom(proxy: proxy, id: id)
                     }
                 }
@@ -69,9 +69,9 @@ struct ChatMessagesList_Previews: PreviewProvider {
     static var previews: some View {
         ChatMessagesList(
             ChatMessage.stubs(4),
-            scrollPublisher: .init(),
+            scroller: .init(),
             onMessageAppear: {_ in},
-            belongsToUser: {_ in true}
+            userOwnsMessage: {_ in true}
         )
     }
 }

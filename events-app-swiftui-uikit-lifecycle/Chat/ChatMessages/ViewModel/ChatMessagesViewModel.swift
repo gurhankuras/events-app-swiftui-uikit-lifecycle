@@ -9,14 +9,15 @@ import Combine
 import SwiftUI
 
 
+
+
 class ChatMessagesViewModel: ObservableObject {
     let logger = AppLogger(type: ChatMessagesViewModel.self)
     let service: RemoteChatMessageFetcher
-    let apiClient: ChatMessagesApiClient
     let auth: Auth
     let communicator: ChatCommunicator
-    let chat: ChatRepresentation
-    let scrollToEnd = PassthroughSubject<String, Never>()
+    let room: Room
+    let scroller = ChatScroller()
     
     @Published var text: String = ""
     @Published var image: UIImage?
@@ -32,48 +33,50 @@ class ChatMessagesViewModel: ObservableObject {
     var canLoadMore = true
     var authCancellable: AnyCancellable?
     var currentUser: User?
+    
+   
 
-    init(for chat: ChatRepresentation, service: RemoteChatMessageFetcher, apiClient: ChatMessagesApiClient, auth: Auth, communicator: ChatCommunicator) {
-        self.chat = chat
+    init(for room: Room, service: RemoteChatMessageFetcher, auth: Auth, communicator: ChatCommunicator) {
+        logger.i(#function)
+        
+        self.room = room
         self.service = service
-        self.apiClient = apiClient
         self.auth = auth
         self.communicator = communicator
-        print("chat: \(chat)")
-       
-        authCancellable = auth.userPublisher.sink { [weak self] result in
+              
+        authCancellable = auth.userPublisher.sink(receiveValue: { [weak self] status in self?.onAuthChange(status: status) })
+        communicator.receive(on: .send) { [weak self] result in self?.onReceiveMessage(result: result) }
+    }
+    
+    func onAuthChange(status: Auth.AuthStatus) {
+        switch status {
+        case .loggedIn(let user):
+            self.currentUser = user
+            break
+        default:
+            self.currentUser = nil
+        }
+    }
+    
+    func onReceiveMessage(result: Result<RemoteChatBucketMessage, Error>) {
+        print("RECEIVE")
+        DispatchQueue.main.async {
             switch result {
-            case .loggedIn(let user):
-                self?.currentUser = user
-                break
-            default:
-                self?.currentUser = nil
-            }
-        
-        }
-        
-        communicator.receive(on: .send) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                    
-                case .success(let message):
-                    withAnimation {
-                        self?.messages.insert(.init(id: message.id, sender: .init(id: message.sender.id, name: message.sender.name, image: nil, select: {_ in}), message: message.text, timestamp: Date(), image: nil), at: 0)
-                    }
-                    self?.image = nil
-                    self?.scrollToEnd.send(message.id)
-                    
-                case .failure(_):
-                    return
+            case .success(let message):
+                withAnimation {
+                    self.messages.insert(.init(id: message.id, sender: .init(id: message.sender.id, name: message.sender.name, image: nil, select: {_ in}), message: message.text, timestamp: Date(), image: nil), at: 0)
                 }
+                self.image = nil
+                self.scroller.scrollTo(positionOf: message.id)
+                
+            case .failure(_):
+                return
             }
         }
-        
-        logger.i(#function)
     }
     
     
-    func belongsToCurrentUser(message: ChatMessage) -> Bool {
+    func userOwnsMessage(_ message: ChatMessage) -> Bool {
         guard let user = currentUser else { return false }
         return message.belongs(to: user)
     }
@@ -82,18 +85,18 @@ class ChatMessagesViewModel: ObservableObject {
     var canSendMessage: Bool {
         return !text.trimmed().isEmpty || image != nil
     }
-    
-    deinit {
-        logger.e(#function)
-    }
+
     
     func send() {
-        guard let currentUser = currentUser,
-                let id = chat.roomId else { return }
-        communicator.send(message: .text(text.trimmed()), to: id) { [weak self] in
+        guard let currentUser = currentUser else { return }
+        communicator.send(message: .text(text.trimmed()), to: room.id) { [weak self] in
             print("SENT")
             self?.text = ""
         }
+    }
+    
+    deinit {
+        logger.e(#function)
     }
 }
 
@@ -112,13 +115,13 @@ extension ChatMessagesViewModel {
     }
     
     func load() {
-        guard let id = chat.roomId, !isLoading && canLoadMore else {
+        guard  !isLoading && canLoadMore else {
             print("page: \(page), isLoading: \(isLoading), canLoadMore: \(canLoadMore)")
             return
         }
         
         isLoading = true
-        cancellable = service.fetch(for: id, at: page)
+        cancellable = service.fetch(for: room.id, at: page)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {

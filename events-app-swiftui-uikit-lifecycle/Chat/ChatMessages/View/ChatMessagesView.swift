@@ -20,12 +20,12 @@ struct ChatMessagesView: View {
     var body: some View {
         // let _ = print("ChatLogsView CALISTI")
         VStack {
-            ChatToolbar(chat: viewModel.chat, onBack: onDismiss)
+            ChatToolbar(room: viewModel.room, onBack: onDismiss)
                 .padding(.horizontal)
             ChatMessagesList(viewModel.messages,
-                             scrollPublisher: viewModel.scrollToEnd,
+                             scroller: viewModel.scroller,
                              onMessageAppear: handle,
-                             belongsToUser: viewModel.belongsToCurrentUser)
+                             userOwnsMessage: viewModel.userOwnsMessage)
                 .onTapGesture {
                     UIApplication.shared.endEditing()
                 }

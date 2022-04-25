@@ -8,6 +8,8 @@
 import UIKit
 import SwiftUI
 import SocketIO
+import Combine
+
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -19,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var auth: Auth!
     var localNotifications: NotificationService!
     var factory: ViewControllerFactory!
-    
+    var cancellable: AnyCancellable?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -49,12 +51,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 guard let self = self else { return }
                 self.homeViewController.present(self.signViewController(), animated: true)
         })
-        
-        chatViewController = factory.chatController(auth: auth, onStartNewChat: {[weak self] in
+        let socketManager = SocketManager(socketURL: URL(string: "http://gkevents.com/api/chat")!, config: [.log(false)])
+        let realTimeListener = SocketIORoomRealTimeListener(manager: socketManager, tokenStore: SecureTokenStore(keychain: .standard))
+        realTimeListener.receive(completion: { [weak self] room in
+            print(room)
+        })
+        chatViewController = factory.chatController(auth: auth, realTimeListener: realTimeListener, onStartNewChat: {[weak self] in
             self?.showChatUsers()
-        }, onChatSelected: { [weak self] chatRepresentation in
+        }, onChatSelected: { [weak self] roomVm in
             guard let self = self else { return }
-            self.pushChatMessagesViewController(presentingController: self.chatViewController, chat: chatRepresentation)
+            self.pushChatMessagesViewController(presentingController: self.chatViewController, room: Room(id: roomVm.id, imageUrl: roomVm.imageUrl, name: roomVm.name, message: roomVm.message, timestamp: roomVm.timestamp, lastSender: roomVm.lastSender))
         })
         
         blankViewController = factory.blankController(notificationService: localNotifications)
@@ -76,16 +82,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let decoratedSession = JsonGetAuthDecorator(decoratee: URLSession.shared, store: SecureTokenStore(keychain: .standard))
         let fetcher = RemoteChatUsersFetcher(network:  decoratedSession)
         let adapter = RemoteChatUsersAdapter(fetcher: fetcher)
-        adapter.onSelect = { [weak self] chat in
+        adapter.onSelect = { [weak self] user in
             print("BURDA")
             guard let self = self else {
                 return
             }
             
-            self.chatViewController.dismiss(animated: true)
-            self.chatViewController.pushViewController(self.chatMessagesView(chat: chat, onDismiss: {
-                self.chatViewController.popViewController(animated: true)
-            }), animated: true)
+            let post = JsonPostAuthDecorator(decoratee: URLSession.shared, store: SecureTokenStore(keychain: .standard))
+            let roomCreator = RoomCreator(network: post)
+            self.cancellable = roomCreator.create(userId: user.id)
+                .sink { completion in
+                    
+                } receiveValue: { room in
+                    guard case let .loggedIn(authUser) = self.auth.userPublisher.value else {
+                        return
+                    }
+                    
+                    let roomMapper = RemoteChatRoomMapper(for: authUser)
+            
+                    self.chatViewController.dismiss(animated: true)
+                    let remoteUser = room.lastMessage?.sender
+                    let rrom = Room(id: room.id, imageUrl: room.participants.first?.image ?? "no-image", name: room.participants.first?.name ?? "-", message: room.lastMessage?.text ?? "", timestamp: Date(), lastSender: nil)
+                    self.chatViewController.pushViewController(self.chatMessagesView(room: rrom, onDismiss: {
+                        self.chatViewController.popViewController(animated: true)
+                    }), animated: true)
+                }
+
+            
         }
         let viewModel = ChatUsersViewModel(fetcher: adapter)
         let view = ChatUsersView(viewModel: viewModel, dismiss: { [weak self] in self?.chatViewController.dismiss(animated: true) })
@@ -99,15 +122,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     
-    func chatMessagesView(chat: ChatRepresentation, onDismiss: @escaping () -> Void) -> UIViewController {
+    func chatMessagesView(room: Room, onDismiss: @escaping () -> Void) -> UIViewController {
         let network = JsonPostAuthDecorator(decoratee: URLSession.shared, store: SecureTokenStore(keychain: .standard))
-        let apiClient = ChatMessagesApiClient(network: network)
         let service =  RemoteChatMessageFetcher(session: .shared)
-        let manager =  SocketManager(socketURL: URL(string: "http://gkevents.com/api/chat")!, config: [.log(false)])
+        let socketManager = SocketManager(socketURL: URL(string: "http://gkevents.com/api/chat")!, config: [.log(false)])
+
+        let communicator = SocketIOChatCommunicator(roomId: room.id, manager: socketManager, tokenStore: SecureTokenStore(keychain: .standard))
         
-        let communicator = SocketIOChatCommunicator(roomId: chat.roomId ?? "", manager: manager, tokenStore: SecureTokenStore(keychain: .standard))
-        
-        let viewModel = ChatMessagesViewModel(for: chat, service: service, apiClient: apiClient, auth: auth, communicator: communicator)
+        let viewModel = ChatMessagesViewModel(for: room, service: service, auth: auth, communicator: communicator)
         let controller = UIHostingController(rootView: ChatMessagesView(viewModel: viewModel, onDismiss: onDismiss))
         return controller
     }
@@ -120,9 +142,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     
-    func pushChatMessagesViewController(presentingController: UINavigationController, chat: ChatRepresentation) {
+    func pushChatMessagesViewController(presentingController: UINavigationController, room: Room) {
         print("PUSH")
-        let controller = chatMessagesView(chat: chat, onDismiss: {
+        let controller = chatMessagesView(room: room, onDismiss: {
             presentingController.popViewController(animated: true)
         })
         presentingController.show(controller, sender: nil)

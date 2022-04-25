@@ -1,23 +1,21 @@
 //
-//  RecentMessage.swift
-//  play
+//  RoomViewModel.swift
+//  events-app-swiftui-uikit-lifecycle
 //
-//  Created by Gürhan Kuraş on 3/4/22.
+//  Created by Gürhan Kuraş on 3/28/22.
 //
 
 import Foundation
 
-
-struct Room: Identifiable {
+struct RoomViewModel: Identifiable {
 
     var id: String
-    
     let imageUrl: String
     let name: String
     let message: String
     let timestamp: Date?
     let lastSender: ChatUser?
-
+    var select: ((RoomViewModel) -> Void)?
     
     var timeAgo: String {
         let formatter = RelativeDateTimeFormatter()
@@ -25,5 +23,3 @@ struct Room: Identifiable {
         return formatter.string(for: timestamp) ?? ""
     }
 }
-
-

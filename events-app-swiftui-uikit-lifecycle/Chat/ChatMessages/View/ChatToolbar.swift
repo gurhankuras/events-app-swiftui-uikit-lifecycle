@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChatToolbar: View {
-    let chat: ChatRepresentation
+    let room: Room
     let onBack: () -> Void
     
     var body: some View {
@@ -27,7 +27,7 @@ struct ChatToolbar: View {
                         // TODO: Show fullscreen profile image
                     } label: {
                         
-                        Image(chat.image)
+                        Image(room.imageUrl)
                             .resizable()
                             .scaledToFill()
                             .size(40)
@@ -37,7 +37,7 @@ struct ChatToolbar: View {
                     .buttonStyle(PlainButtonStyle())
                         
                     .padding(.trailing, 5)
-                    Text(chat.name)
+                    Text(room.name)
                         .font(.system(size: 16))
                         .fontWeight(.medium)
                 }
