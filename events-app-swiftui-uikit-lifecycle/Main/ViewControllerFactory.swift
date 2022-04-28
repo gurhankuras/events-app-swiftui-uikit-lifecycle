@@ -17,6 +17,8 @@ protocol ViewControllerFactory {
 }
 
 class AppViewControllerFactory: ViewControllerFactory {
+    public weak var window: UIWindow?
+    
     func homeController(auth: Auth, onEventSelection: @escaping () -> Void, onSignClick: @escaping () -> Void) -> UINavigationController {
         let viewModel = HomeViewModel(auth: auth, api: .init(client: URLSession.shared))
         let homeController = UINavigationController(rootViewController: UIHostingController(rootView: Home(viewModel: viewModel)))
@@ -30,7 +32,9 @@ class AppViewControllerFactory: ViewControllerFactory {
     }
     
     func blankController(notificationService: NotificationService) -> UIViewController {
-        let blankController = UINavigationController(rootViewController: UIHostingController(rootView: ProfileView()))
+        let darkModeSettings = DarkModeSettings(window: window)
+        let settingsViewModel = SettingsViewModel(darkModeSettings: darkModeSettings)
+        let blankController = UINavigationController(rootViewController: UIHostingController(rootView: ProfileView(settingsViewModel: settingsViewModel)))
         //UINavigationController(rootViewController: UIHostingController(rootView: Blank(notificationService: notificationService)))
         blankController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
         return blankController

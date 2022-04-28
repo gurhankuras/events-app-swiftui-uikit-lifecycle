@@ -7,27 +7,22 @@
 
 import SwiftUI
 
-struct SettingsTile: View {
-    let setting: ProfileSetting
+struct SettingsTile<Content: View>: View {
+    let title: String
+    let icon: String
+    @ViewBuilder let content: () -> Content
+    
+    init(title: String, icon: String, content: @escaping () -> Content) {
+        self.title = title
+        self.icon = icon
+        self.content = content
+    }
     var body: some View {
-        
-        Group {
-            if setting.type.isLink {
-                Button {
-                    guard case let .link(action) = setting.type else { return }
-                    action()
-                } label: {
-                    settingBody
-                }
-            }
-            else {
-                settingBody
-            }
-        }
+        settingBody
         .foregroundColor(Color.primary)
         .padding(.vertical, 12)
         .padding(.horizontal, 20)
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .frame(height: 40)
         .background(Color(UIColor.systemBackground))
     }
@@ -35,17 +30,18 @@ struct SettingsTile: View {
     var settingBody: some View {
         HStack {
             Label {
-                Text(setting.name)
+                Text(title)
                     .font(.system(size: 14, weight: .medium, design: .rounded))
             } icon: {
-                Image(systemName: setting.icon)
+                Image(systemName: icon)
                     .font(.system(size: 18))
             }
-            Spacer()
-            TypedOptionView(type: setting.type)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            Spacer(minLength: 0)
+            content()
         }
     }
-    
+    /*
     @ViewBuilder func TypedOptionView(type: SettingsType) -> some View {
         switch setting.type {
         case .toggle(let isOn):
@@ -64,16 +60,25 @@ struct SettingsTile: View {
             }
         }
     }
+     */
 }
+
 
 
 struct SettingsTile_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SettingsTile(setting: ProfileSetting(name: "Language", icon: "network", type: .toggle(.constant(true))))
-            SettingsTile(setting: ProfileSetting(name: "Language", icon: "network", type: .link({})))
-            SettingsTile(setting: ProfileSetting(name: "Language", icon: "network", type: .multiselect("Turkish")))
-        }
+            SettingsTile(title: "Automatic (follow iOS setting)", icon: "gearshape") {
+                Toggle(isOn: .constant(true), label: {})
+                    .frame(width: 60)
+                  .tint(.blue)
+            }
+            /*
+            SettingsTile(setting: ProfileSetting(name: "Language", icon: "network", type: .link({})), content: {EmptyView()})
+            SettingsTile(setting: ProfileSetting(name: "Language", icon: "network", type: .multiselect("Turkish")), content: {EmptyView()})
+        */
+             }
         .previewLayout(.sizeThatFits)
     }
 }
+

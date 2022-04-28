@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var tabController: UITabBarController!
     var auth: Auth!
     var localNotifications: NotificationService!
-    var factory: ViewControllerFactory!
+    var factory: AppViewControllerFactory!
     var cancellable: AnyCancellable?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         localNotifications = NotificationService(notificationCenter: .current())
         factory = AppViewControllerFactory()
-
+        factory.window = window
         auth = makeAuth()
         auth.trySignIn()
 
@@ -42,9 +42,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         AppLogger.level = .debug
     }
+
     
     func setControllers() {
-        tabController = UITabBarController()
+        tabController = TabViewController()
+        print(tabController.traitCollection.userInterfaceStyle.rawValue)
         
         homeViewController = factory.homeController(auth: auth, onEventSelection: { [weak self] in
             guard let self = self else { return }

@@ -21,6 +21,9 @@ struct ProfileHeader: View {
                 .size(75)
                 .clipped()
                 .clipShape(Circle())
+                .onTapGesture {
+                    print(UserDefaults.standard.bool(forKey: "darkMode"))
+                }
             Text(profileViewModel.name)
                 .fontWeight(.semibold)
             Text(profileViewModel.username)

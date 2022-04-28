@@ -12,11 +12,12 @@ import SDWebImageSwiftUI
 struct ProfileView: View {
     
     let profileViewModel: ProfileUserViewModel = .init(name: "Gurhan Kuras", username: "gurhankuras", image: "pikachu")
+    @StateObject var settingsViewModel: SettingsViewModel
     
     var body: some View {
         VStack(spacing: 0) {
             ProfileHeader(profileViewModel: profileViewModel)
-            SettingsView()
+            SettingsView(settingsViewModel: settingsViewModel)
         }
         .background(Color.paleBackground)
     }
@@ -24,7 +25,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(settingsViewModel: .init(darkModeSettings: .init(window: SceneDelegate.shared?.window)))
     }
 }
 

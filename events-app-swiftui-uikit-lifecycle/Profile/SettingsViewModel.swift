@@ -9,17 +9,27 @@ import Foundation
 import Combine
 
 class SettingsViewModel: ObservableObject {
-    @Published var isDarkMode: Bool = SceneDelegate.shared?.window!.overrideUserInterfaceStyle == .dark ? true : false
-    var cancellable: AnyCancellable?
+    @Published var isDarkMode: Bool = false
+    @Published var prefersSystemMode: Bool = false
+    var cancellables = Set<AnyCancellable>()
     
-    let darkModeService: ToggleDarkMode = ToggleDarkMode()
-    var groups: [SettingGroup] = []
-    
-    
-    init() {
-        cancellable = $isDarkMode.sink { darkMode in
-            self.darkModeService.execute()
+    let darkModeSettings: DarkModeSettings
+   
+    init(darkModeSettings: DarkModeSettings) {
+        
+        self.darkModeSettings = darkModeSettings
+        isDarkMode = darkModeSettings.isDarkMode
+        prefersSystemMode = darkModeSettings.prefersSystemMode
+        $isDarkMode.sink { isDark in
+            darkModeSettings.set(darkMode: isDark)
         }
+        .store(in: &cancellables)
+        
+        $prefersSystemMode.sink { prefers in
+            darkModeSettings.set(prefersSystemMode: prefers)
+        }
+        .store(in: &cancellables)
+      /*
         groups.append(contentsOf: [
             SettingGroup(section: "Content", settings: [
                 .init(name: "Favorites", icon: "heart", type: .link({})),
@@ -32,10 +42,9 @@ class SettingsViewModel: ObservableObject {
                 .init(name: "Dark Mode", icon: "moon", type: .toggle(.constant(true)))
             ])
         ])
+       */
     }
     
-    func toggleDarkMode() {
-        
-    }
+
     
 }

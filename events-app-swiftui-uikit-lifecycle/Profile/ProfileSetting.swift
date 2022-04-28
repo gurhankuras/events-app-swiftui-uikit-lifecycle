@@ -15,10 +15,10 @@ struct ProfileSetting: Identifiable {
     
     let name: String
     let icon: String
-    let type: SettingsType
 }
 
 
+/*
 enum SettingsType {
     case toggle(Binding<Bool>)
     case link(() -> ())
@@ -31,3 +31,4 @@ enum SettingsType {
         return true
     }
 }
+*/

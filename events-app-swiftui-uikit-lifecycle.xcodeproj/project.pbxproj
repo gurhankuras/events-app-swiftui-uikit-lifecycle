@@ -17,9 +17,10 @@
 		2217504A281AC48C0096308D /* ProfileUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175049281AC48C0096308D /* ProfileUserViewModel.swift */; };
 		2217504C281AC6050096308D /* SettingsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217504B281AC6050096308D /* SettingsGroup.swift */; };
 		2217504E281AC6A20096308D /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217504D281AC6A20096308D /* ProfileSetting.swift */; };
-		22175050281AD0C90096308D /* ToggleDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217504F281AD0C90096308D /* ToggleDarkMode.swift */; };
+		22175050281AD0C90096308D /* DarkModeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217504F281AD0C90096308D /* DarkModeSettings.swift */; };
 		22175052281AD1A00096308D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175051281AD1A00096308D /* SettingsViewModel.swift */; };
 		22175054281AD2490096308D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175053281AD2490096308D /* SettingsView.swift */; };
+		22175056281AF5A10096308D /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175055281AF5A10096308D /* TabViewController.swift */; };
 		221E240327F203D700B8A939 /* ChatScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240227F203D700B8A939 /* ChatScroller.swift */; };
 		221E240827F222C500B8A939 /* RoomCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240727F222C500B8A939 /* RoomCreator.swift */; };
 		221E240A27F23CCD00B8A939 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240927F23CCD00B8A939 /* RoomViewModel.swift */; };
@@ -190,9 +191,10 @@
 		22175049281AC48C0096308D /* ProfileUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserViewModel.swift; sourceTree = "<group>"; };
 		2217504B281AC6050096308D /* SettingsGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGroup.swift; sourceTree = "<group>"; };
 		2217504D281AC6A20096308D /* ProfileSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetting.swift; sourceTree = "<group>"; };
-		2217504F281AD0C90096308D /* ToggleDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleDarkMode.swift; sourceTree = "<group>"; };
+		2217504F281AD0C90096308D /* DarkModeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeSettings.swift; sourceTree = "<group>"; };
 		22175051281AD1A00096308D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		22175053281AD2490096308D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		22175055281AF5A10096308D /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		221E240227F203D700B8A939 /* ChatScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScroller.swift; sourceTree = "<group>"; };
 		221E240727F222C500B8A939 /* RoomCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCreator.swift; sourceTree = "<group>"; };
 		221E240927F23CCD00B8A939 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
@@ -1001,7 +1003,7 @@
 				22175049281AC48C0096308D /* ProfileUserViewModel.swift */,
 				2217504B281AC6050096308D /* SettingsGroup.swift */,
 				2217504D281AC6A20096308D /* ProfileSetting.swift */,
-				2217504F281AD0C90096308D /* ToggleDarkMode.swift */,
+				2217504F281AD0C90096308D /* DarkModeSettings.swift */,
 				22175051281AD1A00096308D /* SettingsViewModel.swift */,
 				22175053281AD2490096308D /* SettingsView.swift */,
 			);
@@ -1016,6 +1018,7 @@
 				22D3AC5F27EB7E5800A5B08C /* SceneDelegate.swift */,
 				22D3AC5D27EB7E5800A5B08C /* AppDelegate.swift */,
 				22F94C3A27EE386F00428210 /* ViewControllerFactory.swift */,
+				22175055281AF5A10096308D /* TabViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1209,6 +1212,7 @@
 				22175048281AC42E0096308D /* ProfileHeader.swift in Sources */,
 				22D3ACB627EB803C00A5B08C /* ChatMessage+Stub.swift in Sources */,
 				22D3AD1827EB80C200A5B08C /* JsonPostTokenSaverDecorator.swift in Sources */,
+				22175056281AF5A10096308D /* TabViewController.swift in Sources */,
 				22D3AD0C27EB80C200A5B08C /* View+Size.swift in Sources */,
 				22D3AD6227EB81A300A5B08C /* Home.swift in Sources */,
 				22D3ACBA27EB803C00A5B08C /* ChatRoomCell.swift in Sources */,
@@ -1254,7 +1258,7 @@
 				22D3AD4F27EB817800A5B08C /* VideoPlayerProgressBar.swift in Sources */,
 				221E241327F253B900B8A939 /* RoomsAuthContainerView.swift in Sources */,
 				22D3ACFE27EB80C200A5B08C /* KeychainItemAccessibility.swift in Sources */,
-				22175050281AD0C90096308D /* ToggleDarkMode.swift in Sources */,
+				22175050281AD0C90096308D /* DarkModeSettings.swift in Sources */,
 				22D3AD4427EB814400A5B08C /* SignView.swift in Sources */,
 				22D3ACB927EB803C00A5B08C /* RecentChatsView.swift in Sources */,
 				22D3AD0E27EB80C200A5B08C /* WebView.swift in Sources */,

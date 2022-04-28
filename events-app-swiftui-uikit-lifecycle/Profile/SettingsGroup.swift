@@ -14,21 +14,24 @@ struct SettingGroup: Identifiable {
 }
 
 
-struct SettingsGroupView: View {
-    let group: SettingGroup
+struct SettingsGroupView<Content: View>: View {
+    let groupName: String
+    @ViewBuilder let content: () -> Content
+    
+    init(groupName: String, content: @escaping () -> Content) {
+        self.groupName = groupName
+        self.content = content
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(group.section.uppercased())
+            Text(groupName.uppercased())
                 .font(.system(size: 13, weight: .semibold, design: .rounded))
                 .foregroundColor(Color(.systemGray))
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
-            
-            ForEach(group.settings) { setting in
-                SettingsTile(setting: setting)
-            }
+            content()
         }
-        
     }
 }
 

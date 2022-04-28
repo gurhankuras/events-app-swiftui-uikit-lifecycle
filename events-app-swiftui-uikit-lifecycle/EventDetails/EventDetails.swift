@@ -182,7 +182,7 @@ struct ImageStack<Content: View, AdditionalContent: View> : View {
     let gap: Double
     let imageUrls: [String]
     let content: (Image) -> Content
-    @ViewBuilder let additionalContent: () -> AdditionalContent
+    let additionalContent: () -> AdditionalContent
     
     
     init(gap: Double,
