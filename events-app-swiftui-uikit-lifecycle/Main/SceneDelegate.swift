@@ -12,6 +12,7 @@ import Combine
 
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    private(set) static var shared: SceneDelegate?
 
     var window: UIWindow?
     var chatViewController: UINavigationController!
@@ -24,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var cancellable: AnyCancellable?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        Self.shared = self
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow()
         window?.windowScene = windowScene

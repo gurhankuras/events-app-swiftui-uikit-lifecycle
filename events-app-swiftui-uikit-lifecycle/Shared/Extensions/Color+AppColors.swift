@@ -16,6 +16,7 @@ extension Color {
     static let background = Color("backgroundColor")
     static let colorScheme = Color("colorSchemaColor")
     static let card = Color("cardColor")
+    static let paleBackground = Color("paleBackground")
 }
 
 extension UIColor {

@@ -20,7 +20,7 @@ struct Home: View {
                        onSignOut: viewModel.signOut,
                        onSignIn: { viewModel.onSignClick?() }
             )
-            EventRemainderView(count: 5)
+            EventRemainderView(count: 5, load: {viewModel.load()})
                 .offset(y: -25)
                 .foregroundColor(.white)
             

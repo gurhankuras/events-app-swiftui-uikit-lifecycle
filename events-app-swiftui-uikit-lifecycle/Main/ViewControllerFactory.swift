@@ -18,7 +18,7 @@ protocol ViewControllerFactory {
 
 class AppViewControllerFactory: ViewControllerFactory {
     func homeController(auth: Auth, onEventSelection: @escaping () -> Void, onSignClick: @escaping () -> Void) -> UINavigationController {
-        let viewModel = HomeViewModel(auth: auth)
+        let viewModel = HomeViewModel(auth: auth, api: .init(client: URLSession.shared))
         let homeController = UINavigationController(rootViewController: UIHostingController(rootView: Home(viewModel: viewModel)))
         viewModel.onEventSelection = onEventSelection
         viewModel.onSignClick = onSignClick
@@ -30,12 +30,14 @@ class AppViewControllerFactory: ViewControllerFactory {
     }
     
     func blankController(notificationService: NotificationService) -> UIViewController {
-        let blankController = UINavigationController(rootViewController: UIHostingController(rootView: Blank(notificationService: notificationService)))
+        let blankController = UINavigationController(rootViewController: UIHostingController(rootView: ProfileView()))
+        //UINavigationController(rootViewController: UIHostingController(rootView: Blank(notificationService: notificationService)))
         blankController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
         return blankController
     }
     
     func chatController(auth: Auth, realTimeListener: RoomRealTimeListener, onStartNewChat: @escaping () -> Void, onChatSelected: @escaping (RoomViewModel) -> Void) -> UINavigationController {
+        /*
         let fetcher = RemoteChatRoomFetcher(network: URLSession.shared.restrictedAccess())
         let viewModel = ChatRoomsViewModel(fetcher: fetcher, auth: auth, realTimeListener: realTimeListener)
         viewModel.onChatSelected = onChatSelected
@@ -47,5 +49,20 @@ class AppViewControllerFactory: ViewControllerFactory {
         chatController.navigationBar.prefersLargeTitles = false
         chatController.navigationBar.isHidden = true
         return chatController
+         */
+        //let fetcher = RemoteChatRoomFetcher(network: URLSession.shared.restrictedAccess())
+        let fetcher = ChatRoomFetcherStub(result: .success(ChatRoomFetcherStub.stubs)
+        )
+        let viewModel = ChatRoomsViewModel(fetcher: fetcher, auth: auth, realTimeListener: realTimeListener)
+        viewModel.onChatSelected = onChatSelected
+        let chatController = ChatRoomsViewController(viewmodel: viewModel)
+        let navController = UINavigationController(rootViewController: chatController)
+        navController.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(systemName: "bubble.left.fill"), tag: 2)
+
+        navController.navigationBar.prefersLargeTitles = false
+        chatController.title = "Chats"
+        //navController.navigationBar.isHidden = true
+        return navController
     }
+    
 }

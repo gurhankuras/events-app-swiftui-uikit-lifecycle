@@ -48,10 +48,22 @@ class ChatRoomCell2: UITableViewCell {
         return label
     }()
     
+    func setRoom(_ room: RoomViewModel) {
+        let senderName = room.lastSender != nil ? "\(room.lastSender!.name): ": ""
+        let senderAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 14, weight: .semibold)]
+        let attributedString = NSMutableAttributedString(string: senderName, attributes: senderAttributes)
+        let messageText = room.message
+        
+        let messageTextAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
+        attributedString.append(.init(string: messageText, attributes: messageTextAttributes))
+        lastMessageText.attributedText = attributedString
+        
+        chatTitle.text = room.name
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .white
-        print("didLoad")
         
         addSubview(image)
         addSubview(chatTitle)

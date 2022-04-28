@@ -10,6 +10,16 @@
 		22082F872816E1430070A4B8 /* ChatRoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22082F862816E1430070A4B8 /* ChatRoomsViewController.swift */; };
 		22082F892816E1730070A4B8 /* ChatRoomCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22082F882816E1730070A4B8 /* ChatRoomCell2.swift */; };
 		22082F8C2816E1CE0070A4B8 /* ViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22082F8B2816E1CE0070A4B8 /* ViewControllerPreview.swift */; };
+		22082F8E2816F9400070A4B8 /* ScrollPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22082F8D2816F9400070A4B8 /* ScrollPopup.swift */; };
+		22175044281AB0D00096308D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175043281AB0D00096308D /* ProfileView.swift */; };
+		22175046281AB9380096308D /* SettingsTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175045281AB9380096308D /* SettingsTile.swift */; };
+		22175048281AC42E0096308D /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175047281AC42E0096308D /* ProfileHeader.swift */; };
+		2217504A281AC48C0096308D /* ProfileUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175049281AC48C0096308D /* ProfileUserViewModel.swift */; };
+		2217504C281AC6050096308D /* SettingsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217504B281AC6050096308D /* SettingsGroup.swift */; };
+		2217504E281AC6A20096308D /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217504D281AC6A20096308D /* ProfileSetting.swift */; };
+		22175050281AD0C90096308D /* ToggleDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217504F281AD0C90096308D /* ToggleDarkMode.swift */; };
+		22175052281AD1A00096308D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175051281AD1A00096308D /* SettingsViewModel.swift */; };
+		22175054281AD2490096308D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175053281AD2490096308D /* SettingsView.swift */; };
 		221E240327F203D700B8A939 /* ChatScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240227F203D700B8A939 /* ChatScroller.swift */; };
 		221E240827F222C500B8A939 /* RoomCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240727F222C500B8A939 /* RoomCreator.swift */; };
 		221E240A27F23CCD00B8A939 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240927F23CCD00B8A939 /* RoomViewModel.swift */; };
@@ -173,6 +183,16 @@
 		22082F862816E1430070A4B8 /* ChatRoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewController.swift; sourceTree = "<group>"; };
 		22082F882816E1730070A4B8 /* ChatRoomCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCell2.swift; sourceTree = "<group>"; };
 		22082F8B2816E1CE0070A4B8 /* ViewControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPreview.swift; sourceTree = "<group>"; };
+		22082F8D2816F9400070A4B8 /* ScrollPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPopup.swift; sourceTree = "<group>"; };
+		22175043281AB0D00096308D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		22175045281AB9380096308D /* SettingsTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTile.swift; sourceTree = "<group>"; };
+		22175047281AC42E0096308D /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		22175049281AC48C0096308D /* ProfileUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserViewModel.swift; sourceTree = "<group>"; };
+		2217504B281AC6050096308D /* SettingsGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGroup.swift; sourceTree = "<group>"; };
+		2217504D281AC6A20096308D /* ProfileSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetting.swift; sourceTree = "<group>"; };
+		2217504F281AD0C90096308D /* ToggleDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleDarkMode.swift; sourceTree = "<group>"; };
+		22175051281AD1A00096308D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		22175053281AD2490096308D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		221E240227F203D700B8A939 /* ChatScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScroller.swift; sourceTree = "<group>"; };
 		221E240727F222C500B8A939 /* RoomCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCreator.swift; sourceTree = "<group>"; };
 		221E240927F23CCD00B8A939 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
@@ -349,6 +369,7 @@
 			children = (
 				22082F862816E1430070A4B8 /* ChatRoomsViewController.swift */,
 				22082F882816E1730070A4B8 /* ChatRoomCell2.swift */,
+				22082F8D2816F9400070A4B8 /* ScrollPopup.swift */,
 			);
 			path = RoomsUIKit;
 			sourceTree = "<group>";
@@ -431,6 +452,7 @@
 		22D3AC5C27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle */ = {
 			isa = PBXGroup;
 			children = (
+				22FA9F5328173E740064F0B1 /* DeleteLater */,
 				22F489FD28075242000B203B /* Profile */,
 				22F94C3927EE385100428210 /* Main */,
 				22D3AE4C27EB886D00A5B08C /* sample.mp4 */,
@@ -973,6 +995,15 @@
 		22F489FD28075242000B203B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				22175043281AB0D00096308D /* ProfileView.swift */,
+				22175045281AB9380096308D /* SettingsTile.swift */,
+				22175047281AC42E0096308D /* ProfileHeader.swift */,
+				22175049281AC48C0096308D /* ProfileUserViewModel.swift */,
+				2217504B281AC6050096308D /* SettingsGroup.swift */,
+				2217504D281AC6A20096308D /* ProfileSetting.swift */,
+				2217504F281AD0C90096308D /* ToggleDarkMode.swift */,
+				22175051281AD1A00096308D /* SettingsViewModel.swift */,
+				22175053281AD2490096308D /* SettingsView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -987,6 +1018,13 @@
 				22F94C3A27EE386F00428210 /* ViewControllerFactory.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		22FA9F5328173E740064F0B1 /* DeleteLater */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DeleteLater;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1113,10 +1151,12 @@
 				221E240F27F246C600B8A939 /* RoomRealTimeListener.swift in Sources */,
 				22D3AD4027EB814400A5B08C /* Email.swift in Sources */,
 				22D3AD5F27EB81A300A5B08C /* HomeAppBar.swift in Sources */,
+				22175054281AD2490096308D /* SettingsView.swift in Sources */,
 				22D3AD5227EB817800A5B08C /* VideoPage.swift in Sources */,
 				22D3AD0027EB80C200A5B08C /* JsonDecoder+ISO8601FractionalDecoder.swift in Sources */,
 				22D3AD6F27EB81CC00A5B08C /* Blank.swift in Sources */,
 				22D3AD6527EB81A300A5B08C /* HomeContentView.swift in Sources */,
+				2217504A281AC48C0096308D /* ProfileUserViewModel.swift in Sources */,
 				221E240827F222C500B8A939 /* RoomCreator.swift in Sources */,
 				22D3ACA927EB803C00A5B08C /* ChatMessagesService.swift in Sources */,
 				22D3AD1A27EB80C200A5B08C /* JsonPostAuthDecorator.swift in Sources */,
@@ -1125,12 +1165,14 @@
 				22D3ACA527EB803C00A5B08C /* AnimatedToolBox.swift in Sources */,
 				22F94C3B27EE386F00428210 /* ViewControllerFactory.swift in Sources */,
 				22D3AD0427EB80C200A5B08C /* Color+AppColors.swift in Sources */,
+				22175044281AB0D00096308D /* ProfileView.swift in Sources */,
 				22D3AD3B27EB814400A5B08C /* RemoteUser.swift in Sources */,
 				22D3AD6127EB81A300A5B08C /* HomeViewModel.swift in Sources */,
 				22D3ACB727EB803C00A5B08C /* ChatRoomsViewModel.swift in Sources */,
 				22D3AE5327EBB0A600A5B08C /* ImageAttachmentPreview.swift in Sources */,
 				22D3ACA427EB803C00A5B08C /* ChatMessagesViewModel.swift in Sources */,
 				22D3AD3A27EB814400A5B08C /* UserSignInAuthenticator.swift in Sources */,
+				2217504E281AC6A20096308D /* ProfileSetting.swift in Sources */,
 				22D3AD1E27EB80C200A5B08C /* S3BucketFileFacade.swift in Sources */,
 				22D3AD1427EB80C200A5B08C /* ControlledWebView.swift in Sources */,
 				22D3ACFD27EB80C200A5B08C /* JwtDecoder.swift in Sources */,
@@ -1139,6 +1181,7 @@
 				22D3AC5E27EB7E5800A5B08C /* AppDelegate.swift in Sources */,
 				22D3AD0227EB80C200A5B08C /* PreviewProvider+Dependencies.swift in Sources */,
 				22D3ACB127EB803C00A5B08C /* ChatMessage.swift in Sources */,
+				2217504C281AC6050096308D /* SettingsGroup.swift in Sources */,
 				22D3AD0F27EB80C200A5B08C /* WebViewModel.swift in Sources */,
 				22D3ACAC27EB803C00A5B08C /* ChatContainer.xcdatamodeld in Sources */,
 				22D3ACB327EB803C00A5B08C /* RemoteChatBucket.swift in Sources */,
@@ -1162,6 +1205,8 @@
 				22D3AD1C27EB80C200A5B08C /* JsonGet.swift in Sources */,
 				22D3AC6027EB7E5800A5B08C /* SceneDelegate.swift in Sources */,
 				22D3ACBB27EB803C00A5B08C /* ChatRoomsService.swift in Sources */,
+				22082F8E2816F9400070A4B8 /* ScrollPopup.swift in Sources */,
+				22175048281AC42E0096308D /* ProfileHeader.swift in Sources */,
 				22D3ACB627EB803C00A5B08C /* ChatMessage+Stub.swift in Sources */,
 				22D3AD1827EB80C200A5B08C /* JsonPostTokenSaverDecorator.swift in Sources */,
 				22D3AD0C27EB80C200A5B08C /* View+Size.swift in Sources */,
@@ -1209,13 +1254,16 @@
 				22D3AD4F27EB817800A5B08C /* VideoPlayerProgressBar.swift in Sources */,
 				221E241327F253B900B8A939 /* RoomsAuthContainerView.swift in Sources */,
 				22D3ACFE27EB80C200A5B08C /* KeychainItemAccessibility.swift in Sources */,
+				22175050281AD0C90096308D /* ToggleDarkMode.swift in Sources */,
 				22D3AD4427EB814400A5B08C /* SignView.swift in Sources */,
 				22D3ACB927EB803C00A5B08C /* RecentChatsView.swift in Sources */,
 				22D3AD0E27EB80C200A5B08C /* WebView.swift in Sources */,
 				22D3AD1627EB80C200A5B08C /* Auth.swift in Sources */,
+				22175046281AB9380096308D /* SettingsTile.swift in Sources */,
 				22D3AD0D27EB80C200A5B08C /* ImagePicker.swift in Sources */,
 				22D3ACF927EB80C200A5B08C /* CustomShape.swift in Sources */,
 				22D3AD4527EB814400A5B08C /* ErrorView.swift in Sources */,
+				22175052281AD1A00096308D /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

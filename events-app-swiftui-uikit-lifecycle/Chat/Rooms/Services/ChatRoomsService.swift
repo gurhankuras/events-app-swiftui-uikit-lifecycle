@@ -21,6 +21,7 @@ class ChatRoomFetcherStub: ChatRoomFetcher {
     
     func fetch(for user: User) -> AnyPublisher<[Room], Error> {
         switch result {
+            
         case .failure(let error):
             return Fail(error: error).eraseToAnyPublisher()
         case .success(let chats):
@@ -36,7 +37,7 @@ extension ChatRoomFetcherStub {
     static var stubs: [Room] {
         return [
             Room(id: "123", imageUrl: "pikachu", name: "Julia", message: "Nice!", timestamp: .init(), lastSender: .init(id: "2", name: "Eren", image: nil)),
-            Room(id: "234", imageUrl: "pikachu", name: "Julia", message: "What's up", timestamp: .init(), lastSender: .init(id: "2", name: "Eren", image: nil))
+            Room(id: "234", imageUrl: "pikachu", name: "Joe", message: "What's up", timestamp: .init(), lastSender: .init(id: "2", name: "Eren", image: nil))
         ]
     }
 }

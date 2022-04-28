@@ -17,39 +17,28 @@ extension UIView {
 
 }
 
+import Combine
+
 class ChatRoomsViewController: UITableViewController {
-    lazy var scrollAnimator: UIViewPropertyAnimator = {
-        let animator = UIViewPropertyAnimator(duration: 2.0, curve: .easeIn)
-        animator.addAnimations {
-            if animator.isRunning {
-                return
-            }
-            
-            
-        }
-        return animator
-    }()
+    var animator: UIViewPropertyAnimator?
+    let viewmodel: ChatRoomsViewModel
+    var cancellable: AnyCancellable?
+    
+    init(viewmodel: ChatRoomsViewModel) {
+        self.viewmodel = viewmodel
+        super.init(style: .plain)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     lazy var popup: UIView = {
-        let p = UIView()
+        let scrollPopup = ScrollPopup()
+        scrollPopup.isHidden = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        p.addGestureRecognizer(tap)
-        p.isUserInteractionEnabled = true
-        p.backgroundColor = .purple
-        p.translatesAutoresizingMaskIntoConstraints = false
-        p.layer.cornerRadius = 25
-        
-        let image = UIImage(systemName: "house")
-        let imageView = UIImageView(image: image?.withRenderingMode(.alwaysTemplate))
-        imageView.tintColor = .white
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        p.addSubview(imageView)
-        NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: p.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: p.centerYAnchor)
-        ])
-        p.isHidden = true
-        return p
+        scrollPopup.addGestureRecognizer(tap)
+        return scrollPopup
     }()
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
@@ -61,22 +50,39 @@ class ChatRoomsViewController: UITableViewController {
         })
     }
     
+    @objc func addTapped() {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        cancellable = viewmodel.$rooms.sink(receiveValue: { [weak self] rooms in
+            self?.tableView.reloadData()
+        })
         
+        navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "test", style: .done, target: self, action: #selector(addTapped))// UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+
+        print( navigationController?.navigationItem.rightBarButtonItem )
         tableView.register(ChatRoomCell2.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action:
-                                              #selector(handleRefreshControl),
-                                              for: .valueChanged)
-        tableView.refreshControl?.tintColor = .purple
+        setRefreshControl()
+        configureSubviews()
+    }
+    
+    private func setRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+        refreshControl.tintColor = .purple
+        tableView.refreshControl = refreshControl
+    }
+    
+    private func configureSubviews() {
         view.addSubview(popup)
         
         NSLayoutConstraint.activate([
-            popup.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-            popup.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            popup.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            popup.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
             popup.widthAnchor.constraint(equalToConstant: 50),
             popup.heightAnchor.constraint(equalToConstant: 50)
         ])
@@ -84,21 +90,17 @@ class ChatRoomsViewController: UITableViewController {
     
     @objc func handleRefreshControl() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.tableView.reloadData()
             self.tableView.refreshControl?.endRefreshing()
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        //view.bringSubviewToFront(popup)
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ChatRoomCell2
-        //cell.largeContentTitle = "deneme"
-        return cell
-    }
-    
+ 
+}
+
+
+// MARK: ScrollView
+extension ChatRoomsViewController {
     override func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
         popup.isHidden = false
         print("Scrolled To Top")
@@ -107,25 +109,33 @@ class ChatRoomsViewController: UITableViewController {
     override func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         print("will begin accelarated")
     }
+}
+
+// MARK: TableView
+extension ChatRoomsViewController {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ChatRoomCell2
+        let room = viewmodel.rooms[indexPath.row]
+        cell.setRoom(room)
+        return cell
+    }
     
-    
-    
-    
-   
-      
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return viewmodel.rooms.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
     }
     
-   
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let room = viewmodel.rooms[indexPath.row]
+        room.select?(room)
+    }
     
 }
 
@@ -174,7 +184,7 @@ extension ChatRoomsViewController {
 
 
 
-
+/*
 
 #if canImport(SwiftUI) && DEBUG
 import SwiftUI
@@ -188,3 +198,4 @@ struct ViewController_Preview: PreviewProvider {
     }
 }
 #endif
+*/

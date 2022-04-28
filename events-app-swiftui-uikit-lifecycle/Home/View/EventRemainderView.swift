@@ -10,9 +10,10 @@ import SwiftUI
 struct EventRemainderView: View {
     
     private let eventCount: UInt
-
-    init(count: UInt) {
+    let load: () -> Void
+    init(count: UInt, load: @escaping () -> Void) {
         self.eventCount = count
+        self.load = load
     }
   
     var body: some View {
@@ -42,7 +43,7 @@ struct EventRemainderView: View {
     }
     
     func checkStatus() {
-       
+       load()
     }
     
 }
@@ -53,7 +54,7 @@ struct EventRemainderView_Previews: PreviewProvider {
             ColorScheme.light,
             ColorScheme.dark
         ], id: \.self) { scheme in
-            EventRemainderView(count: 5)
+            EventRemainderView(count: 5, load: {})
                 .preferredColorScheme(scheme)
         }
         .previewLayout(.sizeThatFits)
