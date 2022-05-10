@@ -57,7 +57,7 @@ struct ProfileHeader: View {
             .foregroundColor(.white)
             .padding(.horizontal)
             .padding(.vertical, 8)
-            .background(.blue)
+            .background(Color.appPurple)
             .clipShape(Capsule())
         }
         .frame(maxWidth: .infinity)

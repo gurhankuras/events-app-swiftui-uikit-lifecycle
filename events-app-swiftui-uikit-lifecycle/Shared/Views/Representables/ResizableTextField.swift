@@ -24,8 +24,9 @@ struct ResizableTextField: UIViewRepresentable {
         view.isScrollEnabled = true
         view.text = "Enter Text"
         view.font = .systemFont(ofSize: 18)
-        view.textColor = .gray
+        view.textColor = UIColor(named: "textColor")
         view.backgroundColor = .clear
+
         view.delegate = context.coordinator
         return view
     }
@@ -50,7 +51,7 @@ struct ResizableTextField: UIViewRepresentable {
             // print(#function)
             if self.parent.text == "" {
                 textView.text = ""
-                textView.textColor = .black
+                textView.textColor = UIColor(named: "textColor")
             }
         }
         

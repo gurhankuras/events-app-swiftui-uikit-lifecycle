@@ -28,8 +28,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             return
         }
         
-        sceneDelegate.tabController.selectedIndex = 1
-        sceneDelegate.chatViewController.present(sceneDelegate.chatUsersController(), animated: true)
+        //sceneDelegate.tabController.selectedIndex = 1
+        //sceneDelegate.chatViewController.present(sceneDelegate.chatUsersController(), animated: true)
         print(deneme)
         completionHandler()
     }

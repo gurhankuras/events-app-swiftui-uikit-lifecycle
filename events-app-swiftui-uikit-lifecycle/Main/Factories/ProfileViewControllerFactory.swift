@@ -17,7 +17,7 @@ struct ProfileActions {
 class ProfileViewControllerFactory {
     public weak var window: UIWindow?
 
-    func controller(notificationService: NotificationService, actions: ProfileActions) -> UIViewController {
+    func controller(notificationService: NotificationService, actions: ProfileActions) -> UINavigationController {
         let darkModeSettings = DarkModeSettings(window: window)
         let settingsViewModel = SettingsViewModel(darkModeSettings: darkModeSettings)
         let profileViewModel = ProfileViewModel()

@@ -79,7 +79,7 @@ class ChatRoomsViewController: UITableViewController {
     private func setRefreshControl() {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
-        refreshControl.tintColor = .purple
+        refreshControl.tintColor = .appPurple
         tableView.refreshControl = refreshControl
     }
     

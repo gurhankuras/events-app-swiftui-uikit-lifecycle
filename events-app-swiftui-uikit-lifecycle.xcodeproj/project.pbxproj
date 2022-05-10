@@ -34,6 +34,12 @@
 		222A5FCD282A9532000CCCFE /* HomeViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FCC282A9532000CCCFE /* HomeViewControllerFactory.swift */; };
 		222A5FCF282A974A000CCCFE /* UINavigationController+UIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FCE282A974A000CCCFE /* UINavigationController+UIHostingController.swift */; };
 		222A5FD1282A978A000CCCFE /* ChatViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FD0282A978A000CCCFE /* ChatViewControllerFactory.swift */; };
+		222A5FD4282AE668000CCCFE /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FD3282AE668000CCCFE /* Coordinator.swift */; };
+		222A5FD6282AE681000CCCFE /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FD5282AE681000CCCFE /* AppCoordinator.swift */; };
+		222A5FD8282AE766000CCCFE /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FD7282AE766000CCCFE /* MainCoordinator.swift */; };
+		222A5FDA282AE7E3000CCCFE /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FD9282AE7E3000CCCFE /* ChatCoordinator.swift */; };
+		222A5FDC282AE918000CCCFE /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FDB282AE918000CCCFE /* HomeCoordinator.swift */; };
+		222A5FDE282AF53E000CCCFE /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FDD282AF53E000CCCFE /* ProfileCoordinator.swift */; };
 		2255292B27EF18FB00C63C35 /* SocketIOChatCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255292A27EF18FB00C63C35 /* SocketIOChatCommunicator.swift */; };
 		2255292E27EF229300C63C35 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2255292D27EF229300C63C35 /* SocketIO */; };
 		2255293027EF326000C63C35 /* ChatCommunicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255292F27EF326000C63C35 /* ChatCommunicatorTests.swift */; };
@@ -214,6 +220,12 @@
 		222A5FCC282A9532000CCCFE /* HomeViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerFactory.swift; sourceTree = "<group>"; };
 		222A5FCE282A974A000CCCFE /* UINavigationController+UIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+UIHostingController.swift"; sourceTree = "<group>"; };
 		222A5FD0282A978A000CCCFE /* ChatViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewControllerFactory.swift; sourceTree = "<group>"; };
+		222A5FD3282AE668000CCCFE /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		222A5FD5282AE681000CCCFE /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		222A5FD7282AE766000CCCFE /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		222A5FD9282AE7E3000CCCFE /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
+		222A5FDB282AE918000CCCFE /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		222A5FDD282AF53E000CCCFE /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		2255292A27EF18FB00C63C35 /* SocketIOChatCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOChatCommunicator.swift; sourceTree = "<group>"; };
 		2255292F27EF326000C63C35 /* ChatCommunicatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCommunicatorTests.swift; sourceTree = "<group>"; };
 		22D3AC5A27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "events-app-swiftui-uikit-lifecycle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -431,6 +443,27 @@
 			path = Factories;
 			sourceTree = "<group>";
 		};
+		222A5FD2282AE65A000CCCFE /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				222A5FD7282AE766000CCCFE /* MainCoordinator.swift */,
+				222A5FE0282AF8EE000CCCFE /* Tabs */,
+				222A5FD3282AE668000CCCFE /* Coordinator.swift */,
+				222A5FD5282AE681000CCCFE /* AppCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		222A5FE0282AF8EE000CCCFE /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				222A5FDD282AF53E000CCCFE /* ProfileCoordinator.swift */,
+				222A5FD9282AE7E3000CCCFE /* ChatCoordinator.swift */,
+				222A5FDB282AE918000CCCFE /* HomeCoordinator.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
 		2255293127EF3E2E00C63C35 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,7 +518,6 @@
 		22D3AC5C27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle */ = {
 			isa = PBXGroup;
 			children = (
-				22FA9F5328173E740064F0B1 /* DeleteLater */,
 				22F489FD28075242000B203B /* Profile */,
 				22F94C3927EE385100428210 /* Main */,
 				22D3AE4C27EB886D00A5B08C /* sample.mp4 */,
@@ -1046,6 +1078,7 @@
 		22F94C3927EE385100428210 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				222A5FD2282AE65A000CCCFE /* Coordinators */,
 				222A5FCB282A951C000CCCFE /* Factories */,
 				22D3AC6627EB7E5900A5B08C /* Assets.xcassets */,
 				22D3AC7127EB7F8300A5B08C /* LaunchScreen.storyboard */,
@@ -1055,13 +1088,6 @@
 				22175055281AF5A10096308D /* TabViewController.swift */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		22FA9F5328173E740064F0B1 /* DeleteLater */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DeleteLater;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1182,6 +1208,7 @@
 				22D3AD1527EB80C200A5B08C /* LazyView.swift in Sources */,
 				22D3ACB427EB803C00A5B08C /* RemoteChatRoom.swift in Sources */,
 				22D3AD2227EB80C200A5B08C /* PresignedURLFetcher.swift in Sources */,
+				222A5FDE282AF53E000CCCFE /* ProfileCoordinator.swift in Sources */,
 				22D3ACA627EB803C00A5B08C /* ChatMessagesList.swift in Sources */,
 				22D3AD2027EB80C200A5B08C /* NotificationService.swift in Sources */,
 				22D3AD0827EB80C200A5B08C /* View+ReverseScrollView.swift in Sources */,
@@ -1210,6 +1237,7 @@
 				22D3AE5327EBB0A600A5B08C /* ImageAttachmentPreview.swift in Sources */,
 				22D3ACA427EB803C00A5B08C /* ChatMessagesViewModel.swift in Sources */,
 				22D3AD3A27EB814400A5B08C /* UserSignInAuthenticator.swift in Sources */,
+				222A5FD6282AE681000CCCFE /* AppCoordinator.swift in Sources */,
 				2217504E281AC6A20096308D /* ProfileSetting.swift in Sources */,
 				22D3AD1E27EB80C200A5B08C /* S3BucketFileFacade.swift in Sources */,
 				22D3AD1427EB80C200A5B08C /* ControlledWebView.swift in Sources */,
@@ -1217,6 +1245,7 @@
 				22D3ACA727EB803C00A5B08C /* ChatMessagesView.swift in Sources */,
 				222A5FCA282A930E000CCCFE /* ProfileViewControllerFactory.swift in Sources */,
 				22D3AD2127EB80C200A5B08C /* TokenStore.swift in Sources */,
+				222A5FD8282AE766000CCCFE /* MainCoordinator.swift in Sources */,
 				22D3AC5E27EB7E5800A5B08C /* AppDelegate.swift in Sources */,
 				22D3AD0227EB80C200A5B08C /* PreviewProvider+Dependencies.swift in Sources */,
 				222A5FCF282A974A000CCCFE /* UINavigationController+UIHostingController.swift in Sources */,
@@ -1236,6 +1265,7 @@
 				22D3AD0127EB80C200A5B08C /* Color+RGBConstructor.swift in Sources */,
 				22D3AD6427EB81A300A5B08C /* SearchBar.swift in Sources */,
 				22D3AE5127EBAC3500A5B08C /* ChatToolbar.swift in Sources */,
+				222A5FD4282AE668000CCCFE /* Coordinator.swift in Sources */,
 				22D3AD4227EB814400A5B08C /* SigningIllustration.swift in Sources */,
 				22D3AD7027EB81CC00A5B08C /* ImageSaver.swift in Sources */,
 				22D3AD4127EB814400A5B08C /* FormField.swift in Sources */,
@@ -1245,6 +1275,7 @@
 				22D3ACAD27EB803C00A5B08C /* ChatUsersViewModel.swift in Sources */,
 				22D3AD1C27EB80C200A5B08C /* JsonGet.swift in Sources */,
 				22D3AC6027EB7E5800A5B08C /* SceneDelegate.swift in Sources */,
+				222A5FDA282AE7E3000CCCFE /* ChatCoordinator.swift in Sources */,
 				22D3ACBB27EB803C00A5B08C /* ChatRoomsService.swift in Sources */,
 				22082F8E2816F9400070A4B8 /* ScrollPopup.swift in Sources */,
 				22175048281AC42E0096308D /* ProfileHeader.swift in Sources */,
@@ -1275,6 +1306,7 @@
 				22D3AD5027EB817800A5B08C /* PlayerViewModel.swift in Sources */,
 				22D3AD1327EB80C200A5B08C /* CloseButton.swift in Sources */,
 				22082F872816E1430070A4B8 /* ChatRoomsViewController.swift in Sources */,
+				222A5FDC282AE918000CCCFE /* HomeCoordinator.swift in Sources */,
 				22D3AD5127EB817800A5B08C /* FullscreenVideoPage.swift in Sources */,
 				22D3ACFB27EB80C200A5B08C /* KeychainWrapper.swift in Sources */,
 				22D3ACBE27EB803C00A5B08C /* CoreDataChatMessageRepository.swift in Sources */,

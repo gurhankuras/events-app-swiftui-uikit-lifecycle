@@ -16,6 +16,7 @@ struct AnimatedToolBox: View {
     var body: some View {
         VStack {
             Image(systemName: "ellipsis.circle")
+                .foregroundColor(Color.appTextColor)
                 .font(.title2)
                 .onTapGesture {
                     withAnimation(.spring()) {

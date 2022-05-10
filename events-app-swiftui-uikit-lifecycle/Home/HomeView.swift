@@ -18,7 +18,10 @@ struct HomeView: View {
         VStack(spacing: 0) {
             HomeAppBar(user: viewModel.user,
                        onSignOut: viewModel.signOut,
-                       onSignIn: { viewModel.onSignClick?() }
+                       onSignIn: {
+                viewModel.onSignClick?()
+                
+            }
             )
             EventRemainderView(count: 5, load: {viewModel.load()})
                 .offset(y: -25)
