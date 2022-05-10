@@ -11,7 +11,7 @@ import SwiftUI
 
 protocol ViewControllerFactory {
     func homeController(auth: Auth, onEventSelection: @escaping () -> Void, onSignClick: @escaping () -> Void) -> UINavigationController
-    func blankController(notificationService: NotificationService) -> UIViewController
+   // func blankController(notificationService: NotificationService, onTropiesClicked: (() -> Void)?)  -> UIViewController
     func chatController(auth: Auth, realTimeListener: RoomRealTimeListener, onStartNewChat: @escaping () -> Void, onChatSelected: @escaping (RoomViewModel) -> Void) -> UINavigationController
     
 }
@@ -21,7 +21,7 @@ class AppViewControllerFactory: ViewControllerFactory {
     
     func homeController(auth: Auth, onEventSelection: @escaping () -> Void, onSignClick: @escaping () -> Void) -> UINavigationController {
         let viewModel = HomeViewModel(auth: auth, api: .init(client: URLSession.shared))
-        let homeController = UINavigationController(rootViewController: UIHostingController(rootView: Home(viewModel: viewModel)))
+        let homeController = UINavigationController(rootViewController: UIHostingController(rootView: HomeView(viewModel: viewModel)))
         viewModel.onEventSelection = onEventSelection
         viewModel.onSignClick = onSignClick
         homeController.isToolbarHidden = true
@@ -31,14 +31,18 @@ class AppViewControllerFactory: ViewControllerFactory {
         return homeController
     }
     
-    func blankController(notificationService: NotificationService) -> UIViewController {
+    /*
+    func blankController(notificationService: NotificationService, onTropiesClicked: (() -> Void)?) -> UIViewController {
         let darkModeSettings = DarkModeSettings(window: window)
         let settingsViewModel = SettingsViewModel(darkModeSettings: darkModeSettings)
-        let blankController = UINavigationController(rootViewController: UIHostingController(rootView: ProfileView(settingsViewModel: settingsViewModel)))
+        let profileViewModel = ProfileViewModel()
+        profileViewModel.onTropiesClicked = onTropiesClicked
+        let blankController = UINavigationController(rootViewController: UIHostingController(rootView: ProfileView(profileViewModel: profileViewModel, settingsViewModel: settingsViewModel)))
         //UINavigationController(rootViewController: UIHostingController(rootView: Blank(notificationService: notificationService)))
         blankController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
         return blankController
     }
+     */
     
     func chatController(auth: Auth, realTimeListener: RoomRealTimeListener, onStartNewChat: @escaping () -> Void, onChatSelected: @escaping (RoomViewModel) -> Void) -> UINavigationController {
         /*

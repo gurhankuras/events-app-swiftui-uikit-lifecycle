@@ -9,16 +9,19 @@ import SwiftUI
 import UserNotifications
 
 
-struct Home: View {
+struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
-    let logger = AppLogger(type: Home.self)
+    let logger = AppLogger(type: HomeView.self)
     
     var body: some View {
         let _ = logger.i("body rebuild")
         VStack(spacing: 0) {
             HomeAppBar(user: viewModel.user,
                        onSignOut: viewModel.signOut,
-                       onSignIn: { viewModel.onSignClick?() }
+                       onSignIn: {
+                viewModel.onSignClick?()
+                
+            }
             )
             EventRemainderView(count: 5, load: {viewModel.load()})
                 .offset(y: -25)

@@ -10,8 +10,21 @@ import SDWebImageSwiftUI
 
 struct ProfileHeader: View {
     let profileViewModel: ProfileUserViewModel
+    let onTropiesClicked: (() -> Void)?
     var body: some View {
         VStack {
+            HStack {
+                Spacer()
+                Image("trophy")
+                    .renderingMode(.template)
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                    .foregroundColor(.appPurple)
+                    .padding()
+                    .onTapGesture {
+                        onTropiesClicked?()
+                    }
+            }
             WebImage(url: URL(string: profileViewModel.image))
                 .resizable()
                 .placeholder(
@@ -44,11 +57,12 @@ struct ProfileHeader: View {
             .foregroundColor(.white)
             .padding(.horizontal)
             .padding(.vertical, 8)
-            .background(.blue)
+            .background(Color.appPurple)
             .clipShape(Capsule())
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 200)
+        .padding(.bottom, 10)
+        //.frame(height: 200)
         .background()
     }
 }
@@ -61,7 +75,7 @@ struct ProfileHeader_Previews: PreviewProvider {
                 name: "Gurhan Kuras",
                 username: "gurhankuras",
                 image: "gurhan"
-            )
+            ), onTropiesClicked: nil
         )
             .previewLayout(.sizeThatFits)
     }

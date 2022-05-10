@@ -47,10 +47,11 @@ struct ChatToolbar: View {
     }
 }
         
-/*
+
 struct ChatToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        ChatToolbar(chat: <#T##RoomViewModel#>)
+        ChatToolbar(room: Room.init(id: "", imageUrl: "", name: "", message: "", timestamp: .init(), lastSender: .none), onBack: {})
+            .previewLayout(.sizeThatFits)
     }
 }
-*/
+

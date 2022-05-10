@@ -34,9 +34,11 @@ struct ChatMessagesView: View {
                 )
             textBar
         }
+        .navigationBarHidden(true)
         .onAppear {
             viewModel.load()
         }
+        
     }
     
     private func handle(_ message: ChatMessage) {
@@ -63,7 +65,7 @@ struct ChatMessagesView: View {
         }
         .padding(.horizontal)
         .padding(.vertical, 8)
-        .background(Color(white: 0.95, opacity: 0.95))
+        .background(Color.paleBackground)
     }
 }
 
@@ -77,7 +79,7 @@ struct MessageTextField: View {
         ResizableTextField(text: $text, height: $height)
             .frame(height: min(height, 100))
             .padding(.horizontal)
-            .background(Color.white)
+            .background(Color(UIColor.tertiarySystemBackground))
             .cornerRadius(15)
     }
 }
