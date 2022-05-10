@@ -19,8 +19,6 @@ class ChatRoomsViewModel: ObservableObject {
     var authCancellable: AnyCancellable?
     var onChatSelected: ((RoomViewModel) -> Void)?
     
-    
-    
     @Published var rooms = [RoomViewModel]()
     @Published var showingNewChatSelection = false
     @Published var showingOptions = false

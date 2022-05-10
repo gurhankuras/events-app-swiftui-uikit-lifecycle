@@ -28,8 +28,12 @@
 		221E240F27F246C600B8A939 /* RoomRealTimeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240E27F246C600B8A939 /* RoomRealTimeListener.swift */; };
 		221E241127F246FF00B8A939 /* SocketIORoomRealTimeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E241027F246FF00B8A939 /* SocketIORoomRealTimeListener.swift */; };
 		221E241327F253B900B8A939 /* RoomsAuthContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E241227F253B900B8A939 /* RoomsAuthContainerView.swift */; };
-		222A5FC6282A7773000CCCFE /* TrophiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FC5282A7773000CCCFE /* TrophiesView.swift */; };
+		222A5FC6282A7773000CCCFE /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FC5282A7773000CCCFE /* AchievementsView.swift */; };
 		222A5FC8282A785F000CCCFE /* AchievementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FC7282A785F000CCCFE /* AchievementCell.swift */; };
+		222A5FCA282A930E000CCCFE /* ProfileViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FC9282A930E000CCCFE /* ProfileViewControllerFactory.swift */; };
+		222A5FCD282A9532000CCCFE /* HomeViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FCC282A9532000CCCFE /* HomeViewControllerFactory.swift */; };
+		222A5FCF282A974A000CCCFE /* UINavigationController+UIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FCE282A974A000CCCFE /* UINavigationController+UIHostingController.swift */; };
+		222A5FD1282A978A000CCCFE /* ChatViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FD0282A978A000CCCFE /* ChatViewControllerFactory.swift */; };
 		2255292B27EF18FB00C63C35 /* SocketIOChatCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255292A27EF18FB00C63C35 /* SocketIOChatCommunicator.swift */; };
 		2255292E27EF229300C63C35 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2255292D27EF229300C63C35 /* SocketIO */; };
 		2255293027EF326000C63C35 /* ChatCommunicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255292F27EF326000C63C35 /* ChatCommunicatorTests.swift */; };
@@ -129,7 +133,7 @@
 		22D3AD5F27EB81A300A5B08C /* HomeAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD5527EB81A300A5B08C /* HomeAppBar.swift */; };
 		22D3AD6027EB81A300A5B08C /* EventCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD5627EB81A300A5B08C /* EventCardView.swift */; };
 		22D3AD6127EB81A300A5B08C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD5827EB81A300A5B08C /* HomeViewModel.swift */; };
-		22D3AD6227EB81A300A5B08C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD5927EB81A300A5B08C /* Home.swift */; };
+		22D3AD6227EB81A300A5B08C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD5927EB81A300A5B08C /* HomeView.swift */; };
 		22D3AD6327EB81A300A5B08C /* EventsShowcase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD5A27EB81A300A5B08C /* EventsShowcase.swift */; };
 		22D3AD6427EB81A300A5B08C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD5B27EB81A300A5B08C /* SearchBar.swift */; };
 		22D3AD6527EB81A300A5B08C /* HomeContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AD5C27EB81A300A5B08C /* HomeContentView.swift */; };
@@ -204,8 +208,12 @@
 		221E240E27F246C600B8A939 /* RoomRealTimeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomRealTimeListener.swift; sourceTree = "<group>"; };
 		221E241027F246FF00B8A939 /* SocketIORoomRealTimeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIORoomRealTimeListener.swift; sourceTree = "<group>"; };
 		221E241227F253B900B8A939 /* RoomsAuthContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsAuthContainerView.swift; sourceTree = "<group>"; };
-		222A5FC5282A7773000CCCFE /* TrophiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrophiesView.swift; sourceTree = "<group>"; };
+		222A5FC5282A7773000CCCFE /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
 		222A5FC7282A785F000CCCFE /* AchievementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCell.swift; sourceTree = "<group>"; };
+		222A5FC9282A930E000CCCFE /* ProfileViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerFactory.swift; sourceTree = "<group>"; };
+		222A5FCC282A9532000CCCFE /* HomeViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerFactory.swift; sourceTree = "<group>"; };
+		222A5FCE282A974A000CCCFE /* UINavigationController+UIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+UIHostingController.swift"; sourceTree = "<group>"; };
+		222A5FD0282A978A000CCCFE /* ChatViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewControllerFactory.swift; sourceTree = "<group>"; };
 		2255292A27EF18FB00C63C35 /* SocketIOChatCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOChatCommunicator.swift; sourceTree = "<group>"; };
 		2255292F27EF326000C63C35 /* ChatCommunicatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCommunicatorTests.swift; sourceTree = "<group>"; };
 		22D3AC5A27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "events-app-swiftui-uikit-lifecycle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -306,7 +314,7 @@
 		22D3AD5527EB81A300A5B08C /* HomeAppBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeAppBar.swift; sourceTree = "<group>"; };
 		22D3AD5627EB81A300A5B08C /* EventCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCardView.swift; sourceTree = "<group>"; };
 		22D3AD5827EB81A300A5B08C /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		22D3AD5927EB81A300A5B08C /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		22D3AD5927EB81A300A5B08C /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		22D3AD5A27EB81A300A5B08C /* EventsShowcase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsShowcase.swift; sourceTree = "<group>"; };
 		22D3AD5B27EB81A300A5B08C /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		22D3AD5C27EB81A300A5B08C /* HomeContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeContentView.swift; sourceTree = "<group>"; };
@@ -404,13 +412,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		222A5FC4282A7764000CCCFE /* Tropies */ = {
+		222A5FC4282A7764000CCCFE /* Achievements */ = {
 			isa = PBXGroup;
 			children = (
-				222A5FC5282A7773000CCCFE /* TrophiesView.swift */,
+				222A5FC5282A7773000CCCFE /* AchievementsView.swift */,
 				222A5FC7282A785F000CCCFE /* AchievementCell.swift */,
 			);
-			path = Tropies;
+			path = Achievements;
+			sourceTree = "<group>";
+		};
+		222A5FCB282A951C000CCCFE /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				222A5FC9282A930E000CCCFE /* ProfileViewControllerFactory.swift */,
+				222A5FCC282A9532000CCCFE /* HomeViewControllerFactory.swift */,
+				222A5FD0282A978A000CCCFE /* ChatViewControllerFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 		2255293127EF3E2E00C63C35 /* Model */ = {
@@ -704,6 +722,7 @@
 				22D3ACDA27EB80C200A5B08C /* View+RotationViewModifier.swift */,
 				22D3ACDB27EB80C200A5B08C /* Date+LocalGlobalDate.swift */,
 				22D3ACDC27EB80C200A5B08C /* View+Size.swift */,
+				222A5FCE282A974A000CCCFE /* UINavigationController+UIHostingController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -845,7 +864,7 @@
 		22D3AD5427EB81A300A5B08C /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				22D3AD5927EB81A300A5B08C /* Home.swift */,
+				22D3AD5927EB81A300A5B08C /* HomeView.swift */,
 				22D3AE5427EBB7E900A5B08C /* View */,
 				22D3AD5727EB81A300A5B08C /* ViewModel */,
 				22D3AD5E27EB81A300A5B08C /* Service */,
@@ -1010,7 +1029,7 @@
 		22F489FD28075242000B203B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				222A5FC4282A7764000CCCFE /* Tropies */,
+				222A5FC4282A7764000CCCFE /* Achievements */,
 				22175043281AB0D00096308D /* ProfileView.swift */,
 				22175045281AB9380096308D /* SettingsTile.swift */,
 				22175047281AC42E0096308D /* ProfileHeader.swift */,
@@ -1027,6 +1046,7 @@
 		22F94C3927EE385100428210 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				222A5FCB282A951C000CCCFE /* Factories */,
 				22D3AC6627EB7E5900A5B08C /* Assets.xcassets */,
 				22D3AC7127EB7F8300A5B08C /* LaunchScreen.storyboard */,
 				22D3AC5F27EB7E5800A5B08C /* SceneDelegate.swift */,
@@ -1156,6 +1176,7 @@
 			files = (
 				221E240D27F23D2100B8A939 /* ChatUser.swift in Sources */,
 				22D3AD3927EB814400A5B08C /* SignupView.swift in Sources */,
+				222A5FCD282A9532000CCCFE /* HomeViewControllerFactory.swift in Sources */,
 				22D3AD6027EB81A300A5B08C /* EventCardView.swift in Sources */,
 				22D3ACAE27EB803C00A5B08C /* ChatUsersView.swift in Sources */,
 				22D3AD1527EB80C200A5B08C /* LazyView.swift in Sources */,
@@ -1194,9 +1215,11 @@
 				22D3AD1427EB80C200A5B08C /* ControlledWebView.swift in Sources */,
 				22D3ACFD27EB80C200A5B08C /* JwtDecoder.swift in Sources */,
 				22D3ACA727EB803C00A5B08C /* ChatMessagesView.swift in Sources */,
+				222A5FCA282A930E000CCCFE /* ProfileViewControllerFactory.swift in Sources */,
 				22D3AD2127EB80C200A5B08C /* TokenStore.swift in Sources */,
 				22D3AC5E27EB7E5800A5B08C /* AppDelegate.swift in Sources */,
 				22D3AD0227EB80C200A5B08C /* PreviewProvider+Dependencies.swift in Sources */,
+				222A5FCF282A974A000CCCFE /* UINavigationController+UIHostingController.swift in Sources */,
 				22D3ACB127EB803C00A5B08C /* ChatMessage.swift in Sources */,
 				2217504C281AC6050096308D /* SettingsGroup.swift in Sources */,
 				22D3AD0F27EB80C200A5B08C /* WebViewModel.swift in Sources */,
@@ -1229,7 +1252,7 @@
 				22D3AD1827EB80C200A5B08C /* JsonPostTokenSaverDecorator.swift in Sources */,
 				22175056281AF5A10096308D /* TabViewController.swift in Sources */,
 				22D3AD0C27EB80C200A5B08C /* View+Size.swift in Sources */,
-				22D3AD6227EB81A300A5B08C /* Home.swift in Sources */,
+				22D3AD6227EB81A300A5B08C /* HomeView.swift in Sources */,
 				22D3ACBA27EB803C00A5B08C /* ChatRoomCell.swift in Sources */,
 				22D3AD0627EB80C200A5B08C /* UINavigationController+SwipeBack.swift in Sources */,
 				22D3AD0527EB80C200A5B08C /* UIApplication+ResignResponder.swift in Sources */,
@@ -1264,12 +1287,13 @@
 				22D3AD1927EB80C200A5B08C /* JsonGetAuthDecorator.swift in Sources */,
 				22D3AD0A27EB80C200A5B08C /* View+RotationViewModifier.swift in Sources */,
 				22D3AD3F27EB814400A5B08C /* BasicPassword.swift in Sources */,
-				222A5FC6282A7773000CCCFE /* TrophiesView.swift in Sources */,
+				222A5FC6282A7773000CCCFE /* AchievementsView.swift in Sources */,
 				22D3AD0327EB80C200A5B08C /* AppDelegate+Rotation.swift in Sources */,
 				22D3ACAF27EB803C00A5B08C /* ChatUserCell.swift in Sources */,
 				22D3ACAA27EB803C00A5B08C /* MessageSocket.swift in Sources */,
 				22D3ACA827EB803C00A5B08C /* ChatBubble.swift in Sources */,
 				22D3ACA327EB803C00A5B08C /* ChatMessageContainer.xcdatamodeld in Sources */,
+				222A5FD1282A978A000CCCFE /* ChatViewControllerFactory.swift in Sources */,
 				22D3AD0B27EB80C200A5B08C /* Date+LocalGlobalDate.swift in Sources */,
 				22D3AD4F27EB817800A5B08C /* VideoPlayerProgressBar.swift in Sources */,
 				221E241327F253B900B8A939 /* RoomsAuthContainerView.swift in Sources */,

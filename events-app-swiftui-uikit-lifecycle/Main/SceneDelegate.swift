@@ -22,6 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var auth: Auth!
     var localNotifications: NotificationService!
     var factory: AppViewControllerFactory!
+    
+    var profileFactory: ProfileViewControllerFactory!
+    var chatFactory: ChatViewControllerFactory!
+    var homeFactory: HomeViewControllerFactory!
+
     var cancellable: AnyCancellable?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -32,7 +37,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         localNotifications = NotificationService(notificationCenter: .current())
         factory = AppViewControllerFactory()
+        
+        profileFactory = ProfileViewControllerFactory()
+        chatFactory = ChatViewControllerFactory()
+        homeFactory = HomeViewControllerFactory()
+        
         factory.window = window
+        profileFactory.window = window
         auth = makeAuth()
         auth.trySignIn()
 
@@ -48,29 +59,52 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabController = TabViewController()
         print(tabController.traitCollection.userInterfaceStyle.rawValue)
         
-        homeViewController = factory.homeController(auth: auth, onEventSelection: { [weak self] in
+        setHomeController()
+        setChatController()
+        setProfileController()
+        
+        tabController.setViewControllers([homeViewController, chatViewController, blankViewController], animated: true)
+    }
+    
+    func setHomeController() {
+        var homeActions = HomeActions()
+        homeActions.onSignClicked = { [weak self] in
+            guard let self = self else { return }
+            self.homeViewController.present(self.signViewController(), animated: true)
+        }
+        homeActions.onEventClicked = { [weak self] in
             guard let self = self else { return }
             self.homeViewController.pushViewController(UIHostingController(rootView: EventDetails()), animated: true)
-        }, onSignClick: { [weak self] in
-                guard let self = self else { return }
-                self.homeViewController.present(self.signViewController(), animated: true)
-        })
+        }
+    
+        homeViewController = homeFactory.controller(auth: auth, actions: homeActions)
+    }
+    
+    func setChatController() {
         let socketManager = SocketManager(socketURL: URL(string: "http://gkevents.com/api/chat")!, config: [.log(false)])
         let realTimeListener = SocketIORoomRealTimeListener(manager: socketManager, tokenStore: SecureTokenStore(keychain: .standard))
         realTimeListener.receive(completion: { [weak self] room in
             print(room)
         })
-        chatViewController = factory.chatController(auth: auth, realTimeListener: realTimeListener, onStartNewChat: {[weak self] in
+        
+        var chatActions = ChatActions()
+        chatActions.onStartedNewChat = {[weak self] in
             self?.showChatUsers()
-        }, onChatSelected: { [weak self] roomVm in
+        }
+        chatActions.onChatSelected = { [weak self] roomVm in
             guard let self = self else { return }
             self.pushChatMessagesViewController(presentingController: self.chatViewController, room: Room(id: roomVm.id, imageUrl: roomVm.imageUrl, name: roomVm.name, message: roomVm.message, timestamp: roomVm.timestamp, lastSender: roomVm.lastSender))
-        })
+        }
         
-        blankViewController = factory.blankController(notificationService: localNotifications, onTropiesClicked: { [weak self] in
-            self?.blankViewController.present(UIHostingController(rootView: TrophiesView()), animated: true, completion: nil)
-        })
-        tabController.setViewControllers([homeViewController, chatViewController, blankViewController], animated: true)
+        chatViewController = chatFactory.controller(auth: auth, realTimeListener: realTimeListener, actions: chatActions)
+    }
+    
+    func setProfileController() {
+        var actions = ProfileActions()
+        actions.onTropiesClicked = { [weak self] in
+            self?.blankViewController.present(UIHostingController(rootView: AchievementsView()), animated: true, completion: nil)
+        }
+        blankViewController = profileFactory.controller(notificationService: localNotifications, actions: actions)
     }
     
     

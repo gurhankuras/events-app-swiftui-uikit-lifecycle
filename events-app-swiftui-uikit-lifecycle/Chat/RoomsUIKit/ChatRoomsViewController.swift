@@ -10,11 +10,9 @@ import Foundation
 import UIKit
 
 extension UIView {
-
     var isAnimating: Bool {
         return (self.layer.animationKeys()?.count ?? 0) > 0
     }
-
 }
 
 import Combine
@@ -54,6 +52,13 @@ class ChatRoomsViewController: UITableViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.3, animations: {
+            self.navigationController?.isNavigationBarHidden = false
+        })
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cancellable = viewmodel.$rooms.sink(receiveValue: { [weak self] rooms in
@@ -68,6 +73,7 @@ class ChatRoomsViewController: UITableViewController {
         tableView.dataSource = self
         setRefreshControl()
         configureSubviews()
+        viewmodel.load(for: .init(id: "12", email: "gurhankuras@hotmail.com", image: "deneme"))
     }
     
     private func setRefreshControl() {

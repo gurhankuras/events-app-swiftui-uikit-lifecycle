@@ -34,9 +34,11 @@ struct ChatMessagesView: View {
                 )
             textBar
         }
+        .navigationBarHidden(true)
         .onAppear {
             viewModel.load()
         }
+        
     }
     
     private func handle(_ message: ChatMessage) {

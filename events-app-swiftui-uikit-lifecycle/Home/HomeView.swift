@@ -9,9 +9,9 @@ import SwiftUI
 import UserNotifications
 
 
-struct Home: View {
+struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
-    let logger = AppLogger(type: Home.self)
+    let logger = AppLogger(type: HomeView.self)
     
     var body: some View {
         let _ = logger.i("body rebuild")
