@@ -67,7 +67,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.pushChatMessagesViewController(presentingController: self.chatViewController, room: Room(id: roomVm.id, imageUrl: roomVm.imageUrl, name: roomVm.name, message: roomVm.message, timestamp: roomVm.timestamp, lastSender: roomVm.lastSender))
         })
         
-        blankViewController = factory.blankController(notificationService: localNotifications)
+        blankViewController = factory.blankController(notificationService: localNotifications, onTropiesClicked: { [weak self] in
+            self?.blankViewController.present(UIHostingController(rootView: TrophiesView()), animated: true, completion: nil)
+        })
         tabController.setViewControllers([homeViewController, chatViewController, blankViewController], animated: true)
     }
     

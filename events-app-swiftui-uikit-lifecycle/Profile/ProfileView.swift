@@ -8,24 +8,29 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
+class ProfileViewModel: ObservableObject {
+    var onTropiesClicked: (() -> Void)?
+}
 
 struct ProfileView: View {
     
-    let profileViewModel: ProfileUserViewModel = .init(name: "Gurhan Kuras", username: "gurhankuras", image: "pikachu")
+    let profileUserViewModel: ProfileUserViewModel = .init(name: "Gurhan Kuras", username: "gurhankuras", image: "pikachu")
+    @StateObject var profileViewModel: ProfileViewModel
     @StateObject var settingsViewModel: SettingsViewModel
     
     var body: some View {
         VStack(spacing: 0) {
-            ProfileHeader(profileViewModel: profileViewModel)
+            ProfileHeader(profileViewModel: profileUserViewModel, onTropiesClicked: profileViewModel.onTropiesClicked)
             SettingsView(settingsViewModel: settingsViewModel)
         }
+        .navigationBarHidden(true)
         .background(Color.paleBackground)
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(settingsViewModel: .init(darkModeSettings: .init(window: SceneDelegate.shared?.window)))
+        ProfileView(profileViewModel: .init(), settingsViewModel: .init(darkModeSettings: .init(window: SceneDelegate.shared?.window)))
     }
 }
 

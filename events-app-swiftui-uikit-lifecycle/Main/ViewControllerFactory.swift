@@ -11,7 +11,7 @@ import SwiftUI
 
 protocol ViewControllerFactory {
     func homeController(auth: Auth, onEventSelection: @escaping () -> Void, onSignClick: @escaping () -> Void) -> UINavigationController
-    func blankController(notificationService: NotificationService) -> UIViewController
+    func blankController(notificationService: NotificationService, onTropiesClicked: (() -> Void)?)  -> UIViewController
     func chatController(auth: Auth, realTimeListener: RoomRealTimeListener, onStartNewChat: @escaping () -> Void, onChatSelected: @escaping (RoomViewModel) -> Void) -> UINavigationController
     
 }
@@ -31,10 +31,12 @@ class AppViewControllerFactory: ViewControllerFactory {
         return homeController
     }
     
-    func blankController(notificationService: NotificationService) -> UIViewController {
+    func blankController(notificationService: NotificationService, onTropiesClicked: (() -> Void)?) -> UIViewController {
         let darkModeSettings = DarkModeSettings(window: window)
         let settingsViewModel = SettingsViewModel(darkModeSettings: darkModeSettings)
-        let blankController = UINavigationController(rootViewController: UIHostingController(rootView: ProfileView(settingsViewModel: settingsViewModel)))
+        let profileViewModel = ProfileViewModel()
+        profileViewModel.onTropiesClicked = onTropiesClicked
+        let blankController = UINavigationController(rootViewController: UIHostingController(rootView: ProfileView(profileViewModel: profileViewModel, settingsViewModel: settingsViewModel)))
         //UINavigationController(rootViewController: UIHostingController(rootView: Blank(notificationService: notificationService)))
         blankController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
         return blankController
