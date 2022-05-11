@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		22082F872816E1430070A4B8 /* ChatRoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22082F862816E1430070A4B8 /* ChatRoomsViewController.swift */; };
 		22082F892816E1730070A4B8 /* ChatRoomCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22082F882816E1730070A4B8 /* ChatRoomCell2.swift */; };
-		22082F8C2816E1CE0070A4B8 /* ViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22082F8B2816E1CE0070A4B8 /* ViewControllerPreview.swift */; };
+		22082F8C2816E1CE0070A4B8 /* UIViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22082F8B2816E1CE0070A4B8 /* UIViewControllerPreview.swift */; };
 		22082F8E2816F9400070A4B8 /* ScrollPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22082F8D2816F9400070A4B8 /* ScrollPopup.swift */; };
 		22175044281AB0D00096308D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175043281AB0D00096308D /* ProfileView.swift */; };
 		22175046281AB9380096308D /* SettingsTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175045281AB9380096308D /* SettingsTile.swift */; };
@@ -198,7 +198,7 @@
 /* Begin PBXFileReference section */
 		22082F862816E1430070A4B8 /* ChatRoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewController.swift; sourceTree = "<group>"; };
 		22082F882816E1730070A4B8 /* ChatRoomCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCell2.swift; sourceTree = "<group>"; };
-		22082F8B2816E1CE0070A4B8 /* ViewControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPreview.swift; sourceTree = "<group>"; };
+		22082F8B2816E1CE0070A4B8 /* UIViewControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerPreview.swift; sourceTree = "<group>"; };
 		22082F8D2816F9400070A4B8 /* ScrollPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPopup.swift; sourceTree = "<group>"; };
 		22175043281AB0D00096308D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		22175045281AB9380096308D /* SettingsTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTile.swift; sourceTree = "<group>"; };
@@ -409,7 +409,7 @@
 		22082F8A2816E1BC0070A4B8 /* Preview */ = {
 			isa = PBXGroup;
 			children = (
-				22082F8B2816E1CE0070A4B8 /* ViewControllerPreview.swift */,
+				22082F8B2816E1CE0070A4B8 /* UIViewControllerPreview.swift */,
 				222A6023282BD9CF000CCCFE /* UIViewPreview.swift */,
 			);
 			path = Preview;
@@ -1308,7 +1308,7 @@
 				22D3AD7327EB81CC00A5B08C /* EventDetails.swift in Sources */,
 				2255292B27EF18FB00C63C35 /* SocketIOChatCommunicator.swift in Sources */,
 				221E240A27F23CCD00B8A939 /* RoomViewModel.swift in Sources */,
-				22082F8C2816E1CE0070A4B8 /* ViewControllerPreview.swift in Sources */,
+				22082F8C2816E1CE0070A4B8 /* UIViewControllerPreview.swift in Sources */,
 				22D3AD1127EB80C200A5B08C /* LongRoundedButton.swift in Sources */,
 				221E241127F246FF00B8A939 /* SocketIORoomRealTimeListener.swift in Sources */,
 				22D3AD1027EB80C200A5B08C /* ResizableTextField.swift in Sources */,

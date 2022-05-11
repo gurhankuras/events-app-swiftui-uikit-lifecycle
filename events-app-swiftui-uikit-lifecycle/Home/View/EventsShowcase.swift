@@ -43,7 +43,7 @@ struct EventsViewHeader: View {
                 .fontWeight(.bold)
                 .foregroundColor(.appTextColor)
                 .onTapGesture {
-                    BannerService.dismiss()
+                    BannerService.shared.dismiss()
                 }
             Spacer()
             

@@ -8,6 +8,17 @@
 import Foundation
 import UIKit
 
+enum BannerAction {
+    case close
+    case custom(() -> ())
+}
+
+enum BannerIcon {
+    case success
+    case failure
+}
+
+
 class Banner: UIView {
     var closeCallback: (() -> ())?
     
@@ -41,17 +52,22 @@ class Banner: UIView {
     }()
     
     
-    
     @objc func onClose() {
         print("onClose")
         closeCallback?()
     }
     
-    func setTitle(_ text: String) {
+    func configure(text: String, icon: BannerIcon, action: BannerAction) {
+        setTitle(text)
+        setIcon(icon)
+        setAction(action)
+    }
+    
+    private func setTitle(_ text: String) {
         label.text = text
     }
     
-    func setIcon(_ icon: BannerIcon) {
+    private func setIcon(_ icon: BannerIcon) {
         switch icon {
         case .success:
             indicatorImage.image =  .init(systemName: "checkmark.circle.fill")
@@ -62,14 +78,26 @@ class Banner: UIView {
         }
     }
     
-    convenience init(title: String) {
-        self.init(frame: .zero)
+    private func setAction(_ action: BannerAction) {
+        switch action {
+        case .close:
+            closeCallback = { BannerService.shared.dismiss() }
+        case .custom(let callback):
+            closeCallback = callback
+        }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .black.withAlphaComponent(0.7)
-        
+        configureLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureLayout() {
         addSubview(indicatorImage)
         let imageConstraints = [
             indicatorImage.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
@@ -96,10 +124,6 @@ class Banner: UIView {
         ]
         NSLayoutConstraint.activate(labelConstraints)
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
 
 
@@ -111,7 +135,7 @@ struct Banner_Preview: PreviewProvider {
     static var previews: some View {
         UIViewPreview {
             let v = Banner()
-            v.setTitle("Merhaba")
+            v.configure(text: "Merhaba", icon: .success, action: .close)
             return v
         }
         .preferredColorScheme(.light)
