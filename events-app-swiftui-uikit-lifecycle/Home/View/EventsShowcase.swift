@@ -42,7 +42,9 @@ struct EventsViewHeader: View {
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundColor(.appTextColor)
-
+                .onTapGesture {
+                    BannerService.dismiss()
+                }
             Spacer()
             
             Text("View All")

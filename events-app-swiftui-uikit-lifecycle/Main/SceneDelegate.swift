@@ -14,6 +14,7 @@ import Combine
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private(set) static var shared: SceneDelegate?
     var window: UIWindow?
+    
     var auth: Auth!
     var localNotifications: NotificationService!
     

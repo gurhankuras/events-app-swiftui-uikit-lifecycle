@@ -21,6 +21,7 @@ struct HomeContentView: View {
                     //.padding([.leading, .bottom], 25)
                 EventsShowcase(events: eventStubs, header: "Popular") {
                     Text("Events")
+                       
                 }.padding(.bottom)
                 
                 EventsShowcase(events: eventStubs, header: "Popular") {
@@ -59,6 +60,15 @@ struct EventCategoriesView: View {
                         .padding(8)
                         .background(Color.pink)
                         .clipShape(Capsule(style: .continuous))
+                        .onTapGesture {
+                            if (category == "All") {
+                                BannerService.show(icon: .failure, title: "Failed...", action: .close)
+                            }
+                            else {
+                                BannerService.show(icon: .success, title: "Success...", action: .close)
+                            }
+                            
+                        }
                 }
             }
             .padding(.leading)
