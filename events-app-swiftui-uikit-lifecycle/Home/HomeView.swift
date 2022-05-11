@@ -20,7 +20,6 @@ struct HomeView: View {
                        onSignOut: viewModel.signOut,
                        onSignIn: {
                 viewModel.onSignClick?()
-                
             }
             )
             EventRemainderView(count: 5, load: {viewModel.load()})

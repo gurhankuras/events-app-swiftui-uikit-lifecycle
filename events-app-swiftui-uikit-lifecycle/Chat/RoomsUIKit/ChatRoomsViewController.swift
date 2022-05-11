@@ -65,7 +65,7 @@ class ChatRoomsViewController: UITableViewController {
             self?.tableView.reloadData()
         })
         
-        navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "test", style: .done, target: self, action: #selector(addTapped))// UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "test", style: .done, target: self, action: #selector(addTapped))
 
         print( navigationController?.navigationItem.rightBarButtonItem )
         tableView.register(ChatRoomCell2.self, forCellReuseIdentifier: "cell")

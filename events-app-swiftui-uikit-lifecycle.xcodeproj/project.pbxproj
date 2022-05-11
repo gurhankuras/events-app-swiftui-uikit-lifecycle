@@ -40,6 +40,9 @@
 		222A5FDA282AE7E3000CCCFE /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FD9282AE7E3000CCCFE /* ChatCoordinator.swift */; };
 		222A5FDC282AE918000CCCFE /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FDB282AE918000CCCFE /* HomeCoordinator.swift */; };
 		222A5FDE282AF53E000CCCFE /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FDD282AF53E000CCCFE /* ProfileCoordinator.swift */; };
+		222A5FE4282BCB73000CCCFE /* BannerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FE3282BCB73000CCCFE /* BannerService.swift */; };
+		222A6022282BD958000CCCFE /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A6021282BD958000CCCFE /* Banner.swift */; };
+		222A6024282BD9CF000CCCFE /* UIViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A6023282BD9CF000CCCFE /* UIViewPreview.swift */; };
 		2255292B27EF18FB00C63C35 /* SocketIOChatCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255292A27EF18FB00C63C35 /* SocketIOChatCommunicator.swift */; };
 		2255292E27EF229300C63C35 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2255292D27EF229300C63C35 /* SocketIO */; };
 		2255293027EF326000C63C35 /* ChatCommunicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255292F27EF326000C63C35 /* ChatCommunicatorTests.swift */; };
@@ -226,6 +229,9 @@
 		222A5FD9282AE7E3000CCCFE /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
 		222A5FDB282AE918000CCCFE /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		222A5FDD282AF53E000CCCFE /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		222A5FE3282BCB73000CCCFE /* BannerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerService.swift; sourceTree = "<group>"; };
+		222A6021282BD958000CCCFE /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		222A6023282BD9CF000CCCFE /* UIViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPreview.swift; sourceTree = "<group>"; };
 		2255292A27EF18FB00C63C35 /* SocketIOChatCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOChatCommunicator.swift; sourceTree = "<group>"; };
 		2255292F27EF326000C63C35 /* ChatCommunicatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCommunicatorTests.swift; sourceTree = "<group>"; };
 		22D3AC5A27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "events-app-swiftui-uikit-lifecycle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -404,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				22082F8B2816E1CE0070A4B8 /* ViewControllerPreview.swift */,
+				222A6023282BD9CF000CCCFE /* UIViewPreview.swift */,
 			);
 			path = Preview;
 			sourceTree = "<group>";
@@ -698,6 +705,7 @@
 				22D3ACCF27EB80C200A5B08C /* Extensions */,
 				22D3ACDD27EB80C200A5B08C /* Views */,
 				22D3ACE827EB80C200A5B08C /* Services */,
+				222A5FE3282BCB73000CCCFE /* BannerService.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -768,6 +776,7 @@
 				22D3ACE527EB80C200A5B08C /* CloseButton.swift */,
 				22D3ACE627EB80C200A5B08C /* ControlledWebView.swift */,
 				22D3ACE727EB80C200A5B08C /* LazyView.swift */,
+				222A6021282BD958000CCCFE /* Banner.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1215,6 +1224,7 @@
 				22D3AD1727EB80C200A5B08C /* JsonPost.swift in Sources */,
 				221E240F27F246C600B8A939 /* RoomRealTimeListener.swift in Sources */,
 				22D3AD4027EB814400A5B08C /* Email.swift in Sources */,
+				222A6022282BD958000CCCFE /* Banner.swift in Sources */,
 				22D3AD5F27EB81A300A5B08C /* HomeAppBar.swift in Sources */,
 				22175054281AD2490096308D /* SettingsView.swift in Sources */,
 				22D3AD5227EB817800A5B08C /* VideoPage.swift in Sources */,
@@ -1233,12 +1243,14 @@
 				22175044281AB0D00096308D /* ProfileView.swift in Sources */,
 				22D3AD3B27EB814400A5B08C /* RemoteUser.swift in Sources */,
 				22D3AD6127EB81A300A5B08C /* HomeViewModel.swift in Sources */,
+				222A5FE4282BCB73000CCCFE /* BannerService.swift in Sources */,
 				22D3ACB727EB803C00A5B08C /* ChatRoomsViewModel.swift in Sources */,
 				22D3AE5327EBB0A600A5B08C /* ImageAttachmentPreview.swift in Sources */,
 				22D3ACA427EB803C00A5B08C /* ChatMessagesViewModel.swift in Sources */,
 				22D3AD3A27EB814400A5B08C /* UserSignInAuthenticator.swift in Sources */,
 				222A5FD6282AE681000CCCFE /* AppCoordinator.swift in Sources */,
 				2217504E281AC6A20096308D /* ProfileSetting.swift in Sources */,
+				222A6024282BD9CF000CCCFE /* UIViewPreview.swift in Sources */,
 				22D3AD1E27EB80C200A5B08C /* S3BucketFileFacade.swift in Sources */,
 				22D3AD1427EB80C200A5B08C /* ControlledWebView.swift in Sources */,
 				22D3ACFD27EB80C200A5B08C /* JwtDecoder.swift in Sources */,
