@@ -9,28 +9,22 @@ import Foundation
 import UIKit
 
 class AppCoordinator: Coordinator {
-    var childCoordinators: [Coordinator] = []
-    let homeFactory: HomeViewControllerFactory
-    let chatFactory: ChatViewControllerFactory
-    let profileFactory: ProfileViewControllerFactory
-    let auth: Auth
-    let notificationService: NotificationService
+    private var childCoordinators: [Coordinator] = []
+    private let homeFactory: HomeViewControllerFactory
+    private let chatFactory: ChatViewControllerFactory
+    private let profileFactory: ProfileViewControllerFactory
     weak var window: UIWindow?
     
     init(homeFactory: HomeViewControllerFactory,
          chatFactory: ChatViewControllerFactory,
-         profileFactory: ProfileViewControllerFactory,
-         auth: Auth,
-         notificationService: NotificationService) {
+         profileFactory: ProfileViewControllerFactory) {
         self.homeFactory = homeFactory
         self.chatFactory = chatFactory
         self.profileFactory = profileFactory
-        self.auth = auth
-        self.notificationService = notificationService
     }
     
     func start() {
-        let mainCoordinator = MainCoordinator(homeFactory: homeFactory, chatFactory: chatFactory, profileFactory: profileFactory, auth: auth, notificationService: notificationService)
+        let mainCoordinator = MainCoordinator(homeFactory: homeFactory, chatFactory: chatFactory, profileFactory: profileFactory)
         mainCoordinator.start()
         childCoordinators.append(mainCoordinator)
         window?.rootViewController = mainCoordinator.rootViewController

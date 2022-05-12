@@ -20,7 +20,6 @@
 		22175050281AD0C90096308D /* DarkModeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217504F281AD0C90096308D /* DarkModeSettings.swift */; };
 		22175052281AD1A00096308D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175051281AD1A00096308D /* SettingsViewModel.swift */; };
 		22175054281AD2490096308D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175053281AD2490096308D /* SettingsView.swift */; };
-		22175056281AF5A10096308D /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175055281AF5A10096308D /* TabViewController.swift */; };
 		221E240327F203D700B8A939 /* ChatScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240227F203D700B8A939 /* ChatScroller.swift */; };
 		221E240827F222C500B8A939 /* RoomCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240727F222C500B8A939 /* RoomCreator.swift */; };
 		221E240A27F23CCD00B8A939 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240927F23CCD00B8A939 /* RoomViewModel.swift */; };
@@ -182,7 +181,6 @@
 		22D3AE4D27EB886D00A5B08C /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 22D3AE4C27EB886D00A5B08C /* sample.mp4 */; };
 		22D3AE5127EBAC3500A5B08C /* ChatToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE5027EBAC3500A5B08C /* ChatToolbar.swift */; };
 		22D3AE5327EBB0A600A5B08C /* ImageAttachmentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE5227EBB0A600A5B08C /* ImageAttachmentPreview.swift */; };
-		22F94C3B27EE386F00428210 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F94C3A27EE386F00428210 /* ViewControllerFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,7 +207,6 @@
 		2217504F281AD0C90096308D /* DarkModeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeSettings.swift; sourceTree = "<group>"; };
 		22175051281AD1A00096308D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		22175053281AD2490096308D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		22175055281AF5A10096308D /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		221E240227F203D700B8A939 /* ChatScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScroller.swift; sourceTree = "<group>"; };
 		221E240727F222C500B8A939 /* RoomCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCreator.swift; sourceTree = "<group>"; };
 		221E240927F23CCD00B8A939 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
@@ -373,7 +370,6 @@
 		22D3AE4C27EB886D00A5B08C /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
 		22D3AE5027EBAC3500A5B08C /* ChatToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatToolbar.swift; sourceTree = "<group>"; };
 		22D3AE5227EBB0A600A5B08C /* ImageAttachmentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAttachmentPreview.swift; sourceTree = "<group>"; };
-		22F94C3A27EE386F00428210 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -443,9 +439,9 @@
 		222A5FCB282A951C000CCCFE /* Factories */ = {
 			isa = PBXGroup;
 			children = (
-				222A5FC9282A930E000CCCFE /* ProfileViewControllerFactory.swift */,
 				222A5FCC282A9532000CCCFE /* HomeViewControllerFactory.swift */,
 				222A5FD0282A978A000CCCFE /* ChatViewControllerFactory.swift */,
+				222A5FC9282A930E000CCCFE /* ProfileViewControllerFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -453,22 +449,14 @@
 		222A5FD2282AE65A000CCCFE /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				222A5FD7282AE766000CCCFE /* MainCoordinator.swift */,
-				222A5FE0282AF8EE000CCCFE /* Tabs */,
 				222A5FD3282AE668000CCCFE /* Coordinator.swift */,
 				222A5FD5282AE681000CCCFE /* AppCoordinator.swift */,
+				222A5FD7282AE766000CCCFE /* MainCoordinator.swift */,
+				222A5FDB282AE918000CCCFE /* HomeCoordinator.swift */,
+				222A5FD9282AE7E3000CCCFE /* ChatCoordinator.swift */,
+				222A5FDD282AF53E000CCCFE /* ProfileCoordinator.swift */,
 			);
 			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		222A5FE0282AF8EE000CCCFE /* Tabs */ = {
-			isa = PBXGroup;
-			children = (
-				222A5FDD282AF53E000CCCFE /* ProfileCoordinator.swift */,
-				222A5FD9282AE7E3000CCCFE /* ChatCoordinator.swift */,
-				222A5FDB282AE918000CCCFE /* HomeCoordinator.swift */,
-			);
-			path = Tabs;
 			sourceTree = "<group>";
 		};
 		2255293127EF3E2E00C63C35 /* Model */ = {
@@ -1093,8 +1081,6 @@
 				22D3AC7127EB7F8300A5B08C /* LaunchScreen.storyboard */,
 				22D3AC5F27EB7E5800A5B08C /* SceneDelegate.swift */,
 				22D3AC5D27EB7E5800A5B08C /* AppDelegate.swift */,
-				22F94C3A27EE386F00428210 /* ViewControllerFactory.swift */,
-				22175055281AF5A10096308D /* TabViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1238,7 +1224,6 @@
 				22D3AD1B27EB80C200A5B08C /* NetworkingUtils.swift in Sources */,
 				22D3ACFA27EB80C200A5B08C /* KeychainWrapper+.swift in Sources */,
 				22D3ACA527EB803C00A5B08C /* AnimatedToolBox.swift in Sources */,
-				22F94C3B27EE386F00428210 /* ViewControllerFactory.swift in Sources */,
 				22D3AD0427EB80C200A5B08C /* Color+AppColors.swift in Sources */,
 				22175044281AB0D00096308D /* ProfileView.swift in Sources */,
 				22D3AD3B27EB814400A5B08C /* RemoteUser.swift in Sources */,
@@ -1293,7 +1278,6 @@
 				22175048281AC42E0096308D /* ProfileHeader.swift in Sources */,
 				22D3ACB627EB803C00A5B08C /* ChatMessage+Stub.swift in Sources */,
 				22D3AD1827EB80C200A5B08C /* JsonPostTokenSaverDecorator.swift in Sources */,
-				22175056281AF5A10096308D /* TabViewController.swift in Sources */,
 				22D3AD0C27EB80C200A5B08C /* View+Size.swift in Sources */,
 				22D3AD6227EB81A300A5B08C /* HomeView.swift in Sources */,
 				22D3ACBA27EB803C00A5B08C /* ChatRoomCell.swift in Sources */,

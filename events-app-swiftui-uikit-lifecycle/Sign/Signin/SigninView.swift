@@ -58,6 +58,7 @@ struct SigningTransationText: View {
     var body: some View {
         HStack(spacing: 0) {
             Text(text)
+                .foregroundColor(.appTextColor)
             Text(link)
                 .bold()
                 .foregroundColor(.pink)

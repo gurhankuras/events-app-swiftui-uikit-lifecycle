@@ -9,21 +9,28 @@ import Foundation
 import SwiftUI
 import UIKit
 
-struct HomeActions {
-    var onEventClicked: (() -> Void)?
-    var onSignClicked: (() -> Void)?
-}
-
 class HomeViewControllerFactory {
-
-    func controller(auth: Auth, actions: HomeActions) -> UINavigationController {
+    let auth: Auth
+    
+    init(auth: Auth) {
+        self.auth = auth
+    }
+    
+    func controller(onEventClicked: @escaping () ->(), onSignButtonClicked: @escaping () -> ()) -> UINavigationController {
         let api = EventAPIClient(client: URLSession.shared)
         let viewModel = HomeViewModel(auth: auth, api: api)
         let homeController = UINavigationController(rootView: HomeView(viewModel: viewModel))
-        viewModel.onEventSelection = actions.onEventClicked
-        viewModel.onSignClick = actions.onSignClicked
+        viewModel.onEventSelection = onEventClicked
+        viewModel.onSignClick = onSignButtonClicked
         configureNavigationalOptions(navigationController: homeController)
         return homeController
+    }
+    
+    func signController(onClosed: @escaping () -> ()) -> UIViewController {
+        let viewModel = SignupViewModel(auth: auth, didSignIn: onClosed)
+        let view = SignView(viewModel: viewModel, dismiss: onClosed)
+        let controller = UIHostingController(rootView: view)
+        return controller
     }
     
     private func configureNavigationalOptions(navigationController: UINavigationController) {

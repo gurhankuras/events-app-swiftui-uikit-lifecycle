@@ -12,7 +12,7 @@ struct SigningTitleModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
         .font(Font.title2.bold())
-        .foregroundColor(Color.black.opacity(0.7))
+        .foregroundColor(Color.appTextColor.opacity(0.7))
     }
 }
 
@@ -38,6 +38,7 @@ struct SignupView: View {
                 
             SigningTextField(placeholder: "Email", text: $viewModel.email.value)
             SigningTextField(placeholder: "Password", text: $viewModel.password.value)
+            
             LongRoundedButton(text: "Sign up",
                               active: $viewModel.formValid,
                               action: handleSignup)

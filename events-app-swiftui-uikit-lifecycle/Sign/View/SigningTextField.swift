@@ -19,8 +19,9 @@ struct SigningTextField: View {
             .padding(.vertical, 10)
             .background(
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(!text.isEmpty ? .pink : .gray.opacity(0.7), lineWidth: 2)
+                    .stroke(!text.isEmpty ? .pink : .gray.opacity(0.85), lineWidth: 2)
             )
+            .foregroundColor(.appTextColor)
             .padding(.vertical, 5)
     }
 }

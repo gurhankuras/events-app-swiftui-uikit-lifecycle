@@ -50,38 +50,6 @@
             endingLineNumber = "30"
             landmarkName = "show(icon:title:action:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D378E273-173D-424F-8E48-AA746C7DA73E - 52752f68601dc178"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "events_app_swiftui_uikit_lifecycle.BannerService.show(icon: events_app_swiftui_uikit_lifecycle.BannerIcon, title: Swift.String, action: events_app_swiftui_uikit_lifecycle.BannerAction) -&gt; ()"
-                  moduleName = "events-app-swiftui-uikit-lifecycle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycle/Shared/BannerService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "528">
-               </Location>
-               <Location
-                  uuid = "D378E273-173D-424F-8E48-AA746C7DA73E - f1a8284008a673e0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in events_app_swiftui_uikit_lifecycle.BannerService.show(icon: events_app_swiftui_uikit_lifecycle.BannerIcon, title: Swift.String, action: events_app_swiftui_uikit_lifecycle.BannerAction) -&gt; ()"
-                  moduleName = "events-app-swiftui-uikit-lifecycle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycle/Shared/BannerService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "60">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

@@ -9,23 +9,26 @@ import Foundation
 import UIKit
 import SwiftUI
 
-
-struct ProfileActions {
-    var onTropiesClicked: (() -> Void)?
-}
-
 class ProfileViewControllerFactory {
+    let notificationService: NotificationService
     public weak var window: UIWindow?
 
-    func controller(notificationService: NotificationService, actions: ProfileActions) -> UINavigationController {
+    init(notificationService: NotificationService) {
+        self.notificationService = notificationService
+    }
+    
+
+    func controller(onTropiesIconClicked: @escaping () -> ()) -> UINavigationController {
         let darkModeSettings = DarkModeSettings(window: window)
         let settingsViewModel = SettingsViewModel(darkModeSettings: darkModeSettings)
         let profileViewModel = ProfileViewModel()
         
-        profileViewModel.onTropiesClicked = actions.onTropiesClicked
-        let blankController = UINavigationController(rootViewController: UIHostingController(rootView: ProfileView(profileViewModel: profileViewModel, settingsViewModel: settingsViewModel)))
-        configureNavigationalOptions(navigationController: blankController)
-        return blankController
+        profileViewModel.onTropiesClicked = onTropiesIconClicked
+        
+        let view = ProfileView(profileViewModel: profileViewModel, settingsViewModel: settingsViewModel)
+        let profileController = UINavigationController(rootView: view)
+        configureNavigationalOptions(navigationController: profileController)
+        return profileController
     }
     
     private func configureNavigationalOptions(navigationController: UINavigationController) {

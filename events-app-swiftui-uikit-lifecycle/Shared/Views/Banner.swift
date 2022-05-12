@@ -52,7 +52,7 @@ class Banner: UIView {
     }()
     
     
-    @objc func onClose() {
+    @objc private func onClose() {
         print("onClose")
         closeCallback?()
     }
