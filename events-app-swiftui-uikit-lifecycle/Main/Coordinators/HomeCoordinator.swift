@@ -18,7 +18,7 @@ class HomeCoordinator: Coordinator {
     }
     
     func start() {
-        rootViewController = factory.controller(onEventClicked: { [weak self] in self?.clickEvent() },
+        rootViewController = factory.controller(onEventClicked: { [weak self] event in self?.selectEvent(event) },
                                                 onSignButtonClicked: { [weak self] in self?.sign() })
     }
     
@@ -31,8 +31,8 @@ class HomeCoordinator: Coordinator {
         rootViewController.dismiss(animated: true)
     }
     
-    private func clickEvent() {
-        let view = EventDetails()
+    private func selectEvent(_ event: RemoteNearEvent) {
+        let view = EventDetails(viewModel: .init(nearEvent: event))
         let vc = UIHostingController(rootView: view)
         self.rootViewController.pushViewController(vc, animated: true)
     }

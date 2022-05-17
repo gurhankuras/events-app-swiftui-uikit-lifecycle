@@ -8,13 +8,6 @@
 import Foundation
 
 
-struct RemoteEvent: Decodable {
-    let id: String
-    let title: String
-    let at: String
-    let createdAt: String
-}
-
 protocol HttpClient {
     func request(_ request: URLRequest, completion: @escaping (Result<(Data, HTTPURLResponse), Error>) -> Void);
 }
@@ -49,95 +42,24 @@ extension PaginationOptions {
     }
 }
 
-/*
-class ResponseResult<T: Decodable, E: Decodable> {
-    private let error: E?
-    private let result: T?
-    
-    
-    
-}
- */
 
-enum ValidatorResult<T: Decodable, U: Decodable> {
-    case success(T)
-    case error(U)
-}
 
-class ResponseDecoder {
-    private let data: Data
-    private let response: HTTPURLResponse
-    private let decoder: JSONDecoder
-    private let validator: (HTTPURLResponse) -> Bool
-    
-    init(data: Data, response: HTTPURLResponse, decoder: JSONDecoder, validator: @escaping (HTTPURLResponse) -> Bool) {
-        self.data = data
-        self.response = response
-        self.decoder = decoder
-        self.validator = validator
-    }
-    
-    func decode<T: Decodable, U: Decodable>() throws -> ValidatorResult<T, U>  {
-        if validator(response) {
-            let decoded = try decoder.decode(T.self, from: data)
-            return .success(decoded)
-        }
-        else {
-            let decoded = try decoder.decode(U.self, from: data)
-            return .error(decoded)
-        }
-    }
-}
-
-class EventAPIClient {
-    let client: HttpClient
-    
-    init(client: HttpClient) {
-        self.client = client
-    }
-    
-    func fetch(with options: PaginationOptions, completion: @escaping (Result<[RemoteEvent], Error>) -> Void) {
-        var request = URLRequest(url: URL(string: "http://localhost:5290/events")!)
-        request.httpMethod = "GET"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        client.request(request) { result in
-            switch result {
-            case .success(let (data, response)):
-                let decoder = JSONDecoder.withFractionalSecondISO8601
-                do {
-                    if response.statusCode == 200 {
-                        let remoteEvents = try decoder.decode([RemoteEvent].self, from: data)
-                        completion(.success(remoteEvents))
-                    }
-                    else {
-                        let errorMessage = try decoder.decode([ErrorMessage].self, from: data)
-                        completion(.failure(NetworkError.response(errorMessage)))
-                    }
-                } catch {
-                    print(error)
-                    completion(.failure(error))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-        
-        
-    }
-}
 
 class HomeViewModel: ObservableObject {
-    @Published var user: User?
-    var onEventSelection: (() -> Void)?
     var onSignClick: (() -> Void)?
-
-    let auth: Auth
-    let api: EventAPIClient
     
-    init(auth: Auth, api: EventAPIClient) {
+    let auth: Auth
+    let locationFetcher: LocationFetcher
+    let api: NearEventFinder
+
+    @Published var user: User?
+    @Published var _nearEvents: [RemoteNearEvent] = []
+    
+    init(auth: Auth, api: NearEventFinder, locationFetcher: LocationFetcher) {
         self.auth = auth
         self.api = api
+        self.locationFetcher = locationFetcher
+        
         auth.userPublisher
             .map({result in
                 switch result {
@@ -153,19 +75,40 @@ class HomeViewModel: ObservableObject {
         
     }
     
-    var events: [Event] {
-        return Event.fakes(repeat: 5).map {
-            Event(id: $0.id, title: $0.title, address: $0.address, date: $0.date, image: $0.image, select: onEventSelection)
+    var events: [RemoteNearEvent] {
+        return _nearEvents
+    }
+    
+    func loadNearEvents() {
+        locationFetcher.requestCurrentLocation { [weak self] result in
+            switch result {
+            case .success(let location):
+                let coord = location.coordinate
+                let position = GeoCoordinates(latitude: coord.latitude, longitute: coord.longitude)
+                self?.fetchNearEvents(position)
+            case .failure(let error):
+                if let error = error as? LocationServiceError {
+                    switch error {
+                    case .unauthorized:
+                        openAppSettings()
+                    }
+                }
+                print(error.localizedDescription)
+            }
         }
     }
     
-    func load() {
-        api.fetch(with: .first(size: 2)) { result in
+    private func fetchNearEvents(_ position: GeoCoordinates) {
+        api.findEvents(around: position) { [weak self] result in
             switch result {
             case .success(let events):
-                print(events)
+                DispatchQueue.main.async {
+                    self?._nearEvents = events
+                }
             case .failure(let error):
-                print(error)
+                DispatchQueue.main.async {
+                    BannerService.shared.show(icon: .failure, title: error.localizedDescription, action: .close)                    
+                }
                 print(error.localizedDescription)
             }
         }

@@ -57,7 +57,7 @@ class ChatViewControllerFactory {
     }
     
     private func configureNavigationalOptions(navigationController: UINavigationController) {
-        navigationController.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(systemName: "bubble.left.fill"), tag: 2)
+        navigationController.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(systemName: "bubble.left.fill"), tag: 3)
         navigationController.navigationBar.prefersLargeTitles = false
         navigationController.topViewController?.title = "Chats"
     }

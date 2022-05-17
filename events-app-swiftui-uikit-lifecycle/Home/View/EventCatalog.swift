@@ -7,31 +7,22 @@
 
 import SwiftUI
 
-struct EventsShowcase<Screen: View> : View {
-    let events: [Event]
-    let header: String
-    let viewAllTarget: (() -> Screen)
+
+struct EventCatalog<Cards: View>: View {
+    let title: String
+    @ViewBuilder let content: () -> Cards
     
-    init(events: [Event], header: String, viewAllTarget:  @escaping () -> Screen) {
-        self.events = events
-        self.header = header
-        self.viewAllTarget = viewAllTarget
-    }
-  
     var body: some View {
         VStack {
-            EventsViewHeader(title: header)
+            EventsViewHeader(title: title)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(events) { event in
-                        EventCardView(event: event).padding(.leading)
-                    }
+                    content()
                 }
             }
         }
     }
 }
-
 
 struct EventsViewHeader: View {
     let title: String
@@ -57,6 +48,7 @@ struct EventsViewHeader: View {
 }
 
 
+/*
 struct EventsShowcase_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([
@@ -73,3 +65,4 @@ struct EventsShowcase_Previews: PreviewProvider {
             
     }
 }
+*/

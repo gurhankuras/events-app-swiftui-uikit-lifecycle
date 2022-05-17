@@ -18,6 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var profileFactory: ProfileViewControllerFactory!
     var chatFactory: ChatViewControllerFactory!
     var homeFactory: HomeViewControllerFactory!
+    var createFactory: EventCreationViewControllerFactory!
+    var searchFactory: SearchViewControllerFactory!
     
     var appCoordinator: AppCoordinator!
     
@@ -32,7 +34,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         initSharedDependencies()
         initFactories()
         
-        appCoordinator = AppCoordinator(homeFactory: homeFactory, chatFactory: chatFactory, profileFactory: profileFactory)
+        appCoordinator = AppCoordinator(homeFactory: homeFactory,
+                                        chatFactory: chatFactory,
+                                        profileFactory: profileFactory,
+                                        searchFactory: searchFactory,
+                                        createFactory: createFactory)
         
         appCoordinator.window = window
         profileFactory.window = window
@@ -52,6 +58,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         profileFactory = ProfileViewControllerFactory(notificationService: localNotifications)
         chatFactory = ChatViewControllerFactory(auth: auth)
         homeFactory = HomeViewControllerFactory(auth: auth)
+        searchFactory = SearchViewControllerFactory()
+        createFactory = EventCreationViewControllerFactory()
     }
     
     private func makeAuth() -> Auth {

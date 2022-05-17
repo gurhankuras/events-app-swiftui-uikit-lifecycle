@@ -24,7 +24,7 @@ struct ProfileView: View {
             SettingsView(settingsViewModel: settingsViewModel)
         }
         .navigationBarHidden(true)
-        .background(Color.paleBackground)
+        .background(Color.background)
     }
 }
 

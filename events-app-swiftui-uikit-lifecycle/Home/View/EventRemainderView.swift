@@ -43,6 +43,7 @@ struct EventRemainderView: View {
     }
     
     func checkStatus() {
+        
        load()
     }
     

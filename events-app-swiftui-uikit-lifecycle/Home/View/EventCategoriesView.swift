@@ -7,42 +7,6 @@
 
 import SwiftUI
 
-
-
-struct HomeContentView: View {
-    let categories: [String] = ["All", "Business", "Culture", "Music", "Conference"]
-    let eventStubs: [Event]
-    
-    var body: some View {
-        ScrollView {
-            VStack {
-                EventCategoriesView(categories)
-                    .padding(.bottom, 25)
-                    //.padding([.leading, .bottom], 25)
-                EventsShowcase(events: eventStubs, header: "Popular") {
-                    Text("Events")
-                       
-                }.padding(.bottom)
-                
-                EventsShowcase(events: eventStubs, header: "Popular") {
-                    Text("Events")
-                }.padding(.bottom)
-                
-                EventsShowcase(events: eventStubs, header: "Popular") {
-                    Text("Events")
-                }.padding(.bottom)
-                
-                EventsShowcase(events: eventStubs, header: "Popular") {
-                    Text("Events")
-                }
-            }
-            //.padding(.horizontal, 10)
-            
-        }
-        
-    }
-}
-
 struct EventCategoriesView: View {
     let categories: [String]
     
@@ -76,6 +40,7 @@ struct EventCategoriesView: View {
     }
 }
 
+/*
 struct HomeContentView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([
@@ -91,3 +56,4 @@ struct HomeContentView_Previews: PreviewProvider {
 }
 
 
+*/

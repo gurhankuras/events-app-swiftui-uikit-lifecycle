@@ -33,7 +33,7 @@ class PresignedURLFetcher: URLFetcher {
     }
     
     func fetch() -> AnyPublisher<URL, Error> {
-        guard let url = URL(string: "http://gkevents.com/api/upload") else {
+        guard let url = URL(string: "http://localhost:5000/upload?key=gurhan") else {
             return Fail(error: URLError.init(.badURL)).eraseToAnyPublisher()
         }
         

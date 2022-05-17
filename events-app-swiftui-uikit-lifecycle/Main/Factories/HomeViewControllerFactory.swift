@@ -16,11 +16,11 @@ class HomeViewControllerFactory {
         self.auth = auth
     }
     
-    func controller(onEventClicked: @escaping () ->(), onSignButtonClicked: @escaping () -> ()) -> UINavigationController {
-        let api = EventAPIClient(client: URLSession.shared)
-        let viewModel = HomeViewModel(auth: auth, api: api)
-        let homeController = UINavigationController(rootView: HomeView(viewModel: viewModel))
-        viewModel.onEventSelection = onEventClicked
+    func controller(onEventClicked: @escaping (RemoteNearEvent) -> (), onSignButtonClicked: @escaping () -> ()) -> UINavigationController {
+        let api = NearEventFinder(client: URLSession.shared)
+        let locationFetcher = LocationService(manager: .init())
+        let viewModel = HomeViewModel(auth: auth, api: api, locationFetcher: locationFetcher)
+        let homeController = UINavigationController(rootView: HomeView(viewModel: viewModel, onEventSelected: onEventClicked))
         viewModel.onSignClick = onSignButtonClicked
         configureNavigationalOptions(navigationController: homeController)
         return homeController

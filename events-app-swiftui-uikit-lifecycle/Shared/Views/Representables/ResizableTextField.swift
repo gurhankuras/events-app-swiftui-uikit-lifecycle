@@ -13,6 +13,13 @@ import UIKit
 struct ResizableTextField: UIViewRepresentable {
     @Binding var text: String
     @Binding var height: CGFloat
+    let font: UIFont?
+    
+    init(text: Binding<String>, height: Binding<CGFloat>, font: UIFont? = nil) {
+        self._text = text
+        self._height = height
+        self.font = font
+    }
     
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
@@ -23,7 +30,7 @@ struct ResizableTextField: UIViewRepresentable {
         view.isEditable = true
         view.isScrollEnabled = true
         view.text = "Enter Text"
-        view.font = .systemFont(ofSize: 18)
+        view.font = font ?? .systemFont(ofSize: 18)
         view.textColor = UIColor(named: "textColor")
         view.backgroundColor = .clear
 

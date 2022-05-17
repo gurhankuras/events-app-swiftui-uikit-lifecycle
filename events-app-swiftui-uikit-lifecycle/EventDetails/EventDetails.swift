@@ -7,28 +7,53 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import MapKit
 
+
+
+//class EventDetailsViewModel
 struct EventDetails: View {
-    private let urlStr = "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
-    private let text = "PreviewProvider.longText"
+    let viewModel: EventDetailsViewModel
+    @State private var mapRegion: MKCoordinateRegion
+
+    init(viewModel: EventDetailsViewModel) {
+        self.viewModel = viewModel
+        self._mapRegion = State(initialValue: viewModel.region)
+    }
+    
 
     var body: some View {
         VStack {
             ScrollView(.vertical) {
-                GeometryReader { proxy in
-                    EventHeaderImage(url: urlStr, height: UIScreen.main.bounds.height * 0.3)
-                }
-                .frame(height: UIScreen.main.bounds.height * 0.3)
-                InterestedUsers(users: ["concert", "concert", "concert"], gap: 20)
+                
+                EventHeader(title: viewModel.nearEvent.title,
+                            image: viewModel.nearEvent.image,
+                            height: UIScreen.main.bounds.height * 0.3)
+                 
+                InterestedUsers(users: viewModel.users, gap: 20)
                 .padding(.horizontal)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                ExpandableText(text: longText, initial: .closed)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                ExpandableText(text: viewModel.nearEvent.description, initial: .closed)
                     .lineLimit(4)
+                map
                 watchButton
                 joinButton
+                
             }
         }
     }
+    
+    private var map: some View {
+        Map(coordinateRegion: $mapRegion,
+            annotationItems: [viewModel.nearEvent],
+            annotationContent: { event in
+                MapMarker(coordinate: .init(latitude: event.latitude, longitude: event.longitute), tint: .red)
+            })
+            .frame(maxWidth: .infinity)
+            .frame(height: 200)
+    }
+     
     
     
     private var joinButton: some View {
@@ -89,60 +114,66 @@ struct EventDetails: View {
 
 struct EventDetails_Previews: PreviewProvider {
     static var previews: some View {
-        EventDetails()
+        EventDetails(viewModel: .init(nearEvent: .stub))
     }
 }
 
 
-struct EventHeaderImage: View {
+struct EventHeader: View {
     @Environment(\.presentationMode) var presentationMode
     
-    let url: String
+    // MARK: constructor
+    let title: String
+    let image: String
     let height: CGFloat
     
+    // MARK: constants
+    let titleGradient = LinearGradient(colors: [.black, .black.opacity(0.3)],
+                                       startPoint: .bottom,
+                                       endPoint: .top)
     var body: some View {
-        
-        WebImage(url: URL(string: url))
+        /*
+        WebImage(url: URL(string: image))
             .resizable()
             .scaledToFill()
             .frame(height: height)
+            .frame(maxWidth: .infinity)
             .clipped()
+*/
+            Rectangle()
+            .frame(height: height)
             .background(Color.pink)
-            .overlay(
-                Text("VENDEX TURKEY - Vending Techonologies & Self Service Systems Exhibition")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 5)
-                    .padding(.vertical, 10)
-                    .background(LinearGradient(colors: [.black, .black.opacity(0.3)],
-                                               startPoint: .bottom,
-                                               endPoint: .top))
-                ,
-                alignment: .bottom
-            )
-            .overlay(
-                Image(systemName: "arrow.backward")
-                    .padding(.top, 30)
-                    .padding(.bottom, 10)
-                    .padding(.horizontal, 10)
-                    .foregroundColor(.white)
-                    .onTapGesture {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                , alignment: .topLeading
-            )
-        Text("sadsadsad")
+            .overlay(eventTitle, alignment: .bottom)
+            .overlay(Image(systemName: "arrow.backward")
+                        .padding(.top, 30)
+                        .padding(.bottom, 10)
+                        .padding(.horizontal, 10)
+                        .foregroundColor(.white)
+                        .onTapGesture {
+                            //presentationMode.wrappedValue.dismiss()
+                        }, alignment: .topLeading)
+    }
+    
+    private var eventTitle: some View {
+        Text(title)
+            .font(.system(size: 17, weight: .medium, design: .rounded))
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundColor(.white)
+            .padding()
+            .background(titleGradient)
+    }
+    
+    private var backButton: some View {
+        Image(systemName: "arrow.backward")
+            .padding(.top, 30)
+            .padding(.bottom, 10)
+            .padding(.horizontal, 10)
+            .foregroundColor(.white)
+            .onTapGesture {
+                presentationMode.wrappedValue.dismiss()
+            }
     }
 }
-
-
-let longText = """
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra est nunc. Suspendisse tincidunt vestibulum augue, eget auctor arcu euismod ac. Aliquam id commodo dui. Pellentesque porttitor hendrerit neque non semper. Sed lobortis quis leo ut tempor. Phasellus quis mi diam. Quisque non enim dolor. Nulla eleifend risus sit amet lectus eleifend tincidunt. Nulla eget quam ligula. Sed vel mi lacus. Proin non semper mauris, ut sodales velit. Curabitur non egestas enim. Vivamus ac rhoncus mi. Nam leo purus, faucibus sagittis blandit quis, rhoncus non ex. Ut sit amet nibh sed purus consequat dignissim. Proin lobortis nisi mi, at pretium purus vestibulum nec.
-
-Fusce volutpat dui arcu, ut accumsan nibh ultricies sed. Quisque varius molestie maximus. Cras a nulla odio. Integer urna nunc, molestie vitae eleifend quis, sagittis eu purus. Etiam semper a tortor eu mattis. Aliquam cursus aliquet viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi placerat lacus et odio dictum blandit. Nulla egestas, turpis eget cursus feugiat, tortor orci aliquam velit, eget tincidunt dui ipsum ac neque. Cras faucibus est vel urna varius, non pulvinar leo blandit. Sed scelerisque sollicitudin consequat. Donec blandit justo in ex iaculis vehicula. Suspendisse vulputate mattis nunc, nec molestie enim consequat sed.
-"""
 
 struct InterestedUsers: View {
     let gap: Double

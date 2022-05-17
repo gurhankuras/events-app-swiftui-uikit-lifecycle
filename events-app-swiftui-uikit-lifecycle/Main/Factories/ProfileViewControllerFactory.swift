@@ -32,6 +32,6 @@ class ProfileViewControllerFactory {
     }
     
     private func configureNavigationalOptions(navigationController: UINavigationController) {
-        navigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
+        navigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 4)
     }
 }

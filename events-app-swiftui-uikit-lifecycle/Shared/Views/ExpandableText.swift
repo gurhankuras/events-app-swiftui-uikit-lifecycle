@@ -19,7 +19,7 @@ struct ExpandableText: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text(text)
                 .font(.system(size: 15))
                 .lineLimit(expanded ? nil : lineLimit)

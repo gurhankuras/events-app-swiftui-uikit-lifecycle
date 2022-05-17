@@ -18,16 +18,12 @@ struct SettingsView: View {
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 13, weight: .bold, design: .default))
                         }
-                        
                         SettingsTile(title: "Downloads", icon: "arrow.down.circle") {
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 13, weight: .bold, design: .default))
                         }
-                        
-                        
                     }
                 }
-                
                 SettingsGroupView(groupName: "Content") {
                     VStack(alignment: .leading) {
                         SettingsTile(title: "Language", icon: "globe") {
@@ -52,9 +48,9 @@ struct SettingsView: View {
                         }
                     }
                 }
-                
             }
         }
+        .padding(.bottom)
     }
 }
 
