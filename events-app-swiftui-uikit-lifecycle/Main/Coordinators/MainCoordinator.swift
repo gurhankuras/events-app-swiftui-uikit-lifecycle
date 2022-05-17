@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class MainCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
-    let rootViewController = UITabBarController()
+class MainCoordinator: NSObject, Coordinator {
+    let rootViewController = CustomUITabController()
     private var childCoordinators: [Coordinator] = []
     
     private let homeFactory: HomeViewControllerFactory
@@ -18,6 +18,8 @@ class MainCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
     private let profileFactory: ProfileViewControllerFactory
     private let searchFactory: SearchViewControllerFactory
     private let createFactory: EventCreationViewControllerFactory
+    
+    private var newEventCoordinator: NewEventCoordinator?
     
     init(homeFactory: HomeViewControllerFactory,
          chatFactory: ChatViewControllerFactory,
@@ -31,25 +33,6 @@ class MainCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
         self.createFactory = createFactory
         self.searchFactory = searchFactory
         super.init()
-        rootViewController.delegate = self
-
-    }
-    
-
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print(viewController)
-
-    }
-    
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-
-        if viewController.title == "Deneme" {
-            let vc = createFactory.controller()
-            ///vc.view.backgroundColor = .black
-            rootViewController.present(vc, animated: true)
-            return false
-        }
-        return true
     }
     
     
@@ -75,37 +58,24 @@ class MainCoordinator: NSObject, Coordinator, UITabBarControllerDelegate {
         let searchViewController = searchCoordinator.rootViewController
         childCoordinators.append(searchCoordinator)
         
-        let vc = UIViewController()
-        vc.title = "Deneme"
-        let image = UIImage(systemName: "plus.circle")
-     
-        vc.tabBarItem = UITabBarItem(title: "Deneme", image: image, tag: 2)
+        
+        rootViewController.startNewEvent = { [weak self] in self?.handleNewEventCoordinator() }
+        
         searchViewController.tabBarItem = UITabBarItem(title: "Deneme2", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+                
+        let controllers = [homeViewController,
+                           searchViewController,
+                           chatViewController,
+                           profileViewController]
         
-        rootViewController.setViewControllers([homeViewController, searchViewController, vc,
-                                               chatViewController, profileViewController], animated: false)
-        
-        /*
-        for item in rootViewController.tabBar.items! {
-            if item.title == "Deneme" {
-                item.title = nil
-                item.imageInsets = UIEdgeInsets(top: 6.0, left: 0, bottom: 0, right: 0)
-            }
-        }
-        */
-        //guard let items = rootViewController.tabBar.items,
-        //      let createTab = items. else {
-        //          return
-        //      }
-        //vc.tabBarItem.isEnabled = false
+        rootViewController.setViewControllers(controllers, animated: false)
     }
     
-    /*
-    private func configureNavigationalOptions(navigationController: UIViewController) {
-        navigationController.isToolbarHidden = true
-        navigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
-        navigationController.navigationBar.prefersLargeTitles = false
-        navigationController.navigationBar.isHidden = true
+    private func handleNewEventCoordinator() {
+        let coordinator = NewEventCoordinator(factory: createFactory) { [weak self] vc in
+            self?.rootViewController.present(vc, animated: true)
+        }
+        coordinator.start()
+        newEventCoordinator = coordinator
     }
-     */
 }

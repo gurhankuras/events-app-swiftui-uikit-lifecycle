@@ -33,7 +33,6 @@ class SearchViewController: UIViewController {
         view.addSubview(resultsTable.view)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-
         view.addSubview(textField)
         setConstraintsForResultsTable()
         setConstraintsForTextField()

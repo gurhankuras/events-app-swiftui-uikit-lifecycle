@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CreateEventView: View {
-
+    
+    let onContinued: () -> ()
     @State private var title: String = ""
     @State private var description: String = ""
     @State private var birthDate = Date()
@@ -45,7 +46,7 @@ struct CreateEventView: View {
     }
     
     private func proceed() {
-        print("Click")
+        onContinued()
     }
     
     var viewTitle: some View {
@@ -64,7 +65,8 @@ struct CreateEventView: View {
     var descriptionTextView: some View {
         ResizableTextField(text: $description,
                            height: $height,
-                           font: .systemFont(ofSize: 14, weight: .regular))
+                           font: .systemFont(ofSize: 14, weight: .regular),
+                           maxLength: 400)
             .frame(height: 150)
             .padding(.horizontal)
             .background(Color(UIColor.secondarySystemBackground))
@@ -75,7 +77,7 @@ struct CreateEventView: View {
 
 struct CreateEventView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateEventView()
+        CreateEventView(onContinued: {})
             .preferredColorScheme(.dark)
     }
 }

@@ -29,6 +29,11 @@
 		221E241327F253B900B8A939 /* RoomsAuthContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E241227F253B900B8A939 /* RoomsAuthContainerView.swift */; };
 		2220582E2833BB5100668639 /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2220582D2833BB5100668639 /* CreateEventView.swift */; };
 		222058302833CB1200668639 /* ImageUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2220582F2833CB1200668639 /* ImageUploadView.swift */; };
+		222058322833D11800668639 /* DescriptionTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222058312833D11800668639 /* DescriptionTextViewDelegate.swift */; };
+		222058342833D63500668639 /* NewEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222058332833D63500668639 /* NewEventCoordinator.swift */; };
+		2220583A2834021E00668639 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222058392834021E00668639 /* MapViewController.swift */; };
+		2220583C283407AA00668639 /* location.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 2220583B283407A900668639 /* location.geojson */; };
+		2220583E28340CCB00668639 /* tr-cities.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 2220583D28340CCB00668639 /* tr-cities.geojson */; };
 		2227653E2831212F003E94F8 /* EventCardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2227653D2831212F003E94F8 /* EventCardHeader.swift */; };
 		222765402831214B003E94F8 /* EventCardFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2227653F2831214B003E94F8 /* EventCardFooter.swift */; };
 		222765432831272A003E94F8 /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222765422831272A003E94F8 /* EventDetailsViewModel.swift */; };
@@ -236,6 +241,11 @@
 		221E241227F253B900B8A939 /* RoomsAuthContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsAuthContainerView.swift; sourceTree = "<group>"; };
 		2220582D2833BB5100668639 /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		2220582F2833CB1200668639 /* ImageUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadView.swift; sourceTree = "<group>"; };
+		222058312833D11800668639 /* DescriptionTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTextViewDelegate.swift; sourceTree = "<group>"; };
+		222058332833D63500668639 /* NewEventCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventCoordinator.swift; sourceTree = "<group>"; };
+		222058392834021E00668639 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		2220583B283407A900668639 /* location.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = location.geojson; sourceTree = "<group>"; };
+		2220583D28340CCB00668639 /* tr-cities.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "tr-cities.geojson"; sourceTree = "<group>"; };
 		2227653D2831212F003E94F8 /* EventCardHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardHeader.swift; sourceTree = "<group>"; };
 		2227653F2831214B003E94F8 /* EventCardFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardFooter.swift; sourceTree = "<group>"; };
 		222765422831272A003E94F8 /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -472,6 +482,8 @@
 			children = (
 				2220582D2833BB5100668639 /* CreateEventView.swift */,
 				2220582F2833CB1200668639 /* ImageUploadView.swift */,
+				222058312833D11800668639 /* DescriptionTextViewDelegate.swift */,
+				222058392834021E00668639 /* MapViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -545,6 +557,7 @@
 				222A5FD9282AE7E3000CCCFE /* ChatCoordinator.swift */,
 				222A5FDD282AF53E000CCCFE /* ProfileCoordinator.swift */,
 				2227654E28317762003E94F8 /* SearchCoordinator.swift */,
+				222058332833D63500668639 /* NewEventCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -620,6 +633,8 @@
 		22D3AC5C27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle */ = {
 			isa = PBXGroup;
 			children = (
+				2220583D28340CCB00668639 /* tr-cities.geojson */,
+				2220583B283407A900668639 /* location.geojson */,
 				2227654A283176F0003E94F8 /* Search */,
 				224C7C2E282FE3E80037AD45 /* Info.plist */,
 				22F489FD28075242000B203B /* Profile */,
@@ -1298,10 +1313,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2220583E28340CCB00668639 /* tr-cities.geojson in Resources */,
 				224C7C32282FE7570037AD45 /* Settings.bundle in Resources */,
 				22D3AC7227EB7F8300A5B08C /* LaunchScreen.storyboard in Resources */,
 				22D3AC6727EB7E5900A5B08C /* Assets.xcassets in Resources */,
 				22D3AE4D27EB886D00A5B08C /* sample.mp4 in Resources */,
+				2220583C283407AA00668639 /* location.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1410,6 +1427,7 @@
 				22D3ACBB27EB803C00A5B08C /* ChatRoomsService.swift in Sources */,
 				22082F8E2816F9400070A4B8 /* ScrollPopup.swift in Sources */,
 				22175048281AC42E0096308D /* ProfileHeader.swift in Sources */,
+				222058342833D63500668639 /* NewEventCoordinator.swift in Sources */,
 				22D3ACB627EB803C00A5B08C /* ChatMessage+Stub.swift in Sources */,
 				222765432831272A003E94F8 /* EventDetailsViewModel.swift in Sources */,
 				22D3AD1827EB80C200A5B08C /* JsonPostTokenSaverDecorator.swift in Sources */,
@@ -1428,6 +1446,7 @@
 				224C7C2B282FCBEE0037AD45 /* NearEventFetcher.swift in Sources */,
 				22082F892816E1730070A4B8 /* ChatRoomCell2.swift in Sources */,
 				22D3AD3827EB814400A5B08C /* SignupViewModel.swift in Sources */,
+				222058322833D11800668639 /* DescriptionTextViewDelegate.swift in Sources */,
 				22D3AD4327EB814400A5B08C /* SigningTextField.swift in Sources */,
 				22D3AD7327EB81CC00A5B08C /* EventDetails.swift in Sources */,
 				2255292B27EF18FB00C63C35 /* SocketIOChatCommunicator.swift in Sources */,
@@ -1442,6 +1461,7 @@
 				224C7C2D282FDC920037AD45 /* LocationService.swift in Sources */,
 				22D3AD5027EB817800A5B08C /* PlayerViewModel.swift in Sources */,
 				22D3AD1327EB80C200A5B08C /* CloseButton.swift in Sources */,
+				2220583A2834021E00668639 /* MapViewController.swift in Sources */,
 				22082F872816E1430070A4B8 /* ChatRoomsViewController.swift in Sources */,
 				222A5FDC282AE918000CCCFE /* HomeCoordinator.swift in Sources */,
 				22D3AD5127EB817800A5B08C /* FullscreenVideoPage.swift in Sources */,

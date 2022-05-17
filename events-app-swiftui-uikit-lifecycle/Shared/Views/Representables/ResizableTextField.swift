@@ -14,11 +14,20 @@ struct ResizableTextField: UIViewRepresentable {
     @Binding var text: String
     @Binding var height: CGFloat
     let font: UIFont?
+    let maxLength: Int?
     
     init(text: Binding<String>, height: Binding<CGFloat>, font: UIFont? = nil) {
         self._text = text
         self._height = height
         self.font = font
+        self.maxLength = nil
+    }
+    
+    init(text: Binding<String>, height: Binding<CGFloat>, font: UIFont? = nil, maxLength: Int) {
+        self._text = text
+        self._height = height
+        self.font = font
+        self.maxLength = maxLength
     }
     
     func makeCoordinator() -> Coordinator {
@@ -69,6 +78,18 @@ struct ResizableTextField: UIViewRepresentable {
                 self.parent.height = textView.contentSize.height
                 self.parent.text = textView.text
             }
+        }
+        
+        func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            guard let maxLength = parent.maxLength else {
+                return true
+            }
+
+            if range.location > maxLength {
+                return false
+            }
+            
+            return true
         }
     }
     
