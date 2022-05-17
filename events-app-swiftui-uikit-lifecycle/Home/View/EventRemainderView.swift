@@ -18,7 +18,7 @@ struct EventRemainderView: View {
   
     var body: some View {
         HStack {
-            Text("You have 0 events this week")
+            Text("event-remainder \(0)")
                 .font(.custom("", size: 15, relativeTo: .body))
                 .foregroundColor(.primary)
                 .lineLimit(2)

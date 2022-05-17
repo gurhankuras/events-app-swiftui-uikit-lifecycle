@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LongRoundedButton: View {
-    let text: String
+    let text: LocalizedStringKey
     @Binding var active: Bool
     let action: () -> Void
     

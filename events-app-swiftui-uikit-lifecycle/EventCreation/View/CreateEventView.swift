@@ -23,7 +23,7 @@ struct CreateEventView: View {
                 ImageUploadView()
                     .cornerRadius(5)
                 VStack {
-                    TextField("Title", text: $title)
+                    TextField("title-form-field-placeholder", text: $title)
                         .font(.system(size: 18, weight: .regular, design: .rounded))
                         .textFieldStyle(.roundedBorder)
                     datePicker
@@ -33,12 +33,12 @@ struct CreateEventView: View {
             
             descriptionTextView
             Toggle(isOn: $hasCertification) {
-                Text("Has certification programme?")
+                Text("certification-question")
                     .font(.system(size: 15, weight: .medium, design: .rounded))
             }
             .tint(.appPurple)
             Spacer()
-            LongRoundedButton(text: "Continue",
+            LongRoundedButton(text: "continue-button",
                               active: .constant(true),
                               action: proceed)
         }
@@ -50,7 +50,7 @@ struct CreateEventView: View {
     }
     
     var viewTitle: some View {
-        Text("Create a Event")
+        Text("create-event-title")
             .font(.system(size: 21, weight: .semibold, design: .rounded))
     }
     
@@ -58,7 +58,7 @@ struct CreateEventView: View {
         DatePicker(selection: $birthDate,
                    in: Date()...,
                    displayedComponents: .date) {
-                        Text("Select a date")
+                        Text("date-picker")
         }
     }
     

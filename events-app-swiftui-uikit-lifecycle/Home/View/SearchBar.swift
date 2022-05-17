@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchBar: View {
-    let placeholder: String
+    let placeholder: LocalizedStringKey
     @Binding var text: String
     
     //@FocusState var focused: Bool

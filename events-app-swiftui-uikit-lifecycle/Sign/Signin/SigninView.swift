@@ -15,16 +15,16 @@ struct SigninView: View {
         VStack {
             Spacer()
             SigningIllustration(named: "login_illust", action: openSignup)
-            Text("Log in to your account")
+            Text("sign-in-header")
                 .signingTitle()
-            SigningTextField(placeholder: "Email", text: $viewModel.email.value)
-            SigningTextField(placeholder: "Password", text: $viewModel.password.value)
-            LongRoundedButton(text: "Sign in", active: $viewModel.formValid) {
+            SigningTextField(placeholder: "email-field-placeholder", text: $viewModel.email.value)
+            SigningTextField(placeholder: "password-field-placeholder", text: $viewModel.password.value)
+            LongRoundedButton(text: "sign-in-button", active: $viewModel.formValid) {
                 viewModel.login()
                 UIApplication.shared.endEditing()
             }
-            SigningTransationText(text: "Don't have an account? ",
-                                  link: "Sign up",
+            SigningTransationText(text: "dont-have-account",
+                                  link: "dont-have-account-sign-up",
                                   action: openSignup)
             Spacer()
         }
@@ -51,8 +51,8 @@ struct SigninView_Previews: PreviewProvider {
  */
 
 struct SigningTransationText: View {
-    let text: String
-    let link: String
+    let text: LocalizedStringKey
+    let link: LocalizedStringKey
     let action: () -> Void
 
     var body: some View {

@@ -34,13 +34,13 @@ struct SettingsView: View {
                                     .font(.system(size: 13, weight: .bold, design: .default))
                             }
                         }
-                        SettingsTile(title: "Automatic (follow iOS setting)", icon: "gearshape") {
+                        SettingsTile(title: "automatic-dark-mode", icon: "gearshape") {
                             Toggle("", isOn: $settingsViewModel.prefersSystemMode)
                                 .labelsHidden()
                               .tint(Color.appPurple)
                         }
                         if !settingsViewModel.prefersSystemMode {
-                            SettingsTile(title: "Dark Mode", icon: "moon") {
+                            SettingsTile(title: "dark-mode", icon: "moon") {
                                 Toggle("", isOn: $settingsViewModel.isDarkMode)
                                     .labelsHidden()
                                   .tint(Color.appPurple)

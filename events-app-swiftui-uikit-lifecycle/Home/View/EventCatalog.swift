@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct EventCatalog<Cards: View>: View {
-    let title: String
+    let title: LocalizedStringKey
     @ViewBuilder let content: () -> Cards
     
     var body: some View {
@@ -25,7 +25,7 @@ struct EventCatalog<Cards: View>: View {
 }
 
 struct EventsViewHeader: View {
-    let title: String
+    let title: LocalizedStringKey
 
     var body: some View  {
         HStack {
@@ -38,7 +38,7 @@ struct EventsViewHeader: View {
                 }
             Spacer()
             
-            Text("View All")
+            Text("see-all")
                 .font(.caption)
                 .foregroundColor(.appLightPurple)
                 .fontWeight(.semibold)

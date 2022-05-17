@@ -42,7 +42,14 @@ class CustomUITabController: UITabBarController, UITabBarControllerDelegate {
         let vc = UIViewController()
         vc.title = "Deneme"
         let image = UIImage(systemName: "plus.circle")
-        vc.tabBarItem = UITabBarItem(title: "Deneme", image: image, tag: 2)
+        vc.tabBarItem = UITabBarItem(title: "new-event-tab-item".localized(), image: image, tag: 2)
         return vc
+    }
+}
+
+
+extension String {
+    func localized() -> String {
+        NSLocalizedString(self, tableName: nil, bundle: .main, value: self, comment: self)
     }
 }

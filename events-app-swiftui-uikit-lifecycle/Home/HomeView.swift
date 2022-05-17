@@ -29,17 +29,17 @@ struct HomeView: View {
             ScrollView {
                 VStack {
                     EventCategoriesView(categories)
-                    EventCatalog(title: "Popular") {
+                    EventCatalog(title: "popular-title") {
                         ForEach(viewModel.events) { event in
                             EventCardView(event: event, onClicked: onEventSelected).padding(.leading)
                         }
                     }
-                    EventCatalog(title: "Popular") {
+                    EventCatalog(title: "popular-title") {
                         ForEach(viewModel.events) { event in
                             EventCardView(event: event, onClicked: onEventSelected).padding(.leading)
                         }
                     }
-                    EventCatalog(title: "Popular") {
+                    EventCatalog(title: "popular-title") {
                         ForEach(viewModel.events) { event in
                             EventCardView(event: event, onClicked: onEventSelected).padding(.leading)
                         }

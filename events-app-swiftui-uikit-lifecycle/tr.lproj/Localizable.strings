@@ -1,0 +1,55 @@
+/* 
+  Localizable.strings
+  events-app-swiftui-uikit-lifecycle
+
+  Created by Gürhan Kuraş on 5/17/22.
+  
+*/
+
+// Create New Event
+"create-event-title" = "Etkinlik Oluştur";
+"certification-question" = "Sertifika programı var mı?";
+"continue-button" = "Devam Et";
+"title-form-field-placeholder" = "Başlık";
+"date-picker" = "Bir tarih seçiniz";
+
+// Home
+"home-title" = "Yeni Etkinlikleri Keşfet";
+"popular-title" = "Popüler";
+"%lld near events" = "Yakınında katılabileceğin %lld etkinlik var";
+"search-event" = "Etkinlik Ara";
+"see-all" = "Daha fazla";
+"check-status" = "Gözat";
+"event-remainder %lld" = "Bu hafta eklediğin %lld etkinlik var";
+
+// Tabs
+"home-tab-item" = "Anasayfa";
+"search-tab-item" = "Ara";
+"new-event-tab-item" = "Yeni";
+"chat-tabb-item" = "Sohbet";
+"profile-tab-item" = "Hesap";
+"chat-page-title" = "Sohbetler";
+
+// Signing
+"email-field-placeholder" = "E-posta";
+"password-field-placeholder" = "Şifre";
+
+// Sign-in
+"sign-in-header" = "Hesabına Giriş Yap";
+"sign-in-button" = "Onayla";
+"dont-have-account" = "Hesabınız yok mu? ";
+"dont-have-account-sign-up" = "Hesap oluşturun";
+
+// Sign-up
+"sign-up-header" = "Kayıt ol ve aradığın etkinlikleri bul";
+"sign-up-button" = "Onayla";
+"already-have-account" = "Zaten bir hesabım var. ";
+"already-have-account-sign-in" = "Giriş yap";
+
+// Profile
+"profile-edit-button" = "Profili Düzenle";
+
+// Settings
+"automatic-dark-mode" = "Otomatik (varolan iOS ayarını uygula)";
+"dark-mode" = "Gece Modu";
+

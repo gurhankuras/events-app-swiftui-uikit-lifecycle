@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SettingsTile<Content: View>: View {
-    let title: String
+    let title: LocalizedStringKey
     let icon: String
     @ViewBuilder let content: () -> Content
     
-    init(title: String, icon: String, content: @escaping () -> Content) {
+    init(title: LocalizedStringKey, icon: String, content: @escaping () -> Content) {
         self.title = title
         self.icon = icon
         self.content = content

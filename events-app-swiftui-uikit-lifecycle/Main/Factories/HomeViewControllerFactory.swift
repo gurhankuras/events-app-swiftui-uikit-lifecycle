@@ -35,7 +35,7 @@ class HomeViewControllerFactory {
     
     private func configureNavigationalOptions(navigationController: UINavigationController) {
         navigationController.isToolbarHidden = true
-        navigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
+        navigationController.tabBarItem = UITabBarItem(title: "home-tab-item".localized(), image: UIImage(systemName: "house.fill"), tag: 0)
         navigationController.navigationBar.prefersLargeTitles = false
         navigationController.navigationBar.isHidden = true
     }

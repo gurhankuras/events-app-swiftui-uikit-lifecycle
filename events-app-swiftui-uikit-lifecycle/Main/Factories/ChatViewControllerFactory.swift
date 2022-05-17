@@ -57,8 +57,8 @@ class ChatViewControllerFactory {
     }
     
     private func configureNavigationalOptions(navigationController: UINavigationController) {
-        navigationController.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(systemName: "bubble.left.fill"), tag: 3)
+        navigationController.tabBarItem = UITabBarItem(title: "chat-tab-item".localized(), image: UIImage(systemName: "bubble.left.fill"), tag: 3)
         navigationController.navigationBar.prefersLargeTitles = false
-        navigationController.topViewController?.title = "Chats"
+        navigationController.topViewController?.title = "chat-page-title".localized()
     }
 }

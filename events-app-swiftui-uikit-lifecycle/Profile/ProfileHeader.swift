@@ -47,7 +47,7 @@ struct ProfileHeader: View {
                 
             } label: {
                 HStack(alignment: .lastTextBaseline) {
-                    Text("Edit Profile")
+                    Text("profile-edit-button")
                         .font(.system(size: 14, weight: .medium, design: .rounded))
                     Image(systemName: "chevron.right")
                         .font(.caption2)

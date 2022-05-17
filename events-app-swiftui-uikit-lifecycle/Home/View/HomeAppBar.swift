@@ -21,7 +21,7 @@ struct HomeAppBar: View {
             }
             
             HStack {
-                Text("Find Amazing Events")
+                Text("home-title")
                     .font(.title2)
                     .fontWeight(.semibold)
                     .onTapGesture {
@@ -37,13 +37,13 @@ struct HomeAppBar: View {
                 
             }
             
-            Text("222 events around you")
+            Text("\(222) near events")
                 .font(.footnote)
                 .foregroundColor(.white)
                 .opacity(0.8)
                 .padding(.bottom)
             
-            SearchBar(placeholder: "Find Events", text: $searchText)
+            SearchBar(placeholder: "search-event", text: $searchText)
                 .foregroundColor(.primary)
             
         }

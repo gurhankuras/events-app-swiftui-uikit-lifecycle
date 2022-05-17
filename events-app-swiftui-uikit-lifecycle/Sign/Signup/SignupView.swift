@@ -33,17 +33,17 @@ struct SignupView: View {
         VStack {
             Spacer()
             SigningIllustration(named: "login_illust", action: openSignin)
-            Text("Sign up and explore events ahead")
+            Text("sign-up-header")
                 .signingTitle()
                 
-            SigningTextField(placeholder: "Email", text: $viewModel.email.value)
-            SigningTextField(placeholder: "Password", text: $viewModel.password.value)
+            SigningTextField(placeholder: "email-field-placeholder", text: $viewModel.email.value)
+            SigningTextField(placeholder: "password-field-placeholder", text: $viewModel.password.value)
             
-            LongRoundedButton(text: "Sign up",
+            LongRoundedButton(text: "sign-up-button",
                               active: $viewModel.formValid,
                               action: handleSignup)
-            SigningTransationText(text: "Already have an account? ",
-                                  link: "Sign in",
+            SigningTransationText(text: "already-have-account",
+                                  link: "already-have-account-sign-in",
                                   action: openSignin)
             Spacer()
         }

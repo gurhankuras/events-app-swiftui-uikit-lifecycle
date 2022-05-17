@@ -61,7 +61,7 @@ class MainCoordinator: NSObject, Coordinator {
         
         rootViewController.startNewEvent = { [weak self] in self?.handleNewEventCoordinator() }
         
-        searchViewController.tabBarItem = UITabBarItem(title: "Deneme2", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+        searchViewController.tabBarItem = UITabBarItem(title: "search-tab-item".localized(), image: UIImage(systemName: "magnifyingglass"), tag: 1)
                 
         let controllers = [homeViewController,
                            searchViewController,

@@ -22,7 +22,7 @@ class CustomSearchBar: UITextField {
         super.init(frame: frame)
         font = .systemFont(ofSize: 15)
         backgroundColor = .clear
-        placeholder = "Search event"
+        placeholder = "search-event".localized()
         backgroundColor = .background
         layer.cornerRadius = 15
         clipsToBounds = true

@@ -58,6 +58,7 @@
 		222A5FE4282BCB73000CCCFE /* BannerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FE3282BCB73000CCCFE /* BannerService.swift */; };
 		222A6022282BD958000CCCFE /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A6021282BD958000CCCFE /* Banner.swift */; };
 		222A6024282BD9CF000CCCFE /* UIViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A6023282BD9CF000CCCFE /* UIViewPreview.swift */; };
+		22416F2428343BDA00D48C72 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22416F2628343BDA00D48C72 /* Localizable.strings */; };
 		224C7C28282FCB620037AD45 /* RemoteNearEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C7C27282FCB620037AD45 /* RemoteNearEvent.swift */; };
 		224C7C2B282FCBEE0037AD45 /* NearEventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C7C2A282FCBEE0037AD45 /* NearEventFetcher.swift */; };
 		224C7C2D282FDC920037AD45 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C7C2C282FDC920037AD45 /* LocationService.swift */; };
@@ -270,6 +271,8 @@
 		222A5FE3282BCB73000CCCFE /* BannerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerService.swift; sourceTree = "<group>"; };
 		222A6021282BD958000CCCFE /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		222A6023282BD9CF000CCCFE /* UIViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPreview.swift; sourceTree = "<group>"; };
+		22416F2528343BDA00D48C72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		22416F2728343BE200D48C72 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		224C7C27282FCB620037AD45 /* RemoteNearEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNearEvent.swift; sourceTree = "<group>"; };
 		224C7C2A282FCBEE0037AD45 /* NearEventFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearEventFetcher.swift; sourceTree = "<group>"; };
 		224C7C2C282FDC920037AD45 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
@@ -647,6 +650,7 @@
 				22D3AD2327EB814400A5B08C /* Sign */,
 				22D3ACC227EB80C200A5B08C /* Shared */,
 				22D3AC7327EB803C00A5B08C /* Chat */,
+				22416F2628343BDA00D48C72 /* Localizable.strings */,
 			);
 			path = "events-app-swiftui-uikit-lifecycle";
 			sourceTree = "<group>";
@@ -1292,6 +1296,7 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = 22D3AC5127EB7E5700A5B08C;
 			packageReferences = (
@@ -1316,6 +1321,7 @@
 				2220583E28340CCB00668639 /* tr-cities.geojson in Resources */,
 				224C7C32282FE7570037AD45 /* Settings.bundle in Resources */,
 				22D3AC7227EB7F8300A5B08C /* LaunchScreen.storyboard in Resources */,
+				22416F2428343BDA00D48C72 /* Localizable.strings in Resources */,
 				22D3AC6727EB7E5900A5B08C /* Assets.xcassets in Resources */,
 				22D3AE4D27EB886D00A5B08C /* sample.mp4 in Resources */,
 				2220583C283407AA00668639 /* location.geojson in Resources */,
@@ -1546,6 +1552,18 @@
 			targetProxy = 22D3AD8327EB83AA00A5B08C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		22416F2628343BDA00D48C72 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22416F2528343BDA00D48C72 /* en */,
+				22416F2728343BE200D48C72 /* tr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		22D3AC6C27EB7E5900A5B08C /* Debug */ = {

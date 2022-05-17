@@ -1,0 +1,53 @@
+/* 
+  Localizable.strings
+  events-app-swiftui-uikit-lifecycle
+
+  Created by Gürhan Kuraş on 5/17/22.
+  
+*/
+
+"create-event-title" = "Create Event";
+"certification-question" = "Has certification programme?";
+"continue-button" = "Continue";
+"title-form-field-placeholder" = "Title";
+"date-picker" = "Select a date";
+
+// Home
+"home-title" = "Find Amazing Events";
+"popular-title" = "Popular";
+"%lld near events" = "%lld events around you";
+"search-event" = "Search Events";
+"see-all" = "See All";
+"check-status" = "Check Status";
+"event-remainder %lld" = "You have %lld events this week";
+
+// Tabs
+"home-tab-item" = "Home";
+"search-tab-item" = "Search";
+"new-event-tab-item" = "Create";
+"chat-tabb-item" = "Chat";
+"profile-tab-item" = "Account";
+"chat-page-title" = "Chats";
+
+// Signing
+"email-field-placeholder" = "Email";
+"password-field-placeholder" = "Password";
+
+// Sign-in
+"sign-in-header" = "Log in to your account";
+"sign-in-button" = "Sign in";
+"dont-have-account" = "Don't have an account? ";
+"dont-have-account-sign-up" = "Sign up";
+
+// Sign-up
+"sign-up-header" = "Sign up and explore events ahead";
+"sign-up-button" = "Sign up";
+"already-have-account" = "Already have an account? ";
+"already-have-account-sign-in" = "Sign in";
+
+// Profile
+"profile-edit-button" = "Edit Profile";
+
+// Settings
+"automatic-dark-mode" = "Automatic (follow iOS setting)";
+"dark-mode" = "Dark Mode";
