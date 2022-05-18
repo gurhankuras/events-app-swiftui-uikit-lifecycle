@@ -204,6 +204,15 @@
 		22D3AE4D27EB886D00A5B08C /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 22D3AE4C27EB886D00A5B08C /* sample.mp4 */; };
 		22D3AE5127EBAC3500A5B08C /* ChatToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE5027EBAC3500A5B08C /* ChatToolbar.swift */; };
 		22D3AE5327EBB0A600A5B08C /* ImageAttachmentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AE5227EBB0A600A5B08C /* ImageAttachmentPreview.swift */; };
+		22DCEC042835217F00C98D58 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 22DCEC032835217F00C98D58 /* Lottie */; };
+		22DCEC06283521AD00C98D58 /* CustomRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DCEC05283521AD00C98D58 /* CustomRefreshView.swift */; };
+		22DCEC0C283527ED00C98D58 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 22DCEC0B283527ED00C98D58 /* loading.json */; };
+		22DCEC0E2835286400C98D58 /* pink-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 22DCEC0D2835286400C98D58 /* pink-loading.json */; };
+		22DCEC132835720600C98D58 /* ClampTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DCEC122835720600C98D58 /* ClampTest.swift */; };
+		22DCEC152835740300C98D58 /* Clamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DCEC142835740300C98D58 /* Clamp.swift */; };
+		22DCEC18283575B000C98D58 /* RefreshScrollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DCEC17283575B000C98D58 /* RefreshScrollViewModel.swift */; };
+		22DCEC1A283576AF00C98D58 /* ResizebleLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DCEC19283576AF00C98D58 /* ResizebleLottieView.swift */; };
+		22DCEC1E283588EA00C98D58 /* not-found-search.json in Resources */ = {isa = PBXBuildFile; fileRef = 22DCEC1D283588EA00C98D58 /* not-found-search.json */; };
 		22EBFC002832C2500028DB64 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBFBFF2832C2500028DB64 /* SearchTableViewController.swift */; };
 		22EBFC032832C2770028DB64 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBFC022832C2770028DB64 /* SearchViewModel.swift */; };
 		22EBFC052832C5370028DB64 /* EventSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBFC042832C5370028DB64 /* EventSearchResultCell.swift */; };
@@ -420,6 +429,14 @@
 		22D3AE4C27EB886D00A5B08C /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
 		22D3AE5027EBAC3500A5B08C /* ChatToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatToolbar.swift; sourceTree = "<group>"; };
 		22D3AE5227EBB0A600A5B08C /* ImageAttachmentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAttachmentPreview.swift; sourceTree = "<group>"; };
+		22DCEC05283521AD00C98D58 /* CustomRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRefreshView.swift; sourceTree = "<group>"; };
+		22DCEC0B283527ED00C98D58 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		22DCEC0D2835286400C98D58 /* pink-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "pink-loading.json"; sourceTree = "<group>"; };
+		22DCEC122835720600C98D58 /* ClampTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClampTest.swift; sourceTree = "<group>"; };
+		22DCEC142835740300C98D58 /* Clamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clamp.swift; sourceTree = "<group>"; };
+		22DCEC17283575B000C98D58 /* RefreshScrollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshScrollViewModel.swift; sourceTree = "<group>"; };
+		22DCEC19283576AF00C98D58 /* ResizebleLottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizebleLottieView.swift; sourceTree = "<group>"; };
+		22DCEC1D283588EA00C98D58 /* not-found-search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "not-found-search.json"; sourceTree = "<group>"; };
 		22EBFBFF2832C2500028DB64 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		22EBFC022832C2770028DB64 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		22EBFC042832C5370028DB64 /* EventSearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSearchResultCell.swift; sourceTree = "<group>"; };
@@ -432,6 +449,7 @@
 			files = (
 				22D3ACC127EB807600A5B08C /* SDWebImageSwiftUI in Frameworks */,
 				2255292E27EF229300C63C35 /* SocketIO in Frameworks */,
+				22DCEC042835217F00C98D58 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,6 +654,9 @@
 		22D3AC5C27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle */ = {
 			isa = PBXGroup;
 			children = (
+				22DCEC1D283588EA00C98D58 /* not-found-search.json */,
+				22DCEC0D2835286400C98D58 /* pink-loading.json */,
+				22DCEC0B283527ED00C98D58 /* loading.json */,
 				2220583D28340CCB00668639 /* tr-cities.geojson */,
 				2220583B283407A900668639 /* location.geojson */,
 				2227654A283176F0003E94F8 /* Search */,
@@ -849,6 +870,7 @@
 				22D3ACCA27EB80C200A5B08C /* AppLogger.swift */,
 				22D3ACCB27EB80C200A5B08C /* JwtDecoder.swift */,
 				22D3ACCC27EB80C200A5B08C /* KeychainItemAccessibility.swift */,
+				22DCEC142835740300C98D58 /* Clamp.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -886,6 +908,7 @@
 		22D3ACDD27EB80C200A5B08C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				22DCEC0F2835710500C98D58 /* CustomRefreshView */,
 				22D3ACDE27EB80C200A5B08C /* Representables */,
 				22D3ACE327EB80C200A5B08C /* LongRoundedButton.swift */,
 				22D3ACE427EB80C200A5B08C /* ExpandableText.swift */,
@@ -1141,6 +1164,7 @@
 		22D3AE2227EB865A00A5B08C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				22DCEC162835741100C98D58 /* Utils */,
 				22D3AE2327EB865A00A5B08C /* XCTestCase+Common.swift */,
 				22D3AE2427EB865A00A5B08C /* Services */,
 			);
@@ -1187,6 +1211,24 @@
 				22D3AD5527EB81A300A5B08C /* HomeAppBar.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		22DCEC0F2835710500C98D58 /* CustomRefreshView */ = {
+			isa = PBXGroup;
+			children = (
+				22DCEC05283521AD00C98D58 /* CustomRefreshView.swift */,
+				22DCEC17283575B000C98D58 /* RefreshScrollViewModel.swift */,
+				22DCEC19283576AF00C98D58 /* ResizebleLottieView.swift */,
+			);
+			path = CustomRefreshView;
+			sourceTree = "<group>";
+		};
+		22DCEC162835741100C98D58 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				22DCEC122835720600C98D58 /* ClampTest.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		22EBFC012832C26C0028DB64 /* ViewModel */ = {
@@ -1247,6 +1289,7 @@
 			packageProductDependencies = (
 				22D3ACC027EB807600A5B08C /* SDWebImageSwiftUI */,
 				2255292D27EF229300C63C35 /* SocketIO */,
+				22DCEC032835217F00C98D58 /* Lottie */,
 			);
 			productName = "events-app-swiftui-uikit-lifecycle";
 			productReference = 22D3AC5A27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle.app */;
@@ -1302,6 +1345,7 @@
 			packageReferences = (
 				22D3ACBF27EB807600A5B08C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				2255292C27EF229300C63C35 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				22DCEC022835217F00C98D58 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 22D3AC5B27EB7E5800A5B08C /* Products */;
 			projectDirPath = "";
@@ -1322,8 +1366,11 @@
 				224C7C32282FE7570037AD45 /* Settings.bundle in Resources */,
 				22D3AC7227EB7F8300A5B08C /* LaunchScreen.storyboard in Resources */,
 				22416F2428343BDA00D48C72 /* Localizable.strings in Resources */,
+				22DCEC0E2835286400C98D58 /* pink-loading.json in Resources */,
+				22DCEC0C283527ED00C98D58 /* loading.json in Resources */,
 				22D3AC6727EB7E5900A5B08C /* Assets.xcassets in Resources */,
 				22D3AE4D27EB886D00A5B08C /* sample.mp4 in Resources */,
+				22DCEC1E283588EA00C98D58 /* not-found-search.json in Resources */,
 				2220583C283407AA00668639 /* location.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1402,6 +1449,7 @@
 				222765402831214B003E94F8 /* EventCardFooter.swift in Sources */,
 				22D3ACB127EB803C00A5B08C /* ChatMessage.swift in Sources */,
 				2217504C281AC6050096308D /* SettingsGroup.swift in Sources */,
+				22DCEC18283575B000C98D58 /* RefreshScrollViewModel.swift in Sources */,
 				22D3AD0F27EB80C200A5B08C /* WebViewModel.swift in Sources */,
 				22D3ACAC27EB803C00A5B08C /* ChatContainer.xcdatamodeld in Sources */,
 				22D3ACB327EB803C00A5B08C /* RemoteChatBucket.swift in Sources */,
@@ -1417,6 +1465,7 @@
 				22D3AD6427EB81A300A5B08C /* SearchBar.swift in Sources */,
 				2227654728314DCB003E94F8 /* SearchViewControllerFactory.swift in Sources */,
 				22D3AE5127EBAC3500A5B08C /* ChatToolbar.swift in Sources */,
+				22DCEC1A283576AF00C98D58 /* ResizebleLottieView.swift in Sources */,
 				222A5FD4282AE668000CCCFE /* Coordinator.swift in Sources */,
 				22D3AD4227EB814400A5B08C /* SigningIllustration.swift in Sources */,
 				22D3AD7027EB81CC00A5B08C /* ImageSaver.swift in Sources */,
@@ -1442,6 +1491,7 @@
 				22D3AD6227EB81A300A5B08C /* HomeView.swift in Sources */,
 				22D3ACBA27EB803C00A5B08C /* ChatRoomCell.swift in Sources */,
 				22D3AD0627EB80C200A5B08C /* UINavigationController+SwipeBack.swift in Sources */,
+				22DCEC06283521AD00C98D58 /* CustomRefreshView.swift in Sources */,
 				22D3AD0527EB80C200A5B08C /* UIApplication+ResignResponder.swift in Sources */,
 				22D3AD1227EB80C200A5B08C /* ExpandableText.swift in Sources */,
 				22D3ACFF27EB80C200A5B08C /* Event.swift in Sources */,
@@ -1463,6 +1513,7 @@
 				22D3AD1027EB80C200A5B08C /* ResizableTextField.swift in Sources */,
 				22D3ACBD27EB803C00A5B08C /* ChatMessagesApiClient.swift in Sources */,
 				22D3AD7127EB81CC00A5B08C /* EventCreationViewModel.swift in Sources */,
+				22DCEC152835740300C98D58 /* Clamp.swift in Sources */,
 				221E240327F203D700B8A939 /* ChatScroller.swift in Sources */,
 				224C7C2D282FDC920037AD45 /* LocationService.swift in Sources */,
 				22D3AD5027EB817800A5B08C /* PlayerViewModel.swift in Sources */,
@@ -1540,6 +1591,7 @@
 				22D3AE3A27EB865A00A5B08C /* RemoteUserRegistererSpy.swift in Sources */,
 				22D3AE4827EB865A00A5B08C /* AuthTests.swift in Sources */,
 				22D3AE3C27EB865A00A5B08C /* DummyUserLogin.swift in Sources */,
+				22DCEC132835720600C98D58 /* ClampTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1841,6 +1893,14 @@
 				kind = branch;
 			};
 		};
+		22DCEC022835217F00C98D58 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1853,6 +1913,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 22D3ACBF27EB807600A5B08C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		22DCEC032835217F00C98D58 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22DCEC022835217F00C98D58 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 

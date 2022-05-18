@@ -8,6 +8,8 @@
 import SwiftUI
 import UserNotifications
 
+
+
 // 40.886021244358034, longitude: 29.246035943842084
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
@@ -22,11 +24,12 @@ struct HomeView: View {
                        onSignOut: viewModel.signOut,
                        onSignIn: { viewModel.onSignClick?() })
             EventRemainderView(count: 5) {
-                viewModel.loadNearEvents()
+                viewModel.loadNearEvents(completion: {})
             }
             .offset(y: -25)
             .foregroundColor(.white)
-            ScrollView {
+            //ScrollView {
+            CustomRefreshView(lottieFileName: "loading") {
                 VStack {
                     EventCategoriesView(categories)
                     EventCatalog(title: "popular-title") {
@@ -45,8 +48,17 @@ struct HomeView: View {
                         }
                     }
                 }
+            } onRefresh: { refresher in
+                viewModel.loadNearEvents(completion: {
+                    refresher.stopRefreshing?()
+                })
             }
-            .padding(.bottom)
+            .offset(y: -10)
+            
+
+                
+            //}
+            //.padding(.bottom)
         }
         .background(Color.background)
     }

@@ -20,6 +20,7 @@
 "see-all" = "See All";
 "check-status" = "Check Status";
 "event-remainder %lld" = "You have %lld events this week";
+"pull-to-refresh" = "Pull to refresh";
 
 // Tabs
 "home-tab-item" = "Home";
@@ -51,3 +52,6 @@
 // Settings
 "automatic-dark-mode" = "Automatic (follow iOS setting)";
 "dark-mode" = "Dark Mode";
+
+// Search
+"search-no-result" = "Couldn't find any result";

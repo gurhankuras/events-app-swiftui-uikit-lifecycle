@@ -10,12 +10,18 @@ import UIKit
 
 class NewEventCoordinator: Coordinator {
     let factory: EventCreationViewControllerFactory
-    var rootViewController: UINavigationController?
+    weak var rootViewController: UINavigationController?
     let show: (UIViewController) -> ()
+    let close: () -> ()
     
-    init(factory: EventCreationViewControllerFactory,  show: @escaping (UIViewController) -> ()) {
+    init(factory: EventCreationViewControllerFactory,  show: @escaping (UIViewController) -> (), close: @escaping () -> ()) {
         self.factory = factory
         self.show = show
+        self.close = close
+    }
+    
+    deinit {
+        print("NewEventCoordinator \(#function)")
     }
     
     func start() {
@@ -28,7 +34,7 @@ class NewEventCoordinator: Coordinator {
             self?.showLocationSelectionFromMap()
             print("onClickedContinueButton")
             
-        })
+        }, dismiss: close)
         guard let rootViewController = rootViewController else {
             return
         }

@@ -7,96 +7,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "52ADF0C4-F193-48D2-9875-9CA94DB90CEE"
+            uuid = "D274DDCC-8A8F-486D-8871-C9A665778474"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Main/Coordinators/NewEventCoordinator.swift"
+            filePath = "events-app-swiftui-uikit-lifecycle/Shared/Services/LocationService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "showLocationSelectionFromMap()"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EAE56779-0F29-4590-80E1-2B880E8DFF77"
+            uuid = "44E78FB3-4F1B-45EA-A787-5E4058B89167"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Main/Coordinators/NewEventCoordinator.swift"
+            filePath = "events-app-swiftui-uikit-lifecycle/Shared/Services/LocationService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "showNewEventForm()"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "locationManager(_:didFailWithError:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "54FB1092-E274-4B5E-A910-DBF47D749B0D"
+            uuid = "3066E94C-068B-4A62-AC2F-64B90A87D1DC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Main/Coordinators/NewEventCoordinator.swift"
+            filePath = "events-app-swiftui-uikit-lifecycle/Shared/Services/LocationService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "showNewEventForm()"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "locationManagerDidChangeAuthorization(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "839EFA53-036C-423B-8AD6-C44C7A36F058"
+            uuid = "CECA1FD3-C994-417A-8883-22DD4826A6DB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/EventCreation/View/CreateEventView.swift"
+            filePath = "events-app-swiftui-uikit-lifecycle/Shared/Services/LocationService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "proceed()"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "checkPermission()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "794F9BDE-9F0B-4D02-B1F9-3BCC033E25ED"
+            uuid = "05155F11-AFDF-4691-98EA-037E11E842D0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Main/Coordinators/NewEventCoordinator.swift"
+            filePath = "events-app-swiftui-uikit-lifecycle/Shared/Services/LocationService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "showNewEventForm()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1C8E8E65-7630-4020-BCB4-812E92D2176A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/EventCreation/View/MapViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "fetchPolygonCoordinates(polygon:)"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "requestCurrentLocation(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

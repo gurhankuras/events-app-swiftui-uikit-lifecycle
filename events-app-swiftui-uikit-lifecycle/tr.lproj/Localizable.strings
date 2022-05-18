@@ -21,6 +21,7 @@
 "see-all" = "Daha fazla";
 "check-status" = "Gözat";
 "event-remainder %lld" = "Bu hafta eklediğin %lld etkinlik var";
+"pull-to-refresh" = "Yenilemek için çek";
 
 // Tabs
 "home-tab-item" = "Anasayfa";
@@ -53,3 +54,5 @@
 "automatic-dark-mode" = "Otomatik (varolan iOS ayarını uygula)";
 "dark-mode" = "Gece Modu";
 
+// Search
+"search-no-result" = "Sonuç yok";

@@ -11,13 +11,22 @@ import SwiftUI
 
 
 class EventCreationViewControllerFactory {
-    func controller(onClickedContinueButton: @escaping () -> ()) -> UINavigationController {
-        let view = CreateEventView(onContinued: onClickedContinueButton)
-        let vc = UIHostingController(rootView: view)
-        return UINavigationController(rootViewController: vc)
+    func controller(onClickedContinueButton: @escaping () -> (), dismiss: @escaping () -> ()) -> UINavigationController {
+        let view = CreateEventView(onContinued: onClickedContinueButton, dismiss: dismiss)
+        let vc = CreateEventViewController(rootView: view)
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.isNavigationBarHidden = true
+        navigationController.navigationBar.prefersLargeTitles = false
+        return navigationController
     }
     
     func mapController() -> UIViewController {
         return MapViewController()
+    }
+}
+
+class CreateEventViewController: UIHostingController<CreateEventView> {
+    deinit {
+        print("CreateEventViewController \(#function)")
     }
 }

@@ -7,10 +7,15 @@
 
 import Foundation
 import UIKit
+import Lottie
+import Combine
+
 
 class SearchTableViewController: UITableViewController {
     private static let cellIdentifier = "cell"
     private let viewModel: SearchViewModel
+    private var cancellable: AnyCancellable?
+    private var showsNotFound: Bool = false
     
     init(viewModel: SearchViewModel) {
         self.viewModel = viewModel
@@ -25,16 +30,74 @@ class SearchTableViewController: UITableViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "backgroundColor")
         configureTableView()
-        viewModel.didLoad = { [weak self] _ in
-            self?.tableView.reloadData()
-        }
-        viewModel.load(for: "")
+        cancellable = viewModel.results
+            .dropFirst()
+            .sink { [weak self] events in
+                guard let self = self else { return }
+                if events.isEmpty {
+                    if !self.showsNotFound {
+                        self.showNotFoundGif()
+                    }
+                } else {
+                    self.hideNotFoundGif()
+                }
+                self.tableView.reloadData()
+            }
+        
+        //viewModel.load(for: "")
     }
     
     private func configureTableView() {
         tableView.register(EventSearchResultCell.self, forCellReuseIdentifier: Self.cellIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    private func showNotFoundGif() {
+        let lottieView = AnimationView(name: "not-found-search", bundle: .main)
+        lottieView.tag = 1009
+        lottieView.backgroundBehavior = .pauseAndRestore
+        lottieView.translatesAutoresizingMaskIntoConstraints = false
+        lottieView.loopMode = .loop
+        let constraints = [
+            lottieView.topAnchor.constraint(equalTo: view.topAnchor),
+            lottieView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            lottieView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+        ]
+        
+        view.addSubview(lottieView)
+        view.bringSubviewToFront(lottieView)
+        lottieView.play()
+        NSLayoutConstraint.activate(constraints)
+        
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.tag = 1010
+        label.text = "search-no-result".localized()
+        label.font = .systemFont(ofSize: 13, weight: .medium)
+        lottieView.addSubview(label)
+        
+        let labelConstraints = [
+            label.bottomAnchor.constraint(equalTo: lottieView.bottomAnchor, constant: -40),
+            label.centerXAnchor.constraint(equalTo: lottieView.centerXAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(labelConstraints)
+        showsNotFound = true
+    }
+    
+    private func hideNotFoundGif() {
+        view.subviews.forEach { view in
+            if view.tag == 1009, let lottieView = view as? AnimationView {
+                lottieView.pause()
+                lottieView.removeFromSuperview()
+                showsNotFound = false
+            }
+            
+            if view.tag == 1010 {
+                view.removeFromSuperview()
+            }
+        }
     }
 }
 
@@ -43,7 +106,7 @@ extension SearchTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier) as! EventSearchResultCell
         //cell.textLabel?.text = viewModel.results[indexPath.row]
-        cell.setEvent(event: .init(id: "1", at: Date(), image: "", title: "Sektöre yön veren yeni bir teknolojinin mimari olan yeni işlemciler olan yeni işlemciler olan yeni işlemciler", description: "Event description", createdAt: Date(), latitude: 11, longitute: 22, address: .init(city: "Istanbul", district: "Kadikoy", addressLine: nil)))
+        cell.setEvent(event: viewModel.results.value[indexPath.row])
         //let room = viewModel.results[indexPath.row]
         //cell.setRoom(room)
         return cell
@@ -54,7 +117,7 @@ extension SearchTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.results.count
+        return viewModel.results.value.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

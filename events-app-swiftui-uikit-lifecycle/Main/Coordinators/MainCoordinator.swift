@@ -73,7 +73,11 @@ class MainCoordinator: NSObject, Coordinator {
     
     private func handleNewEventCoordinator() {
         let coordinator = NewEventCoordinator(factory: createFactory) { [weak self] vc in
+            vc.modalPresentationStyle = .fullScreen
             self?.rootViewController.present(vc, animated: true)
+        } close: { [weak self] in
+            self?.rootViewController.dismiss(animated: true)
+            self?.newEventCoordinator = nil
         }
         coordinator.start()
         newEventCoordinator = coordinator

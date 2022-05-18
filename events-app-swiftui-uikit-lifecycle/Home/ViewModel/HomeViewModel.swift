@@ -79,7 +79,7 @@ class HomeViewModel: ObservableObject {
         return _nearEvents
     }
     
-    func loadNearEvents() {
+    func loadNearEvents(completion: @escaping () -> ()) {
         locationFetcher.requestCurrentLocation { [weak self] result in
             switch result {
             case .success(let location):
@@ -95,6 +95,7 @@ class HomeViewModel: ObservableObject {
                 }
                 print(error.localizedDescription)
             }
+            completion()
         }
     }
     

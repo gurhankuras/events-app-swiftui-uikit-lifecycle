@@ -10,6 +10,7 @@ import SwiftUI
 struct CreateEventView: View {
     
     let onContinued: () -> ()
+    let dismiss: () -> ()
     @State private var title: String = ""
     @State private var description: String = ""
     @State private var birthDate = Date()
@@ -18,6 +19,10 @@ struct CreateEventView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
+            CloseButton {
+                dismiss()
+            }
+            .padding(.bottom)
             viewTitle
             HStack(alignment: .top) {
                 ImageUploadView()
@@ -43,6 +48,10 @@ struct CreateEventView: View {
                               action: proceed)
         }
         .padding(.all)
+        //.navigationBarHidden(true)
+        //.overlay(alignment: .topLeading, content: {
+            
+        //})
     }
     
     private func proceed() {
@@ -77,7 +86,7 @@ struct CreateEventView: View {
 
 struct CreateEventView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateEventView(onContinued: {})
+        CreateEventView(onContinued: {}, dismiss: {})
             .preferredColorScheme(.dark)
     }
 }

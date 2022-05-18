@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import Lottie
 
 class SearchViewController: UIViewController {
     let viewModel: SearchViewModel
@@ -36,11 +36,18 @@ class SearchViewController: UIViewController {
         view.addSubview(textField)
         setConstraintsForResultsTable()
         setConstraintsForTextField()
+        
+        //showNotFoundGif()
     }
+    
+    
+    
+    
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        viewModel.load(for: text)
+        viewModel.query.send(text)
+        //viewModel.load(for: text)
     }
     
     

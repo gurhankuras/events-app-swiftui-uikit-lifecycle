@@ -10,15 +10,20 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
-    var map: MKMapView = MKMapView()
+    let map: MKMapView = MKMapView()
+    let delegate: MapDelegate = MapDelegate()
+    
     private var centerCoordinate = CLLocationCoordinate2D.init(latitude: 40.986, longitude: 29.283)
 
-    
+    deinit {
+        print("MapViewController \(#function)")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         //setUpMapView()
+
         view.addSubview(map)
-        map.delegate = self
+        map.delegate = delegate
         let region = MKCoordinateRegion.init(center: self.centerCoordinate,
                                              latitudinalMeters: CLLocationDistance.init(500),
                                              longitudinalMeters: CLLocationDistance.init(500))
@@ -41,6 +46,7 @@ class MapViewController: UIViewController {
     
     
     private func fetchJson() {
+        
         guard let geoJsonFileUrl = Bundle.main.url(forResource: "tr-cities", withExtension: "geojson"),
             let geoJsonData = try? Data.init(contentsOf: geoJsonFileUrl) else {
                 fatalError("Failure to fetch the file.")
@@ -62,7 +68,7 @@ class MapViewController: UIViewController {
             
             
             if let geo = geometry as? MKOverlay {
-                self.map.addOverlay(geo)
+                map.addOverlay(geo)
             }
             
             /*
@@ -97,19 +103,11 @@ class MapViewController: UIViewController {
 
 //MARK: ==> MainView Delegate Methods
 extension MapViewController {
-    func setUpMapView() {
-        self.map = MKMapView()
-        let region = MKCoordinateRegion.init(center: self.centerCoordinate,
-                                             latitudinalMeters: CLLocationDistance.init(500),
-                                             longitudinalMeters: CLLocationDistance.init(500))
-        self.map.setRegion(region, animated: true)
-        self.view.addSubview(self.map)
-        self.map.delegate = self
-    }
+   
     
     func setAnnotations(annotations: [MKAnnotation]) {
-        self.map.addAnnotations(annotations)
-        self.map.showAnnotations(self.map.annotations, animated: true)
+        map.addAnnotations(annotations)
+        map.showAnnotations(map.annotations, animated: true)
     }
     
     func animateMap(to coordinates: CLLocationCoordinate2D) {
@@ -117,7 +115,13 @@ extension MapViewController {
     }
 }
 
-extension MapViewController: MKMapViewDelegate {
+
+class MapDelegate: NSObject, MKMapViewDelegate {
+    
+    deinit {
+        print("MapDelegate \(#function)")
+    }
+    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
             let polygonView = MKPolygonRenderer(overlay: overlay)

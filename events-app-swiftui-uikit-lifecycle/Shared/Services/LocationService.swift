@@ -24,6 +24,7 @@ class LocationService: NSObject, CLLocationManagerDelegate, LocationFetcher {
         self.manager = manager
         super.init()
         self.manager.delegate = self
+        self.manager.distanceFilter = 100
     }
     
     func requestCurrentLocation(completion: @escaping (Result<CLLocation, Error>) -> ()) {
@@ -65,6 +66,7 @@ class LocationService: NSObject, CLLocationManagerDelegate, LocationFetcher {
         if let location = locations.first {
             print("Found user's location: \(location)")
             completion?(.success(location))
+            completion = nil
         }
         manager.stopUpdatingLocation()
     }
