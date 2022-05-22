@@ -41,10 +41,7 @@ struct HomeAppBar: View {
                 .font(.footnote)
                 .foregroundColor(.white)
                 .opacity(0.8)
-                .padding(.bottom)
-            
-            SearchBar(placeholder: "search-event", text: $searchText)
-                .foregroundColor(.primary)
+                //.padding(.bottom)
             
         }
         .foregroundColor(.white)

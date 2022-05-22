@@ -8,75 +8,60 @@
 import Foundation
 import Combine
 
-class Auth {
+class AuthService {
     enum AuthStatus {
         case loggedIn(User)
         case errorOccurred(Error)
         case unauthorized
     }
     
-    private let logger = AppLogger(type: Auth.self)
+    private let logger = AppLogger(type: AuthService.self)
     let userPublisher = CurrentValueSubject<AuthStatus, Never>(.unauthorized)
     var cancellable: AnyCancellable?
     
     private let tokenStore: TokenStore
-    private let registerer: UserAuthenticator
-    private let userLogin: UserAuthenticator
+    private let signUp: UserSignUp
+    private let signIn: UserSignIn
     
-    /*
-    static var shared: Auth {
-        _shared
-    }
-     */
-    
-    //static private var _shared: Auth!
-    
-    /*
-    static func configure(registerer: UserAuthenticator, userLogin: UserAuthenticator, tokenStore: TokenStore) {
-        _shared = Auth(registerer: registerer, userLogin: userLogin, tokenStore: tokenStore)
-    }
-     */
-    
-    init(registerer: UserAuthenticator, userLogin: UserAuthenticator, tokenStore: TokenStore) {
+    init(signUp: UserSignUp, signIn: UserSignIn, tokenStore: TokenStore) {
+        self.signUp = signUp
         self.tokenStore = tokenStore
-        self.registerer = registerer
-        self.userLogin = userLogin
+        self.signIn = signIn
     }
     
     func register(email: Email, password: Password) -> Void {
-        cancellable = registerer
-            .handle(email: email, password: password)
-            .sink { [weak self] completion in
-                switch completion {
-                case .finished:
+        signUp
+            .signUp(email: email, password: password) { [weak self] result in
+                switch result {
+                case .success(let user):
                     self?.logger.d("FETCHED USER SUCCESSFULLY")
+                    DispatchQueue.main.async {
+                        self?.userPublisher.send(.loggedIn(user))
+                    }
                 case .failure(let error):
                     self?.logger.d("ERROR WHILE FETCING USER: \(error)")
-                    self?.userPublisher.send(.errorOccurred(error))
+                    DispatchQueue.main.async {
+                        self?.userPublisher.send(.errorOccurred(error))
+                    }
                 }
-                self?.cancellable?.cancel()
-                
-            } receiveValue: { [weak self] user in
-                self?.userPublisher.send(.loggedIn(user))
             }
     }
     
     func login(email: Email, password: Password) {
-        cancellable = userLogin.handle(email: email, password: password)
-            .sink { [weak self] completion in
-                switch completion {
-                case .finished:
-                    print("Finished")
+            signIn
+            .login(email: email, password: password) { [weak self] result in
+                switch result {
+                case .success(let user):
+                    DispatchQueue.main.async {
+                        self?.userPublisher.send(.loggedIn(user))                        
+                    }
                 case .failure(let error):
                     self?.logger.d("ERROR WHILE FETCING USER: \(error)")
-                    self?.userPublisher.send(.errorOccurred(error))
+                    DispatchQueue.main.async {
+                        self?.userPublisher.send(.errorOccurred(error))
+                    }
                 }
-                self?.cancellable?.cancel()
-
-            } receiveValue: { [weak self] user in
-                self?.userPublisher.send(.loggedIn(user))
             }
-
     }
     
     func signOut() {

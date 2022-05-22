@@ -14,7 +14,7 @@ import SwiftUI
 class ChatMessagesViewModel: ObservableObject {
     let logger = AppLogger(type: ChatMessagesViewModel.self)
     let service: RemoteChatMessageFetcher
-    let auth: Auth
+    let auth: AuthService
     let communicator: ChatCommunicator
     let room: Room
     let scroller = ChatScroller()
@@ -36,7 +36,7 @@ class ChatMessagesViewModel: ObservableObject {
     
    
 
-    init(for room: Room, service: RemoteChatMessageFetcher, auth: Auth, communicator: ChatCommunicator) {
+    init(for room: Room, service: RemoteChatMessageFetcher, auth: AuthService, communicator: ChatCommunicator) {
         logger.i(#function)
         
         self.room = room
@@ -48,7 +48,7 @@ class ChatMessagesViewModel: ObservableObject {
         communicator.receive(on: .send) { [weak self] result in self?.onReceiveMessage(result: result) }
     }
     
-    func onAuthChange(status: Auth.AuthStatus) {
+    func onAuthChange(status: AuthService.AuthStatus) {
         switch status {
         case .loggedIn(let user):
             self.currentUser = user

@@ -6,11 +6,7 @@
 //
 
 import SwiftUI
-import UserNotifications
 
-
-
-// 40.886021244358034, longitude: 29.246035943842084
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
     let onEventSelected: (RemoteNearEvent) -> ()
@@ -23,44 +19,47 @@ struct HomeView: View {
             HomeAppBar(user: viewModel.user,
                        onSignOut: viewModel.signOut,
                        onSignIn: { viewModel.onSignClick?() })
-            EventRemainderView(count: 5) {
-                viewModel.loadNearEvents(completion: {})
-            }
-            .offset(y: -25)
-            .foregroundColor(.white)
-            //ScrollView {
-            CustomRefreshView(lottieFileName: "loading") {
-                VStack {
-                    EventCategoriesView(categories)
-                    EventCatalog(title: "popular-title") {
-                        ForEach(viewModel.events) { event in
-                            EventCardView(event: event, onClicked: onEventSelected).padding(.leading)
-                        }
-                    }
-                    EventCatalog(title: "popular-title") {
-                        ForEach(viewModel.events) { event in
-                            EventCardView(event: event, onClicked: onEventSelected).padding(.leading)
-                        }
-                    }
-                    EventCatalog(title: "popular-title") {
-                        ForEach(viewModel.events) { event in
-                            EventCardView(event: event, onClicked: onEventSelected).padding(.leading)
-                        }
-                    }
-                }
-            } onRefresh: { refresher in
-                viewModel.loadNearEvents(completion: {
-                    refresher.stopRefreshing?()
-                })
-            }
-            .offset(y: -10)
-            
-
-                
-            //}
-            //.padding(.bottom)
+            remainder
+            scroll
         }
         .background(Color.background)
+    }
+    
+    @ViewBuilder var remainder: some View {
+        EventRemainderView(count: 5) {
+            viewModel.loadNearEvents(completion: {})
+        }
+        .offset(y: -25)
+        .foregroundColor(.white)
+    }
+    
+    var scroll: some View {
+        CustomRefreshView(lottieFileName: "loading") {
+            VStack {
+                EventCategoriesView(categories)
+                EventCatalog(title: "popular-title") {
+                    ForEach(viewModel.events) { event in
+                        EventCardView(event: event, onClicked: onEventSelected).padding(.leading)
+                    }
+                }
+                EventCatalog(title: "popular-title") {
+                    ForEach(viewModel.events) { event in
+                        EventCardView(event: event, onClicked: onEventSelected).padding(.leading)
+                    }
+                }
+                EventCatalog(title: "popular-title") {
+                    ForEach(viewModel.events) { event in
+                        EventCardView(event: event, onClicked: onEventSelected).padding(.leading)
+                    }
+                }
+            }
+        } onRefresh: { refresher in
+            viewModel.loadNearEvents(completion: {
+                refresher.stopRefreshing?()
+            })
+        }
+        .offset(y: -10)
+        .padding(.bottom)
     }
 }
 

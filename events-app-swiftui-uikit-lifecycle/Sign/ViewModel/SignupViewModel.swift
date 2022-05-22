@@ -19,7 +19,7 @@ class SignupViewModel: ObservableObject {
     let didSignIn: () -> Void
     
     private let logger = AppLogger(type: SignupViewModel.self)
-    private let auth: Auth
+    private let auth: AuthService
     private var cancellable: AnyCancellable?
     private var cancellables = Set<AnyCancellable>()
     
@@ -27,7 +27,7 @@ class SignupViewModel: ObservableObject {
         logger.e(#function)
     }
     
-    init(auth: Auth, didSignIn: @escaping () -> Void) {
+    init(auth: AuthService, didSignIn: @escaping () -> Void) {
         self.auth = auth
         self.didSignIn = didSignIn
     }

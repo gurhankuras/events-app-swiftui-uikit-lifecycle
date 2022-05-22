@@ -18,33 +18,43 @@ class NearEventFinder {
         self.client = client
     }
     
-    func findEvents(around coordinates: GeoCoordinates, completion: @escaping (Result<[RemoteNearEvent], Error>) -> ()) {
+    func findEvents(around coordinates: GeoCoordinates,
+                    completion: @escaping (Result<[RemoteNearEvent], Error>) -> ()) {
         
         guard let request = makeRequest(coordinates) else {
             completion(.failure(URLError(.badURL)))
             return
         }
         
-        client.request(request) { result in
+        client.request(request) { [weak self] result in
             switch result {
-            case .success(let (data, response)):
-                let decoder = JSONDecoder.withFractionalSecondISO8601
-                do {
-                    if response.statusCode == 200 {
-                        let remoteEvents = try decoder.decode([RemoteNearEvent].self, from: data)
-                        completion(.success(remoteEvents))
-                    }
-                    else {
-                        let errorMessage = try decoder.decode([ErrorMessage].self, from: data)
-                        completion(.failure(NetworkError.response(errorMessage)))
-                    }
-                } catch {
-                    print(error)
-                    completion(.failure(error))
+            case .success(let bundle):
+                guard let response = bundle.response,
+                      let data = bundle.data else {
+                          completion(.failure(URLError.init(.badServerResponse)))
+                          return
                 }
+                self?.respond(to: response.statusCode, decoding: data, with: completion)
             case .failure(let error):
                 completion(.failure(error))
             }
+        }
+    }
+    
+    private func respond(to statusCode: Int, decoding data: Data, with completion: @escaping (Result<[RemoteNearEvent], Error>) -> ()) {
+        let decoder = JSONDecoder.withFractionalSecondISO8601
+        if statusCode == 200 {
+            guard let remoteEvents = try? decoder.decode([RemoteNearEvent].self, from: data) else {
+                return completion(.failure(URLError.init(.badServerResponse)))
+            }
+            completion(.success(remoteEvents))
+        }
+        
+        else {
+            guard let errorMessage = try? decoder.decode([ErrorMessage].self, from: data) else {
+                return completion(.failure(URLError.init(.badServerResponse)))
+            }
+            completion(.failure(NetworkError.response(errorMessage)))
         }
     }
     

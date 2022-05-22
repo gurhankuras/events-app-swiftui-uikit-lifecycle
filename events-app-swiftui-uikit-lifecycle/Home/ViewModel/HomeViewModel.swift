@@ -7,30 +7,6 @@
 
 import Foundation
 
-
-protocol HttpClient {
-    func request(_ request: URLRequest, completion: @escaping (Result<(Data, HTTPURLResponse), Error>) -> Void);
-}
-
-extension URLSession: HttpClient {
-    func request(_ request: URLRequest, completion: @escaping (Result<(Data, HTTPURLResponse), Error>) -> Void) {
-        let task = dataTask(with: request) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse,
-                  let data = data else {
-                completion(.failure(URLError.init(.badURL)))
-                return
-            }
-            
-            completion(.success((data, httpResponse)))
-        }
-        task.resume()
-    }
-}
 struct PaginationOptions {
     let page: Int
     let pageSize: Int
@@ -48,14 +24,14 @@ extension PaginationOptions {
 class HomeViewModel: ObservableObject {
     var onSignClick: (() -> Void)?
     
-    let auth: Auth
+    let auth: AuthService
     let locationFetcher: LocationFetcher
     let api: NearEventFinder
 
     @Published var user: User?
     @Published var _nearEvents: [RemoteNearEvent] = []
     
-    init(auth: Auth, api: NearEventFinder, locationFetcher: LocationFetcher) {
+    init(auth: AuthService, api: NearEventFinder, locationFetcher: LocationFetcher) {
         self.auth = auth
         self.api = api
         self.locationFetcher = locationFetcher

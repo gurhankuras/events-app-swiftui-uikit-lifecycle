@@ -10,14 +10,16 @@ import SwiftUI
 import UIKit
 
 class HomeViewControllerFactory {
-    let auth: Auth
+    let auth: AuthService
     
-    init(auth: Auth) {
+    init(auth: AuthService) {
         self.auth = auth
     }
     
     func controller(onEventClicked: @escaping (RemoteNearEvent) -> (), onSignButtonClicked: @escaping () -> ()) -> UINavigationController {
-        let api = NearEventFinder(client: URLSession.shared)
+        let store = SecureTokenStore(keychain: .standard)
+        let httpClient = HttpAPIClient.shared.tokenSender(store: store)
+        let api = NearEventFinder(client: httpClient)
         let locationFetcher = LocationService(manager: .init())
         let viewModel = HomeViewModel(auth: auth, api: api, locationFetcher: locationFetcher)
         let homeController = UINavigationController(rootView: HomeView(viewModel: viewModel, onEventSelected: onEventClicked))

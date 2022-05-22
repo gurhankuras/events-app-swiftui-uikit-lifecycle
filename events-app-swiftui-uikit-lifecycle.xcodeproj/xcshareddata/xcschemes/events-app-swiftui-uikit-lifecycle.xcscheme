@@ -38,6 +38,16 @@
                ReferencedContainer = "container:events-app-swiftui-uikit-lifecycle.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "223D21BB283945470008FE55"
+               BuildableName = "SearchTests.xctest"
+               BlueprintName = "SearchTests"
+               ReferencedContainer = "container:events-app-swiftui-uikit-lifecycle.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

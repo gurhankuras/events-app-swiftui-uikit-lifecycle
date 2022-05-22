@@ -63,7 +63,7 @@ class Singup: XCTestCase {
         let password: BasicPassword = makeValidPassword()
         let user = User(id: "123", email: email.value)
         let expectedErrorText = "deneme"
-        let auth = Auth(registerer: UserRegistererStub(result: .failure(SignupError.userAlreadyExists([ErrorMessage(message: expectedErrorText)]))), userLogin: UserSignInAuthenticator(network: URLSession.shared), tokenStore: FakeTokenStore())
+        let auth = AuthService(registerer: UserRegistererStub(result: .failure(SignupError.userAlreadyExists([ErrorMessage(message: expectedErrorText)]))), userLogin: UserSignInAuthenticator(network: URLSession.shared), tokenStore: FakeTokenStore())
         let sut = SignupViewModel(auth: auth, didSignIn: {})
         
         //let spy = TestSpy(.eraseToAnyPublisher())
@@ -92,7 +92,7 @@ class Singup: XCTestCase {
         let password: BasicPassword = makeValidPassword()
         let user = User(id: "123", email: email.value)
 
-        let auth = Auth(registerer: UserRegistererStub(result: .success(user)), userLogin: UserSignInAuthenticator(network: URLSession.shared), tokenStore: FakeTokenStore())
+        let auth = AuthService(registerer: UserRegistererStub(result: .success(user)), userLogin: UserSignInAuthenticator(network: URLSession.shared), tokenStore: FakeTokenStore())
         
         let exp = expectation(description: "sign")
         let sut = SignupViewModel(auth: auth, didSignIn: { exp.fulfill() })
@@ -111,7 +111,7 @@ class Singup: XCTestCase {
         
         let registerer = UserSignUpAuthenticator.stub(result: .success(user))
         let login = UserSignInAuthenticator(network: URLSession.shared)
-        let auth = Auth(registerer: registerer, userLogin: login, tokenStore: FakeTokenStore())
+        let auth = AuthService(registerer: registerer, userLogin: login, tokenStore: FakeTokenStore())
         
         let exp = expectation(description: "sign")
         exp.isInverted = true
@@ -133,8 +133,8 @@ class Singup: XCTestCase {
 
 // MARK: Test Helpers
 extension Singup {
-    func makeAuth() -> Auth {
-        let auth = Auth(registerer: UserSignUpAuthenticator(network: URLSession.shared), userLogin: UserSignInAuthenticator(network: URLSession.shared), tokenStore: FakeTokenStore())
+    func makeAuth() -> AuthService {
+        let auth = AuthService(registerer: UserSignUpAuthenticator(network: URLSession.shared), userLogin: UserSignInAuthenticator(network: URLSession.shared), tokenStore: FakeTokenStore())
         return auth
     }
     func makeInputValidationSUT() -> (SignupViewModel, TestSpyNever<Bool>) {

@@ -190,11 +190,11 @@ extension AuthTests {
         return (email, password)
     }
     
-    func makeRegisterSUT(registererResult: Result<User, Error>) -> Auth {
+    func makeRegisterSUT(registererResult: Result<User, Error>) -> AuthService {
         let (email, password) = makeValidCredentials()
         let registerer = UserRegistererStub(result: registererResult)
         let login = DummyUserlogin()
-        let auth = Auth(registerer: registerer, userLogin: login, tokenStore: FakeTokenStore())
+        let auth = AuthService(registerer: registerer, userLogin: login, tokenStore: FakeTokenStore())
         return auth
     }
     
@@ -203,27 +203,27 @@ extension AuthTests {
     }
     
     
-    func makeLoginSUT(registererResult: Result<User, Error>) -> Auth {
+    func makeLoginSUT(registererResult: Result<User, Error>) -> AuthService {
         let (email, password) = makeValidCredentials()
         let registerer = DummyUserlogin()
         let login = UserRegistererStub(result: registererResult)
-        let auth = Auth(registerer: registerer, userLogin: login, tokenStore: FakeTokenStore())
+        let auth = AuthService(registerer: registerer, userLogin: login, tokenStore: FakeTokenStore())
         return auth
     }
     
-    func makeSignOutSUT() -> (Auth, TokenStore) {
+    func makeSignOutSUT() -> (AuthService, TokenStore) {
         let registerer = DummyUserlogin()
         let login = DummyUserlogin()
         let tokenStore = FakeTokenStore()
-        let auth = Auth(registerer: registerer, userLogin: login, tokenStore: tokenStore)
+        let auth = AuthService(registerer: registerer, userLogin: login, tokenStore: tokenStore)
         return (auth, tokenStore)
     }
     
-    func makeTrySignInSUT() -> (Auth, TokenStore) {
+    func makeTrySignInSUT() -> (AuthService, TokenStore) {
         let registerer = DummyUserlogin()
         let login = DummyUserlogin()
         let tokenStore = FakeTokenStore()
-        let auth = Auth(registerer: registerer, userLogin: login, tokenStore: tokenStore)
+        let auth = AuthService(registerer: registerer, userLogin: login, tokenStore: tokenStore)
         return (auth, tokenStore)
     }
 }

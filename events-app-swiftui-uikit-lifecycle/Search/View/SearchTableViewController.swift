@@ -14,7 +14,7 @@ import Combine
 class SearchTableViewController: UITableViewController {
     private static let cellIdentifier = "cell"
     private let viewModel: SearchViewModel
-    private var cancellable: AnyCancellable?
+    private var cancellables = Set<AnyCancellable>()
     private var showsNotFound: Bool = false
     
     init(viewModel: SearchViewModel) {
@@ -30,10 +30,15 @@ class SearchTableViewController: UITableViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "backgroundColor")
         configureTableView()
-        cancellable = viewModel.results
+        viewModel.results
             .dropFirst()
             .sink { [weak self] events in
                 guard let self = self else { return }
+                
+                if self.viewModel.query.value.isEmpty && self.showsNotFound {
+                    self.hideNotFoundGif()
+                    return
+                }
                 if events.isEmpty {
                     if !self.showsNotFound {
                         self.showNotFoundGif()
@@ -43,8 +48,7 @@ class SearchTableViewController: UITableViewController {
                 }
                 self.tableView.reloadData()
             }
-        
-        //viewModel.load(for: "")
+            .store(in: &cancellables)
     }
     
     private func configureTableView() {

@@ -20,6 +20,7 @@ struct RoomsView: View {
             ChatRoomList(rooms: viewModel.rooms,
                          onChatDeleted: deleteChatHandler)
         }
+        .navigationBarHidden(true)
     }
     
     private func deleteChatHandler() {

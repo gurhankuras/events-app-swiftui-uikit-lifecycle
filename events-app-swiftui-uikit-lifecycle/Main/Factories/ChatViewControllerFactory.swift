@@ -12,9 +12,9 @@ import SocketIO
 
 
 class ChatViewControllerFactory {
-    let auth: Auth
+    let auth: AuthService
 
-    init(auth: Auth) {
+    init(auth: AuthService) {
         self.auth = auth
     }
 
@@ -25,8 +25,8 @@ class ChatViewControllerFactory {
         let fetcher = ChatRoomFetcherStub(result: .success(ChatRoomFetcherStub.stubs))
         let viewModel = ChatRoomsViewModel(fetcher: fetcher, auth: auth, realTimeListener: realTimeListener)
         viewModel.onChatSelected = onChatSelected
-        let chatController = ChatRoomsViewController(viewmodel: viewModel)
-        let navController = UINavigationController(rootViewController: chatController)
+       // let chatController = ChatRoomsViewController(viewmodel: viewModel)
+        let navController = UINavigationController(rootView: RoomsView(viewModel: viewModel, onStartNewChat: {}))
         configureNavigationalOptions(navigationController: navController)
         return navController
     }
@@ -59,6 +59,6 @@ class ChatViewControllerFactory {
     private func configureNavigationalOptions(navigationController: UINavigationController) {
         navigationController.tabBarItem = UITabBarItem(title: "chat-tab-item".localized(), image: UIImage(systemName: "bubble.left.fill"), tag: 3)
         navigationController.navigationBar.prefersLargeTitles = false
-        navigationController.topViewController?.title = "chat-page-title".localized()
+        //navigationController.topViewController?.title = "chat-page-title".localized()
     }
 }

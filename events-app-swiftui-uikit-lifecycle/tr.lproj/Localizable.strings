@@ -27,7 +27,7 @@
 "home-tab-item" = "Anasayfa";
 "search-tab-item" = "Ara";
 "new-event-tab-item" = "Yeni";
-"chat-tabb-item" = "Sohbet";
+"chat-tab-item" = "Sohbet";
 "profile-tab-item" = "Hesap";
 "chat-page-title" = "Sohbetler";
 

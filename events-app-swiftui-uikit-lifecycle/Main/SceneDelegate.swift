@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private(set) static var shared: SceneDelegate?
     var window: UIWindow?
     
-    var auth: Auth!
+    var auth: AuthService!
     var localNotifications: NotificationService!
     
     var profileFactory: ProfileViewControllerFactory!
@@ -62,13 +62,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         createFactory = EventCreationViewControllerFactory()
     }
     
-    private func makeAuth() -> Auth {
-        let network = URLSession.shared
+    private func makeAuth() -> AuthService {
         let store = SecureTokenStore(keychain: .standard)
-        let decoratedNetwork = JsonPostTokenSaverDecorator(decoratee: network, store: store)
-        let registerer = UserSignUpAuthenticator(network: decoratedNetwork)
-        let userLogin = UserSignInAuthenticator(network: decoratedNetwork)
-        return Auth(registerer: registerer, userLogin: userLogin, tokenStore: store)
+        let signUp = UserSignUp(client: HttpAPIClient.shared)
+        let httpClient = HttpAPIClient.shared.tokenSaver(store: store)
+        let signIn = UserSignIn(client: httpClient)
+        return AuthService(signUp: signUp, signIn: signIn, tokenStore: store)
     }
 }
 

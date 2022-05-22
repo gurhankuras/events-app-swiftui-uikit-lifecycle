@@ -13,7 +13,7 @@ import Combine
 
 class ChatRoomsViewModel: ObservableObject {
     let fetcher: ChatRoomFetcher
-    let auth: Auth
+    let auth: AuthService
     var realTimeListener: RoomRealTimeListener
     var cancellable: AnyCancellable?
     var authCancellable: AnyCancellable?
@@ -23,7 +23,7 @@ class ChatRoomsViewModel: ObservableObject {
     @Published var showingNewChatSelection = false
     @Published var showingOptions = false
     
-    init(fetcher: ChatRoomFetcher, auth: Auth, realTimeListener: RoomRealTimeListener) {
+    init(fetcher: ChatRoomFetcher, auth: AuthService, realTimeListener: RoomRealTimeListener) {
         self.fetcher = fetcher
         self.auth = auth
         self.realTimeListener = realTimeListener
