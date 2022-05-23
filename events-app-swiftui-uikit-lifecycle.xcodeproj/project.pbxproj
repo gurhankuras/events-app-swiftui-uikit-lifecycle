@@ -76,6 +76,7 @@
 		229C9749283A65D5008DC37A /* TokenSaverDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C9748283A65D5008DC37A /* TokenSaverDecorator.swift */; };
 		229C974B283A65F7008DC37A /* JWTBearerTokenSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C974A283A65F7008DC37A /* JWTBearerTokenSender.swift */; };
 		229C974E283A6631008DC37A /* HttpClient+Decorators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C974D283A6631008DC37A /* HttpClient+Decorators.swift */; };
+		22BF7F1B283C2932002B8269 /* CloseKeyboardWhenClickedOutside.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BF7F1A283C2932002B8269 /* CloseKeyboardWhenClickedOutside.swift */; };
 		22D3AC5E27EB7E5800A5B08C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC5D27EB7E5800A5B08C /* AppDelegate.swift */; };
 		22D3AC6027EB7E5800A5B08C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AC5F27EB7E5800A5B08C /* SceneDelegate.swift */; };
 		22D3AC6727EB7E5900A5B08C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22D3AC6627EB7E5900A5B08C /* Assets.xcassets */; };
@@ -317,6 +318,7 @@
 		229C9748283A65D5008DC37A /* TokenSaverDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSaverDecorator.swift; sourceTree = "<group>"; };
 		229C974A283A65F7008DC37A /* JWTBearerTokenSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTBearerTokenSender.swift; sourceTree = "<group>"; };
 		229C974D283A6631008DC37A /* HttpClient+Decorators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpClient+Decorators.swift"; sourceTree = "<group>"; };
+		22BF7F1A283C2932002B8269 /* CloseKeyboardWhenClickedOutside.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseKeyboardWhenClickedOutside.swift; sourceTree = "<group>"; };
 		22D3AC5A27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "events-app-swiftui-uikit-lifecycle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D3AC5D27EB7E5800A5B08C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22D3AC5F27EB7E5800A5B08C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -969,6 +971,7 @@
 				22D3ACDC27EB80C200A5B08C /* View+Size.swift */,
 				222A5FCE282A974A000CCCFE /* UINavigationController+UIHostingController.swift */,
 				224C7C33282FF5050037AD45 /* UIApplication+openAppSettings.swift */,
+				22BF7F1A283C2932002B8269 /* CloseKeyboardWhenClickedOutside.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1599,6 +1602,7 @@
 				22D3AD7227EB81CC00A5B08C /* EventCreateView.swift in Sources */,
 				22D3AD5327EB817800A5B08C /* VideoOverlayPanel.swift in Sources */,
 				22D3AD1927EB80C200A5B08C /* JsonGetAuthDecorator.swift in Sources */,
+				22BF7F1B283C2932002B8269 /* CloseKeyboardWhenClickedOutside.swift in Sources */,
 				22D3AD0A27EB80C200A5B08C /* View+RotationViewModifier.swift in Sources */,
 				22D3AD3F27EB814400A5B08C /* BasicPassword.swift in Sources */,
 				222A5FC6282A7773000CCCFE /* AchievementsView.swift in Sources */,

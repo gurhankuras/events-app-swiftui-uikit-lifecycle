@@ -45,6 +45,18 @@ class ChatRoomsViewModel: ObservableObject {
     
     func load(for user: User) {
         cancellable?.cancel()
+        fetcher.fetch(for: user) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let rooms):
+                let vms = rooms.map({ RoomViewModel(id: $0.id, imageUrl: $0.imageUrl, name: $0.name, message: $0.message, timestamp: $0.timestamp, lastSender: $0.lastSender, select: self?.onChatSelected)})
+                DispatchQueue.main.async {
+                    self?.rooms.append(contentsOf: vms)
+                }
+            }
+        }
+        /*
         cancellable = fetcher.fetch(for: user)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
@@ -58,5 +70,6 @@ class ChatRoomsViewModel: ObservableObject {
                 let vms = rooms.map({ RoomViewModel(id: $0.id, imageUrl: $0.imageUrl, name: $0.name, message: $0.message, timestamp: $0.timestamp, lastSender: $0.lastSender, select: self?.onChatSelected)})
                 self?.rooms.append(contentsOf: vms)
             })
+         */
     }
 }

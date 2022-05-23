@@ -27,7 +27,7 @@ extension JsonGet {
 
 
 extension URLSession: JsonGet {
-    func get(url: URL, headers: [String: String] = [:]) -> AnyPublisher<Data, Error> {
+    public func get(url: URL, headers: [String: String] = [:]) -> AnyPublisher<Data, Error> {
         let request = makeJSONRequest(url, with: nil, method: .get, withExtraHeaders: headers)
         
         return dataTaskPublisher(for: request)

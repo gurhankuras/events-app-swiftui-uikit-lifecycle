@@ -42,6 +42,7 @@
 "dont-have-account-sign-up" = "Hesap oluşturun";
 
 // Sign-up
+"name-field-placeholder" = "Ad";
 "sign-up-header" = "Kayıt ol ve aradığın etkinlikleri bul";
 "sign-up-button" = "Onayla";
 "already-have-account" = "Zaten bir hesabım var. ";
@@ -56,3 +57,9 @@
 
 // Search
 "search-no-result" = "Sonuç yok";
+
+// Chat
+"new-chat-title" = "Yeni Sohbet";
+"search" = "Ara";
+"chat-appbar-title" = "Sohbetler";
+

@@ -58,6 +58,7 @@ class SocketIORoomRealTimeListener: RoomRealTimeListener {
     
     func receive(completion: @escaping (RemoteChatRoom) -> Void) {
         print(ServerChatEvent.roomUpdated.rawValue)
+        
         socket.on(ServerChatEvent.roomUpdated.rawValue) { [weak self] data, ack in
                 print(data)
         }

@@ -14,19 +14,20 @@ class DarkModeSettings {
         case darkMode = "darkMode"
     }
     
-    private weak var window: UIWindow?
-    init(window: UIWindow?) {
-        self.window = window
-    }
-    
     func set(darkMode: Bool) {
         UserDefaults.standard.setValue(darkMode, forKey: Keys.darkMode.rawValue)
-        window?.overrideUserInterfaceStyle = darkMode ? .dark : .light
+        changeTheme(to: darkMode ? .dark : .light)
+    }
+    
+    private func changeTheme(to mode: UIUserInterfaceStyle ) {
+        UIApplication.shared.windows.forEach { window in
+            window.overrideUserInterfaceStyle = mode
+        }
     }
     
     func set(prefersSystemMode: Bool) {
         UserDefaults.standard.setValue(prefersSystemMode, forKey: Keys.prefersSystemMode.rawValue)
-        window?.overrideUserInterfaceStyle = prefersSystemMode ? .unspecified : (isDarkMode ? .dark : .light)
+        changeTheme(to: prefersSystemMode ? .unspecified : (isDarkMode ? .dark : .light))
     }
     
     var isDarkMode: Bool {

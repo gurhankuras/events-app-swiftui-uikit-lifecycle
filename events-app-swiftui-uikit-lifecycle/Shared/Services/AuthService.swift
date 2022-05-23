@@ -29,14 +29,15 @@ class AuthService {
         self.signIn = signIn
     }
     
-    func register(email: Email, password: Password) -> Void {
+    func register(name: String, email: Email, password: Password) -> Void {
+        let request = SignUpRequest(name: name, emailAddress: email.value, password: password.value)
         signUp
-            .signUp(email: email, password: password) { [weak self] result in
+            .signUp(with: request) { [weak self] result in
                 switch result {
                 case .success(let user):
                     self?.logger.d("FETCHED USER SUCCESSFULLY")
                     DispatchQueue.main.async {
-                        self?.userPublisher.send(.loggedIn(user))
+                        //self?.userPublisher.send(.loggedIn(user))
                     }
                 case .failure(let error):
                     self?.logger.d("ERROR WHILE FETCING USER: \(error)")

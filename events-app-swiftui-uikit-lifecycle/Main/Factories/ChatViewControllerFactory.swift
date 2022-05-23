@@ -19,14 +19,15 @@ class ChatViewControllerFactory {
     }
 
     func controller(onChatSelected: @escaping (RoomViewModel) -> (), onStartedNewChat: @escaping () -> ()) -> UINavigationController {
-        let socketManager = SocketManager(socketURL: URL(string: "http://gkevents.com/api/chat")!, config: [.log(false)])
+        let socketManager = SocketManager(socketURL: URL(string: "http://localhost:3000/api/chat")!, config: [.log(false)])
         let realTimeListener = SocketIORoomRealTimeListener(manager: socketManager, tokenStore: SecureTokenStore(keychain: .standard))
         
-        let fetcher = ChatRoomFetcherStub(result: .success(ChatRoomFetcherStub.stubs))
+        //let fetcher = ChatRoomFetcherStub(result: .success(ChatRoomFetcherStub.stubs))
+        let fetcher = RemoteChatFetcher(client: HttpAPIClient.shared.tokenSender(store: SecureTokenStore(keychain: .standard)))
         let viewModel = ChatRoomsViewModel(fetcher: fetcher, auth: auth, realTimeListener: realTimeListener)
         viewModel.onChatSelected = onChatSelected
        // let chatController = ChatRoomsViewController(viewmodel: viewModel)
-        let navController = UINavigationController(rootView: RoomsView(viewModel: viewModel, onStartNewChat: {}))
+        let navController = UINavigationController(rootView: RoomsView(viewModel: viewModel, onStartNewChat: onStartedNewChat))
         configureNavigationalOptions(navigationController: navController)
         return navController
     }
@@ -46,7 +47,7 @@ class ChatViewControllerFactory {
     func chatMessagesController(room: Room, onBack: @escaping () -> ()) -> UIViewController {
         let network = JsonPostAuthDecorator(decoratee: URLSession.shared, store: SecureTokenStore(keychain: .standard))
         let service =  RemoteChatMessageFetcher(session: .shared)
-        let socketManager = SocketManager(socketURL: URL(string: "http://gkevents.com/api/chat")!, config: [.log(false)])
+        let socketManager = SocketManager(socketURL: URL(string: "http://localhost:3000/api/chat")!, config: [.log(false)])
         
         let communicator = SocketIOChatCommunicator(roomId: room.id, manager: socketManager, tokenStore: SecureTokenStore(keychain: .standard))
         

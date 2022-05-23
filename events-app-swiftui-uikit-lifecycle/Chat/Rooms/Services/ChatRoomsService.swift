@@ -8,10 +8,17 @@
 import Foundation
 import Combine
 
+/*
 protocol ChatRoomFetcher {
     func fetch(for user: User) -> AnyPublisher<[Room], Error>
 }
+ */
 
+protocol ChatRoomFetcher {
+    func fetch(for user: User, completion: @escaping (Result<[Room], Error>) -> ())
+}
+
+/*
 class ChatRoomFetcherStub: ChatRoomFetcher {
     let result: Result<[Room], Error>
     
@@ -31,8 +38,10 @@ class ChatRoomFetcherStub: ChatRoomFetcher {
         }
     }
 }
-
+*/
 // MARK: sample stubs
+/*
+ // TODO: fix this
 extension ChatRoomFetcherStub {
     static var stubs: [Room] {
         return [
@@ -41,7 +50,9 @@ extension ChatRoomFetcherStub {
         ]
     }
 }
+ */
 
+/*
 class RemoteChatRoomFetcher: ChatRoomFetcher {
     let network: JsonGet
 
@@ -64,6 +75,51 @@ class RemoteChatRoomFetcher: ChatRoomFetcher {
                 }
             })
             .eraseToAnyPublisher()
+    }
+}
+ */
+
+class RemoteChatFetcher: ChatRoomFetcher {
+    let client: HttpClient
+    
+    init(client: HttpClient) {
+        self.client = client
+    }
+    
+    func fetch(for user: User, completion: @escaping (Result<[Room], Error>) -> ()) {
+        guard let url = URL(string: "http://localhost:3000/api/chat/rooms") else {
+            return completion(.failure(URLError.init(.badURL)))
+        }
+        var request = URLRequest(url: url)
+        
+        let mapper = RemoteChatRoomMapper(for: user)
+        client.request(request) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let bundle):
+                guard let response = bundle.response,
+                      let data = bundle.data else {
+                          completion(.failure(URLError.init(.badServerResponse)))
+                          return
+                }
+                
+                do {
+                    print(response.statusCode)
+                    if response.statusCode == 200 {
+                        let remoteRooms = try JSONDecoder.withFractionalSecondISO8601.decode([RemoteChatRoom].self, from: data)
+                        let rooms = remoteRooms.map(mapper.map(room:))
+                        completion(.success(rooms))
+                    }
+                    else {
+                        // TODO: handle other status codes
+                    }
+                } catch {
+                    completion(.failure(error))
+                }
+               
+            }
+        }
     }
 }
 

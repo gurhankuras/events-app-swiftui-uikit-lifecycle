@@ -27,8 +27,8 @@ struct ChatUserCell: View {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
                         Text(user.name)
-                            .font(.system(size: 15))
-                            .fontWeight(.semibold)
+                            .font(.system(size: 15, weight: .semibold, design: .rounded))
+                            .foregroundColor(.appTextColor)
                     }
                 }
                 Spacer()

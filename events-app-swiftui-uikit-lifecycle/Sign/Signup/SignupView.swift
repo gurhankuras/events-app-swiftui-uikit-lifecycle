@@ -35,12 +35,13 @@ struct SignupView: View {
             SigningIllustration(named: "login_illust", action: openSignin)
             Text("sign-up-header")
                 .signingTitle()
-                
+            
+            SigningTextField(placeholder: "name-field-placeholder", text: $viewModel.name)
             SigningTextField(placeholder: "email-field-placeholder", text: $viewModel.email.value)
             SigningTextField(placeholder: "password-field-placeholder", text: $viewModel.password.value)
             
             LongRoundedButton(text: "sign-up-button",
-                              active: $viewModel.formValid,
+                              active: $viewModel.signUpformValid,
                               action: handleSignup)
             SigningTransationText(text: "already-have-account",
                                   link: "already-have-account-sign-in",

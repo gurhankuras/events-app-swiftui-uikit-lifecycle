@@ -19,12 +19,9 @@ struct ChatUsersList: View {
                         } label: {
                             ChatUserCell(user: user)
                         }
-                        .foregroundColor(.black)
-
                     }
                 }
             }
-            .background(Color.appPurple.brightness(0.9))
     }
 }
 

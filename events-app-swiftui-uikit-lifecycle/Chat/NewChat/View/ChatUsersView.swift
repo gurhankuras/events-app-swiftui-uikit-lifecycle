@@ -15,11 +15,16 @@ struct ChatUsersView: View {
     var body: some View {
         VStack(spacing: 0) {
             ChatUsersToolbar(dismiss: dismiss)
-            SearchBar(placeholder: "Search User", text: $viewModel.query)
+            SearchBar(placeholder: "search", text: $viewModel.query)
+                .padding(.horizontal, 5)
+                .padding(.vertical, 5)
+                .background(Color(.systemBackground))
             ChatUsersList(
                 users: viewModel.users
             )
         }
+        .background(Color("backgroundColor"))
+
         
     }
 }
@@ -42,17 +47,17 @@ fileprivate struct ChatUsersToolbar: View {
     var body: some View {
         HStack {
             CloseButton(action: dismiss,
-                        color: Color.white)
+                        color: .appTextColor)
             Spacer()
-            Text("New Chat")
+            Text("new-chat-title")
                 .font(.system(size: 15).bold())
-                .foregroundColor(Color.white)
+                .foregroundColor(.appTextColor)
             Spacer()
             CloseButton(action: {})
+                .foregroundColor(.background)
                 .hidden()
-                .foregroundColor(Color.white)
         }
         .padding()
-        .background(Color.appPurple.ignoresSafeArea())
+        .background(Color(.secondarySystemBackground).ignoresSafeArea())
     }
 }

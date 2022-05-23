@@ -45,10 +45,11 @@ struct SearchBar: View {
                 .disableAutocorrection(true)
                 
         }
-        .padding(10)
+        .padding(6)
         .background(
             RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.card)
+                .foregroundColor(.background)
+                .shadow(color: .gray.opacity(0.5), radius: 1, x: 0, y: 0)
         )
     }
 }

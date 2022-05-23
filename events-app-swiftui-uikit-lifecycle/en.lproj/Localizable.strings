@@ -41,6 +41,7 @@
 "dont-have-account-sign-up" = "Sign up";
 
 // Sign-up
+"name-field-placeholder" = "Name";
 "sign-up-header" = "Sign up and explore events ahead";
 "sign-up-button" = "Sign up";
 "already-have-account" = "Already have an account? ";
@@ -55,3 +56,8 @@
 
 // Search
 "search-no-result" = "Couldn't find any result";
+
+// Chat
+"new-chat-title" = "New Chat";
+"search" = "Search";
+"chat-appbar-title" = "Chats";

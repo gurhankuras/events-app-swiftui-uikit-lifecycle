@@ -79,7 +79,7 @@ struct RoomsToolbar: View {
                 .font(.body)
                 .hidden()
             Spacer()
-            Text("Chat")
+            Text("chat-appbar-title")
                 .fontWeight(.medium)
             Spacer()
             Button {

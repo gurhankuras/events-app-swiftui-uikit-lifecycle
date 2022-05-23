@@ -12,9 +12,13 @@ import SwiftUI
 
 class SignupViewModel: ObservableObject {
     @Published var email: Email = ""
+    @Published var name: String = ""
     @Published var password: BasicPassword = ""
     @Published var error: String = ""
-    @Published var formValid: Bool = false
+    @Published var signUpformValid: Bool = false
+    @Published var signInformValid: Bool = false
+    
+    
     
     let didSignIn: () -> Void
     
@@ -33,18 +37,23 @@ class SignupViewModel: ObservableObject {
     }
     
     func start() {
+        $email.combineLatest($password, $name)
+            .map { email, password, name in
+                email.isValid && password.isValid && !name.isEmpty
+            }
+            .assign(to: &$signUpformValid)
         $email.combineLatest($password)
             .map { email, password in
                 email.isValid && password.isValid
             }
-            .assign(to: &$formValid)
+            .assign(to: &$signInformValid)
     }
     
    
     func signUp() {
         listenUserSigningActivity()
         guard email.isValid && password.isValid else { return }
-        auth.register(email: email, password: password)
+        auth.register(name: name, email: email, password: password)
     }
     
     func login() {

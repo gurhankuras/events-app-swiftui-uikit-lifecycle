@@ -57,6 +57,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(settingsViewModel: .init(darkModeSettings: .init(window: SceneDelegate.shared?.window)))
+        SettingsView(settingsViewModel: .init(darkModeSettings: .init()))
     }
 }

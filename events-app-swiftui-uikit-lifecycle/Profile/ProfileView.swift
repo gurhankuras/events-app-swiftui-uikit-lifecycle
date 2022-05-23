@@ -30,7 +30,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(profileViewModel: .init(), settingsViewModel: .init(darkModeSettings: .init(window: SceneDelegate.shared?.window)))
+        ProfileView(profileViewModel: .init(), settingsViewModel: .init(darkModeSettings: .init()))
     }
 }
 

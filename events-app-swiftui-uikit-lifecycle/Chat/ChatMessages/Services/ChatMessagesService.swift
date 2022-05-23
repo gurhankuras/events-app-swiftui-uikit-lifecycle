@@ -30,7 +30,7 @@ class RemoteChatMessageFetcher: ChatMessageFetcher {
     }
     
     func fetch(for roomId: String, at page: Int) -> AnyPublisher<[ChatMessage], Error> {
-        guard let url = URL(string: "http://gkevents.com/api/chat/rooms/\(roomId)/messages?page=\(page)") else {
+        guard let url = URL(string: "http://localhost:3000/api/chat/rooms/\(roomId)/messages?page=\(page)") else {
             return Fail(error: URLError.init(URLError.badURL))
                 .eraseToAnyPublisher()
         }

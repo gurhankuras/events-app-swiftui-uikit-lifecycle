@@ -50,9 +50,9 @@ class UserSignUpAuthenticator: UserAuthenticator {
 }
 
 struct SignUpRequest: Encodable {
+    let name: String
     let emailAddress: String
     let password: String
-    let name: String
 }
 
 
@@ -63,9 +63,9 @@ class UserSignUp {
         self.client = client
     }
     
-    func signUp(email: Email, password: Password, completion: @escaping (Result<User, Error>) -> ()) {
+    func signUp(with request: SignUpRequest, completion: @escaping (Result<User, Error>) -> ()) {
         
-        guard let request = makeRequest(email: email, password: password) else {
+        guard let request = makeRequest(request: request) else {
             completion(.failure(URLError.init(.badURL)))
             return
         }
@@ -85,13 +85,12 @@ class UserSignUp {
         }
     }
     
-    private func makeRequest(email: Email, password: Password) -> URLRequest? {
+    private func makeRequest(request: SignUpRequest) -> URLRequest? {
         guard let url = URL(string: "http://localhost:5000/account") else { return nil }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        let body = SignUpRequest(emailAddress: email.value, password: password.value, name: "Deneme")
-        request.httpBody = try? JSONEncoder().encode(body)
-        return request
+        var req = URLRequest(url: url)
+        req.httpMethod = "POST"
+        req.httpBody = try? JSONEncoder().encode(request)
+        return req
     }
     
     private func respond(to statusCode: Int, with data: Data, completion: @escaping (Result<User, Error>) -> ()) {

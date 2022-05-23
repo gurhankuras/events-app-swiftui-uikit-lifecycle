@@ -19,7 +19,7 @@ class ProfileViewControllerFactory {
     
 
     func controller(onTropiesIconClicked: @escaping () -> ()) -> UINavigationController {
-        let darkModeSettings = DarkModeSettings(window: window)
+        let darkModeSettings = DarkModeSettings()
         let settingsViewModel = SettingsViewModel(darkModeSettings: darkModeSettings)
         let profileViewModel = ProfileViewModel()
         
