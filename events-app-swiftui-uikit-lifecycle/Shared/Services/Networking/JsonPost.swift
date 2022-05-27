@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 protocol JsonPost {
     func post<T: Encodable>(url: URL, with body: T, headers: [String: String], responseHandler: ((HTTPURLResponse) -> Void)?) -> AnyPublisher<Data, Error>
@@ -29,7 +30,8 @@ enum NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .response(let array):
-            return array.first?.message
+            // TODO: remove bang
+            return NSLocalizedString(array.first!.message, comment: "Error") 
         case .other(let err):
             return "Bir hata oldu"
         }

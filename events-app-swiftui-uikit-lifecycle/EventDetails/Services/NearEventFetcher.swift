@@ -49,6 +49,9 @@ class NearEventFinder {
             }
             completion(.success(remoteEvents))
         }
+        else if statusCode == 401 {
+            completion(.failure(NetworkError.response([ErrorMessage(message: "deneme")])))
+        }
         
         else {
             guard let errorMessage = try? decoder.decode([ErrorMessage].self, from: data) else {

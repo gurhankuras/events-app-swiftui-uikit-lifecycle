@@ -11,7 +11,6 @@ import SwiftUI
 
 class ProfileViewControllerFactory {
     let notificationService: NotificationService
-    public weak var window: UIWindow?
 
     init(notificationService: NotificationService) {
         self.notificationService = notificationService

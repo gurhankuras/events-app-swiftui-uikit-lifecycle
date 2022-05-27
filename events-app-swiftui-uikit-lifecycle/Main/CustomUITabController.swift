@@ -8,25 +8,49 @@
 import Foundation
 import UIKit
 
-
-class CustomUITabController: UITabBarController, UITabBarControllerDelegate {
-    var startNewEvent: (() -> ())?
+class TabbarDelegate: NSObject, UITabBarControllerDelegate {
+    var onNewEventTabSelected: ((_ authenticated: Bool) -> ())?
+    var authService: AuthService
     
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print(viewController)
+    init(authService: AuthService) {
+        self.authService = authService
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if isNewEventCreationTab(viewController) {
+            if case .loggedIn(_) = authService.userPublisher.value {
+                onNewEventTabSelected?(true)
+            }
+            else {
+                onNewEventTabSelected?(false)
+            }
+            return false
+        }
+        
+        return true
+    }
+    
+    private func isNewEventCreationTab(_ viewController: UIViewController) -> Bool {
+        viewController.title == "Deneme"
+    }
+}
+
+
+class CustomUITabController: UITabBarController {
+    private var _delegate: UITabBarControllerDelegate?
+    
+    init(delegate: UITabBarControllerDelegate) {
+        super.init(nibName: nil, bundle: nil)
+        self._delegate = delegate
+        self.delegate = _delegate
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        delegate = self
-    }
-    
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController.title == "Deneme" {
-            startNewEvent?()
-            return false
-        }
-        return true
     }
     
     override func setViewControllers(_ viewControllers: [UIViewController]?, animated: Bool) {
@@ -48,8 +72,4 @@ class CustomUITabController: UITabBarController, UITabBarControllerDelegate {
 }
 
 
-extension String {
-    func localized() -> String {
-        NSLocalizedString(self, tableName: nil, bundle: .main, value: self, comment: self)
-    }
-}
+

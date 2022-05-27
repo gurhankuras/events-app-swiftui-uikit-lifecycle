@@ -63,3 +63,7 @@
 "search" = "Ara";
 "chat-appbar-title" = "Sohbetler";
 
+"sign-in-text" = "Giriş Yap";
+"not-signed-in-info-text" = "Henüz giriş yapmadınız";
+
+"deneme" = "İçerikleri görmek için giriş yapınız";

@@ -15,6 +15,7 @@ class AppCoordinator: Coordinator {
     private let profileFactory: ProfileViewControllerFactory
     private let searchFactory: SearchViewControllerFactory
     private let createFactory: EventCreationViewControllerFactory
+    private let signFactory: SignViewControllerFactory
     
     weak var window: UIWindow?
     
@@ -22,20 +23,24 @@ class AppCoordinator: Coordinator {
          chatFactory: ChatViewControllerFactory,
          profileFactory: ProfileViewControllerFactory,
          searchFactory: SearchViewControllerFactory,
-         createFactory: EventCreationViewControllerFactory) {
+         createFactory: EventCreationViewControllerFactory,
+         signFactory: SignViewControllerFactory) {
         self.homeFactory = homeFactory
         self.chatFactory = chatFactory
         self.profileFactory = profileFactory
         self.searchFactory = searchFactory
         self.createFactory = createFactory
+        self.signFactory = signFactory
+
     }
     
     func start() {
-        let mainCoordinator = MainCoordinator(homeFactory: homeFactory,
+        let mainCoordinator = TabBarControllerCoordinator(homeFactory: homeFactory,
                                               chatFactory: chatFactory,
                                               profileFactory: profileFactory,
                                               searchFactory: searchFactory,
-                                              createFactory: createFactory)
+                                              createFactory: createFactory,
+        signFactory: signFactory)
         mainCoordinator.start()
         childCoordinators.append(mainCoordinator)
         window?.rootViewController = mainCoordinator.rootViewController

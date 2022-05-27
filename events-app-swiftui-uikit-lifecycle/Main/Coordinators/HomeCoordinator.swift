@@ -12,9 +12,11 @@ import SwiftUI
 class HomeCoordinator: Coordinator {
     var rootViewController: UINavigationController = UINavigationController(rootViewController: UIViewController())
     private let factory: HomeViewControllerFactory
+    private let signFactory: SignViewControllerFactory
     
-    init(factory: HomeViewControllerFactory) {
+    init(factory: HomeViewControllerFactory, signFactory: SignViewControllerFactory) {
         self.factory = factory
+        self.signFactory = signFactory
     }
     
     func start() {
@@ -23,7 +25,9 @@ class HomeCoordinator: Coordinator {
     }
     
     private func sign() {
-        let signingVc = factory.signController(onClosed: { [weak self] in self?.dismissSigning() })
+        
+        //SignCoordinator().start()
+        let signingVc = signFactory.controller(onClosed: { [weak self] in self?.dismissSigning() })
         self.rootViewController.present(signingVc, animated: true)
     }
     

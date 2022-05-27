@@ -15,9 +15,10 @@ class ChatCoordinator: Coordinator {
     var rootViewController = UINavigationController(rootViewController: UIViewController())
     private let factory: ChatViewControllerFactory
     private var cancellable: AnyCancellable?
-
-    init(factory: ChatViewControllerFactory) {
+    private let authService: AuthService
+    init(factory: ChatViewControllerFactory, authService: AuthService) {
         self.factory = factory
+        self.authService = authService
     }
     
     func start() {
@@ -28,6 +29,14 @@ class ChatCoordinator: Coordinator {
             self.openChat(for: room)
         }, onStartedNewChat: {[weak self] in
             self?.showChatUsers()
+        }, onSign: { [weak self] in
+            
+            guard let self = self else { return }
+            let vc = SignViewControllerFactory(authService: self.authService).controller(onClosed: {
+                self.rootViewController.dismiss(animated: true)
+            })
+            
+            self.rootViewController.present(vc, animated: true)
         })
     }
     

@@ -2,6 +2,24 @@
   "object": {
     "pins": [
       {
+        "package": "AnyFormatKit",
+        "repositoryURL": "https://github.com/luximetr/AnyFormatKit",
+        "state": {
+          "branch": null,
+          "revision": "ae3a965164005b07f81d6aa066520d7ad14ea54e",
+          "version": "2.5.2"
+        }
+      },
+      {
+        "package": "AnyFormatKitSwiftUI",
+        "repositoryURL": "https://github.com/luximetr/AnyFormatKitSwiftUI.git",
+        "state": {
+          "branch": "main",
+          "revision": "24c5b343fbb90d1f7ed139e8032d714a7a5be9fe",
+          "version": null
+        }
+      },
+      {
         "package": "Lottie",
         "repositoryURL": "https://github.com/airbnb/lottie-ios.git",
         "state": {

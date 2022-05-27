@@ -61,3 +61,8 @@
 "new-chat-title" = "New Chat";
 "search" = "Search";
 "chat-appbar-title" = "Chats";
+
+"sign-in-text" = "Sign In";
+"not-signed-in-info-text" = "You are not signed in";
+
+"deneme" = "Please sign in to see contents";

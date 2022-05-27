@@ -28,12 +28,6 @@ class HomeViewControllerFactory {
         return homeController
     }
     
-    func signController(onClosed: @escaping () -> ()) -> UIViewController {
-        let viewModel = SignupViewModel(auth: auth, didSignIn: onClosed)
-        let view = SignView(viewModel: viewModel, dismiss: onClosed)
-        let controller = UIHostingController(rootView: view)
-        return controller
-    }
     
     private func configureNavigationalOptions(navigationController: UINavigationController) {
         navigationController.isToolbarHidden = true

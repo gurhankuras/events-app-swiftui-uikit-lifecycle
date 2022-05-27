@@ -20,8 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var homeFactory: HomeViewControllerFactory!
     var createFactory: EventCreationViewControllerFactory!
     var searchFactory: SearchViewControllerFactory!
+    var signFactory: SignViewControllerFactory!
     
     var appCoordinator: AppCoordinator!
+    
+    var deleteThis: UINavigationController!
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         Self.shared = self
@@ -31,22 +34,39 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow()
         window?.windowScene = windowScene
         UIApplication.shared.dismissKeyboardWhenClickedOutside()
+        /*
         initSharedDependencies()
         initFactories()
         
-        appCoordinator = AppCoordinator(homeFactory: homeFactory,
-                                        chatFactory: chatFactory,
-                                        profileFactory: profileFactory,
-                                        searchFactory: searchFactory,
-                                        createFactory: createFactory)
+        appCoordinator = AppCoordinator(homeFactory: homeFactory, chatFactory: chatFactory,
+                                        profileFactory: profileFactory, searchFactory: searchFactory,
+                                        createFactory: createFactory, signFactory: signFactory)
         
         appCoordinator.window = window
-        profileFactory.window = window
         
         auth.trySignIn()
         appCoordinator.start()
-
+         */
+        deleteThis = UINavigationController(rootView: BillingAddressStepView(onClickedNext: { [weak self]  previousStep in self?.showCreditCardForm(with: previousStep) }))
+        window?.rootViewController = deleteThis
         window?.makeKeyAndVisible()
+    }
+    
+    // TODO: Move to a coordinator
+    private func showCreditCardForm(with previousStep: BillingAddressStep) {
+        let viewModel = CreditCardFormViewModel(billingAddressStep: previousStep)
+        let view = CreditCardStepView(viewModel: viewModel, onNext: { [weak self] content in self?.showCheckout(htmlContent: content) })
+        self.deleteThis.pushViewController(UIHostingController(rootView: view), animated: true)
+    }
+    
+    private func showCheckout(htmlContent: String) {
+        DispatchQueue.main.async { [weak self] in
+            let view = CheckoutWebView(htmlContent: htmlContent, completion: {
+                self?.deleteThis.popToRootViewController(animated: true)
+            })
+            let vc = UIHostingController(rootView: view)
+            self?.deleteThis.pushViewController(vc, animated: true)
+        }
     }
     
     private func initSharedDependencies() {
@@ -56,10 +76,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func initFactories() {
         profileFactory = ProfileViewControllerFactory(notificationService: localNotifications)
-        chatFactory = ChatViewControllerFactory(auth: auth)
+        chatFactory = AuthenticatedChatViewControllerFactory(auth: auth)
         homeFactory = HomeViewControllerFactory(auth: auth)
         searchFactory = SearchViewControllerFactory()
         createFactory = EventCreationViewControllerFactory()
+        signFactory = SignViewControllerFactory(authService: auth)
+        chatFactory.signController = { [weak signFactory] _ in (signFactory?.controller(onClosed: {}))! }
     }
     
     private func makeAuth() -> AuthService {
