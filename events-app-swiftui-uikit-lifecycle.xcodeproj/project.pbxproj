@@ -20,6 +20,7 @@
 		22175050281AD0C90096308D /* DarkModeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217504F281AD0C90096308D /* DarkModeSettings.swift */; };
 		22175052281AD1A00096308D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175051281AD1A00096308D /* SettingsViewModel.swift */; };
 		22175054281AD2490096308D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22175053281AD2490096308D /* SettingsView.swift */; };
+		221B5BDB28427F74007300C1 /* PlaceholderEventCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221B5BDA28427F74007300C1 /* PlaceholderEventCardView.swift */; };
 		221E240327F203D700B8A939 /* ChatScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240227F203D700B8A939 /* ChatScroller.swift */; };
 		221E240827F222C500B8A939 /* RoomCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240727F222C500B8A939 /* RoomCreator.swift */; };
 		221E240A27F23CCD00B8A939 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E240927F23CCD00B8A939 /* RoomViewModel.swift */; };
@@ -278,6 +279,7 @@
 		2217504F281AD0C90096308D /* DarkModeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeSettings.swift; sourceTree = "<group>"; };
 		22175051281AD1A00096308D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		22175053281AD2490096308D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		221B5BDA28427F74007300C1 /* PlaceholderEventCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderEventCardView.swift; sourceTree = "<group>"; };
 		221E240227F203D700B8A939 /* ChatScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScroller.swift; sourceTree = "<group>"; };
 		221E240727F222C500B8A939 /* RoomCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCreator.swift; sourceTree = "<group>"; };
 		221E240927F23CCD00B8A939 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
@@ -574,6 +576,7 @@
 				22D3AD5627EB81A300A5B08C /* EventCardView.swift */,
 				2227653D2831212F003E94F8 /* EventCardHeader.swift */,
 				2227653F2831214B003E94F8 /* EventCardFooter.swift */,
+				221B5BDA28427F74007300C1 /* PlaceholderEventCardView.swift */,
 			);
 			path = EventCard;
 			sourceTree = "<group>";
@@ -1648,6 +1651,7 @@
 				22D3AD7327EB81CC00A5B08C /* EventDetails.swift in Sources */,
 				2255292B27EF18FB00C63C35 /* SocketIOChatCommunicator.swift in Sources */,
 				221E240A27F23CCD00B8A939 /* RoomViewModel.swift in Sources */,
+				221B5BDB28427F74007300C1 /* PlaceholderEventCardView.swift in Sources */,
 				22082F8C2816E1CE0070A4B8 /* UIViewControllerPreview.swift in Sources */,
 				2261EFA9283D1E380056C8AC /* RedirectToSignView.swift in Sources */,
 				22D3AD1127EB80C200A5B08C /* LongRoundedButton.swift in Sources */,

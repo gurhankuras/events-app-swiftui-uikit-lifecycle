@@ -67,3 +67,7 @@
 "not-signed-in-info-text" = "Henüz giriş yapmadınız";
 
 "deneme" = "İçerikleri görmek için giriş yapınız";
+
+// Banner
+"allow-location-permissions" = "Yakınınızdaki etkinlikleri gösterebilmek için lokasyon bilginizi kullanmamız gerekiyor";
+"allow-button-title" = "İzin Ver";

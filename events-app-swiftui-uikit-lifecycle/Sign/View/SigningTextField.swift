@@ -25,8 +25,7 @@ struct SigningTextField: View {
                     .stroke(!text.isEmpty ? .pink : Color.gray, lineWidth: 1)
             )
             .font(font)
-            .foregroundColor(Color.black)
-            //.foregroundColor(.appTextColor)
+            .foregroundColor(.appTextColor)
             .padding(.vertical, 5)
     }
 }

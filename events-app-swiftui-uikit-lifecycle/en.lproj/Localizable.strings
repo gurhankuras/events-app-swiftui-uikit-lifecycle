@@ -66,3 +66,9 @@
 "not-signed-in-info-text" = "You are not signed in";
 
 "deneme" = "Please sign in to see contents";
+
+
+// Banner
+
+"allow-location-permissions" = "Please allow the app to access location to show events around you";
+"allow-button-title" = "Allow";

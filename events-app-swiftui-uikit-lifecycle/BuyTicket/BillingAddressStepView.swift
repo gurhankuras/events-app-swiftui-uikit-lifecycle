@@ -103,16 +103,12 @@ struct BillingAddressStepView: View {
     ]
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             RegularAppBar(title: "Payment", back: dismiss)
-            ScrollView {
-                VStack(spacing: 0) {
-                    Group {
-                        billingAddressSection
-                    }
-                }
-                .padding(.horizontal)
-            }
+            billingAddressSection
+            .padding(.horizontal)
+
+            Spacer()
             LongRoundedButton(text: "Next", active: .constant(true), action: next)
                 .padding(.bottom)
                 .padding(.horizontal)
@@ -121,8 +117,8 @@ struct BillingAddressStepView: View {
 
     }
     
+    @ViewBuilder
     var billingAddressSection: some View {
-        Section {
             DropdownSelector(
                 placeholder: "Country",
                 options:  countryOptions,
@@ -144,15 +140,6 @@ struct BillingAddressStepView: View {
             SigningTextField(placeholder: "Contact Name", text: $formViewModel.contactName)
             SigningTextField(placeholder: "Address", text: $formViewModel.addressLine)
             SigningTextField(placeholder: "Zip Code", text: $formViewModel.zipCode)
-            
-        } header: {
-            HStack {
-                Text("Billing Address")
-                    .font(.system(size: 17, weight: .medium, design: .rounded))
-                Spacer()
-            }
-            Divider()
-        }
     }
     
     func next() {

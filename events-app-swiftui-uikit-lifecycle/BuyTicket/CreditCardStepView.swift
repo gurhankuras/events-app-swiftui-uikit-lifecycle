@@ -139,27 +139,21 @@ struct CreditCardStepView: View {
     var body: some View {
         VStack(spacing: 0) {
             RegularAppBar(title: "Credit Card", back: back)
-            //ScrollView {
-            //    VStack {
-                    Section {
-                       formSectionBody
-                    } header: {
-                       header
-                    }
-                    .padding(.horizontal)
+                .padding(.bottom, 10)
+            formSectionBody
+            .padding(.horizontal)
 
-                    .onChange(of: isOpen) { opened in
-                        if opened {
-                            isOpen2 = false
-                        }
-                    }
-                    .onChange(of: isOpen2) { opened in
-                        if opened {
-                            isOpen = false
-                        }
-                    }
-            //    }
-            //}
+            .onChange(of: isOpen) { opened in
+                if opened {
+                    isOpen2 = false
+                }
+            }
+            .onChange(of: isOpen2) { opened in
+                if opened {
+                    isOpen = false
+                }
+            }
+            Spacer()
             LongRoundedButton(text: "Checkout", active: $viewModel.isFormValid) {
                 viewModel.service.startHandshake { result in
                     switch result {
@@ -205,19 +199,9 @@ struct CreditCardStepView: View {
                 expirationFields
                 securityCodeView
             }
-            Spacer()
         }
     }
     
-    @ViewBuilder
-    private var header: some View {
-        HStack {
-            Text("Credit Card Information")
-                .font(.system(size: 17, weight: .medium, design: .rounded))
-                .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        Divider()
-    }
     
     private var cardHolderView: some View {
         VStack(alignment: .leading, spacing: 4) {

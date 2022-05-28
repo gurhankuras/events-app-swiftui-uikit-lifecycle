@@ -8,6 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
+
 struct EventCardView: View {
     let event: RemoteNearEvent
     let onClicked: (RemoteNearEvent) -> ()

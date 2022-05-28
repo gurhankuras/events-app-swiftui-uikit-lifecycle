@@ -23,11 +23,12 @@ struct HomeView: View {
             scroll
         }
         .background(Color.background)
+        .navigationBarHidden(true)
     }
     
     @ViewBuilder var remainder: some View {
         EventRemainderView(count: 5) {
-            viewModel.loadNearEvents(completion: {})
+            viewModel.load()
         }
         .offset(y: -25)
         .foregroundColor(.white)
@@ -39,27 +40,37 @@ struct HomeView: View {
                 EventCategoriesView(categories)
                 EventCatalog(title: "popular-title") {
                     ForEach(viewModel.events) { event in
-                        EventCardView(event: event, onClicked: onEventSelected).padding(.leading)
+                        EventCardView(event: event, onClicked: viewModel.loading ? {_ in } : onEventSelected)
+                            .padding(.leading)
                     }
+                    .redacted(reason: viewModel.loading ? .placeholder : [])
+                }
+
+                EventCatalog(title: "popular-title") {
+                    ForEach(viewModel.events) { event in
+                        EventCardView(event: event, onClicked: viewModel.loading ? {_ in } : onEventSelected)
+                            .padding(.leading)
+                    }
+                    .redacted(reason: viewModel.loading ? .placeholder : [])
                 }
                 EventCatalog(title: "popular-title") {
                     ForEach(viewModel.events) { event in
-                        EventCardView(event: event, onClicked: onEventSelected).padding(.leading)
+                        EventCardView(event: event, onClicked: viewModel.loading ? {_ in } : onEventSelected)
+                            .padding(.leading)
                     }
-                }
-                EventCatalog(title: "popular-title") {
-                    ForEach(viewModel.events) { event in
-                        EventCardView(event: event, onClicked: onEventSelected).padding(.leading)
-                    }
+                    .redacted(reason: viewModel.loading ? .placeholder : [])
                 }
             }
+            .padding(.bottom)
         } onRefresh: { refresher in
-            viewModel.loadNearEvents(completion: {
-                refresher.stopRefreshing?()
+            viewModel.refresh(completion: {
+                DispatchQueue.main.async {
+                    refresher.stopRefreshing?()
+                }
             })
         }
         .offset(y: -10)
-        .padding(.bottom)
+        
     }
 }
 

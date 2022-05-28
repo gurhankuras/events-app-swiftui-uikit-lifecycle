@@ -32,14 +32,14 @@ extension RemoteNearEvent {
             id: "627f864361718507a4490ab7",
             at: Date(),
             image: "",
-            title: "Gercek",
-            description: "Bu bir etkinliktir",
+            title: "Xxxxxxxxx xxxxxxxxxx xxxxxxxx xxxxxx",
+            description: "Xx xxx xxxxxxxxxxxxxx",
             createdAt: Date(),
             latitude: 40.885899148745175,
             longitute: 29.2455816165394,
             distance: 51.94696360946275,
-            address: RemoteNearEventAddress(city: "Istanbul",
-                                            district: "Kartal",
+            address: RemoteNearEventAddress(city: "Xxxxxxx",
+                                            district: "Xxxxxx",
                                             addressLine: nil)
         )
     }

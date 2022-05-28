@@ -26,7 +26,7 @@ struct EventCategoriesView: View {
                         .clipShape(Capsule(style: .continuous))
                         .onTapGesture {
                             if (category == "All") {
-                                BannerService.shared.show(icon: .failure, title: "Failed...", action: .custom({ print("Kapatmayacagim!") }) )
+                                BannerService.shared.show(icon: .failure, title: "Failed...", action: .custom("DISOBEY", { print("Kapatmayacagim!") }) )
                             }
                             else {
                                 BannerService.shared.show(icon: .success, title: "Success...", action: .close)

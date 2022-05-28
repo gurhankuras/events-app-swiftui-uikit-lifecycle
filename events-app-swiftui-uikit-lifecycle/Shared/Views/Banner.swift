@@ -10,7 +10,7 @@ import UIKit
 
 enum BannerAction {
     case close
-    case custom(() -> ())
+    case custom(String, () -> ())
 }
 
 enum BannerIcon {
@@ -22,7 +22,14 @@ enum BannerIcon {
 class Banner: UIView {
     var closeCallback: (() -> ())?
     
-    lazy var closeButton: UIImageView = {
+    lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(.init(systemName: "xmark"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(onClose), for: .touchUpInside)
+        return button
+        /*
         let closeImage = UIImageView(image: .init(systemName: "xmark"))
         closeImage.translatesAutoresizingMaskIntoConstraints = false
         closeImage.tintColor = .white
@@ -30,7 +37,8 @@ class Banner: UIView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(onClose))
         closeImage.addGestureRecognizer(tap)
         return closeImage
-    }()
+    */
+        }()
 
     
     lazy var indicatorImage: UIImageView = {
@@ -64,7 +72,7 @@ class Banner: UIView {
     }
     
     private func setTitle(_ text: String) {
-        label.text = text
+        label.text = text.localized()
     }
     
     private func setIcon(_ icon: BannerIcon) {
@@ -82,8 +90,15 @@ class Banner: UIView {
         switch action {
         case .close:
             closeCallback = { BannerService.shared.dismiss() }
-        case .custom(let callback):
+            closeButton.setTitle(nil, for: .normal)
+            
+            closeButton.setImage(.init(systemName: "xmark"), for: .normal)
+        case .custom(let text, let callback):
+            closeButton.setImage(nil, for: .normal)
+            closeButton.setTitle(text.localized(), for: .normal)
+            closeButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
             closeCallback = callback
+             
         }
     }
     
@@ -110,7 +125,7 @@ class Banner: UIView {
         addSubview(closeButton)
         let closeButtonConstraints = [
             closeButton.centerYAnchor.constraint(equalTo: indicatorImage.safeAreaLayoutGuide.centerYAnchor),
-            closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+            closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
         ]
         NSLayoutConstraint.activate(closeButtonConstraints)
 
