@@ -19,7 +19,6 @@ struct DropdownRowBinding: View {
             HStack {
                 Text(self.option.value)
                     .font(.system(size: 14))
-                    .foregroundColor(Color.black)
                 Spacer()
             }
         }
@@ -42,7 +41,7 @@ struct DropdownBinding: View {
         }
         .frame(minHeight: min(CGFloat(options.count) * 30, 200), maxHeight: 250)
         .padding(.vertical, 5)
-        .background(Color.white)
+        .background(Color(UIColor.systemBackground))
         .cornerRadius(5)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
@@ -70,7 +69,7 @@ struct DropdownSelectorBinding: View {
             HStack {
                 Text(current == nil ? placeholder : current!.value)
                     .font(.system(size: 14))
-                    .foregroundColor(current == nil ? Color.gray: Color.black)
+                    .foregroundColor(current == nil ? Color.gray: Color(UIColor.label))
 
                 Spacer()
 
@@ -87,7 +86,7 @@ struct DropdownSelectorBinding: View {
         .frame(height: self.buttonHeight)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
-                .stroke(Color.gray, lineWidth: 1)
+                .stroke(Color(UIColor.systemGray), lineWidth: 1)
         )
         .overlay(
             VStack {
@@ -104,7 +103,7 @@ struct DropdownSelectorBinding: View {
         )
         
         .background(
-            RoundedRectangle(cornerRadius: 5).fill(Color.white)
+            RoundedRectangle(cornerRadius: 5).fill(Color(UIColor.systemBackground))
         )
     }
 }

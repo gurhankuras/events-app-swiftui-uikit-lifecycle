@@ -29,7 +29,7 @@ struct DropdownRow: View {
             HStack {
                 Text(self.option.value)
                     .font(.system(size: 14))
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color(UIColor.label))
                 Spacer()
             }
         }
@@ -52,11 +52,11 @@ struct Dropdown: View {
         }
         .frame(minHeight: min(CGFloat(options.count) * 30, 200), maxHeight: 250)
         .padding(.vertical, 5)
-        .background(Color.white)
+        .background(Color(UIColor.systemBackground))
         .cornerRadius(5)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
-                .stroke(Color.gray, lineWidth: 1)
+                .stroke(Color(UIColor.systemGray), lineWidth: 1)
         )
     }
 }

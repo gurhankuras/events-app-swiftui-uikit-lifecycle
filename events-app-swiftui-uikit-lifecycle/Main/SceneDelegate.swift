@@ -34,7 +34,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow()
         window?.windowScene = windowScene
         UIApplication.shared.dismissKeyboardWhenClickedOutside()
-        /*
         initSharedDependencies()
         initFactories()
         
@@ -46,28 +45,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         auth.trySignIn()
         appCoordinator.start()
-         */
+        /*
         deleteThis = UINavigationController(rootView: BillingAddressStepView(onClickedNext: { [weak self]  previousStep in self?.showCreditCardForm(with: previousStep) }))
         window?.rootViewController = deleteThis
+         */
         window?.makeKeyAndVisible()
     }
     
-    // TODO: Move to a coordinator
-    private func showCreditCardForm(with previousStep: BillingAddressStep) {
-        let viewModel = CreditCardFormViewModel(billingAddressStep: previousStep)
-        let view = CreditCardStepView(viewModel: viewModel, onNext: { [weak self] content in self?.showCheckout(htmlContent: content) })
-        self.deleteThis.pushViewController(UIHostingController(rootView: view), animated: true)
-    }
     
-    private func showCheckout(htmlContent: String) {
-        DispatchQueue.main.async { [weak self] in
-            let view = CheckoutWebView(htmlContent: htmlContent, completion: {
-                self?.deleteThis.popToRootViewController(animated: true)
-            })
-            let vc = UIHostingController(rootView: view)
-            self?.deleteThis.pushViewController(vc, animated: true)
-        }
-    }
     
     private func initSharedDependencies() {
         localNotifications = NotificationService(notificationCenter: .current())

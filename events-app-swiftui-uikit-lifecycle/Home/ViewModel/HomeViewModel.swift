@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import os
 struct PaginationOptions {
     let page: Int
     let pageSize: Int
@@ -18,85 +18,94 @@ extension PaginationOptions {
     }
 }
 
-
-
-
-class HomeViewModel: ObservableObject {
-    var onSignClick: (() -> Void)?
-    
-    let auth: AuthService
-    let locationFetcher: LocationFetcher
-    let api: NearEventFinder
-
-    @Published var user: User?
-    @Published var _nearEvents: [RemoteNearEvent] = []
-    
-    init(auth: AuthService, api: NearEventFinder, locationFetcher: LocationFetcher) {
-        self.auth = auth
-        self.api = api
-        self.locationFetcher = locationFetcher
+extension HomeView {
+    class ViewModel: ObservableObject {
         
-        auth.userPublisher
-            .map({result in
-                switch result {
-                case .loggedIn(let user):
-                    return user
-                case .unauthorized:
-                    return nil
-                case .errorOccurred(_):
-                    return nil
-                }
-            })
-            .assign(to: &$user)
+        var onSignClick: (() -> Void)?
         
-    }
-    
-    var events: [RemoteNearEvent] {
-        return _nearEvents
-    }
-    
-    func loadNearEvents(completion: @escaping () -> ()) {
-        locationFetcher.requestCurrentLocation { [weak self] result in
-            switch result {
-            case .success(let location):
-                let coord = location.coordinate
-                let position = GeoCoordinates(latitude: coord.latitude, longitute: coord.longitude)
-                self?.fetchNearEvents(position)
-            case .failure(let error):
-                if let error = error as? LocationServiceError {
-                    switch error {
+        let auth: AuthService
+        let locationFetcher: LocationFetcher
+        let api: NearEventFinder
+        
+        @Published var user: User?
+        @Published var _nearEvents: [RemoteNearEvent] = []
+        
+        init(auth: AuthService, api: NearEventFinder, locationFetcher: LocationFetcher) {
+            self.auth = auth
+            self.api = api
+            self.locationFetcher = locationFetcher
+            
+            auth.userPublisher
+                .map({ result in
+                    switch result {
+                    case .loggedIn(let user):
+                        return user
                     case .unauthorized:
-                        openAppSettings()
+                        return nil
+                    case .errorOccurred(_):
+                        return nil
                     }
+                })
+                .assign(to: &$user)
+            
+        }
+        
+        var events: [RemoteNearEvent] {
+            return _nearEvents
+        }
+        
+        func loadNearEvents(completion: @escaping () -> ()) {
+            
+            Self.logger.trace("Started fetching current user location.")
+            locationFetcher.requestCurrentLocation { [weak self] result in
+                switch result {
+                case .success(let location):
+                    let coord = location.coordinate
+                    let position = GeoCoordinates(latitude: coord.latitude, longitute: coord.longitude)
+                    self?.fetchNearEvents(position)
+                case .failure(let error):
+                    if let error = error as? LocationServiceError {
+                        switch error {
+                        case .unauthorized:
+                            Self.logger.trace("Cannot fetch users location due to unauthorized. Opening App Settings...")
+                            openAppSettings()
+                        }
+                    }
+                    Self.logger.trace("An error occured while fetching current location of user: \(error.localizedDescription)")
                 }
-                print(error.localizedDescription)
+                completion()
             }
-            completion()
+        }
+        
+        private func fetchNearEvents(_ position: GeoCoordinates) {
+            api.findEvents(around: position) { [weak self] result in
+                switch result {
+                case .success(let events):
+                    DispatchQueue.main.async {
+                        self?._nearEvents = events
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        BannerService.shared.show(icon: .failure, title: error.localizedDescription, action: .close)
+                    }
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
+        
+        var isSignedIn: Bool {
+            user != nil
+        }
+        
+        func signOut() {
+            auth.signOut()
         }
     }
-    
-    private func fetchNearEvents(_ position: GeoCoordinates) {
-        api.findEvents(around: position) { [weak self] result in
-            switch result {
-            case .success(let events):
-                DispatchQueue.main.async {
-                    self?._nearEvents = events
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    BannerService.shared.show(icon: .failure, title: error.localizedDescription, action: .close)                    
-                }
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    
-    var isSignedIn: Bool {
-        user != nil
-    }
-    
-    func signOut() {
-        auth.signOut()
-    }
+}
+
+
+// MARK: Logger
+extension HomeView.ViewModel {
+    static let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "HomeView.ViewModel")
 }

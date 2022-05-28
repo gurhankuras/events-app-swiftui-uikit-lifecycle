@@ -7,18 +7,22 @@
 
 import Foundation
 import MapKit
+import os
 
-struct EventDetailsViewModel {
-    let nearEvent: RemoteNearEvent
-    
-    var region: MKCoordinateRegion {
-        let center = CLLocationCoordinate2D(latitude: nearEvent.latitude, longitude: nearEvent.longitute)
-        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-        let region = MKCoordinateRegion(center: center, span: span)
-        return region
-    }
-    
-    var users: [String] {
-        ["concert", "concert", "concert"]
+extension EventDetails {
+    struct ViewModel {
+        let nearEvent: RemoteNearEvent
+        
+        var region: MKCoordinateRegion {
+            let center = CLLocationCoordinate2D(latitude: nearEvent.latitude, longitude: nearEvent.longitute)
+            let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+            let region = MKCoordinateRegion(center: center, span: span)
+            return region
+        }
+        
+        var users: [String] {
+            ["concert", "concert", "concert"]
+        }
     }
 }
+

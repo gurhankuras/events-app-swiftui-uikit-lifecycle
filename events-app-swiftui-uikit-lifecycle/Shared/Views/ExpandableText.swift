@@ -19,9 +19,8 @@ struct ExpandableText: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             Text(text)
-                .font(.system(size: 15))
                 .lineLimit(expanded ? nil : lineLimit)
             
             Image(systemName: "chevron.down")
@@ -36,10 +35,8 @@ struct ExpandableText: View {
                     }
                 }
         }
-        .padding()
+        .padding(.horizontal)
     }
-    
-    
 }
 
 

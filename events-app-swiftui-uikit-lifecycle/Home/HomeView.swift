@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var viewModel: HomeViewModel
+    @StateObject var viewModel: HomeView.ViewModel
     let onEventSelected: (RemoteNearEvent) -> ()
     let categories: [String] = ["All", "Business", "Culture", "Music", "Conference"]
     let logger = AppLogger(type: HomeView.self)
@@ -62,6 +62,8 @@ struct HomeView: View {
         .padding(.bottom)
     }
 }
+
+
 
 
 

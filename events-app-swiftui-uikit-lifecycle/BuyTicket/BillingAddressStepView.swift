@@ -59,9 +59,39 @@ class PaymentFormViewModel: ObservableObject {
     
 }
 
+struct RegularAppBar: View {
+    let title: LocalizedStringKey
+    let back: () -> ()
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                backButton
+                Text(title)
+                    .font(.system(size: 15, weight: .medium, design: .rounded))
+                    .frame(maxWidth: .infinity)
+                backButton.hidden().disabled(true)
+            }
+            .padding(.horizontal, 10)
+            .padding(.bottom, 10)
+            Divider().ignoresSafeArea()
+        }
+        
+    }
+    
+    private var backButton: some View {
+        Image(systemName: "arrow.backward")
+            .foregroundColor(.appTextColor)
+            .padding(.all, 5)
+            .onTapGesture {
+                back()
+            }
+    }
+}
+
 struct BillingAddressStepView: View {
     @StateObject var formViewModel: PaymentFormViewModel = PaymentFormViewModel()
     let onClickedNext: ((BillingAddressStep) -> ())?
+    let dismiss: () -> ()
     
     static private var uniqueKey: String {
         UUID().uuidString
@@ -74,12 +104,20 @@ struct BillingAddressStepView: View {
     
     var body: some View {
         VStack {
-            Spacer()
-            billingAddressSection
-            Spacer()
+            RegularAppBar(title: "Payment", back: dismiss)
+            ScrollView {
+                VStack(spacing: 0) {
+                    Group {
+                        billingAddressSection
+                    }
+                }
+                .padding(.horizontal)
+            }
             LongRoundedButton(text: "Next", active: .constant(true), action: next)
+                .padding(.bottom)
+                .padding(.horizontal)
         }
-        .padding(.horizontal)
+        .navigationBarHidden(true)
 
     }
     
@@ -93,6 +131,7 @@ struct BillingAddressStepView: View {
                     formViewModel.country = option.value
                 })
                 .zIndex(999)
+                .padding(.vertical, 10)
             DropdownSelector(
                 placeholder: "City",
                 options: formViewModel.cities().map({ DropdownOption(key: $0, value: $0)}),
@@ -101,6 +140,7 @@ struct BillingAddressStepView: View {
                     formViewModel.city = option.value
                 })
                 .zIndex(998)
+                .padding(.bottom, 10)
             SigningTextField(placeholder: "Contact Name", text: $formViewModel.contactName)
             SigningTextField(placeholder: "Address", text: $formViewModel.addressLine)
             SigningTextField(placeholder: "Zip Code", text: $formViewModel.zipCode)
@@ -123,6 +163,6 @@ struct BillingAddressStepView: View {
 
 struct BillingAddressStepView_Previews: PreviewProvider {
     static var previews: some View {
-        BillingAddressStepView(onClickedNext: {_ in})
+        BillingAddressStepView(onClickedNext: {_ in }, dismiss: {})
     }
 }

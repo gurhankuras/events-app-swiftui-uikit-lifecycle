@@ -74,9 +74,12 @@
 		2254817B2840DCDB00F33950 /* AnyFormatKitSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2254817A2840DCDB00F33950 /* AnyFormatKitSwiftUI */; };
 		2254817D2840DD0F00F33950 /* CustomFormatTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254817C2840DD0F00F33950 /* CustomFormatTextField.swift */; };
 		2254817F2840EA4200F33950 /* DropdownBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254817E2840EA4200F33950 /* DropdownBinding.swift */; };
-		22548181284119A600F33950 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22548180284119A600F33950 /* CheckoutView.swift */; };
-		2254818328411BFF00F33950 /* PayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254818228411BFF00F33950 /* PayService.swift */; };
+		22548181284119A600F33950 /* CheckoutWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22548180284119A600F33950 /* CheckoutWebView.swift */; };
+		2254818328411BFF00F33950 /* ThreeDSPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254818228411BFF00F33950 /* ThreeDSPaymentService.swift */; };
 		2254818528413C0400F33950 /* UrlEncodedFormDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254818428413C0300F33950 /* UrlEncodedFormDecoder.swift */; };
+		225481872841513B00F33950 /* String+base64EncodeDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225481862841513B00F33950 /* String+base64EncodeDecode.swift */; };
+		225481892841623000F33950 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225481882841623000F33950 /* CheckoutView.swift */; };
+		2254818B2841715600F33950 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254818A2841715600F33950 /* LoadingView.swift */; };
 		2255292B27EF18FB00C63C35 /* SocketIOChatCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255292A27EF18FB00C63C35 /* SocketIOChatCommunicator.swift */; };
 		2255292E27EF229300C63C35 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2255292D27EF229300C63C35 /* SocketIO */; };
 		2255293027EF326000C63C35 /* ChatCommunicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255292F27EF326000C63C35 /* ChatCommunicatorTests.swift */; };
@@ -330,9 +333,12 @@
 		224C7C352830009A0037AD45 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		2254817C2840DD0F00F33950 /* CustomFormatTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFormatTextField.swift; sourceTree = "<group>"; };
 		2254817E2840EA4200F33950 /* DropdownBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownBinding.swift; sourceTree = "<group>"; };
-		22548180284119A600F33950 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
-		2254818228411BFF00F33950 /* PayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayService.swift; sourceTree = "<group>"; };
+		22548180284119A600F33950 /* CheckoutWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutWebView.swift; sourceTree = "<group>"; };
+		2254818228411BFF00F33950 /* ThreeDSPaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDSPaymentService.swift; sourceTree = "<group>"; };
 		2254818428413C0300F33950 /* UrlEncodedFormDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlEncodedFormDecoder.swift; sourceTree = "<group>"; };
+		225481862841513B00F33950 /* String+base64EncodeDecode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+base64EncodeDecode.swift"; sourceTree = "<group>"; };
+		225481882841623000F33950 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		2254818A2841715600F33950 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		2255292A27EF18FB00C63C35 /* SocketIOChatCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOChatCommunicator.swift; sourceTree = "<group>"; };
 		2255292F27EF326000C63C35 /* ChatCommunicatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCommunicatorTests.swift; sourceTree = "<group>"; };
 		2261EFA0283D106A0056C8AC /* AuthenticatedChatViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedChatViewControllerFactory.swift; sourceTree = "<group>"; };
@@ -633,9 +639,11 @@
 				22339CBD283FEB620027984A /* BillingAddressStepView.swift */,
 				22339CC32840075F0027984A /* CreditCardStepView.swift */,
 				2254817C2840DD0F00F33950 /* CustomFormatTextField.swift */,
-				22548180284119A600F33950 /* CheckoutView.swift */,
-				2254818228411BFF00F33950 /* PayService.swift */,
+				22548180284119A600F33950 /* CheckoutWebView.swift */,
+				2254818228411BFF00F33950 /* ThreeDSPaymentService.swift */,
 				2254818428413C0300F33950 /* UrlEncodedFormDecoder.swift */,
+				225481882841623000F33950 /* CheckoutView.swift */,
+				2254818A2841715600F33950 /* LoadingView.swift */,
 			);
 			path = BuyTicket;
 			sourceTree = "<group>";
@@ -1019,6 +1027,7 @@
 				224C7C33282FF5050037AD45 /* UIApplication+openAppSettings.swift */,
 				22BF7F1A283C2932002B8269 /* CloseKeyboardWhenClickedOutside.swift */,
 				2261EFAA283D62D60056C8AC /* String+NSLocalizedString.swift */,
+				225481862841513B00F33950 /* String+base64EncodeDecode.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1520,7 +1529,7 @@
 				22D3ACA627EB803C00A5B08C /* ChatMessagesList.swift in Sources */,
 				22D3AD2027EB80C200A5B08C /* NotificationService.swift in Sources */,
 				22D3AD0827EB80C200A5B08C /* View+ReverseScrollView.swift in Sources */,
-				22548181284119A600F33950 /* CheckoutView.swift in Sources */,
+				22548181284119A600F33950 /* CheckoutWebView.swift in Sources */,
 				22D3AD1727EB80C200A5B08C /* JsonPost.swift in Sources */,
 				221E240F27F246C600B8A939 /* RoomRealTimeListener.swift in Sources */,
 				22D3AD4027EB814400A5B08C /* Email.swift in Sources */,
@@ -1541,6 +1550,7 @@
 				22D3ACA527EB803C00A5B08C /* AnimatedToolBox.swift in Sources */,
 				22D3AD0427EB80C200A5B08C /* Color+AppColors.swift in Sources */,
 				22175044281AB0D00096308D /* ProfileView.swift in Sources */,
+				225481872841513B00F33950 /* String+base64EncodeDecode.swift in Sources */,
 				229C974E283A6631008DC37A /* HttpClient+Decorators.swift in Sources */,
 				22D3AD3B27EB814400A5B08C /* RemoteUser.swift in Sources */,
 				22D3AD6127EB81A300A5B08C /* HomeViewModel.swift in Sources */,
@@ -1594,6 +1604,7 @@
 				22D3AD4127EB814400A5B08C /* FormField.swift in Sources */,
 				229C9749283A65D5008DC37A /* TokenSaverDecorator.swift in Sources */,
 				22D3AD0927EB80C200A5B08C /* PreviewProvider.swift in Sources */,
+				2254818B2841715600F33950 /* LoadingView.swift in Sources */,
 				222A5FC8282A785F000CCCFE /* AchievementCell.swift in Sources */,
 				22D3AD1F27EB80C200A5B08C /* FileService.swift in Sources */,
 				22D3ACAD27EB803C00A5B08C /* ChatUsersViewModel.swift in Sources */,
@@ -1615,6 +1626,7 @@
 				22D3ACBA27EB803C00A5B08C /* ChatRoomCell.swift in Sources */,
 				22D3AD0627EB80C200A5B08C /* UINavigationController+SwipeBack.swift in Sources */,
 				223D21F92839470D0008FE55 /* SearchTableViewController.swift in Sources */,
+				225481892841623000F33950 /* CheckoutView.swift in Sources */,
 				22DCEC06283521AD00C98D58 /* CustomRefreshView.swift in Sources */,
 				2261EFAB283D62D60056C8AC /* String+NSLocalizedString.swift in Sources */,
 				22D3AD0527EB80C200A5B08C /* UIApplication+ResignResponder.swift in Sources */,
@@ -1652,7 +1664,7 @@
 				22082F872816E1430070A4B8 /* ChatRoomsViewController.swift in Sources */,
 				222A5FDC282AE918000CCCFE /* HomeCoordinator.swift in Sources */,
 				229C9743283A6549008DC37A /* HttpAPIClient.swift in Sources */,
-				2254818328411BFF00F33950 /* PayService.swift in Sources */,
+				2254818328411BFF00F33950 /* ThreeDSPaymentService.swift in Sources */,
 				223D21FB2839470D0008FE55 /* EventSearchResultCell.swift in Sources */,
 				22D3AD5127EB817800A5B08C /* FullscreenVideoPage.swift in Sources */,
 				22D3ACFB27EB80C200A5B08C /* KeychainWrapper.swift in Sources */,
@@ -1893,7 +1905,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "gurhankuras.events-app-swiftui-uikit-lifecycle";
+				PRODUCT_BUNDLE_IDENTIFIER = "gurhankuras.events-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1925,7 +1937,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "gurhankuras.events-app-swiftui-uikit-lifecycle";
+				PRODUCT_BUNDLE_IDENTIFIER = "gurhankuras.events-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

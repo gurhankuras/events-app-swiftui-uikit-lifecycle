@@ -13,11 +13,19 @@ import MapKit
 
 //class EventDetailsViewModel
 struct EventDetails: View {
-    let viewModel: EventDetailsViewModel
+    let viewModel: EventDetails.ViewModel
+    let dismiss: () -> ()
+    let buyTicket: () -> ()
+    
     @State private var mapRegion: MKCoordinateRegion
 
-    init(viewModel: EventDetailsViewModel) {
+    init(viewModel: EventDetails.ViewModel,
+         dismiss: @escaping () -> (),
+         buyTicket: @escaping () -> ()
+    ) {
         self.viewModel = viewModel
+        self.dismiss = dismiss
+        self.buyTicket = buyTicket
         self._mapRegion = State(initialValue: viewModel.region)
     }
     
@@ -28,7 +36,8 @@ struct EventDetails: View {
                 
                 EventHeader(title: viewModel.nearEvent.title,
                             image: viewModel.nearEvent.image,
-                            height: UIScreen.main.bounds.height * 0.3)
+                            height: UIScreen.main.bounds.height * 0.3,
+                            dismiss: dismiss)
                  
                 InterestedUsers(users: viewModel.users, gap: 20)
                 .padding(.horizontal)
@@ -36,12 +45,14 @@ struct EventDetails: View {
                 
                 ExpandableText(text: viewModel.nearEvent.description, initial: .closed)
                     .lineLimit(4)
+                    .font(.system(size: 14, weight: .regular, design: .rounded))
                 map
                 watchButton
                 joinButton
                 
             }
         }
+        .navigationBarHidden(true)
     }
     
     private var map: some View {
@@ -58,6 +69,7 @@ struct EventDetails: View {
     
     private var joinButton: some View {
         Button {
+            buyTicket()
             print("Click")
         } label: {
             Text("Join")
@@ -114,45 +126,35 @@ struct EventDetails: View {
 
 struct EventDetails_Previews: PreviewProvider {
     static var previews: some View {
-        EventDetails(viewModel: .init(nearEvent: .stub))
+        EventDetails(viewModel: .init(nearEvent: .stub),
+                     dismiss: {},
+                     buyTicket: {})
     }
 }
 
 
 struct EventHeader: View {
-    @Environment(\.presentationMode) var presentationMode
     
     // MARK: constructor
     let title: String
     let image: String
     let height: CGFloat
+    let dismiss: () -> ()
     
     // MARK: constants
     let titleGradient = LinearGradient(colors: [.black, .black.opacity(0.3)],
                                        startPoint: .bottom,
                                        endPoint: .top)
     var body: some View {
-        /*
+        
         WebImage(url: URL(string: image))
             .resizable()
             .scaledToFill()
-            .frame(height: height)
             .frame(maxWidth: .infinity)
             .clipped()
-*/
-            Rectangle()
-            .frame(height: height)
-            .background(Color.pink)
             .overlay(eventTitle, alignment: .bottom)
-            .overlay(Image(systemName: "arrow.backward")
-                        .padding(.top, 30)
-                        .padding(.bottom, 10)
-                        .padding(.horizontal, 10)
-                        .foregroundColor(.white)
-                        .onTapGesture {
-                            //presentationMode.wrappedValue.dismiss()
-                        }, alignment: .topLeading)
-    }
+            .overlay(backButton, alignment: .topLeading)
+ }
     
     private var eventTitle: some View {
         Text(title)
@@ -165,12 +167,16 @@ struct EventHeader: View {
     
     private var backButton: some View {
         Image(systemName: "arrow.backward")
+            .shadow(color: .black.opacity(0.7), radius: 8, x: 0, y: 0)
+            .shadow(color: .black.opacity(0.7), radius: 8, x: 0, y: 0)
+            .shadow(color: .black.opacity(0.7), radius: 8, x: 0, y: 0)
+
             .padding(.top, 30)
             .padding(.bottom, 10)
             .padding(.horizontal, 10)
             .foregroundColor(.white)
             .onTapGesture {
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             }
     }
 }

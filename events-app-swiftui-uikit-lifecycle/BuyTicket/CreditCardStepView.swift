@@ -56,11 +56,11 @@ class CreditCardFormViewModel: ObservableObject {
     
     private let currentYear: Int
     private let currentMonth: Int
-    let service: PayService
+    let service: ThreeDSPaymentService
 
     init(billingAddressStep: BillingAddressStep) {
         self.billingAddressStep = billingAddressStep
-        self.service = PayService(client: HttpAPIClient(session: .shared, options: .init(contentType: "application/json")))
+        self.service = ThreeDSPaymentService(client: HttpAPIClient(session: .shared, options: .init(contentType: "application/json")))
         let components = Calendar.current.dateComponents([.month, .year], from: Date())
         currentMonth = components.month!
         currentYear = components.year!
@@ -131,68 +131,82 @@ class CreditCardFormViewModel: ObservableObject {
 struct CreditCardStepView: View {
     @StateObject var viewModel: CreditCardFormViewModel
     let onNext: ((String) -> ())?
+    let back: () -> ()
+    
     @State var isOpen = false
     @State var isOpen2 = false
 
     var body: some View {
-        Section {
-            VStack(alignment: .leading) {
-                
-                cardHolderView
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Credit Card Number")
-                        .font(.system(size: 14, weight: .medium, design: .rounded))
-                    CustomFormatTextField(unformattedText: $viewModel.cardNumber,
-                                          placeholder: "9999 9999 9999 9999",
-                                          textPattern: "#### #### #### ####",
-                                          patternSymbol: "#",
-                                          interceptor: NumberTextFieldInterceptor())
-                    .autocapitalization(.none)
-                    .keyboardType(.default)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 10)
-                    .background(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(.gray, lineWidth: 1)
-                    )
-                    .font(.system(size: 13))
-                    .foregroundColor(Color.black)
-                    .padding(.vertical, 5)
-                }
-                HStack {
-                    expirationFields
-                    securityCodeView
-                }
-                Spacer()
-                LongRoundedButton(text: "Checkout", active: $viewModel.isFormValid) {
-                    
-                    viewModel.service.submit { result in
-                        switch result {
-                        case .failure(let error):
-                            print(error)
-                        case .success(let content):
-                            onNext?(content)
+        VStack(spacing: 0) {
+            RegularAppBar(title: "Credit Card", back: back)
+            //ScrollView {
+            //    VStack {
+                    Section {
+                       formSectionBody
+                    } header: {
+                       header
+                    }
+                    .padding(.horizontal)
+
+                    .onChange(of: isOpen) { opened in
+                        if opened {
+                            isOpen2 = false
                         }
                     }
+                    .onChange(of: isOpen2) { opened in
+                        if opened {
+                            isOpen = false
+                        }
+                    }
+            //    }
+            //}
+            LongRoundedButton(text: "Checkout", active: $viewModel.isFormValid) {
+                viewModel.service.startHandshake { result in
+                    switch result {
+                    case .failure(let error):
+                        print(error)
+                    case .success(let content):
+                        onNext?(content)
+                    }
                 }
-                
-               
             }
-        } header: {
-           header
+            .padding(.bottom)
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
-        .onChange(of: isOpen) { opened in
-            if opened {
-                isOpen2 = false
+        .navigationBarHidden(true)
+
+    }
+    
+    private var formSectionBody: some View {
+        VStack(alignment: .leading) {
+            
+            cardHolderView
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Credit Card Number")
+                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                CustomFormatTextField(unformattedText: $viewModel.cardNumber,
+                                      placeholder: "9999 9999 9999 9999",
+                                      textPattern: "#### #### #### ####",
+                                      patternSymbol: "#",
+                                      interceptor: NumberTextFieldInterceptor())
+                .autocapitalization(.none)
+                .keyboardType(.default)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 10)
+                .background(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(.gray, lineWidth: 1)
+                )
+                .font(.system(size: 13))
+                .foregroundColor(Color.black)
+                .padding(.vertical, 5)
             }
-        }
-        .onChange(of: isOpen2) { opened in
-            if opened {
-                isOpen = false
+            HStack {
+                expirationFields
+                securityCodeView
             }
+            Spacer()
         }
-        
     }
     
     @ViewBuilder
@@ -210,9 +224,6 @@ struct CreditCardStepView: View {
             Text("Card Holder Name")
                 .font(.system(size: 14, weight: .medium, design: .rounded))
             SigningTextField(placeholder: "", text: $viewModel.cardHolderName)
-            //Text(" dsdsfd dfdsfds")
-             //   .font(.system(size: 12, weight: .regular, design: .rounded))
-             //   .foregroundColor(.red)
         }
     }
     
