@@ -19,33 +19,31 @@ class UserRegistererTests: XCTestCase {
     func test_registererReturnsUser_whenUserNotRegisteredBefore() throws {
         let (email, password) = makeValidCredentials()
         let responseContent = RemoteUser(id: "123dsd3", email: email.value)
-        let registerer = FakeUserRegisterer(realRegisterer: UserSignUpAuthenticator(network: JsonPostNetworkStub(result: .success(responseContent))))
-
-        let spy = UserRegistererSpy(authenticator: registerer)
-        spy.handle(email: email, password: password)
+        let signUp = FakeSignUp(realService: SignUpStub(result: .success(.init(id: responseContent.id, email: responseContent.email, image: nil))))
+        
+        var user: User?
+        signUp.signUp(with: .init(name: "Joe", emailAddress: email.value, password: password.value), completion: { result in
+            user = try! result.get()
+        })
        
-        XCTAssertEqual(spy.user?.email, email.value)
+        XCTAssertNotNil(user)
+        XCTAssertEqual(user?.email, email.value)
     }
     
     func test_registererReturnsError_whenUserAlreadyRegistered() throws {
         let (email, password) = makeValidCredentials()
-        let expectedErrors = [ErrorMessage(message: "User already exists")]
-        let registerer = FakeUserRegisterer(realRegisterer: UserSignUpAuthenticator(network: JsonPostNetworkStub<RemoteUser>(result: .failure(SignupError.userAlreadyExists(expectedErrors)))),
-                                            registeredUserEmails: [email.value])
-
-        let spy = UserRegistererSpy(authenticator: registerer)
-        spy.handle(email: email, password: password)
-        guard let error = spy.error as? SignupError else {
-            XCTFail("fail and die")
-            return
-        }
+        let expectedError = ErrorMessage(message: "User already exists")
         
-        switch error {
-        case .userAlreadyExists(let errors):
-            XCTAssertEqual(errors, expectedErrors)
-        default:
-            XCTFail("Type mismatch")
+        let signUp = FakeSignUp(realService: SignUpStub(result: .failure(SignupError.userAlreadyExists([expectedError]))), registeredUserEmails: [email.value])
+        
+        var error: Error?
+        signUp.signUp(with: .init(name: "Joe", emailAddress: email.value, password: password.value)) { result in
+            if case let .failure(e) = result {
+                error = e
+            }
         }
+        // TODO:
+        XCTAssertNotNil(error)
     }
     
 

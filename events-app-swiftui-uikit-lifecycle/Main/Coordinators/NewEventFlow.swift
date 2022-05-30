@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class NewEventCoordinator: Coordinator {
+class NewEventFlow: Flow {
     let factory: EventCreationViewControllerFactory
     weak var rootViewController: UINavigationController?
     let show: (UIViewController) -> ()

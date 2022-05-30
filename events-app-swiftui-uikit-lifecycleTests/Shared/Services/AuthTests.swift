@@ -19,7 +19,7 @@ class AuthTests: XCTestCase {
         
         let spy = TestSpyNever(auth.userPublisher.eraseToAnyPublisher())
         
-        auth.register(email: email, password: password)
+        auth.register(name: "Joe", email: email, password: password)
         
         logger.i(spy.values)
         
@@ -40,7 +40,8 @@ class AuthTests: XCTestCase {
         
         let spy = TestSpyNever(auth.userPublisher.eraseToAnyPublisher())
         
-        auth.register(email: email, password: password)
+        auth.register(name: "Joe", email: email, password: password)
+        //auth.register(email: email, password: password)
         
         logger.i(spy.values)
         
@@ -192,9 +193,10 @@ extension AuthTests {
     
     func makeRegisterSUT(registererResult: Result<User, Error>) -> AuthService {
         let (email, password) = makeValidCredentials()
-        let registerer = UserRegistererStub(result: registererResult)
-        let login = DummyUserlogin()
-        let auth = AuthService(registerer: registerer, userLogin: login, tokenStore: FakeTokenStore())
+        let dummySignIn = DummyUserSignIn()
+        let signUpStub = SignUpStub(result: registererResult)
+        //let auth = AuthService(registerer: registerer, userLogin: login, tokenStore: FakeTokenStore())
+        let auth = AuthService(signUp: signUpStub, signIn: dummySignIn, tokenStore: InMemoryTokenStore())
         return auth
     }
     
@@ -205,25 +207,27 @@ extension AuthTests {
     
     func makeLoginSUT(registererResult: Result<User, Error>) -> AuthService {
         let (email, password) = makeValidCredentials()
-        let registerer = DummyUserlogin()
-        let login = UserRegistererStub(result: registererResult)
-        let auth = AuthService(registerer: registerer, userLogin: login, tokenStore: FakeTokenStore())
+        let signIn = DummyUserSignIn()
+        let signUp = SignUpStub(result: registererResult)
+        //let login = UserRegistererStub(result: registererResult)
+        let auth = AuthService(signUp: signUp, signIn: signIn, tokenStore: InMemoryTokenStore())
         return auth
     }
     
     func makeSignOutSUT() -> (AuthService, TokenStore) {
-        let registerer = DummyUserlogin()
-        let login = DummyUserlogin()
-        let tokenStore = FakeTokenStore()
-        let auth = AuthService(registerer: registerer, userLogin: login, tokenStore: tokenStore)
+        //let registerer = DummyUserlogin()
+        let dummySignIn = DummyUserSignIn()
+        let dummySignUp = DummyUserSignUp()
+        let tokenStore = InMemoryTokenStore()
+        let auth = AuthService(signUp: dummySignUp, signIn: dummySignIn, tokenStore: tokenStore)
         return (auth, tokenStore)
     }
     
     func makeTrySignInSUT() -> (AuthService, TokenStore) {
-        let registerer = DummyUserlogin()
-        let login = DummyUserlogin()
-        let tokenStore = FakeTokenStore()
-        let auth = AuthService(registerer: registerer, userLogin: login, tokenStore: tokenStore)
+        let dummySignUp = DummyUserSignUp()
+        let dummySignIn = DummyUserSignIn()
+        let tokenStore = InMemoryTokenStore()
+        let auth = AuthService(signUp: dummySignUp, signIn: dummySignIn, tokenStore: tokenStore)
         return (auth, tokenStore)
     }
 }

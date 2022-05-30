@@ -20,10 +20,10 @@ class AuthService {
     var cancellable: AnyCancellable?
     
     private let tokenStore: TokenStore
-    private let signUp: UserSignUp
-    private let signIn: UserSignIn
+    private let signUp: EmailSignUp
+    private let signIn: EmailSignIn
     
-    init(signUp: UserSignUp, signIn: UserSignIn, tokenStore: TokenStore) {
+    init(signUp: EmailSignUp, signIn: EmailSignIn, tokenStore: TokenStore) {
         self.signUp = signUp
         self.tokenStore = tokenStore
         self.signIn = signIn
@@ -37,7 +37,8 @@ class AuthService {
                 case .success(let user):
                     self?.logger.d("FETCHED USER SUCCESSFULLY")
                     DispatchQueue.main.async {
-                        //self?.userPublisher.send(.loggedIn(user))
+                        // TODO: change
+                        self?.userPublisher.send(.loggedIn(user))
                     }
                 case .failure(let error):
                     self?.logger.d("ERROR WHILE FETCING USER: \(error)")

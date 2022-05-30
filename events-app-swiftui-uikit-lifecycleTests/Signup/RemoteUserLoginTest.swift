@@ -8,51 +8,49 @@
 import XCTest
 @testable import events_app_swiftui_uikit_lifecycle
 
+
+func makeResponse(statusCode: Int) -> HTTPURLResponse {
+    return HTTPURLResponse(url: URL(string: "https://google.com")!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+}
+
+
 class RemoteUserLoginTest: XCTestCase {
     func test_login_returnsUser() throws {
         let email: Email = "test@test.com"
         let password: BasicPassword = "12345"
         let remoteUser = RemoteUser(id: "123", email: email.value)
-        let networkStub = JsonPostNetworkStub(result: .success(remoteUser))
-        let userLogin = UserSignInAuthenticator(network: networkStub)
+        let data = try! JSONEncoder().encode(remoteUser)
+        let response = makeResponse(statusCode: 200)
         
+        let stubbedClient = HttpClientStub(result: .success(.init(data: data, response: response)))
+        let userSignIn = UserSignIn(client: stubbedClient)
         var user: User?
-        let exp = expectation(description: "user")
-        let cancellable = userLogin.handle(email: email, password: password)
-            .sink { _ in
-                
-            } receiveValue: { returnedUser in
-                user = returnedUser
-                exp.fulfill()
+        userSignIn.login(email: email, password: password, completion: { result in
+            if case let .success(usr) = result {
+                user = usr
             }
-
-        waitForExpectations(timeout: 0.2)
+        })
+        
         XCTAssertNotNil(user)
         XCTAssertEqual(user?.email, remoteUser.email)
-        cancellable.cancel()
     }
     
     func test_login_returnsError() throws {
         let email: Email = "test@test.com"
         let password: BasicPassword = "12345"
         let remoteUser = RemoteUser(id: "123", email: email.value)
-        let networkStub = JsonPostNetworkStub<RemoteUser>(result: .failure(URLError.init(.badServerResponse)))
-        let userLogin = UserSignInAuthenticator(network: networkStub)
+        let stubbedClient = HttpClientStub(result: .failure(URLError.init(.badServerResponse)))
+        let userSignIn = UserSignIn(client: stubbedClient)
         
         var error: Error?
-        let exp = expectation(description: "error")
-        let cancellable = userLogin.handle(email: email, password: password)
-            .sink { completion in
-                if case let .failure(e) = completion {
-                    error = e
-                    exp.fulfill()
-                }
-            } receiveValue: { _ in
+        userSignIn.login(email: email, password: password, completion: { result in
+            if case let .failure(e) = result {
+                error = e
             }
-
-        waitForExpectations(timeout: 0.2)
+        })
         XCTAssertNotNil(error)
-        cancellable.cancel()
+        
     }
+     
 }
 

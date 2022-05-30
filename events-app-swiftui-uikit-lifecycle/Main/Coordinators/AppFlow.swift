@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-class AppCoordinator: Coordinator {
-    private var childCoordinators: [Coordinator] = []
+class AppFlow: Flow {
+    private var childCoordinators: [Flow] = []
     private let homeFactory: HomeViewControllerFactory
     private let chatFactory: ChatViewControllerFactory
     private let profileFactory: ProfileViewControllerFactory
@@ -35,7 +35,7 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        let mainCoordinator = TabBarControllerCoordinator(homeFactory: homeFactory,
+        let mainCoordinator = TabFlow(homeFactory: homeFactory,
                                               chatFactory: chatFactory,
                                               profileFactory: profileFactory,
                                               searchFactory: searchFactory,

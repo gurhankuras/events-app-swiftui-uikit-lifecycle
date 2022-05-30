@@ -16,7 +16,7 @@ class ChatAccessContainerViewModel: ObservableObject {
         self.authService = authService
         self.authService.userPublisher
             .map({ (status) -> Bool in
-                if case let .loggedIn(_) = status {
+                if case .loggedIn(_) = status {
                     return true
                 }
                 return false

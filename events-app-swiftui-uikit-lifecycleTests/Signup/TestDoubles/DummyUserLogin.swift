@@ -17,3 +17,17 @@ class DummyUserlogin: UserAuthenticator {
         return Empty(completeImmediately: true).eraseToAnyPublisher()
     }
 }
+
+class DummyUserSignIn: EmailSignIn {
+    func login(email: Email, password: Password, completion: @escaping (Result<User, Error>) -> ()) {
+        XCTFail("shouldn't interact with this method")
+    }
+}
+
+class DummyUserSignUp: EmailSignUp {
+    func signUp(with request: SignUpRequest, completion: @escaping (Result<User, Error>) -> ()) {
+        XCTFail("shouldn't interact with this method")
+    }
+    
+
+}

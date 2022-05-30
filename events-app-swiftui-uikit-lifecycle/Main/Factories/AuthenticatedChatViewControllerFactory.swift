@@ -59,7 +59,6 @@ class AuthenticatedChatViewControllerFactory: ChatViewControllerFactory {
     }
     
     func chatMessagesController(room: Room, onBack: @escaping () -> ()) -> UIViewController {
-        let network = JsonPostAuthDecorator(decoratee: URLSession.shared, store: SecureTokenStore(keychain: .standard))
         let service =  RemoteChatMessageFetcher(session: .shared)
         let socketManager = SocketManager(socketURL: URL(string: "http://localhost:3000/api/chat")!, config: [.log(false)])
         

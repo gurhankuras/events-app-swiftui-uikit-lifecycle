@@ -11,7 +11,7 @@ import SwiftUI
 import SocketIO
 import Combine
 
-class ChatCoordinator: Coordinator {
+class ChatFlow: Flow {
     var rootViewController = UINavigationController(rootViewController: UIViewController())
     private let factory: ChatViewControllerFactory
     private var cancellable: AnyCancellable?

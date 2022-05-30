@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var searchFactory: SearchViewControllerFactory!
     var signFactory: SignViewControllerFactory!
     
-    var appCoordinator: AppCoordinator!
+    var appCoordinator: AppFlow!
     
     var deleteThis: UINavigationController!
     
@@ -37,16 +37,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         initSharedDependencies()
         initFactories()
         
-        appCoordinator = AppCoordinator(homeFactory: homeFactory, chatFactory: chatFactory,
+        appCoordinator = AppFlow(homeFactory: homeFactory, chatFactory: chatFactory,
                                         profileFactory: profileFactory, searchFactory: searchFactory,
                                         createFactory: createFactory, signFactory: signFactory)
         
         appCoordinator.window = window
         
+        
         auth.trySignIn()
         appCoordinator.start()
+         
         /*
-        deleteThis = UINavigationController(rootView: BillingAddressStepView(onClickedNext: { [weak self]  previousStep in self?.showCreditCardForm(with: previousStep) }))
+        let viewModel = LinkedInVerificationViewModel()
+        viewModel.didVerified = { [weak self] in
+            DispatchQueue.main.async {
+                self?.deleteThis.popViewController(animated: true)                
+            }
+        }
+        deleteThis = UINavigationController(rootView: LinkedInView(viewModel: viewModel))
         window?.rootViewController = deleteThis
          */
         window?.makeKeyAndVisible()

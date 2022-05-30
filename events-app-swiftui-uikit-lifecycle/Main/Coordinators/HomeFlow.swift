@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class HomeCoordinator: Coordinator {
+class HomeFlow: Flow {
     var rootViewController: UINavigationController = UINavigationController(rootViewController: UIViewController())
     var eventDetailsViewController: UINavigationController?
     private let factory: HomeViewControllerFactory

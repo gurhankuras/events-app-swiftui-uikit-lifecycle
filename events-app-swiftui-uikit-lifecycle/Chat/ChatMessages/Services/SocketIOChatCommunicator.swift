@@ -113,7 +113,7 @@ class SocketIOChatCommunicator: ChatCommunicator {
         socket.on(ServerChatEvent.roomUpdated.rawValue) { [weak self] data, ack in
                 print(data)
         }
-        socket.on(event.rawValue) { [weak self] message, ack in
+        socket.on(event.rawValue) { message, ack in
             //self?.logger.d(message)
     
             DispatchQueue.global(qos: .default).async {

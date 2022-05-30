@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class ProfileCoordinator: Coordinator {
+class ProfileFlow: Flow {
     var rootViewController = UINavigationController(rootViewController: UIViewController())
     private let factory: ProfileViewControllerFactory
     
@@ -18,13 +18,23 @@ class ProfileCoordinator: Coordinator {
     }
     
     func start() {
-        rootViewController = factory.controller(onTropiesIconClicked: {[weak self] in self?.showAchievements() })
+        rootViewController = factory.controller(onTropiesIconClicked: {[weak self] in self?.showAchievements() },
+                                                onVerificationClicked: {[weak self] in self?.verifyViaLinkedIn() })
     }
     
     private func showAchievements() {
         let view = AchievementsView()
         let vc = UIHostingController(rootView: view)
         self.rootViewController.present(vc, animated: true, completion: nil)
+    }
+    
+    private func verifyViaLinkedIn() {
+        let vc = factory.linkedinVerificationController(onVerified: { [weak self] in
+            DispatchQueue.main.async {
+                self?.rootViewController.popViewController(animated: true)
+            }
+        })
+        self.rootViewController.pushViewController(vc, animated: true)
     }
     
     

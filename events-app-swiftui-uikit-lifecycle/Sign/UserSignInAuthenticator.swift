@@ -37,7 +37,12 @@ class UserSignInAuthenticator: UserAuthenticator {
 }
 */
 
-class UserSignIn {
+
+protocol EmailSignIn {
+    func login(email: Email, password: Password, completion: @escaping (Result<User, Error>) -> ())
+}
+
+class UserSignIn: EmailSignIn {
     let client: HttpClient
     
     init(client: HttpClient) {

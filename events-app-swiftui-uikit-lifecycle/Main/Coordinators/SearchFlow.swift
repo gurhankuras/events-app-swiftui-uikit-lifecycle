@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class SearchCoordinator: Coordinator {
+class SearchFlow: Flow {
     var rootViewController = UINavigationController(rootViewController: UIViewController())
     private let factory: SearchViewControllerFactory
     

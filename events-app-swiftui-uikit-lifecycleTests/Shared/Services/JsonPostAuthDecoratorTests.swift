@@ -13,38 +13,45 @@ import Combine
 class JsonPostAuthDecoratorTests: XCTestCase {
 
     
-    func setupFixture() -> (JsonPostAuthDecorator, JsonPostHeadersSpyDecorator, TokenStore) {
-        let tokenStore = FakeTokenStore()
-        let spy = JsonPostHeadersSpyDecorator(decoratee: JsonPostNetworkStub(result: .success(aCodable)))
-        let sut = JsonPostAuthDecorator(decoratee: spy, store: tokenStore)
-        return (sut, spy, tokenStore)
+    func setupFixture(strategy: TokenStrategy) -> (HttpClient, HeaderSnifferDecorator, TokenStore) {
+        let tokenStore = InMemoryTokenStore()
+        let sniffer = HttpClientStub(result: .success(.init(data: nil, response: nil)))
+                        .headerSniffer()
+        let sut = sniffer.tokenSender(store: tokenStore, strategy: strategy)
+        return (sut, sniffer, tokenStore)
     }
+    
     
     func test_post_doesNotSetAuthHeaders_IfTokenNotFound() {
-        let (sut, spy, _) = setupFixture()
+        // Arrange
+        let strategy: TokenStrategy = .bearer
+        let (sut, spy, store) = setupFixture(strategy: strategy)
+        let request = URLRequest(url: aURL)
         
-        let cancellable = sut.post(url: aURL, with: aCodable, headers: [:], responseHandler: nil).emptySink()
+        // Act
+        sut.request(request, completion: { _ in })
         
-        defer { cancellable.cancel() }
-        
-        XCTAssertNotNil(spy.headers)
-        XCTAssertTrue(spy.headers!.isEmpty)
-        
+        // Assert
+        XCTAssertNil(spy.headers?[strategy.headerName])
     }
     
+    
     func test_post_setsAuthHeaders_IfTokenExists() throws {
-        let (sut, spy, store) = setupFixture()
+        // Arrange
+        let strategy: TokenStrategy = .bearer
+        let (sut, sniffer, store) = setupFixture(strategy: strategy)
         store.save(aToken)
+        let request = URLRequest(url: aURL)
 
-        let cancellable = sut.post(url: aURL, with: aCodable, headers: [:], responseHandler: nil).emptySink()
+        // Act
+        sut.request(request, completion: { _ in })
         
-        defer { cancellable.cancel() }
-        
-        let headers = try XCTUnwrap(spy.headers)
-        XCTAssertNotNil(headers)
+        // Assert
+        let headers = try XCTUnwrap(sniffer.headers)
         XCTAssertEqual(headers.isEmpty, false)
-        XCTAssertEqual(headers["access-token"], aToken)
-        
+        XCTAssertEqual(headers[strategy.headerName], strategy.formatted(aToken))
     }
+    
+    
 
 }

@@ -9,7 +9,8 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 class ProfileViewModel: ObservableObject {
-    var onTropiesClicked: (() -> Void)?
+    var onTropiesClicked: (() -> ())?
+    var onVerificationClicked: (() -> ())?
 }
 
 struct ProfileView: View {
@@ -20,7 +21,10 @@ struct ProfileView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            ProfileHeader(profileViewModel: profileUserViewModel, onTropiesClicked: profileViewModel.onTropiesClicked)
+            ProfileHeader(profileViewModel: profileUserViewModel,
+                          onTropiesClicked: profileViewModel.onTropiesClicked,
+                          verify: profileViewModel.onVerificationClicked
+            )
             SettingsView(settingsViewModel: settingsViewModel)
         }
         .navigationBarHidden(true)

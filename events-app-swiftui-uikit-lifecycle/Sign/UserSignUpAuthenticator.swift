@@ -56,7 +56,12 @@ struct SignUpRequest: Encodable {
 }
 
 
-class UserSignUp {
+
+protocol EmailSignUp {
+    func signUp(with request: SignUpRequest, completion: @escaping (Result<User, Error>) -> ())
+}
+
+class UserSignUp: EmailSignUp {
     let client: HttpClient
     
     init(client: HttpClient) {

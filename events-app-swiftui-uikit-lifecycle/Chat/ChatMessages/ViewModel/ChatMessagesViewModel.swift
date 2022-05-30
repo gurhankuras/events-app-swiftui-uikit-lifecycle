@@ -88,7 +88,7 @@ class ChatMessagesViewModel: ObservableObject {
 
     
     func send() {
-        guard let currentUser = currentUser else { return }
+        guard currentUser != nil else { return }
         communicator.send(message: .text(text.trimmed()), to: room.id) { [weak self] in
             print("SENT")
             self?.text = ""

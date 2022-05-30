@@ -34,6 +34,7 @@ class SignupViewModel: ObservableObject {
     init(auth: AuthService, didSignIn: @escaping () -> Void) {
         self.auth = auth
         self.didSignIn = didSignIn
+        start()
     }
     
     func start() {

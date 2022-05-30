@@ -12,7 +12,7 @@ extension HttpClient {
         TokenSaverDecorator(decoratee: self, store: store)
     }
     
-    func tokenSender(store: TokenStore) -> HttpClient {
-        JWTBearerTokenSenderDecorator(decoratee: self, store: store)
+    func tokenSender(store: TokenStore, strategy: TokenStrategy = .bearer) -> HttpClient {
+        TokenSenderDecorator(decoratee: self, store: store, strategy: strategy)
     }
 }

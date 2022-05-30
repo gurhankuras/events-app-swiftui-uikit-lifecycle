@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class TabBarControllerCoordinator: NSObject, Coordinator {
+class TabFlow: NSObject, Flow {
     var rootViewController: UITabBarController!
-    private var childCoordinators: [Coordinator] = []
+    private var childCoordinators: [Flow] = []
     
     private let homeFactory: HomeViewControllerFactory
     private let chatFactory: ChatViewControllerFactory
@@ -20,7 +20,7 @@ class TabBarControllerCoordinator: NSObject, Coordinator {
     private let createFactory: EventCreationViewControllerFactory
     private let signFactory: SignViewControllerFactory
     
-    private var newEventCoordinator: NewEventCoordinator?
+    private var newEventCoordinator: NewEventFlow?
     
     init(homeFactory: HomeViewControllerFactory,
          chatFactory: ChatViewControllerFactory,
@@ -39,22 +39,22 @@ class TabBarControllerCoordinator: NSObject, Coordinator {
     }
     
     func start() {
-        let homeCoordinator = HomeCoordinator(factory: homeFactory, signFactory: signFactory)
+        let homeCoordinator = HomeFlow(factory: homeFactory, signFactory: signFactory)
         homeCoordinator.start()
         let homeViewController = homeCoordinator.rootViewController
         childCoordinators.append(homeCoordinator)
         
-        let searchCoordinator = SearchCoordinator(factory: searchFactory)
+        let searchCoordinator = SearchFlow(factory: searchFactory)
         searchCoordinator.start()
         let searchViewController = searchCoordinator.rootViewController
         childCoordinators.append(searchCoordinator)
         
-        let chatCoordinator = ChatCoordinator(factory: chatFactory, authService: homeFactory.auth)
+        let chatCoordinator = ChatFlow(factory: chatFactory, authService: homeFactory.auth)
         chatCoordinator.start()
         let chatViewController = chatCoordinator.rootViewController
         childCoordinators.append(chatCoordinator)
         
-        let profileCoordinator = ProfileCoordinator(factory: profileFactory)
+        let profileCoordinator = ProfileFlow(factory: profileFactory)
         profileCoordinator.start()
         let profileViewController = profileCoordinator.rootViewController
         childCoordinators.append(profileCoordinator)
@@ -69,7 +69,7 @@ class TabBarControllerCoordinator: NSObject, Coordinator {
 }
 
 // MARK: Create New Event Tab
-extension TabBarControllerCoordinator {
+extension TabFlow {
     private func configureTabController(with controllers: [UINavigationController]) {
         let delegate = TabbarDelegate(authService: homeFactory.auth)
         delegate.onNewEventTabSelected = { [weak self] authenticated in
@@ -86,7 +86,7 @@ extension TabBarControllerCoordinator {
     }
     
     private func handleNewEventCoordinator() {
-        let coordinator = NewEventCoordinator(factory: createFactory) { [weak self] vc in
+        let coordinator = NewEventFlow(factory: createFactory) { [weak self] vc in
             vc.modalPresentationStyle = .fullScreen
             self?.rootViewController.present(vc, animated: true)
         } close: { [weak self] in

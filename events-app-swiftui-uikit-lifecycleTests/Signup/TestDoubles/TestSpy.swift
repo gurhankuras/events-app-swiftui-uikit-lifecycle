@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+
 class TestSpy2<T, E: Error> {
     private(set) var values = [T]()
     private(set) var error: E?
@@ -26,4 +27,8 @@ class TestSpy2<T, E: Error> {
             self?.values.append(value)
         })
     }
+}
+
+class CallbackTestSpy<T> {
+    var completion: ((T) -> ())?
 }

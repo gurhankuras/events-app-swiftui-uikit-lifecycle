@@ -23,3 +23,23 @@ class JsonPostHeadersSpyDecorator: JsonPost {
         return decoratee.post(url: url, with: body, headers: headers, responseHandler: responseHandler)
     }
 }
+
+class HeaderSnifferDecorator: HttpClient {
+    let decoratee: HttpClient
+    var headers: [String: String]?
+    
+    init(decoratee: HttpClient) {
+        self.decoratee = decoratee
+    }
+    
+    func request(_ request: URLRequest, completion: @escaping (Result<ResponseBundle, Error>) -> Void) {
+        self.headers = request.allHTTPHeaderFields
+        decoratee.request(request, completion: completion)
+    }
+}
+
+extension HttpClient  {
+    func headerSniffer() -> HeaderSnifferDecorator {
+        return HeaderSnifferDecorator(decoratee: self)
+    }
+}

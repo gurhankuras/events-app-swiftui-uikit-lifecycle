@@ -8,6 +8,6 @@
 import Foundation
 
 
-protocol Coordinator {
+protocol Flow {
     func start()
 }

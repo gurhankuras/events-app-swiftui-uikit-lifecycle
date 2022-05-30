@@ -10,7 +10,9 @@ import SDWebImageSwiftUI
 
 struct ProfileHeader: View {
     let profileViewModel: ProfileUserViewModel
-    let onTropiesClicked: (() -> Void)?
+    let onTropiesClicked: (() -> ())?
+    let verify: (() -> ())?
+    
     var body: some View {
         VStack {
             HStack {
@@ -44,7 +46,7 @@ struct ProfileHeader: View {
                 .fontWeight(.medium)
                 .foregroundColor(Color(.systemGray))
             Button {
-                
+                verify?()
             } label: {
                 HStack(alignment: .lastTextBaseline) {
                     Text("profile-edit-button")
@@ -75,7 +77,7 @@ struct ProfileHeader_Previews: PreviewProvider {
                 name: "Gurhan Kuras",
                 username: "gurhankuras",
                 image: "gurhan"
-            ), onTropiesClicked: nil
+            ), onTropiesClicked: nil, verify: {}
         )
             .previewLayout(.sizeThatFits)
     }

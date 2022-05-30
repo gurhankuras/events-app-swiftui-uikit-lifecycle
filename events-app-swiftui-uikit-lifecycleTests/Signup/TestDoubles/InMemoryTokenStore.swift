@@ -8,7 +8,7 @@
 import Foundation
 @testable import events_app_swiftui_uikit_lifecycle
 
-class FakeTokenStore: TokenStore {
+class InMemoryTokenStore: TokenStore {
     private(set) var tokens: [String:String]
     
     
