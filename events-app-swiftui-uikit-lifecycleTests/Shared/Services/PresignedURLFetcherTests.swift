@@ -17,7 +17,7 @@ class PresignedURLFetcherTests: XCTestCase {
         
         let cancellable = sut.fetch().sink { comp in
             switch comp {
-            case .failure(let err):
+            case .failure(_):
                 XCTFail("should return url")
                 break
             case .finished:
@@ -26,6 +26,8 @@ class PresignedURLFetcherTests: XCTestCase {
         } receiveValue: { url in
             XCTAssertEqual(url.path, info.url)
         }
+        
+        cancellable.cancel()
         
     }
      

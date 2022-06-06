@@ -62,7 +62,7 @@ class MapViewController: UIViewController {
         // Parse the objects
         objs.forEach { (feature) in
             guard let geometry = feature.geometry.first,
-                let propData = feature.properties else {
+                let _ = feature.properties else {
                 return;
             }
             

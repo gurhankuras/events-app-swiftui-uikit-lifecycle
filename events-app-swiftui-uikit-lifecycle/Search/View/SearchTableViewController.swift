@@ -110,7 +110,7 @@ extension SearchTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier) as! EventSearchResultCell
         //cell.textLabel?.text = viewModel.results[indexPath.row]
-        cell.setEvent(event: viewModel.results.value[indexPath.row])
+        cell.setViewModel(SearchedEventViewModel(viewModel.results.value[indexPath.row]))
         //let room = viewModel.results[indexPath.row]
         //cell.setRoom(room)
         return cell

@@ -67,7 +67,6 @@ class ChatRoomsViewController: UITableViewController {
         
         navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "test", style: .done, target: self, action: #selector(addTapped))
 
-        print( navigationController?.navigationItem.rightBarButtonItem )
         tableView.register(ChatRoomCell2.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self

@@ -13,13 +13,13 @@ class AuthTests: XCTestCase {
      
 
     func test_register_publishesUser_whenUserSignedUp() throws {
-        let (email, password) = makeValidCredentials()
+        let (name, email, password) = makeValidCredentials()
         let user = User(id: "123", email: email.value)
         let auth = makeRegisterSUT(registererResult: .success(user))
         
         let spy = TestSpyNever(auth.userPublisher.eraseToAnyPublisher())
         
-        auth.register(name: "Joe", email: email, password: password)
+        auth.register(name: name, email: email, password: password)
         
         logger.i(spy.values)
         
@@ -35,12 +35,12 @@ class AuthTests: XCTestCase {
     }
     
     func test_register_publishesError_whenCouldntUserSignedUp() throws {
-        let (email, password) = makeValidCredentials()
+        let (name, email, password) = makeValidCredentials()
         let auth = makeRegisterSUT(registererResult: .failure(SignupError.userAlreadyExists([ErrorMessage(message: "message")])))
         
         let spy = TestSpyNever(auth.userPublisher.eraseToAnyPublisher())
         
-        auth.register(name: "Joe", email: email, password: password)
+        auth.register(name: name, email: email, password: password)
         //auth.register(email: email, password: password)
         
         logger.i(spy.values)
@@ -57,7 +57,7 @@ class AuthTests: XCTestCase {
     }
     
     func test_register_publishesError_whenUserSignedIn() throws {
-        let (email, password) = makeValidCredentials()
+        let (name, email, password) = makeValidCredentials()
         let user = User(id: "123", email: email.value)
         let auth = makeLoginSUT(registererResult: .success(user))
         
@@ -78,7 +78,7 @@ class AuthTests: XCTestCase {
     }
     
     func test_register_publishesError_whenCouldntUserSignedIn() throws {
-        let (email, password) = makeValidCredentials()
+        let (name, email, password) = makeValidCredentials()
         let auth = makeLoginSUT(registererResult: .failure(NetworkError.response([ErrorMessage(message: "message")])))
         
         let spy = TestSpyNever(auth.userPublisher.eraseToAnyPublisher())
@@ -162,7 +162,6 @@ class AuthTests: XCTestCase {
         print(try decode(jwtToken: token))
         let (sut, store) = makeTrySignInSUT()
         store.save(token)
-        let spy = TestSpyNever(sut.userPublisher.eraseToAnyPublisher())
         
         sut.trySignIn()
         
@@ -175,7 +174,6 @@ class AuthTests: XCTestCase {
         print(try decode(jwtToken: token))
         let (sut, store) = makeTrySignInSUT()
         store.save(token)
-        let spy = TestSpyNever(sut.userPublisher.eraseToAnyPublisher())
         
         sut.trySignIn()
      
@@ -185,14 +183,14 @@ class AuthTests: XCTestCase {
 
 // MARK: Fixture setup functions and utilities
 extension AuthTests {
-    func makeValidCredentials() -> (Email, BasicPassword) {
+    func makeValidCredentials() -> (String, Email, BasicPassword) {
         let email: Email = "test@test.com"
         let password: BasicPassword = "12345"
-        return (email, password)
+        let name = "Joe"
+        return (name, email, password)
     }
     
     func makeRegisterSUT(registererResult: Result<User, Error>) -> AuthService {
-        let (email, password) = makeValidCredentials()
         let dummySignIn = DummyUserSignIn()
         let signUpStub = SignUpStub(result: registererResult)
         //let auth = AuthService(registerer: registerer, userLogin: login, tokenStore: FakeTokenStore())
@@ -206,7 +204,6 @@ extension AuthTests {
     
     
     func makeLoginSUT(registererResult: Result<User, Error>) -> AuthService {
-        let (email, password) = makeValidCredentials()
         let signIn = DummyUserSignIn()
         let signUp = SignUpStub(result: registererResult)
         //let login = UserRegistererStub(result: registererResult)

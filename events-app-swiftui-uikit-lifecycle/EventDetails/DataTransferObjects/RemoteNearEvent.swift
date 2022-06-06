@@ -27,9 +27,12 @@ struct RemoteNearEventAddress: Decodable {
 }
 
 extension RemoteNearEvent {
+    private static var randomId: String {
+        return "\(UUID().uuidString)\(UUID().uuidString.randomElement()!)"
+    }
     static var stub: RemoteNearEvent {
         RemoteNearEvent(
-            id: "627f864361718507a4490ab7",
+            id: randomId,
             at: Date(),
             image: "",
             title: "Xxxxxxxxx xxxxxxxxxx xxxxxxxx xxxxxx",

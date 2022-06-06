@@ -90,7 +90,7 @@ class RemoteChatFetcher: ChatRoomFetcher {
         guard let url = URL(string: "http://localhost:3000/api/chat/rooms") else {
             return completion(.failure(URLError.init(.badURL)))
         }
-        var request = URLRequest(url: url)
+        let request = URLRequest(url: url)
         
         let mapper = RemoteChatRoomMapper(for: user)
         client.request(request) { result in
@@ -98,11 +98,11 @@ class RemoteChatFetcher: ChatRoomFetcher {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let bundle):
-                guard let response = bundle.response,
-                      let data = bundle.data else {
-                          completion(.failure(URLError.init(.badServerResponse)))
-                          return
+                guard let data = bundle.data else {
+                    completion(.failure(URLError.init(.badServerResponse)))
+                    return
                 }
+                let response = bundle.response
                 
                 do {
                     print(response.statusCode)

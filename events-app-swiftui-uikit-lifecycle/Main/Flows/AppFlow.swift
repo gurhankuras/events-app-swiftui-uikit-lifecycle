@@ -16,6 +16,7 @@ class AppFlow: Flow {
     private let searchFactory: SearchViewControllerFactory
     private let createFactory: EventCreationViewControllerFactory
     private let signFactory: SignViewControllerFactory
+    private let authService: AuthService
     
     weak var window: UIWindow?
     
@@ -24,13 +25,15 @@ class AppFlow: Flow {
          profileFactory: ProfileViewControllerFactory,
          searchFactory: SearchViewControllerFactory,
          createFactory: EventCreationViewControllerFactory,
-         signFactory: SignViewControllerFactory) {
+         signFactory: SignViewControllerFactory,
+         authService: AuthService) {
         self.homeFactory = homeFactory
         self.chatFactory = chatFactory
         self.profileFactory = profileFactory
         self.searchFactory = searchFactory
         self.createFactory = createFactory
         self.signFactory = signFactory
+        self.authService = authService
 
     }
     
@@ -40,7 +43,8 @@ class AppFlow: Flow {
                                               profileFactory: profileFactory,
                                               searchFactory: searchFactory,
                                               createFactory: createFactory,
-        signFactory: signFactory)
+        signFactory: signFactory,
+                                      authService: self.authService)
         mainCoordinator.start()
         childCoordinators.append(mainCoordinator)
         window?.rootViewController = mainCoordinator.rootViewController

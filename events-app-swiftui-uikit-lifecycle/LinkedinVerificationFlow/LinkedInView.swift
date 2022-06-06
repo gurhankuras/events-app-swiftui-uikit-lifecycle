@@ -22,9 +22,9 @@ class LinkedInVerificationViewModel: ObservableObject {
     func verify(code: String) {
         service.verify(with: code) { [weak self] result in
             switch result {
-            case .success(let success):
+            case .success(_):
                 self?.didVerified?()
-            case .failure(let error):
+            case .failure(_):
                 self?.didFail?()
             }
         }

@@ -21,13 +21,15 @@ class TabFlow: NSObject, Flow {
     private let signFactory: SignViewControllerFactory
     
     private var newEventCoordinator: NewEventFlow?
+    private let authService: AuthService
     
     init(homeFactory: HomeViewControllerFactory,
          chatFactory: ChatViewControllerFactory,
          profileFactory: ProfileViewControllerFactory,
          searchFactory: SearchViewControllerFactory,
          createFactory: EventCreationViewControllerFactory,
-         signFactory: SignViewControllerFactory
+         signFactory: SignViewControllerFactory,
+         authService: AuthService
     ) {
         self.homeFactory = homeFactory
         self.chatFactory = chatFactory
@@ -35,13 +37,14 @@ class TabFlow: NSObject, Flow {
         self.createFactory = createFactory
         self.searchFactory = searchFactory
         self.signFactory = signFactory
+        self.authService = authService
         super.init()
     }
     
     func start() {
         let homeCoordinator = HomeFlow(factory: homeFactory, signFactory: signFactory)
         homeCoordinator.start()
-        let homeViewController = homeCoordinator.rootViewController
+        let homeViewController = homeCoordinator.rootViewController!
         childCoordinators.append(homeCoordinator)
         
         let searchCoordinator = SearchFlow(factory: searchFactory)
@@ -49,7 +52,7 @@ class TabFlow: NSObject, Flow {
         let searchViewController = searchCoordinator.rootViewController
         childCoordinators.append(searchCoordinator)
         
-        let chatCoordinator = ChatFlow(factory: chatFactory, authService: homeFactory.auth)
+        let chatCoordinator = ChatFlow(factory: chatFactory, authService: authService)
         chatCoordinator.start()
         let chatViewController = chatCoordinator.rootViewController
         childCoordinators.append(chatCoordinator)
@@ -71,7 +74,7 @@ class TabFlow: NSObject, Flow {
 // MARK: Create New Event Tab
 extension TabFlow {
     private func configureTabController(with controllers: [UINavigationController]) {
-        let delegate = TabbarDelegate(authService: homeFactory.auth)
+        let delegate = TabbarDelegate(authService: self.authService)
         delegate.onNewEventTabSelected = { [weak self] authenticated in
             guard let self = self else { return }
             if authenticated {

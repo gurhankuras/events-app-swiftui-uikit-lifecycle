@@ -37,7 +37,6 @@ class VideoPlayerTests: XCTestCase {
     
     func test_shouldShowPanelWhenStartedPlayingByUser() {
         let (vm, _) = makePlayerViewModel()
-        let spy = TestSpyNever(vm.$showingControls.eraseToAnyPublisher())
         XCTAssert(vm.playState is PlayerViewModel.PlayingState)
         
         vm.playState.next()
@@ -47,7 +46,6 @@ class VideoPlayerTests: XCTestCase {
     
     func test_shouldShowPanelWhenPausedByUser() {
         let (vm, _) = makePlayerViewModel()
-        let spy = TestSpyNever(vm.$showingControls.eraseToAnyPublisher())
         XCTAssert(vm.playState is PlayerViewModel.PlayingState)
         
         vm.playState.next()

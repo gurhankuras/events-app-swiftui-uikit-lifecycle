@@ -8,18 +8,21 @@
 import Foundation
 import Combine
 
+
 class SearchViewModel {
     //var didLoad: (([SearchedEvent]) -> ())?
     let results = CurrentValueSubject<[SearchedEvent], Never>([])
     let query = CurrentValueSubject<String, Never>("")
     
     var cancellable: AnyCancellable?
+    let engine: EventSearchEngine
     
-    init() {
+    init(engine: EventSearchEngine) {
+        self.engine = engine
         cancellable = query
             .debounce(for: 0.6, scheduler: RunLoop.main)
             .removeDuplicates()
-            .map({q in self.loadPublisher(for: q)})
+            .map({q in self.loadPublisher(for: q).receive(on: DispatchQueue.main)})
             .switchToLatest()
             .sink(receiveCompletion: { completion in
                 print("Completed")
@@ -34,7 +37,7 @@ class SearchViewModel {
        print("girdi")
         return Deferred {
             Future { [weak self] promise in
-                self?.load(for: query) { result in
+                self?.engine.search(for: query, options: .init(pageNumber: 1, pageSize: 5)) { result  in
                     switch result {
                     case .success(let response):
                         promise(.success(response))
@@ -42,6 +45,11 @@ class SearchViewModel {
                         promise(.failure(error))
                     }
                 }
+                /*
+                self?.load(for: query) { result in
+                    
+                }
+                 */
             }
         }
         .eraseToAnyPublisher()

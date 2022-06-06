@@ -14,8 +14,8 @@ func makeResponse(statusCode: Int) -> HTTPURLResponse {
 }
 
 
-class RemoteUserLoginTest: XCTestCase {
-    func test_login_returnsUser() throws {
+class UserSignInTests: XCTestCase {
+    func test_signIn_returnsUser() throws {
         let email: Email = "test@test.com"
         let password: BasicPassword = "12345"
         let remoteUser = RemoteUser(id: "123", email: email.value)
@@ -35,10 +35,9 @@ class RemoteUserLoginTest: XCTestCase {
         XCTAssertEqual(user?.email, remoteUser.email)
     }
     
-    func test_login_returnsError() throws {
+    func test_signIn_returnsError() throws {
         let email: Email = "test@test.com"
         let password: BasicPassword = "12345"
-        let remoteUser = RemoteUser(id: "123", email: email.value)
         let stubbedClient = HttpClientStub(result: .failure(URLError.init(.badServerResponse)))
         let userSignIn = UserSignIn(client: stubbedClient)
         

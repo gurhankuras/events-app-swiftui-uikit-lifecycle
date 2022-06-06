@@ -21,6 +21,7 @@ struct HomeView: View {
                        onSignIn: { viewModel.onSignClick?() })
             remainder
             scroll
+                .offset(y: -10)
         }
         .background(Color.background)
         .navigationBarHidden(true)
@@ -34,43 +35,53 @@ struct HomeView: View {
         .foregroundColor(.white)
     }
     
+    @ViewBuilder
     var scroll: some View {
-        CustomRefreshView(lottieFileName: "loading") {
-            VStack {
-                EventCategoriesView(categories)
-                EventCatalog(title: "popular-title") {
-                    ForEach(viewModel.events) { event in
-                        EventCardView(event: event, onClicked: viewModel.loading ? {_ in } : onEventSelected)
-                            .padding(.leading)
-                    }
-                    .redacted(reason: viewModel.loading ? .placeholder : [])
-                }
-
-                EventCatalog(title: "popular-title") {
-                    ForEach(viewModel.events) { event in
-                        EventCardView(event: event, onClicked: viewModel.loading ? {_ in } : onEventSelected)
-                            .padding(.leading)
-                    }
-                    .redacted(reason: viewModel.loading ? .placeholder : [])
-                }
-                EventCatalog(title: "popular-title") {
-                    ForEach(viewModel.events) { event in
-                        EventCardView(event: event, onClicked: viewModel.loading ? {_ in } : onEventSelected)
-                            .padding(.leading)
-                    }
-                    .redacted(reason: viewModel.loading ? .placeholder : [])
-                }
+        if viewModel.loading {
+            ScrollView {
+                scrollBody
             }
-            .padding(.bottom)
-        } onRefresh: { refresher in
-            viewModel.refresh(completion: {
-                DispatchQueue.main.async {
-                    refresher.stopRefreshing?()
-                }
-            })
         }
-        .offset(y: -10)
-        
+        else {
+            CustomRefreshView(lottieFileName: "loading") {
+                scrollBody
+            } onRefresh: { refresher in
+                viewModel.refresh(completion: {
+                    DispatchQueue.main.async {
+                        refresher.stopRefreshing?()
+                    }
+                })
+            }
+        }
+    }
+    
+    var scrollBody: some View {
+        VStack {
+            EventCategoriesView(categories)
+            EventCatalog(title: "popular-title") {
+                ForEach(viewModel.events) { event in
+                    EventCardView(event: event, onClicked: viewModel.loading ? {_ in } : onEventSelected)
+                        .padding(.leading)
+                }
+                .redacted(reason: viewModel.loading ? .placeholder : [])
+            }
+
+            EventCatalog(title: "popular-title") {
+                ForEach(viewModel.events) { event in
+                    EventCardView(event: event, onClicked: viewModel.loading ? {_ in } : onEventSelected)
+                        .padding(.leading)
+                }
+                .redacted(reason: viewModel.loading ? .placeholder : [])
+            }
+            EventCatalog(title: "popular-title") {
+                ForEach(viewModel.events) { event in
+                    EventCardView(event: event, onClicked: viewModel.loading ? {_ in } : onEventSelected)
+                        .padding(.leading)
+                }
+                .redacted(reason: viewModel.loading ? .placeholder : [])
+            }
+        }
+        .padding(.bottom)
     }
 }
 

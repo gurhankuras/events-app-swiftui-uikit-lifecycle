@@ -63,8 +63,8 @@ class ThreeDSPaymentService {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let bundle):
-                guard let _ = bundle.response,
-                      let _ = bundle.data else {
+                let _ = bundle.response
+                guard let _ = bundle.data else {
                     completion(.failure(URLError.init(.badServerResponse)))
                     return
                 }
@@ -108,8 +108,8 @@ class ThreeDSPaymentService {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let bundle):
-                guard let response = bundle.response,
-                      let data = bundle.data else {
+                let response = bundle.response
+                guard let data = bundle.data else {
                     completion(.failure(URLError.init(.badServerResponse)))
                     return
                 }

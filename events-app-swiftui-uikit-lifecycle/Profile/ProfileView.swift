@@ -8,23 +8,17 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-class ProfileViewModel: ObservableObject {
-    var onTropiesClicked: (() -> ())?
-    var onVerificationClicked: (() -> ())?
-}
+
 
 struct ProfileView: View {
-    
-    let profileUserViewModel: ProfileUserViewModel = .init(name: "Gurhan Kuras", username: "gurhankuras", image: "pikachu")
-    @StateObject var profileViewModel: ProfileViewModel
+    @ObservedObject var profileViewModel: ProfileViewModel
     @StateObject var settingsViewModel: SettingsViewModel
     
     var body: some View {
         VStack(spacing: 0) {
-            ProfileHeader(profileViewModel: profileUserViewModel,
-                          onTropiesClicked: profileViewModel.onTropiesClicked,
-                          verify: profileViewModel.onVerificationClicked
-            )
+            ProfileHeader(profileState: profileViewModel.state,
+                          startLinkedinVerification: profileViewModel.onVerificationClicked,
+                          showAchievements: profileViewModel.onTropiesClicked)
             SettingsView(settingsViewModel: settingsViewModel)
         }
         .navigationBarHidden(true)
@@ -32,12 +26,14 @@ struct ProfileView: View {
     }
 }
 
+/*
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(profileViewModel: .init(), settingsViewModel: .init(darkModeSettings: .init()))
+        ProfileView(profileViewModel: .init(profileFetcher: ProfileFetcherStub(result: .success(.stub)), authListener: ),
+            settingsViewModel: .init(darkModeSettings: .init()))
     }
 }
 
 
-
+*/
 

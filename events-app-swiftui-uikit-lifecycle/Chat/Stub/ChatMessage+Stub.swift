@@ -19,7 +19,6 @@ extension ChatMessage {
         "vitae scelerisque laoreet, sapien quam commodo mi, a cursus quam risus ac velit. Aenean iaculis neque sem"
         ]
         return (0...count).map { _ in
-            let name = sender ?? ["Gurhan", "Ahmet"].randomElement()!
             let text = texts.randomElement()!
             let date = Date().addingTimeInterval(Double((0...3600).randomElement()!))
             

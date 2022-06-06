@@ -114,17 +114,16 @@ struct CustomRefreshView_Previews: PreviewProvider {
 
 extension View {
     func offset(coordinateSpace: String, offset: @escaping (CGFloat) -> ()) -> some View {
-        self
-            .overlay {
-                GeometryReader { geo in
-                    let minY = geo.frame(in: .named(coordinateSpace)).minY
-                    Color.clear
-                        .preference(key: OffsetKey.self, value: minY)
-                        .onPreferenceChange(OffsetKey.self) { value in
-                            offset(value)
-                        }
-                }
+        self.overlay {
+            GeometryReader { geo in
+                let minY = geo.frame(in: .named(coordinateSpace)).minY
+                Color.clear
+                    .preference(key: OffsetKey.self, value: minY)
+                    .onPreferenceChange(OffsetKey.self) { value in
+                        offset(value)
+                    }
             }
+        }
     }
 }
 

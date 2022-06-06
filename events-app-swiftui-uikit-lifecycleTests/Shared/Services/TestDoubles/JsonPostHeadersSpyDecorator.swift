@@ -32,7 +32,7 @@ class HeaderSnifferDecorator: HttpClient {
         self.decoratee = decoratee
     }
     
-    func request(_ request: URLRequest, completion: @escaping (Result<ResponseBundle, Error>) -> Void) {
+    func request(_ request: URLRequest, completion: @escaping (Result<HTTPResponseBundle, Error>) -> Void) {
         self.headers = request.allHTTPHeaderFields
         decoratee.request(request, completion: completion)
     }

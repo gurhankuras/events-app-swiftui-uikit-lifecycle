@@ -29,12 +29,11 @@ class NearEventFinder {
         client.request(request) { [weak self] result in
             switch result {
             case .success(let bundle):
-                guard let response = bundle.response,
-                      let data = bundle.data else {
-                          completion(.failure(URLError.init(.badServerResponse)))
-                          return
+                guard let data = bundle.data else {
+                  completion(.failure(URLError.init(.badServerResponse)))
+                  return
                 }
-                self?.respond(to: response.statusCode, decoding: data, with: completion)
+                self?.respond(to: bundle.response.statusCode, decoding: data, with: completion)
             case .failure(let error):
                 completion(.failure(error))
             }

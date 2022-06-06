@@ -10,13 +10,13 @@ import Combine
 @testable import events_app_swiftui_uikit_lifecycle
 
 
-func makeResponseBundle<T: Encodable>(encodable: T?, statusCode: Int, headers: [String: String] = [:]) throws -> ResponseBundle {
+func makeResponseBundle<T: Encodable>(encodable: T?, statusCode: Int, headers: [String: String] = [:]) throws -> HTTPResponseBundle {
     var data: Data?
     if let encodable = encodable {
         data = try JSONEncoder().encode(encodable)
     }
-    let response = HTTPURLResponse(url: URL(string: "https://google.com")!, statusCode: statusCode, httpVersion: nil, headerFields: headers)
-    return ResponseBundle(data: data, response: response)
+    let response = HTTPURLResponse(url: URL(string: "https://google.com")!, statusCode: statusCode, httpVersion: nil, headerFields: headers)!
+    return HTTPResponseBundle(data: data, response: response)
 }
 
 
@@ -32,14 +32,13 @@ class TokenSaverTests: XCTestCase {
         
         XCTAssertNil(store.get())
         let request = URLRequest(url: aURL)
-        let cancellable = sut.request(request, completion: {_ in })
+        sut.request(request, completion: {_ in })
         
         XCTAssertNotNil(store.get())
     }
     
     func test_whenAccessTokenNotReceived_doesNothing() throws {
         let store = InMemoryTokenStore(tokens: [:])
-        let expectedToken = "123456"
         let bundle = try makeResponseBundle(encodable: aCodable, statusCode: 200)
         let client = HttpClientStub(result: .success(bundle))
         let sut = TokenSaverDecorator(decoratee: client, store: store)

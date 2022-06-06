@@ -91,9 +91,9 @@ class LinkedInService {
         }
     }
     
-    func handleVerifySuccess(bundle: ResponseBundle, completion: @escaping (Result<LinkedInSuccessMessage, Swift.Error>) -> ()) {
-        guard let response = bundle.response,
-              let data = bundle.data else {
+    func handleVerifySuccess(bundle: HTTPResponseBundle, completion: @escaping (Result<LinkedInSuccessMessage, Swift.Error>) -> ()) {
+        let response = bundle.response
+        guard let data = bundle.data else {
             completion(.failure(URLError.init(.badServerResponse)))
             return
         }

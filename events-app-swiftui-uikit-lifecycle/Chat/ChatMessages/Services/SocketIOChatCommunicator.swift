@@ -110,7 +110,7 @@ class SocketIOChatCommunicator: ChatCommunicator {
     }
     
     func receive(on event: ServerChatEvent, callback: @escaping (Result<RemoteChatBucketMessage, Error>) -> Void) {
-        socket.on(ServerChatEvent.roomUpdated.rawValue) { [weak self] data, ack in
+        socket.on(ServerChatEvent.roomUpdated.rawValue) {  data, ack in
                 print(data)
         }
         socket.on(event.rawValue) { message, ack in

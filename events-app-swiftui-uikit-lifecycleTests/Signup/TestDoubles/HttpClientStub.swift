@@ -9,13 +9,13 @@ import Foundation
 @testable import events_app_swiftui_uikit_lifecycle
 
 class HttpClientStub: HttpClient {
-    let result: Result<ResponseBundle, Error>
+    let result: Result<HTTPResponseBundle, Error>
     
-    init(result: Result<ResponseBundle, Error>) {
+    init(result: Result<HTTPResponseBundle, Error>) {
         self.result = result
     }
     
-    func request(_ request: URLRequest, completion: @escaping (Result<ResponseBundle, Error>) -> Void) {
+    func request(_ request: URLRequest, completion: @escaping (Result<HTTPResponseBundle, Error>) -> Void) {
         switch result {
         case .success(let bundle):
             completion(.success(bundle))

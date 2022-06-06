@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct ResponseBundle {
+struct HTTPResponseBundle {
     let data: Data?
-    let response: HTTPURLResponse?
+    let response: HTTPURLResponse
 }
 
 struct HttpClientOptions {
@@ -26,7 +26,7 @@ class HttpAPIClient: HttpClient {
         self.options = options
     }
     
-    func request(_ request: URLRequest, completion: @escaping (Result<ResponseBundle, Error>) -> Void) -> () {
+    func request(_ request: URLRequest, completion: @escaping (Result<HTTPResponseBundle, Error>) -> Void) -> () {
         var req = request
         req.addValue(options.contentType, forHTTPHeaderField: "Content-Type")
         let task = session.dataTask(with: req) { data, response, error in
@@ -40,7 +40,7 @@ class HttpAPIClient: HttpClient {
                 return
             }
             
-            let bundle = ResponseBundle(data: data, response: httpResponse)
+            let bundle = HTTPResponseBundle(data: data, response: httpResponse)
             completion(.success(bundle))
         }
         task.resume()

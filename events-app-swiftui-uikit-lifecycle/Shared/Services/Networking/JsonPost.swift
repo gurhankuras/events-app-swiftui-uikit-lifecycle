@@ -32,7 +32,7 @@ enum NetworkError: LocalizedError {
         case .response(let array):
             // TODO: remove bang
             return NSLocalizedString(array.first!.message, comment: "Error") 
-        case .other(let err):
+        case .other(_):
             return "Bir hata oldu"
         }
     }

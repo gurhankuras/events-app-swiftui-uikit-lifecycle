@@ -8,15 +8,79 @@
 import Foundation
 import Combine
 
-class AuthService {
-    enum AuthStatus {
-        case loggedIn(User)
-        case errorOccurred(Error)
-        case unauthorized
+protocol MainQueueDecorator {
+    func guanteeMainThread(_ work: @escaping () -> ())
+}
+
+extension MainQueueDecorator {
+    func guanteeMainThread(_ work: @escaping () -> ()) {
+        if Thread.isMainThread {
+            work()
+        }
+        else {
+            DispatchQueue.main.async(execute: work)
+        }
+    }
+}
+
+class SignUpMainQueueDispatchDecorator: MainQueueDecorator, EmailSignUp {
+    let decoratee: EmailSignUp
+
+    init(decoratee: EmailSignUp) {
+        self.decoratee = decoratee
     }
     
+    func signUp(with request: SignUpRequest, completion: @escaping (Result<User, Error>) -> ()) {
+        decoratee.signUp(with: request) { [weak self] result in
+            self?.guanteeMainThread {
+                completion(result)
+            }
+        }
+    }
+}
+
+class SignInMainQueueDispatchDecorator: MainQueueDecorator, EmailSignIn {
+    let decoratee: EmailSignIn
+
+    init(decoratee: EmailSignIn) {
+        self.decoratee = decoratee
+    }
+    
+    func login(email: Email, password: Password, completion: @escaping (Result<User, Error>) -> ()) {
+        decoratee.login(email: email, password: password) { [weak self] result in
+            self?.guanteeMainThread {
+                completion(result)
+            }
+        }
+    }
+}
+
+extension EmailSignUp {
+    func mainQueueDispatch() -> SignUpMainQueueDispatchDecorator {
+        return SignUpMainQueueDispatchDecorator(decoratee: self)
+    }
+}
+
+extension EmailSignIn {
+    func mainQueueDispatch() -> SignInMainQueueDispatchDecorator {
+        return SignInMainQueueDispatchDecorator(decoratee: self)
+    }
+}
+
+protocol AuthListener {
+    var userPublisher: CurrentValueSubject<AuthStatus, Never> { get set }
+}
+
+enum AuthStatus {
+    case loggedIn(User)
+    case errorOccurred(Error)
+    case unauthorized
+}
+
+class AuthService: AuthListener {
+    
     private let logger = AppLogger(type: AuthService.self)
-    let userPublisher = CurrentValueSubject<AuthStatus, Never>(.unauthorized)
+    var userPublisher = CurrentValueSubject<AuthStatus, Never>(.unauthorized)
     var cancellable: AnyCancellable?
     
     private let tokenStore: TokenStore
@@ -36,15 +100,10 @@ class AuthService {
                 switch result {
                 case .success(let user):
                     self?.logger.d("FETCHED USER SUCCESSFULLY")
-                    DispatchQueue.main.async {
-                        // TODO: change
-                        self?.userPublisher.send(.loggedIn(user))
-                    }
+                    self?.userPublisher.send(.loggedIn(user))
                 case .failure(let error):
                     self?.logger.d("ERROR WHILE FETCING USER: \(error)")
-                    DispatchQueue.main.async {
-                        self?.userPublisher.send(.errorOccurred(error))
-                    }
+                    self?.userPublisher.send(.errorOccurred(error))
                 }
             }
     }
@@ -54,14 +113,10 @@ class AuthService {
             .login(email: email, password: password) { [weak self] result in
                 switch result {
                 case .success(let user):
-                    DispatchQueue.main.async {
-                        self?.userPublisher.send(.loggedIn(user))                        
-                    }
+                    self?.userPublisher.send(.loggedIn(user))
                 case .failure(let error):
                     self?.logger.d("ERROR WHILE FETCING USER: \(error)")
-                    DispatchQueue.main.async {
-                        self?.userPublisher.send(.errorOccurred(error))
-                    }
+                    self?.userPublisher.send(.errorOccurred(error))
                 }
             }
     }

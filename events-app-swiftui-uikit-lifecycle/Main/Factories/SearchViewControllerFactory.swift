@@ -11,9 +11,11 @@ import UIKit
 
 class SearchViewControllerFactory {
     func controller() -> UINavigationController {
-        let viewModel = SearchViewModel()
+        let store = SecureTokenStore(keychain: .standard)
+        let client = HttpAPIClient.shared.tokenSender(store: store)
+        let viewModel = SearchViewModel(engine: EventSearchService(client: client))
         let tableVc = SearchTableViewController(viewModel: viewModel)
-        let vc = SearchViewController(viewModel: viewModel, resultsTable: tableVc)
+        let vc = SearchContainerViewController(viewModel: viewModel, resultsTable: tableVc)
         let controller = UINavigationController(rootViewController: vc)
         
         controller.navigationBar.prefersLargeTitles = false

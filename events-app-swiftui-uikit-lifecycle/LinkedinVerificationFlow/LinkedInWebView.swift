@@ -52,7 +52,7 @@ extension LinkedInWebView {
             print(#function)
             
             guard let code = code,
-                  let state = state else {
+                  let _ = state else {
                 return
             }
             

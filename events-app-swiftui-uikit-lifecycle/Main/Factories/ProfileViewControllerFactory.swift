@@ -11,16 +11,21 @@ import SwiftUI
 
 class ProfileViewControllerFactory {
     let notificationService: NotificationService
-
-    init(notificationService: NotificationService) {
+    let authService: AuthService
+    private var rootViewModel: ProfileViewModel?
+    
+    init(notificationService: NotificationService, authService: AuthService) {
         self.notificationService = notificationService
+        self.authService = authService
     }
     
 
     func controller(onTropiesIconClicked: @escaping () -> (), onVerificationClicked: @escaping () -> ()) -> UINavigationController {
         let darkModeSettings = DarkModeSettings()
         let settingsViewModel = SettingsViewModel(darkModeSettings: darkModeSettings)
-        let profileViewModel = ProfileViewModel()
+        let fetcher = ProfileService(client: HttpAPIClient.shared.tokenSender(store: SecureTokenStore(keychain: .standard)))
+        let profileViewModel = ProfileViewModel(profileFetcher: fetcher, authListener: authService)
+        rootViewModel = profileViewModel
         
         profileViewModel.onTropiesClicked = onTropiesIconClicked
         profileViewModel.onVerificationClicked = onVerificationClicked
@@ -35,7 +40,12 @@ class ProfileViewControllerFactory {
         let tokenStore = SecureTokenStore(keychain: .standard)
         let service = LinkedInService(client: HttpAPIClient.shared.tokenSender(store: tokenStore))
         let viewModel = LinkedInVerificationViewModel(service: service)
-        viewModel.didVerified = onVerified
+        viewModel.didVerified = { [weak self] in
+            DispatchQueue.main.async {
+                self?.rootViewModel?.loadProfile()
+                onVerified()
+            }
+        }
         let view = LinkedInView(viewModel: viewModel)
         let vc = UIHostingController(rootView: view)
         return vc

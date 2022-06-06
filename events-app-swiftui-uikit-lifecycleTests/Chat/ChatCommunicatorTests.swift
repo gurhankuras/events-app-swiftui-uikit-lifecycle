@@ -25,7 +25,7 @@ class FakeCommunicator: Communicator {
     }
     
     func receive(on event: ServerChatEvent, callback: @escaping (Result<String, Error>) -> Void) {
-        socket?.addListener(for: event.rawValue) { [weak self] message in
+        socket?.addListener(for: event.rawValue) { message in
             guard let msg = message as? Message,
         case let .text(txt) = msg
             else {

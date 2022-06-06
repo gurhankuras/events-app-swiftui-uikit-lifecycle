@@ -42,7 +42,7 @@ struct TokenSenderDecorator: HttpClient {
     private let store: TokenStore
     private let strategy: TokenStrategy
 
-    func request(_ request: URLRequest, completion: @escaping (Result<ResponseBundle, Error>) -> Void) {
+    func request(_ request: URLRequest, completion: @escaping (Result<HTTPResponseBundle, Error>) -> Void) {
         var req = request
         if let tokenText = store.get() {
             let token = strategy.formatted(tokenText)

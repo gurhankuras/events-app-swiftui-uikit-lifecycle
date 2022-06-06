@@ -7,458 +7,127 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "137EF31B-E0B9-4EAF-8ADB-AEA6F0D5D3D1"
+            uuid = "008C25F8-68F9-43F5-B96D-815BFEBAF13F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Chat/ChatMessages/ViewModel/ChatMessagesViewModel.swift"
+            filePath = "events-app-swiftui-uikit-lifecycleTests/Profile/ProfileServiceTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "onReceiveMessage(result:)"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "test_remoteFetch()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "008C25F8-68F9-43F5-B96D-815BFEBAF13F - 570b3f9a297cc94e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "events_app_swiftui_uikit_lifecycleTests.ProfileServiceTests.test_remoteFetch() throws -&gt; ()"
+                  moduleName = "events-app-swiftui-uikit-lifecycleTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycleTests/Profile/ProfileServiceTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "2004">
+               </Location>
+               <Location
+                  uuid = "008C25F8-68F9-43F5-B96D-815BFEBAF13F - 570b3f9a297cc971"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "events_app_swiftui_uikit_lifecycleTests.ProfileServiceTests.test_remoteFetch() throws -&gt; ()"
+                  moduleName = "events-app-swiftui-uikit-lifecycleTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycleTests/Profile/ProfileServiceTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "167"
+                  endingLineNumber = "167"
+                  offsetFromSymbolStart = "2004">
+               </Location>
+               <Location
+                  uuid = "008C25F8-68F9-43F5-B96D-815BFEBAF13F - 570b3f9a297cc16f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "events_app_swiftui_uikit_lifecycleTests.ProfileServiceTests.test_remoteFetch() throws -&gt; ()"
+                  moduleName = "events-app-swiftui-uikit-lifecycleTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycleTests/Profile/ProfileServiceTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "1992">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EF8DE8CD-CF02-4530-B817-3810DBB0FCE1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "events-app-swiftui-uikit-lifecycleTests/Profile/ProfileServiceTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "48C7DD40-EB27-4859-830C-73371FB7AD8C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "events-app-swiftui-uikit-lifecycleTests/BuyTicket/CreditCardViewModelTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "test_formIsValid_AllFieldsSatisfies()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "994EE589-2B32-42DD-9470-62F116D85433"
+            uuid = "7057A17A-D7B6-45B8-81BD-B5FDBADE2D74"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Chat/ChatMessages/ViewModel/ChatMessagesViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "onReceiveMessage(result:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7FEE15EB-C895-43B7-A3F9-D03D31639136"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Chat/ChatMessages/Services/SocketIOChatCommunicator.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "receive(on:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B05670EE-DB8C-4B6C-A4B2-19509228C458"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Chat/ChatMessages/Services/SocketIOChatCommunicator.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "receive(on:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "56C23B5D-0DF0-45D5-B605-D217FCB79574"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Chat/ChatMessages/Services/SocketIOChatCommunicator.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "receive(on:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6A4A79DE-C9C7-4DC7-9239-268C7F35B9D4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Chat/Rooms/Services/SocketIORoomRealTimeListener.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "receive(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E55B7ED2-6635-457A-AD20-503622156E56"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Chat/ChatMessages/Services/SocketIOChatCommunicator.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "receive(on:callback:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "157F4F5F-D40B-48B6-AFE5-251202967241"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/BuyTicket/CreditCardStepView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "init(billingAddressStep:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D538B5B9-B34E-4CD5-A44F-DF37247893AC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/BuyTicket/CheckoutView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "CheckoutView_Previews"
-            landmarkType = "14">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "656ED60D-F6A9-4A30-AEC0-B021A47AFD67"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/BuyTicket/CheckoutView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "265F7622-4048-4032-BE46-24B8707B5AEE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/BuyTicket/CheckoutView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CF9F9955-ABD7-4821-8979-4634E6AC4AD8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/BuyTicket/CheckoutView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "91DC101C-9174-4984-ADC9-99014DF95FDF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Home/ViewModel/HomeViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "load()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C2712281-BD62-417C-93A5-C014AE46B365"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Home/ViewModel/HomeViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "load()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2956D57D-D0B1-4A04-A6FC-B0FBB377ECC1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/LinkedinVerificationFlow/LinkedInWebView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B3B03C4B-FB9B-4C8F-94E2-89AEE018B487"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/LinkedinVerificationFlow/LinkedInWebView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "26881C84-D3DA-47B0-88A3-1C3AC300F0A9"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/LinkedinVerificationFlow/LinkedInWebView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "60F783FE-45F5-4D11-9315-3BC7862C640E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycleTests/Signup/RemoteUserLoginTest.swift"
+            filePath = "events-app-swiftui-uikit-lifecycleTests/BuyTicket/CreditCardViewModelTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
             endingLineNumber = "30"
-            landmarkName = "test_login_returnsUser()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "60F783FE-45F5-4D11-9315-3BC7862C640E - bca86e06bed14d8a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;events_app_swiftui_uikit_lifecycle.User, Swift.Error&gt;) -&gt; () in events_app_swiftui_uikit_lifecycleTests.RemoteUserLoginTest.test_login_returnsUser() throws -&gt; ()"
-                  moduleName = "events-app-swiftui-uikit-lifecycleTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycleTests/Signup/RemoteUserLoginTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "25"
-                  endingLineNumber = "25"
-                  offsetFromSymbolStart = "200">
-               </Location>
-               <Location
-                  uuid = "60F783FE-45F5-4D11-9315-3BC7862C640E - bca86e06bed14d8a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;events_app_swiftui_uikit_lifecycle.User, Swift.Error&gt;) -&gt; () in events_app_swiftui_uikit_lifecycleTests.RemoteUserLoginTest.test_login_returnsUser() throws -&gt; ()"
-                  moduleName = "events-app-swiftui-uikit-lifecycleTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycleTests/Signup/RemoteUserLoginTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "25"
-                  endingLineNumber = "25"
-                  offsetFromSymbolStart = "180">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EA522FD3-88A2-4E7E-B616-D148022CDCE2"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycleTests/Shared/Services/AuthTests.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "test_register_publishesUser_whenUserSignedUp()"
+            landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A4B6EFAE-87F0-4DB5-A98F-6F647293CFB5"
+            uuid = "3286DFC3-582D-417E-8626-60D703C421E3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Shared/Services/AuthService.swift"
+            filePath = "events-app-swiftui-uikit-lifecycleTests/BuyTicket/CreditCardViewModelTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "register(name:email:password:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "17127E01-4775-457A-938B-86ABB4DC155A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Shared/Services/AuthService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "register(name:email:password:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E3529D5A-80ED-4B83-B1C6-FF68373072A4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycleTests/SignupViewModelTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "test_signup_formIsValidWithValidCredentials()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E3529D5A-80ED-4B83-B1C6-FF68373072A4 - 8d07d7361a32f2c8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "events_app_swiftui_uikit_lifecycleTests.Singup.test_signup_formIsValidWithValidCredentials() throws -&gt; ()"
-                  moduleName = "events-app-swiftui-uikit-lifecycleTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycleTests/SignupViewModelTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "108">
-               </Location>
-               <Location
-                  uuid = "E3529D5A-80ED-4B83-B1C6-FF68373072A4 - 8d07d7361a32f2c8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "events_app_swiftui_uikit_lifecycleTests.Singup.test_signup_formIsValidWithValidCredentials() throws -&gt; ()"
-                  moduleName = "events-app-swiftui-uikit-lifecycleTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycleTests/SignupViewModelTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "128">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7BFF802D-BBC8-4696-BF23-51C955380631"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycleTests/Shared/Services/TestDoubles/JsonPostHeadersSpyDecorator.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "request(_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3BC70F20-79A4-4809-ADAA-607C866C0F19"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycleTests/Signup/TestDoubles/JsonPostNetworkStub.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "request(_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "51D310D7-EF20-4774-9290-EB207250A72B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "events-app-swiftui-uikit-lifecycle/Shared/Services/Network/Decorators/TokenSaverDecorator.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "request(_:completion:)"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "test_formIsNotValid_whenCVCNotEnteredCorrectly()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

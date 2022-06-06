@@ -8,25 +8,40 @@
 import SwiftUI
 
 struct SigningTextField: View {
+   
+    
     var keyboardType: UIKeyboardType = .default
     var font: Font = .system(size: 14)
     
     let placeholder: LocalizedStringKey
     @Binding var text: String
-    
+    let masked: Bool
+
+    init(placeholder: LocalizedStringKey, text: Binding<String>, masked: Bool = false) {
+        self.placeholder = placeholder
+        self._text = text
+        self.masked = masked
+    }
+
     var body: some View {
-        TextField(placeholder, text: $text)
-            .autocapitalization(.none)
-            .keyboardType(keyboardType)
-            .padding(.horizontal, 10)
-            .padding(.vertical, 10)
-            .background(
-                RoundedRectangle(cornerRadius: 5)
-                    .stroke(!text.isEmpty ? .pink : Color.gray, lineWidth: 1)
-            )
-            .font(font)
-            .foregroundColor(.appTextColor)
-            .padding(.vertical, 5)
+        Group {
+            if masked {
+                SecureField(placeholder, text: $text, onCommit: {})
+            } else {
+                TextField(placeholder, text: $text)                
+            }
+        }
+        .autocapitalization(.none)
+        .keyboardType(keyboardType)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 10)
+        .background(
+            RoundedRectangle(cornerRadius: 5)
+                .stroke(!text.isEmpty ? .pink : .gray, lineWidth: 1)
+        )
+        .font(font)
+        .foregroundColor(.appTextColor)
+        .padding(.vertical, 5)
     }
 }
 

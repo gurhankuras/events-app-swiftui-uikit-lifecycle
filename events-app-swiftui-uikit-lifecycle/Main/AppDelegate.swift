@@ -22,7 +22,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                         didReceive response: UNNotificationResponse,
                                         withCompletionHandler completionHandler: @escaping () -> Void) {
         guard let deneme = response.notification.request.content.userInfo["deneme"],
-              let sceneDelegate = sceneDelegate
+              sceneDelegate != nil
         else {
             completionHandler()
             return

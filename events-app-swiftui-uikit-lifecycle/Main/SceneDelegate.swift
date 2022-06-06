@@ -39,7 +39,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         appCoordinator = AppFlow(homeFactory: homeFactory, chatFactory: chatFactory,
                                         profileFactory: profileFactory, searchFactory: searchFactory,
-                                        createFactory: createFactory, signFactory: signFactory)
+                                        createFactory: createFactory, signFactory: signFactory,
+        authService: auth)
         
         appCoordinator.window = window
         
@@ -68,9 +69,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func initFactories() {
-        profileFactory = ProfileViewControllerFactory(notificationService: localNotifications)
+        profileFactory = ProfileViewControllerFactory(notificationService: localNotifications, authService: auth)
         chatFactory = AuthenticatedChatViewControllerFactory(auth: auth)
-        homeFactory = HomeViewControllerFactory(auth: auth)
+        homeFactory = HomeControllerFactory(auth: auth)
         searchFactory = SearchViewControllerFactory()
         createFactory = EventCreationViewControllerFactory()
         signFactory = SignViewControllerFactory(authService: auth)
@@ -79,9 +80,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func makeAuth() -> AuthService {
         let store = SecureTokenStore(keychain: .standard)
-        let signUp = UserSignUp(client: HttpAPIClient.shared)
         let httpClient = HttpAPIClient.shared.tokenSaver(store: store)
-        let signIn = UserSignIn(client: httpClient)
+        let signUp = UserSignUp(client: HttpAPIClient.shared).mainQueueDispatch()
+        let signIn = UserSignIn(client: httpClient).mainQueueDispatch()
         return AuthService(signUp: signUp, signIn: signIn, tokenStore: store)
     }
 }

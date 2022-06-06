@@ -11,10 +11,10 @@ struct TokenSaverDecorator: HttpClient {
     let decoratee: HttpClient
     let store: TokenStore
     
-    func request(_ request: URLRequest, completion: @escaping (Result<ResponseBundle, Error>) -> Void) {
+    func request(_ request: URLRequest, completion: @escaping (Result<HTTPResponseBundle, Error>) -> Void) {
         decoratee.request(request) { result in
             if case let .success(bundle) = result,
-               let token = bundle.response?.value(forHTTPHeaderField: "Authorization") {
+               let token = bundle.response.value(forHTTPHeaderField: "Authorization") {
                 store.save(token)
                 print("Saved token: \(token)")
             }

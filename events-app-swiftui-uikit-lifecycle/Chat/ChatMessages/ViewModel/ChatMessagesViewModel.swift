@@ -48,7 +48,7 @@ class ChatMessagesViewModel: ObservableObject {
         communicator.receive(on: .send) { [weak self] result in self?.onReceiveMessage(result: result) }
     }
     
-    func onAuthChange(status: AuthService.AuthStatus) {
+    func onAuthChange(status: AuthStatus) {
         switch status {
         case .loggedIn(let user):
             self.currentUser = user

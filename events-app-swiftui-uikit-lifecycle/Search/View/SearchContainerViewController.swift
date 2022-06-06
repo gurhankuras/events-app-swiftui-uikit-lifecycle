@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Lottie
 
-class SearchViewController: UIViewController {
+class SearchContainerViewController: UIViewController {
     let viewModel: SearchViewModel
     
     private let resultsTable: SearchTableViewController
@@ -84,9 +84,12 @@ import SwiftUI
 
 @available(iOS 13.0, *)
 struct SearchViewController_Preview: PreviewProvider {
+    static var viewModel: SearchViewModel = SearchViewModel(engine: EventSearchServiceStub(.success([])))
     static var previews: some View {
         UIViewControllerPreview {
-            SearchViewController(viewModel: .init(), resultsTable: .init(viewModel: .init()))
+            SearchContainerViewController(viewModel: Self.viewModel,
+                                          resultsTable: .init(viewModel: Self.viewModel)
+            )
         }
     }
 }

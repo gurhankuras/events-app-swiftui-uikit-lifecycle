@@ -10,7 +10,7 @@ import UIKit
 import SwiftUI
 
 class HomeFlow: Flow {
-    var rootViewController: UINavigationController = UINavigationController(rootViewController: UIViewController())
+    var rootViewController: UINavigationController!
     var eventDetailsViewController: UINavigationController?
     private let factory: HomeViewControllerFactory
     private let signFactory: SignViewControllerFactory
@@ -25,7 +25,7 @@ class HomeFlow: Flow {
                                                 onSignButtonClicked: { [weak self] in self?.sign() })
     }
     
-    private func sign() {
+    func sign() {
         
         //SignCoordinator().start()
         let signingVc = signFactory.controller(onClosed: { [weak self] in self?.dismissSigning() })
@@ -36,7 +36,7 @@ class HomeFlow: Flow {
         rootViewController.dismiss(animated: true)
     }
     
-    private func selectEvent(_ event: RemoteNearEvent) {
+    func selectEvent(_ event: RemoteNearEvent) {
         let viewModel =  EventDetails.ViewModel(nearEvent: event)
         let view = EventDetails(viewModel: viewModel, dismiss: { [weak self] in self?.dismissEvent() }, buyTicket: { [weak self] in
             let viewModel = PaymentFormViewModel()

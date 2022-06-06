@@ -15,7 +15,7 @@ class JsonPostAuthDecoratorTests: XCTestCase {
     
     func setupFixture(strategy: TokenStrategy) -> (HttpClient, HeaderSnifferDecorator, TokenStore) {
         let tokenStore = InMemoryTokenStore()
-        let sniffer = HttpClientStub(result: .success(.init(data: nil, response: nil)))
+        let sniffer = HttpClientStub(result: .success(.init(data: nil, response: .init())))
                         .headerSniffer()
         let sut = sniffer.tokenSender(store: tokenStore, strategy: strategy)
         return (sut, sniffer, tokenStore)
@@ -25,7 +25,7 @@ class JsonPostAuthDecoratorTests: XCTestCase {
     func test_post_doesNotSetAuthHeaders_IfTokenNotFound() {
         // Arrange
         let strategy: TokenStrategy = .bearer
-        let (sut, spy, store) = setupFixture(strategy: strategy)
+        let (sut, spy, _) = setupFixture(strategy: strategy)
         let request = URLRequest(url: aURL)
         
         // Act

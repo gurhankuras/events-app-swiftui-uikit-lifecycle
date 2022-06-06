@@ -30,9 +30,7 @@ class ProfileFlow: Flow {
     
     private func verifyViaLinkedIn() {
         let vc = factory.linkedinVerificationController(onVerified: { [weak self] in
-            DispatchQueue.main.async {
-                self?.rootViewController.popViewController(animated: true)
-            }
+            self?.rootViewController.popViewController(animated: true)
         })
         self.rootViewController.pushViewController(vc, animated: true)
     }

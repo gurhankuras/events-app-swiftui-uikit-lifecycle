@@ -16,7 +16,7 @@ class Singup: XCTestCase {
     
    
     func test_signup_formIsInvalidAtStart() throws {
-        let (sut, spy) = makeInputValidationSUT()
+        let (_, spy) = makeInputValidationSUT()
         
         let formValidity = try XCTUnwrap(spy.values.last)
         XCTAssertEqual(formValidity, false)

@@ -8,6 +8,37 @@
 import Foundation
 import UIKit
 
+
+struct SearchedEventViewModel {
+    private let startingDate: Date
+    private let address: RemoteNearEventAddress
+    let title: String
+    
+    init(_ event: SearchedEvent) {
+        self.startingDate = event.at
+        self.address = event.address
+        self.title = event.title
+    }
+    
+    
+    var monthSymbol: String {
+        let components = Calendar.current.dateComponents([.month], from: startingDate)
+        guard let month = components.month else { return "-" }
+        let monthName = DateFormatter().monthSymbols[month - 1].prefix(3).uppercased()
+        return monthName
+    }
+    
+    var day: String {
+        let components = Calendar.current.dateComponents([.day], from: startingDate)
+        guard let day = components.day else { return "-" }
+        return String(day)
+    }
+    
+    var shortAddress: String {
+        return "\(address.city), \(address.district)"
+    }
+}
+
 struct SearchedEvent: Identifiable, Decodable {
     let id: String
     let at: Date
@@ -23,7 +54,7 @@ struct SearchedEvent: Identifiable, Decodable {
 
 
 class EventSearchResultCell: UITableViewCell {
-    private(set) var event: SearchedEvent?
+    private(set) var viewModel: SearchedEventViewModel?
     
     private lazy var dateLabel: UILabel = {
         let dateLabel = UILabel()
@@ -52,37 +83,6 @@ class EventSearchResultCell: UITableViewCell {
         label.font = .systemFont(ofSize: 12, weight: .light)
         return label
     }()
-    
-    func setEvent(event: SearchedEvent) {
-        self.event = event
-        refreshWithNewEvent()
-    }
-    
-    private func setDate() {
-        let monthDayAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.white,
-            .font: UIFont.systemFont(ofSize: 22, weight: .semibold)
-        ]
-        
-        let monthNameAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.white,
-            .font: UIFont.systemFont(ofSize: 14, weight: .medium)
-        ]
-        
-        let monthDayAttrStr = NSMutableAttributedString(string: "1", attributes: monthDayAttributes)
-        let a = NSAttributedString(string: "\nSep", attributes: monthNameAttributes)
-        monthDayAttrStr.append(a)
-        dateLabel.attributedText = monthDayAttrStr
-        dateLabel.textAlignment = .center
-    }
-    private func setTitle() {
-        titleLabel.text = event?.title
-    }
-    
-    func refreshWithNewEvent() {
-        setDate()
-        setTitle()
-    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -124,6 +124,44 @@ class EventSearchResultCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    func setViewModel(_ viewModel: SearchedEventViewModel) {
+        self.viewModel = viewModel
+        refreshWithNewEvent()
+    }
+    
+    func refreshWithNewEvent() {
+        setDate()
+        setTitle()
+    }
+    
+    
+    private func setDate() {
+        guard let viewModel = viewModel else {
+            return
+        }
+    
+
+        let monthDayAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: UIFont.systemFont(ofSize: 22, weight: .semibold)
+        ]
+        
+        let monthNameAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: UIFont.systemFont(ofSize: 14, weight: .medium)
+        ]
+    
+        let monthDayAttrStr = NSMutableAttributedString(string: viewModel.day, attributes: monthDayAttributes)
+        let a = NSAttributedString(string: "\n\(viewModel.monthSymbol)", attributes: monthNameAttributes)
+        monthDayAttrStr.append(a)
+        dateLabel.attributedText = monthDayAttrStr
+        dateLabel.textAlignment = .center
+    }
+    
+    private func setTitle() {
+        titleLabel.text = viewModel?.title
+    }
 }
 
 /*

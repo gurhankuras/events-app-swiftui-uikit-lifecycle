@@ -9,7 +9,11 @@ import Foundation
 import SwiftUI
 import UIKit
 
-class HomeViewControllerFactory {
+protocol HomeViewControllerFactory {
+    func controller(onEventClicked: @escaping (RemoteNearEvent) -> (), onSignButtonClicked: @escaping () -> ()) -> UINavigationController
+}
+
+class HomeControllerFactory: HomeViewControllerFactory {
     let auth: AuthService
     
     init(auth: AuthService) {

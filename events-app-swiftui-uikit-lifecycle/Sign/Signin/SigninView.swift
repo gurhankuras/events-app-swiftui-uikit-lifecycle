@@ -18,7 +18,7 @@ struct SigninView: View {
             Text("sign-in-header")
                 .signingTitle()
             SigningTextField(placeholder: "email-field-placeholder", text: $viewModel.email.value)
-            SigningTextField(placeholder: "password-field-placeholder", text: $viewModel.password.value)
+            SigningTextField(placeholder: "password-field-placeholder", text: $viewModel.password.value, masked: true)
             LongRoundedButton(text: "sign-in-button", active: $viewModel.signInformValid) {
                 viewModel.login()
                 UIApplication.shared.endEditing()

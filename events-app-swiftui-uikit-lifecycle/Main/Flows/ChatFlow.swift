@@ -31,7 +31,7 @@ class ChatFlow: Flow {
             self?.showChatUsers()
         }, onSign: { [weak self] in
             
-            guard let self = self else { return }
+            guard let self = self else { return }
             let vc = SignViewControllerFactory(authService: self.authService).controller(onClosed: {
                 self.rootViewController.dismiss(animated: true)
             })

@@ -38,7 +38,7 @@ struct SignupView: View {
             
             SigningTextField(placeholder: "name-field-placeholder", text: $viewModel.name)
             SigningTextField(placeholder: "email-field-placeholder", text: $viewModel.email.value)
-            SigningTextField(placeholder: "password-field-placeholder", text: $viewModel.password.value)
+            SigningTextField(placeholder: "password-field-placeholder", text: $viewModel.password.value, masked: true)
             
             LongRoundedButton(text: "sign-up-button",
                               active: $viewModel.signUpformValid,
