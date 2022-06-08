@@ -82,7 +82,7 @@ class RemoteChatUsersFetcher {
     }
     
     func fetch(q: String) -> AnyPublisher<[RemoteChatRoomUser], Error> {
-        guard let url = URL(string: "http://localhost:3000/api/chat/users?q=\(q)") else {
+        guard let url = URL(string: "http://\(hostName):3000/api/chat/users?q=\(q)") else {
             return Fail(error: URLError.init(.badURL)).eraseToAnyPublisher()
         }
         

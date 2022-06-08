@@ -45,7 +45,7 @@ class ThreeDSPaymentService {
     
     // TODO: change signature of completion callback, replace bool with something else when done server-side fix
     func pay(with request: ThreeDSPaymentCompletionRequest, completion: @escaping (Result<Bool, Error>) -> ()) {
-        guard let url = URL(string: "http://localhost:5110/payments/3ds/finish") else {
+        guard let url = URL(string: "http://\(hostName):5110/payments/3ds/finish") else {
             completion(.failure(URLError.init(.badURL)))
             return
         }
@@ -96,7 +96,7 @@ class ThreeDSPaymentService {
     }
     
     func startHandshake(completion: @escaping (Result<String, Error>) -> ()) {
-        guard let url = URL(string: "http://localhost:5110/payments/3ds/tickets") else {
+        guard let url = URL(string: "http://\(hostName):5110/payments/3ds/tickets") else {
             completion(.failure(URLError.init(.badURL)))
             return
         }

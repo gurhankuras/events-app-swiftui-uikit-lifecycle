@@ -72,7 +72,7 @@ class UserSignIn: EmailSignIn {
     }
     
     private func makeRequest(email: Email, password: Password) -> URLRequest? {
-        guard let url = URL(string: "http://localhost:5000/account/signin") else { return nil }
+        guard let url = URL(string: "http://\(hostName):\(port)/account/signin") else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         let body: Dictionary<String, String> = ["email": email.value, "password": password.value]

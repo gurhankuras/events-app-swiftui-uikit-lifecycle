@@ -23,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var signFactory: SignViewControllerFactory!
     
     var appCoordinator: AppFlow!
+    var tempCoordinator: TempFlow!
     
     var deleteThis: UINavigationController!
     
@@ -37,18 +38,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         initSharedDependencies()
         initFactories()
         
+    
+        /*
         appCoordinator = AppFlow(homeFactory: homeFactory, chatFactory: chatFactory,
                                         profileFactory: profileFactory, searchFactory: searchFactory,
                                         createFactory: createFactory, signFactory: signFactory,
         authService: auth)
-        
         appCoordinator.window = window
-        
-        
         auth.trySignIn()
         appCoordinator.start()
-         
-        /*
+        */
+        
+        
+        tempCoordinator = TempFlow()
+        tempCoordinator.window = window
+        tempCoordinator.start()
+    
+         /*
         let viewModel = LinkedInVerificationViewModel()
         viewModel.didVerified = { [weak self] in
             DispatchQueue.main.async {

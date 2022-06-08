@@ -87,7 +87,7 @@ class RemoteChatFetcher: ChatRoomFetcher {
     }
     
     func fetch(for user: User, completion: @escaping (Result<[Room], Error>) -> ()) {
-        guard let url = URL(string: "http://localhost:3000/api/chat/rooms") else {
+        guard let url = URL(string: "http://\(hostName):3000/api/chat/rooms") else {
             return completion(.failure(URLError.init(.badURL)))
         }
         let request = URLRequest(url: url)

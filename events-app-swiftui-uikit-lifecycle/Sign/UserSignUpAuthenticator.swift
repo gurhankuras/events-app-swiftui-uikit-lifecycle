@@ -91,7 +91,7 @@ class UserSignUp: EmailSignUp {
     }
     
     private func makeRequest(request: SignUpRequest) -> URLRequest? {
-        guard let url = URL(string: "http://localhost:5000/account") else { return nil }
+        guard let url = URL(string: "http://\(hostName):\(port)/account") else { return nil }
         var req = URLRequest(url: url)
         req.httpMethod = "POST"
         req.httpBody = try? JSONEncoder().encode(request)

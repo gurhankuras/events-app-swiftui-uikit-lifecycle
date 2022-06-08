@@ -77,14 +77,10 @@ extension HomeView {
             if self._nearEvents.isEmpty {
                 self._nearEvents = Array(repeating: .stub, count: 4)
             }
-            // TODO: Remove delay
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                self?.loadNearEvents { [weak self] in
-                    DispatchQueue.main.async {
-                        self?.loading = false
-                    }
+            self.loadNearEvents { [weak self] in
+                DispatchQueue.main.async {
+                    self?.loading = false
                 }
-                
             }
         }
         

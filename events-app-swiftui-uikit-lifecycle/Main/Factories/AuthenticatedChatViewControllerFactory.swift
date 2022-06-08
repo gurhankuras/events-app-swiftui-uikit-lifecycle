@@ -22,7 +22,7 @@ class AuthenticatedChatViewControllerFactory: ChatViewControllerFactory {
     func controller(onChatSelected: @escaping (RoomViewModel) -> (),
                     onStartedNewChat: @escaping () -> (),
                     onSign: @escaping () -> ()) -> UINavigationController {
-        let socketManager = SocketManager(socketURL: URL(string: "http://localhost:3000/api/chat")!, config: [.log(false)])
+        let socketManager = SocketManager(socketURL: URL(string: "http://\(hostName):3000/api/chat")!, config: [.log(false)])
         let realTimeListener = SocketIORoomRealTimeListener(manager: socketManager, tokenStore: SecureTokenStore(keychain: .standard))
         
         //let fetcher = ChatRoomFetcherStub(result: .success(ChatRoomFetcherStub.stubs))
@@ -60,7 +60,7 @@ class AuthenticatedChatViewControllerFactory: ChatViewControllerFactory {
     
     func chatMessagesController(room: Room, onBack: @escaping () -> ()) -> UIViewController {
         let service =  RemoteChatMessageFetcher(session: .shared)
-        let socketManager = SocketManager(socketURL: URL(string: "http://localhost:3000/api/chat")!, config: [.log(false)])
+        let socketManager = SocketManager(socketURL: URL(string: "http://\(hostName):3000/api/chat")!, config: [.log(false)])
         
         let communicator = SocketIOChatCommunicator(roomId: room.id, manager: socketManager, tokenStore: SecureTokenStore(keychain: .standard))
         

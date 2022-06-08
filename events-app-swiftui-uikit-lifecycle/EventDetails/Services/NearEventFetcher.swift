@@ -71,8 +71,8 @@ class NearEventFinder {
     
     private func makeURL(with coordinates: GeoCoordinates) -> URL? {
         var builder = URLComponents()
-        builder.port = 5000
-        builder.host = "localhost"
+        builder.port = port
+        builder.host = "\(hostName)"
         builder.scheme = "http"
         builder.path = "/events"
         builder.queryItems = [.init(name: "latitute", value: String(coordinates.latitude)),

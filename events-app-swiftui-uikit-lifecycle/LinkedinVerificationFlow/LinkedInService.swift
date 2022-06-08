@@ -36,7 +36,7 @@ struct LinkedInURLs {
     }
     
     func accessToken(for code: String) -> URLRequest? {
-        guard let url = URL(string: "http://localhost:5000/linkedin/accessToken") else { return nil }
+        guard let url = URL(string: "http://\(hostName):\(port)/linkedin/accessToken") else { return nil }
         
         var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -69,7 +69,7 @@ class EventSearchService: EventSearchEngine {
     }
     
     private func makeRequest(q: String, options: SearchOptions) -> URLRequest {
-        var components = URLComponents(string: "http://localhost:5000/dev/search/events")!
+        var components = URLComponents(string: "http://\(hostName):\(port)/dev/search/events")!
         components.queryItems = [
             URLQueryItem(name: "q", value: q),
             URLQueryItem(name: "pageNumber", value: String(options.pageNumber)),

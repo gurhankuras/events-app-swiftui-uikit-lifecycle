@@ -47,7 +47,7 @@ class ProfileService: ProfileFetcher {
     }
     
     private func prepareRequest() -> URLRequest? {
-        guard let url = URL(string: "http://localhost:5000/account/me") else { return nil }
+        guard let url = URL(string: "http://\(hostName):\(port)/account/me") else { return nil }
         let request = URLRequest(url: url)
         return request
     }
