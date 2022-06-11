@@ -1,0 +1,6 @@
+framework module Pods_events_app_swiftui_uikit_lifecycle {
+  umbrella header "Pods-events-app-swiftui-uikit-lifecycle-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "4E25D950-50FE-4DB8-8CD0-25C8E7414956"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3474CFFF-4052-4D26-B482-9156B92AEF57"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "events-app-swiftui-uikit-lifecycle/NFC/View/LiveChatRoom.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E4E4907-4F2B-45B4-8C0C-E06165423EF5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "events-app-swiftui-uikit-lifecycle/NFC/ViewModel/LiveChatViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "63959C0B-A9CB-46C8-99FC-44A54BE94517"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "events-app-swiftui-uikit-lifecycle/NFC/View/LiveStreamContainerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AA1ED101-9649-4688-A69E-13D9B31FA7A9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "events-app-swiftui-uikit-lifecycle/NFC/View/LiveChatBar.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "clickSendButton()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A6727D6B-93B4-418C-8186-09006C0B3F6B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "events-app-swiftui-uikit-lifecycle/NFC/View/LiveStreamContainerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "keyboardWillShow(notification:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A6727D6B-93B4-418C-8186-09006C0B3F6B - ac4c23b5ba3012"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "events_app_swiftui_uikit_lifecycle.LiveStreamContainerViewController.keyboardWillShow(notification: __C.NSNotification) -&gt; ()"
+                  moduleName = "events-app-swiftui-uikit-lifecycle"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycle/NFC/View/LiveStreamContainerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "127"
+                  endingLineNumber = "127"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  uuid = "A6727D6B-93B4-418C-8186-09006C0B3F6B - ac4c23b5ba3012"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "events_app_swiftui_uikit_lifecycle.LiveStreamContainerViewController.keyboardWillShow(notification: __C.NSNotification) -&gt; ()"
+                  moduleName = "events-app-swiftui-uikit-lifecycle"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycle/NFC/View/LiveStreamContainerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "127"
+                  endingLineNumber = "127"
+                  offsetFromSymbolStart = "224">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5600D356-66C9-401F-8336-A883C9448DD4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "events-app-swiftui-uikit-lifecycle/NFC/View/LiveStreamContainerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "keyboardWillHide(notification:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5600D356-66C9-401F-8336-A883C9448DD4 - ac4c23b5ba35c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "events_app_swiftui_uikit_lifecycle.LiveStreamContainerViewController.keyboardWillHide(notification: __C.NSNotification) -&gt; ()"
+                  moduleName = "events-app-swiftui-uikit-lifecycle"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycle/NFC/View/LiveStreamContainerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "5600D356-66C9-401F-8336-A883C9448DD4 - ac4c23b5ba35c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "events_app_swiftui_uikit_lifecycle.LiveStreamContainerViewController.keyboardWillHide(notification: __C.NSNotification) -&gt; ()"
+                  moduleName = "events-app-swiftui-uikit-lifecycle"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gurhankuras/Desktop/swift/events-app-swiftui-uikit-lifecycle/events-app-swiftui-uikit-lifecycle/NFC/View/LiveStreamContainerViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "208">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E801AE4A-6205-429A-A2EE-4D86C3E98A77"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "events-app-swiftui-uikit-lifecycle/NFC/View/LiveStreamContainerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "LiveStreamContainerViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

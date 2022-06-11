@@ -64,7 +64,7 @@ fileprivate struct _ErrorView: View {
                         .frame(width: UIScreen.main.bounds.width - 120
                         )
                 }
-                .background(Color.pink)
+                .background(Color(UIColor.systemPink))
                 .cornerRadius(10)
                 .padding(.top, 25)
                 

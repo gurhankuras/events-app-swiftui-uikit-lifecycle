@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct EventCardFooter: View {
-    let event: RemoteNearEvent
+    let event: EventCatalogCardViewModel
     var body: some View {
         HStack(alignment: .top) {
             HStack(alignment: .top, spacing: 6) {
                     Image(systemName: "location")
-                        .foregroundColor(.pink)
-                    Text("\(event.address.district) / \(event.address.city)")
+                        .foregroundColor(Color(UIColor.systemPink))
+                Text(event.address)
                         .font(.caption)
                         .fontWeight(.medium)
                         .lineLimit(2)
@@ -24,8 +24,8 @@ struct EventCardFooter: View {
                 
                 HStack(alignment: .top, spacing: 6) {
                     Image(systemName: "calendar")
-                        .foregroundColor(.pink)
-                    Text("25 March 2022\n06.00 PM")
+                        .foregroundColor(Color(UIColor.systemPink))
+                    Text(event.startsAt)
                         .font(.caption)
                         .fontWeight(.medium)
                         .multilineTextAlignment(.center)
@@ -42,8 +42,8 @@ struct EventCardFooter: View {
 struct EventCardFooter_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            EventCardFooter(event: RemoteNearEvent.stub)
-            EventCardFooter(event: RemoteNearEvent.stub)
+            EventCardFooter(event: EventCatalogCardViewModel(.stub))
+            EventCardFooter(event: EventCatalogCardViewModel(.stub))
                 .preferredColorScheme(.dark)
         }
             .previewLayout(.sizeThatFits)

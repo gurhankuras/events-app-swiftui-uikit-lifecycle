@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel: HomeView.ViewModel
-    let onEventSelected: (RemoteNearEvent) -> ()
     let categories: [String] = ["All", "Business", "Culture", "Music", "Conference"]
     let logger = AppLogger(type: HomeView.self)
     
@@ -60,25 +59,35 @@ struct HomeView: View {
             EventCategoriesView(categories)
             EventCatalog(title: "popular-title") {
                 ForEach(viewModel.events) { event in
-                    EventCardView(event: event, onClicked: viewModel.loading ? {_ in } : onEventSelected)
-                        .padding(.leading)
+                    if viewModel.loading {
+                        SkeletonEventCardView()
+                    } else {
+                        EventCardView(event: event)
+                    }
                 }
-                .redacted(reason: viewModel.loading ? .placeholder : [])
+                .padding(.leading)
+
             }
 
             EventCatalog(title: "popular-title") {
                 ForEach(viewModel.events) { event in
-                    EventCardView(event: event, onClicked: viewModel.loading ? {_ in } : onEventSelected)
-                        .padding(.leading)
+                    if viewModel.loading {
+                        SkeletonEventCardView()
+                    } else {
+                        EventCardView(event: event)
+                    }
                 }
-                .redacted(reason: viewModel.loading ? .placeholder : [])
+                .padding(.leading)
             }
             EventCatalog(title: "popular-title") {
                 ForEach(viewModel.events) { event in
-                    EventCardView(event: event, onClicked: viewModel.loading ? {_ in } : onEventSelected)
-                        .padding(.leading)
+                    if viewModel.loading {
+                        SkeletonEventCardView()
+                    } else {
+                        EventCardView(event: event)
+                    }
                 }
-                .redacted(reason: viewModel.loading ? .placeholder : [])
+                .padding(.leading)
             }
         }
         .padding(.bottom)

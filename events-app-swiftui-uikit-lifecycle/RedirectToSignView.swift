@@ -29,7 +29,7 @@ struct RedirectToSignView: View {
                 .tint(.white)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 10)
-                .background(Color.pink)
+                .background(Color(UIColor.systemPink))
                 .clipShape(RoundedRectangle(cornerRadius: 5, style: .circular))
             }
         }

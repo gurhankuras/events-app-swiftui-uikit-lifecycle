@@ -46,7 +46,7 @@ struct ChatBubble: View {
             .foregroundColor(.white)
             .padding(10)
             .background(RoundedRectangle(cornerRadius: 15)
-                            .fill(isMe ? .pink : Color(.systemGray)))
+                            .fill(isMe ? Color(UIColor.systemPink) : Color(.systemGray)))
             .frame(maxWidth: 300, alignment: isMe ? .trailing : .leading)
             .frame(maxWidth: .infinity, alignment: isMe ? .trailing : .leading)
         }

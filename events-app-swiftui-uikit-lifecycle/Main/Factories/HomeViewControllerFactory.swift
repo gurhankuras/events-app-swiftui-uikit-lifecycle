@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 protocol HomeViewControllerFactory {
-    func controller(onEventClicked: @escaping (RemoteNearEvent) -> (), onSignButtonClicked: @escaping () -> ()) -> UINavigationController
+    func controller(onEventClicked: @escaping (EventCatalogCardViewModel) -> (), onSignButtonClicked: @escaping () -> ()) -> UINavigationController
 }
 
 class HomeControllerFactory: HomeViewControllerFactory {
@@ -20,13 +20,14 @@ class HomeControllerFactory: HomeViewControllerFactory {
         self.auth = auth
     }
     
-    func controller(onEventClicked: @escaping (RemoteNearEvent) -> (), onSignButtonClicked: @escaping () -> ()) -> UINavigationController {
+    func controller(onEventClicked: @escaping (EventCatalogCardViewModel) -> (), onSignButtonClicked: @escaping () -> ()) -> UINavigationController {
         let store = SecureTokenStore(keychain: .standard)
         let httpClient = HttpAPIClient.shared.tokenSender(store: store)
         let api = NearEventFinder(client: httpClient)
         let locationFetcher = LocationService(manager: .init())
         let viewModel = HomeView.ViewModel(auth: auth, api: api, locationFetcher: locationFetcher)
-        let homeController = UINavigationController(rootView: HomeView(viewModel: viewModel, onEventSelected: onEventClicked))
+        viewModel.onEventSelected = onEventClicked
+        let homeController = UINavigationController(rootView: HomeView(viewModel: viewModel))
         viewModel.onSignClick = onSignButtonClicked
         configureNavigationalOptions(navigationController: homeController)
         return homeController

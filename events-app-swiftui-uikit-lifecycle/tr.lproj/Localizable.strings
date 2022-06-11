@@ -12,7 +12,10 @@
 "continue-button" = "Devam Et";
 "title-form-field-placeholder" = "Başlık";
 "date-picker" = "Bir tarih seçiniz";
-
+"event-held-question" = "Etkinlik nasıl düzenlenecek?";
+"event-held-option-physical" = "Belirtilecek adreste";
+"event-held-option-online" = "Çevrimiçi";
+"event-held-option-both" = "İkisi de";
 // Home
 "home-title" = "Yeni Etkinlikleri Keşfet";
 "popular-title" = "Popüler";

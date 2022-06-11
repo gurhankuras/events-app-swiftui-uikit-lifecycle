@@ -8,11 +8,13 @@
 import Foundation
 import UIKit
 import SwiftUI
+import MapKit
 
 
 class EventCreationViewControllerFactory {
-    func controller(onClickedContinueButton: @escaping () -> (), dismiss: @escaping () -> ()) -> UINavigationController {
-        let view = CreateEventView(onContinued: onClickedContinueButton, dismiss: dismiss)
+    func controller(onNext: @escaping (EventGeneralInfoStep) -> (), dismiss: @escaping () -> ()) -> UINavigationController {
+        let viewModel = StepViewModel(next: onNext)
+        let view = NewEventView(viewModel: viewModel, dismiss: dismiss)
         let vc = CreateEventViewController(rootView: view)
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.isNavigationBarHidden = true
@@ -20,12 +22,14 @@ class EventCreationViewControllerFactory {
         return navigationController
     }
     
-    func mapController() -> UIViewController {
-        return MapViewController()
+    func mapController(onNext: @escaping (CLLocationCoordinate2D) -> ()) -> UIViewController {
+        var vc = MapViewController()
+        vc.onNext = onNext
+        return vc
     }
 }
 
-class CreateEventViewController: UIHostingController<CreateEventView> {
+class CreateEventViewController: UIHostingController<NewEventView> {
     deinit {
         print("CreateEventViewController \(#function)")
     }

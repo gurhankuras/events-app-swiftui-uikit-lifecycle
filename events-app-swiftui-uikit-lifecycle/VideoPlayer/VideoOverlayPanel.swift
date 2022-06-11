@@ -72,7 +72,7 @@ struct VideoPlayerOverlayPanel: View {
                     .foregroundColor(.white)
                 if fullscreen {
                     Image(systemName: "house")
-                        .foregroundColor(.pink)
+                        .foregroundColor(Color(UIColor.systemPink))
                         .onTapGesture(perform: {
                             onDismiss?()
                         })

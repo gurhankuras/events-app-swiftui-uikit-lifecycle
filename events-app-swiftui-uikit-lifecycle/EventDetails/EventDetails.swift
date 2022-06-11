@@ -33,19 +33,34 @@ struct EventDetails: View {
     var body: some View {
         VStack {
             ScrollView(.vertical) {
-                
-                EventHeader(title: viewModel.nearEvent.title,
-                            image: viewModel.nearEvent.image,
+                EventHeader(title: viewModel.title,
+                            image: viewModel.image,
                             height: UIScreen.main.bounds.height * 0.3,
                             dismiss: dismiss)
                  
-                InterestedUsers(users: viewModel.users, gap: 20)
-                .padding(.horizontal)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                HStack {
+                    InterestedUsers(users: viewModel.users, gap: 20)
+                    .padding(.horizontal)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    Spacer()
+                    if viewModel.hasLiveStream {
+                        Button {
+                            viewModel.watchLiveStream?()
+                        } label: {
+                            Text("İzle")
+                                .foregroundColor(.white)
+                                .font(.system(size: 13, weight: .medium, design: .rounded))
+                        }
+                        .padding(.horizontal, 15)
+                        .padding(.vertical, 5)
+                        .background(Color(UIColor.systemPink))
+                        .clipShape(Capsule())
+                    }
+                }
                 
-                ExpandableText(text: viewModel.nearEvent.description, initial: .closed)
+                ExpandableText(text: viewModel.description, initial: .closed)
                     .lineLimit(4)
-                    .font(.system(size: 14, weight: .regular, design: .rounded))
+                .font(.system(size: 14, weight: .regular, design: .rounded))
                 map
                 watchButton
                 joinButton
@@ -57,9 +72,9 @@ struct EventDetails: View {
     
     private var map: some View {
         Map(coordinateRegion: $mapRegion,
-            annotationItems: [viewModel.nearEvent],
+            annotationItems: [viewModel],
             annotationContent: { event in
-                MapMarker(coordinate: .init(latitude: event.latitude, longitude: event.longitute), tint: .red)
+            MapMarker(coordinate: .init(latitude: event.latitute, longitude: event.longitute), tint: .red)
             })
             .frame(maxWidth: .infinity)
             .frame(height: 200)
@@ -78,7 +93,7 @@ struct EventDetails: View {
                 .padding(10)
                 .background(
                     Capsule()
-                        .fill(.pink)
+                        .fill(Color(UIColor.systemPink))
                 )
             
         }
@@ -98,7 +113,7 @@ struct EventDetails: View {
                 .padding(10)
                 .background(
                     Capsule()
-                        .fill(.pink)
+                        .fill(Color(UIColor.systemPink))
                 )
                 .padding(.horizontal)
                 .padding(.bottom)
@@ -126,7 +141,7 @@ struct EventDetails: View {
 
 struct EventDetails_Previews: PreviewProvider {
     static var previews: some View {
-        EventDetails(viewModel: .init(nearEvent: .stub),
+        EventDetails(viewModel: .init(event: .stub, watchLiveStream: {}),
                      dismiss: {},
                      buyTicket: {})
     }

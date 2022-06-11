@@ -36,8 +36,10 @@ class HomeFlow: Flow {
         rootViewController.dismiss(animated: true)
     }
     
-    func selectEvent(_ event: RemoteNearEvent) {
-        let viewModel =  EventDetails.ViewModel(nearEvent: event)
+    func selectEvent(_ event: EventCatalogCardViewModel) {
+        let viewModel =  EventDetails.ViewModel(event: event.event, watchLiveStream: { [weak self] in
+            self?.rootViewController.pushViewController(LiveStreamContainerViewController(), animated: true)
+        })
         let view = EventDetails(viewModel: viewModel, dismiss: { [weak self] in self?.dismissEvent() }, buyTicket: { [weak self] in
             let viewModel = PaymentFormViewModel()
             let view = BillingAddressStepView(formViewModel: viewModel,

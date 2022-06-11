@@ -29,7 +29,7 @@ struct EventRemainderView: View {
                     .font(.custom("", size: 15, relativeTo: .body))
                     .foregroundColor(.white)
                     .padding(10)
-                    .background(Color.pink)
+                    .background(Color(UIColor.systemPink))
                     .clipShape(Capsule())
             })
             

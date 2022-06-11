@@ -37,11 +37,12 @@ struct SigningTextField: View {
         .padding(.vertical, 10)
         .background(
             RoundedRectangle(cornerRadius: 5)
-                .stroke(!text.isEmpty ? .pink : .gray, lineWidth: 1)
+                .stroke(!text.isEmpty ? Color(UIColor.systemPink) : .gray, lineWidth: 1)
         )
         .font(font)
         .foregroundColor(.appTextColor)
         .padding(.vertical, 5)
+        .disableAutocorrection(true)
     }
 }
 

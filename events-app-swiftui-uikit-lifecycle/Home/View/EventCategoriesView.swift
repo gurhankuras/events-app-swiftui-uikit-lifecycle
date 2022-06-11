@@ -22,7 +22,7 @@ struct EventCategoriesView: View {
                         .font(.custom("deneme", size: 15, relativeTo: .body))
                         .foregroundColor(.white)
                         .padding(8)
-                        .background(Color.pink)
+                        .background(Color(UIColor.systemPink))
                         .clipShape(Capsule(style: .continuous))
                         .onTapGesture {
                             if (category == "All") {

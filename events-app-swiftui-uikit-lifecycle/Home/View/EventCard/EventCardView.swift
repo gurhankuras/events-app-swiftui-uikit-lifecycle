@@ -8,12 +8,8 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-
 struct EventCardView: View {
-    let event: RemoteNearEvent
-    let onClicked: (RemoteNearEvent) -> ()
-
-    @State var isActive: Bool = false
+    let event: EventCatalogCardViewModel
     let width = UIScreen.main.bounds.width * 0.65
     
     var body: some View {
@@ -29,7 +25,7 @@ struct EventCardView: View {
         .overlay(alignment: .topTrailing) {
             distanceIndicator
         }
-        .onTapGesture(perform: { onClicked(event) })
+        .onTapGesture(perform: event.select)
     }
     
     private var image: some View {
@@ -39,19 +35,19 @@ struct EventCardView: View {
             .frame(width: width, height: 150)
             .clipShape(CustomShape(corner: [.topLeft, .topRight], radii: 15))
             .overlay(alignment: .bottom) {
-                EventCardHeader(title: event.title)
+                EventCardHeader(event: event)
             }
     }
     
     private var distanceIndicator: some View {
-        Text("~\(Int(round(event.distance)))m")
+        Text(event.distance)
             .font(.system(size: 12,
                           weight: .bold,
                           design: .rounded)
             )
             .padding(5)
             .foregroundColor(.white)
-            .background(Color.black)
+            .background(Color.appPurple)
             .clipShape(Capsule())
     }
 }
@@ -60,8 +56,8 @@ struct EventCardView: View {
 struct EventCardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            EventCardView(event: RemoteNearEvent.stub, onClicked: {_ in})
-            EventCardView(event: RemoteNearEvent.stub, onClicked: {_ in})
+            EventCardView(event: .init(.stub))
+            EventCardView(event: .init(.stub))
                 .preferredColorScheme(.dark)
         }
         .previewLayout(.sizeThatFits)

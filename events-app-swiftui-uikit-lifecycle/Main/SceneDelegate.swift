@@ -39,7 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         initFactories()
         
     
-        /*
+        
         appCoordinator = AppFlow(homeFactory: homeFactory, chatFactory: chatFactory,
                                         profileFactory: profileFactory, searchFactory: searchFactory,
                                         createFactory: createFactory, signFactory: signFactory,
@@ -47,12 +47,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appCoordinator.window = window
         auth.trySignIn()
         appCoordinator.start()
-        */
         
         
+        /*
         tempCoordinator = TempFlow()
         tempCoordinator.window = window
         tempCoordinator.start()
+         */
     
          /*
         let viewModel = LinkedInVerificationViewModel()

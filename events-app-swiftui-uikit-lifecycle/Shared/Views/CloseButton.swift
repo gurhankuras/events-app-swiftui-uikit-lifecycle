@@ -11,7 +11,7 @@ struct CloseButton: View {
     let action: () -> Void
     let color: Color
     
-    init(action: @escaping () -> Void, color: Color = .pink) {
+    init(action: @escaping () -> Void, color: Color = Color(UIColor.systemPink)) {
         self.action = action
         self.color = color
     }
@@ -30,7 +30,7 @@ struct CloseButtonTest: View {
     var body: some View {
         VStack {
             CloseButton(action: { count += 1 })
-                .border(.pink, width: 1)
+                .border(Color(UIColor.systemPink), width: 1)
             Text("Clicked: \(count) times")
         }
     }

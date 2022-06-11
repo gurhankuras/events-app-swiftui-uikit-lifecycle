@@ -8,8 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct DummyEventCardView: View {
+struct SkeletonEventCardView: View {
     var body: some View {
-        EventCardView(event: .stub, onClicked: {_ in })
+        EventCardView(event: .init(.stub))
+            .redacted(reason: .placeholder)
     }
 }

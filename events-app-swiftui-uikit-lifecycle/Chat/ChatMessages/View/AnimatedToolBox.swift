@@ -51,7 +51,7 @@ struct AnimatedToolBox: View {
                     }
                         .padding(.vertical, 12)
                     
-                        .background(Color.pink)
+                        .background(Color(UIColor.systemPink))
                         .clipShape(Capsule())
                         .offset(y: 50)
                         .opacity(isOpen ? 1 : 0)

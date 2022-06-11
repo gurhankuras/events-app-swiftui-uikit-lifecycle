@@ -61,7 +61,7 @@ struct SigningTransationText: View {
                 .foregroundColor(.appTextColor)
             Text(link)
                 .bold()
-                .foregroundColor(.pink)
+                .foregroundColor(Color(UIColor.systemPink))
                 .onTapGesture(perform: action)
         }
         .font(.system(size: 13))

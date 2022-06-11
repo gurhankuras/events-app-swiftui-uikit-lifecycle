@@ -30,10 +30,11 @@ extension HomeView {
         let locationFetcher: LocationFetcher
         let api: NearEventFinder
         var onSignClick: (() -> Void)?
+        var onEventSelected: ((EventCatalogCardViewModel) -> ())?
 
         // MARK: State
         @Published var user: User?
-        @Published var _nearEvents: [RemoteNearEvent] = []
+        @Published var events: [EventCatalogCardViewModel] = []
         @Published var loading = false
         
         var bag = Set<AnyCancellable>()
@@ -59,23 +60,21 @@ extension HomeView {
                         self?.load()
                         return
                     }
-                    self?._nearEvents = []
+                    self?.events = []
                 }
                 .store(in: &bag)
 
         }
         
-        var events: [RemoteNearEvent] {
-            return _nearEvents
-        }
+       
         
         ///  called by init function when first loading events
         ///  controls `loading` variable in turn this controls whether show skelaton event views or not
         func load() {
             Self.logger.trace("Loads events")
             loading = true
-            if self._nearEvents.isEmpty {
-                self._nearEvents = Array(repeating: .stub, count: 4)
+            if self.events.isEmpty {
+                self.events = Array(repeating: .init(.stub), count: 4)
             }
             self.loadNearEvents { [weak self] in
                 DispatchQueue.main.async {
@@ -121,7 +120,9 @@ extension HomeView {
                 case .success(let events):
                     Self.logger.trace("Fetched \(events.count) events")
                     DispatchQueue.main.async {
-                        self?._nearEvents = events
+                        self?.events = events.map({
+                            return .init($0, select: {[weak self] vm in self?.onEventSelected?(vm)})
+                        })
                     }
                 case .failure(let error):
                     self?.setFailureState(title: error.localizedDescription, action: .close)
@@ -133,7 +134,7 @@ extension HomeView {
         
         private func setFailureState(title: String, action: BannerAction) {
             DispatchQueue.main.async { [weak self] in
-                self?._nearEvents = []
+                self?.events = []
                 BannerService.shared.show(icon: .failure, title: title, action: action)
             }
         }

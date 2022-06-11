@@ -23,7 +23,7 @@ struct LongRoundedButton: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 30)
-                    .fill(Color.pink)
+                    .fill(Color(UIColor.systemPink))
                     .opacity(active ? 1 : 0.4)
             )
         }

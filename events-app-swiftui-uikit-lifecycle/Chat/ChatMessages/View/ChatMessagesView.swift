@@ -56,7 +56,7 @@ struct ChatMessagesView: View {
             } label: {
                 Image(systemName: "paperplane.circle.fill")
                     .font(.largeTitle)
-                    .foregroundColor(Color.pink)
+                    .foregroundColor(Color(UIColor.systemPink))
                     .opacity(viewModel.canSendMessage ? 1 : 0.5)
             }
             .disabled(!viewModel.canSendMessage)

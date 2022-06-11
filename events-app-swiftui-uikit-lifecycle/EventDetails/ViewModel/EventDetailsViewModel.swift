@@ -10,11 +10,30 @@ import MapKit
 import os
 
 extension EventDetails {
-    struct ViewModel {
-        let nearEvent: RemoteNearEvent
+    struct ViewModel: Identifiable {
+        //let event: RemoteNearEvent
+        let hasLiveStream: Bool
+        let latitute: Double
+        let longitute: Double
+        let title: String
+        let id: String = UUID().uuidString
+        let image: String
+        let description: String
+        var watchLiveStream: (() -> ())?
+        
+        init(event: RemoteNearEvent, watchLiveStream: (() -> ())?) {
+            self.title = event.title
+            self.image = event.image
+            self.description = event.description
+            self.longitute = event.longitute
+            self.latitute = event.latitude
+            self.hasLiveStream = true
+            self.watchLiveStream = watchLiveStream
+        }
+        
         
         var region: MKCoordinateRegion {
-            let center = CLLocationCoordinate2D(latitude: nearEvent.latitude, longitude: nearEvent.longitute)
+            let center = CLLocationCoordinate2D(latitude: latitute, longitude: longitute)
             let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
             let region = MKCoordinateRegion(center: center, span: span)
             return region

@@ -6,12 +6,16 @@
   
 */
 
+// New Event
 "create-event-title" = "Create Event";
 "certification-question" = "Has certification programme?";
 "continue-button" = "Continue";
 "title-form-field-placeholder" = "Title";
 "date-picker" = "Select a date";
-
+"event-held-question" = "Where will the event be held?";
+"event-held-option-physical" = "Physical";
+"event-held-option-online" = "Online";
+"event-held-option-both" = "Both";
 // Home
 "home-title" = "Find Amazing Events";
 "popular-title" = "Popular";
