@@ -34,7 +34,7 @@ class FileService {
             throw DummyError()
         }
         let url = directory.appendingPathComponent("\(UUID().uuidString).jpg")
-        let jpegData = image.jpegData(compressionQuality: 1.0);
+        let jpegData = image.jpegData(compressionQuality: 0.6);
         try jpegData?.write(to: url);
         return url
     }

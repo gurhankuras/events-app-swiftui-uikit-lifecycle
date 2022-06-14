@@ -158,7 +158,15 @@ struct CreditCardStepView: View {
                 viewModel.service.startHandshake { result in
                     switch result {
                     case .failure(let error):
-                        print(error)
+                        if let err = error as? URLError, err.code  == URLError.Code.notConnectedToInternet
+                        {
+                            print("No internet")
+                            // No internet
+                        }
+                        //else if err = error as? URLError, err.code == URLError.Code.not
+                        else {
+                            print(error)
+                        }
                     case .success(let content):
                         onNext?(content)
                     }

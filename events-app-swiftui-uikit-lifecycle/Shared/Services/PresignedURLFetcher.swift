@@ -11,7 +11,7 @@ import Combine
 
 struct PresignedUrlInfo: Codable {
     let url: String
-    let key: String
+    //let key: String
 }
 
 protocol URLFetcher {

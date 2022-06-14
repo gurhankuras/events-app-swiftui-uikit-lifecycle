@@ -20,6 +20,16 @@ struct EventGeneralInfoStep {
     let certification: Bool
     let placeType: EventPlaceType
 }
+import Combine
+/*
+func todayWithoutMilliseconds() -> Date {
+   let date = Date()
+   let calendar = Calendar.current
+   var components = calendar.dateComponents([.hour, .minute, .second, .day, .month, .year], from: date as Date)
+   let tempDate = calendar.date(from: components)!
+   return tempDate
+}
+ */
 
 class StepViewModel: ObservableObject {
     @Published var title: String = ""
@@ -27,11 +37,17 @@ class StepViewModel: ObservableObject {
     @Published var startAt = Date()
     @Published var hasCertification: Bool = false
     @Published var placeType: EventPlaceType = .physical
+    var bag = Set<AnyCancellable>()
+    
     
     private var _next: ((EventGeneralInfoStep) -> ())
     
     init(next: @escaping ((EventGeneralInfoStep) -> ())) {
         self._next = next
+        $startAt.sink { date in
+            print(date)
+        }
+        .store(in: &bag)
     }
     
     func next() {
@@ -44,7 +60,12 @@ class StepViewModel: ObservableObject {
     }
     
     lazy var allowedStartingDateRange: PartialRangeFrom<Date> = {
-        return Date().advanced(by: 60 * 60 * 24 * 1)...
+        let calender = Calendar.current
+        guard let tomorrow = calender.date(byAdding: .day, value: 1, to: Date()) else {
+            return Date.distantFuture...
+        }
+        let startingDateComponents = tomorrow
+        return tomorrow...
     }()
 }
 
@@ -134,7 +155,7 @@ struct NewEventView: View {
             .font(.system(size: 14, weight: .regular, design: .rounded))
         
         DatePicker(selection: $step.startAt,
-                   in: step.allowedStartingDateRange,
+                  
                    displayedComponents: [.date, .hourAndMinute]) {}
         .labelsHidden()
     }

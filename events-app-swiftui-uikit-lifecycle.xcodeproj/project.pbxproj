@@ -62,6 +62,9 @@
 		222A5FE4282BCB73000CCCFE /* BannerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A5FE3282BCB73000CCCFE /* BannerService.swift */; };
 		222A6022282BD958000CCCFE /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A6021282BD958000CCCFE /* Banner.swift */; };
 		222A6024282BD9CF000CCCFE /* UIViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A6023282BD9CF000CCCFE /* UIViewPreview.swift */; };
+		222BEDDD28589C5E005730F5 /* NewEventAddressStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEDDC28589C5E005730F5 /* NewEventAddressStepViewModel.swift */; };
+		222BEDDF2858ECE8005730F5 /* EventCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEDDE2858ECE8005730F5 /* EventCategoryType.swift */; };
+		222BEDE12858ED18005730F5 /* EventCategoryType+name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEDE02858ED18005730F5 /* EventCategoryType+name.swift */; };
 		22339CBE283FEB620027984A /* BillingAddressStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22339CBD283FEB620027984A /* BillingAddressStepView.swift */; };
 		22339CC0283FEF0B0027984A /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22339CBF283FEF0B0027984A /* Dropdown.swift */; };
 		22339CC42840075F0027984A /* CreditCardStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22339CC32840075F0027984A /* CreditCardStepView.swift */; };
@@ -101,6 +104,14 @@
 		2261EFA7283D1AF50056C8AC /* SignViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2261EFA6283D1AF50056C8AC /* SignViewControllerFactory.swift */; };
 		2261EFA9283D1E380056C8AC /* RedirectToSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2261EFA8283D1E380056C8AC /* RedirectToSignView.swift */; };
 		2261EFAB283D62D60056C8AC /* String+NSLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2261EFAA283D62D60056C8AC /* String+NSLocalizedString.swift */; };
+		226B9C8B2856097900A84BB3 /* AddressStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B9C8A2856097900A84BB3 /* AddressStepView.swift */; };
+		226B9C8D28560E9400A84BB3 /* RegularAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B9C8C28560E9400A84BB3 /* RegularAppBar.swift */; };
+		226B9C8F2856103700A84BB3 /* ankara.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 226B9C8E28560FA400A84BB3 /* ankara.geojson */; };
+		226B9C912856160E00A84BB3 /* GeojsonProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B9C902856160E00A84BB3 /* GeojsonProvider.swift */; };
+		226B9C93285625D300A84BB3 /* NewEventOverlayHandlingMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B9C92285625D300A84BB3 /* NewEventOverlayHandlingMapDelegate.swift */; };
+		226B9C982856268700A84BB3 /* MapStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B9C972856268700A84BB3 /* MapStepViewModel.swift */; };
+		226B9C9E28564DA600A84BB3 /* EventCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B9C9D28564DA600A84BB3 /* EventCreator.swift */; };
+		226B9CA028567DA200A84BB3 /* DateSerialzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B9C9F28567DA200A84BB3 /* DateSerialzer.swift */; };
 		2276D317284F4D340099DAD1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2276D316284F4D340099DAD1 /* GoogleService-Info.plist */; };
 		2276D31A284F4F050099DAD1 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2276D319284F4F050099DAD1 /* FirebaseAnalytics */; };
 		2276D31C284F4F050099DAD1 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2276D31B284F4F050099DAD1 /* FirebaseMessaging */; };
@@ -352,6 +363,9 @@
 		222A5FE3282BCB73000CCCFE /* BannerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerService.swift; sourceTree = "<group>"; };
 		222A6021282BD958000CCCFE /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		222A6023282BD9CF000CCCFE /* UIViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPreview.swift; sourceTree = "<group>"; };
+		222BEDDC28589C5E005730F5 /* NewEventAddressStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventAddressStepViewModel.swift; sourceTree = "<group>"; };
+		222BEDDE2858ECE8005730F5 /* EventCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategoryType.swift; sourceTree = "<group>"; };
+		222BEDE02858ED18005730F5 /* EventCategoryType+name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventCategoryType+name.swift"; sourceTree = "<group>"; };
 		22339CBD283FEB620027984A /* BillingAddressStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingAddressStepView.swift; sourceTree = "<group>"; };
 		22339CBF283FEF0B0027984A /* Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		22339CC32840075F0027984A /* CreditCardStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardStepView.swift; sourceTree = "<group>"; };
@@ -390,6 +404,14 @@
 		2261EFA6283D1AF50056C8AC /* SignViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignViewControllerFactory.swift; sourceTree = "<group>"; };
 		2261EFA8283D1E380056C8AC /* RedirectToSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectToSignView.swift; sourceTree = "<group>"; };
 		2261EFAA283D62D60056C8AC /* String+NSLocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NSLocalizedString.swift"; sourceTree = "<group>"; };
+		226B9C8A2856097900A84BB3 /* AddressStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressStepView.swift; sourceTree = "<group>"; };
+		226B9C8C28560E9400A84BB3 /* RegularAppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularAppBar.swift; sourceTree = "<group>"; };
+		226B9C8E28560FA400A84BB3 /* ankara.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = ankara.geojson; sourceTree = "<group>"; };
+		226B9C902856160E00A84BB3 /* GeojsonProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeojsonProvider.swift; sourceTree = "<group>"; };
+		226B9C92285625D300A84BB3 /* NewEventOverlayHandlingMapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventOverlayHandlingMapDelegate.swift; sourceTree = "<group>"; };
+		226B9C972856268700A84BB3 /* MapStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStepViewModel.swift; sourceTree = "<group>"; };
+		226B9C9D28564DA600A84BB3 /* EventCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreator.swift; sourceTree = "<group>"; };
+		226B9C9F28567DA200A84BB3 /* DateSerialzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSerialzer.swift; sourceTree = "<group>"; };
 		2276D316284F4D340099DAD1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2276D31D284F504E0099DAD1 /* events-app-swiftui-uikit-lifecycle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "events-app-swiftui-uikit-lifecycle.entitlements"; sourceTree = "<group>"; };
 		2276D31E284F59E90099DAD1 /* Hostname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hostname.swift; sourceTree = "<group>"; };
@@ -688,7 +710,7 @@
 				2220582D2833BB5100668639 /* NewEventView.swift */,
 				2220582F2833CB1200668639 /* ImageUploadView.swift */,
 				222058312833D11800668639 /* DescriptionTextViewDelegate.swift */,
-				222058392834021E00668639 /* MapViewController.swift */,
+				226B9C92285625D300A84BB3 /* NewEventOverlayHandlingMapDelegate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -855,6 +877,64 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		226B9C942856265C00A84BB3 /* MapStep */ = {
+			isa = PBXGroup;
+			children = (
+				226B9C962856267800A84BB3 /* ViewModel */,
+				226B9C952856266C00A84BB3 /* View */,
+			);
+			path = MapStep;
+			sourceTree = "<group>";
+		};
+		226B9C952856266C00A84BB3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				222058392834021E00668639 /* MapViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		226B9C962856267800A84BB3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				226B9C972856268700A84BB3 /* MapStepViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		226B9C9928564A4000A84BB3 /* AddressStep */ = {
+			isa = PBXGroup;
+			children = (
+				226B9C9B28564A5000A84BB3 /* ViewModel */,
+				226B9C9A28564A4C00A84BB3 /* View */,
+			);
+			path = AddressStep;
+			sourceTree = "<group>";
+		};
+		226B9C9A28564A4C00A84BB3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				226B9C8A2856097900A84BB3 /* AddressStepView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		226B9C9B28564A5000A84BB3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				222BEDDC28589C5E005730F5 /* NewEventAddressStepViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		226B9C9C28564D9700A84BB3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				226B9C9D28564DA600A84BB3 /* EventCreator.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		229C9741283A6538008DC37A /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -954,6 +1034,7 @@
 				22DCEC0D2835286400C98D58 /* pink-loading.json */,
 				22DCEC0B283527ED00C98D58 /* loading.json */,
 				2220583D28340CCB00668639 /* tr-cities.geojson */,
+				226B9C8E28560FA400A84BB3 /* ankara.geojson */,
 				22492151285531F2008A8CDE /* istanbul.geojson */,
 				2220583B283407A900668639 /* location.geojson */,
 				2227654A283176F0003E94F8 /* Search */,
@@ -1179,6 +1260,8 @@
 			isa = PBXGroup;
 			children = (
 				22D3ACCE27EB80C200A5B08C /* Event.swift */,
+				222BEDDE2858ECE8005730F5 /* EventCategoryType.swift */,
+				222BEDE02858ED18005730F5 /* EventCategoryType+name.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1222,6 +1305,7 @@
 				222A6021282BD958000CCCFE /* Banner.swift */,
 				22339CBF283FEF0B0027984A /* Dropdown.swift */,
 				2254817E2840EA4200F33950 /* DropdownBinding.swift */,
+				226B9C8C28560E9400A84BB3 /* RegularAppBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1378,9 +1462,13 @@
 		22D3AD6727EB81CC00A5B08C /* NewEvent */ = {
 			isa = PBXGroup;
 			children = (
+				226B9C9C28564D9700A84BB3 /* Services */,
+				226B9C9928564A4000A84BB3 /* AddressStep */,
+				226B9C942856265C00A84BB3 /* MapStep */,
 				2220582B2833BB3A00668639 /* View */,
 				22D3AD6827EB81CC00A5B08C /* Blank.swift */,
 				22D3AD6927EB81CC00A5B08C /* ImageSaver.swift */,
+				226B9C902856160E00A84BB3 /* GeojsonProvider.swift */,
 			);
 			path = NewEvent;
 			sourceTree = "<group>";
@@ -1409,6 +1497,7 @@
 				22D3AE2C27EB865A00A5B08C /* SignupViewModelTest.swift */,
 				22D3AE1E27EB865A00A5B08C /* Utils */,
 				22D3AE2B27EB865A00A5B08C /* VideoPlayerTests.swift */,
+				226B9C9F28567DA200A84BB3 /* DateSerialzer.swift */,
 			);
 			path = "events-app-swiftui-uikit-lifecycleTests";
 			sourceTree = "<group>";
@@ -1683,6 +1772,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				226B9C8F2856103700A84BB3 /* ankara.geojson in Resources */,
 				2249215328553409008A8CDE /* istanbul.geojson in Resources */,
 				2220583E28340CCB00668639 /* tr-cities.geojson in Resources */,
 				224C7C32282FE7570037AD45 /* Settings.bundle in Resources */,
@@ -1848,6 +1938,7 @@
 				2217504E281AC6A20096308D /* ProfileSetting.swift in Sources */,
 				222A6024282BD9CF000CCCFE /* UIViewPreview.swift in Sources */,
 				22A076FB284F7429007152B1 /* TempFlow.swift in Sources */,
+				226B9C93285625D300A84BB3 /* NewEventOverlayHandlingMapDelegate.swift in Sources */,
 				2254817D2840DD0F00F33950 /* CustomFormatTextField.swift in Sources */,
 				22D3AD1E27EB80C200A5B08C /* S3BucketFileFacade.swift in Sources */,
 				22D3AD1427EB80C200A5B08C /* ControlledWebView.swift in Sources */,
@@ -1858,6 +1949,7 @@
 				22A076FD284FC3AC007152B1 /* LiveStreamContainerViewController.swift in Sources */,
 				222A5FCA282A930E000CCCFE /* ProfileViewControllerFactory.swift in Sources */,
 				229CD29A284BB0BE00C58896 /* RemoteSearchedEvent.swift in Sources */,
+				222BEDE12858ED18005730F5 /* EventCategoryType+name.swift in Sources */,
 				22D3AD2127EB80C200A5B08C /* TokenStore.swift in Sources */,
 				222A5FD8282AE766000CCCFE /* TabFlow.swift in Sources */,
 				22D3AC5E27EB7E5800A5B08C /* AppDelegate.swift in Sources */,
@@ -1904,6 +1996,7 @@
 				22D3ACAD27EB803C00A5B08C /* ChatUsersViewModel.swift in Sources */,
 				22339CC42840075F0027984A /* CreditCardStepView.swift in Sources */,
 				22D3AD1C27EB80C200A5B08C /* JsonGet.swift in Sources */,
+				222BEDDD28589C5E005730F5 /* NewEventAddressStepViewModel.swift in Sources */,
 				22D3AC6027EB7E5800A5B08C /* SceneDelegate.swift in Sources */,
 				224C7C34282FF5050037AD45 /* UIApplication+openAppSettings.swift in Sources */,
 				222A5FDA282AE7E3000CCCFE /* ChatFlow.swift in Sources */,
@@ -1913,6 +2006,7 @@
 				22D3ACB627EB803C00A5B08C /* ChatMessage+Stub.swift in Sources */,
 				22A076F9284F7308007152B1 /* NFCDemoViewController.swift in Sources */,
 				222765432831272A003E94F8 /* EventDetailsViewModel.swift in Sources */,
+				226B9C9E28564DA600A84BB3 /* EventCreator.swift in Sources */,
 				22D3AD1827EB80C200A5B08C /* JsonPostTokenSaverDecorator.swift in Sources */,
 				22D3AD0C27EB80C200A5B08C /* View+Size.swift in Sources */,
 				2227654F28317762003E94F8 /* SearchFlow.swift in Sources */,
@@ -1920,12 +2014,15 @@
 				22D3ACBA27EB803C00A5B08C /* ChatRoomCell.swift in Sources */,
 				22D3AD0627EB80C200A5B08C /* UINavigationController+SwipeBack.swift in Sources */,
 				223D21F92839470D0008FE55 /* SearchTableViewController.swift in Sources */,
+				226B9C982856268700A84BB3 /* MapStepViewModel.swift in Sources */,
+				222BEDDF2858ECE8005730F5 /* EventCategoryType.swift in Sources */,
 				225481892841623000F33950 /* CheckoutView.swift in Sources */,
 				22DCEC06283521AD00C98D58 /* CustomRefreshView.swift in Sources */,
 				2261EFAB283D62D60056C8AC /* String+NSLocalizedString.swift in Sources */,
 				22D3AD0527EB80C200A5B08C /* UIApplication+ResignResponder.swift in Sources */,
 				22D3AD1227EB80C200A5B08C /* ExpandableText.swift in Sources */,
 				22D3ACFF27EB80C200A5B08C /* Event.swift in Sources */,
+				226B9C912856160E00A84BB3 /* GeojsonProvider.swift in Sources */,
 				224C7C28282FCB620037AD45 /* RemoteNearEvent.swift in Sources */,
 				22492152285531F2008A8CDE /* istanbul.geojson in Sources */,
 				223D224D28394E470008FE55 /* SearchViewModel.swift in Sources */,
@@ -1955,6 +2052,7 @@
 				22DCEC152835740300C98D58 /* Clamp.swift in Sources */,
 				221E240327F203D700B8A939 /* ChatScroller.swift in Sources */,
 				224C7C2D282FDC920037AD45 /* LocationService.swift in Sources */,
+				226B9C8D28560E9400A84BB3 /* RegularAppBar.swift in Sources */,
 				22D3AD5027EB817800A5B08C /* PlayerViewModel.swift in Sources */,
 				22D3AD1327EB80C200A5B08C /* CloseButton.swift in Sources */,
 				22A077052850DB0B007152B1 /* LiveChatViewModel.swift in Sources */,
@@ -2003,6 +2101,7 @@
 				22D3AD0D27EB80C200A5B08C /* ImagePicker.swift in Sources */,
 				22D3ACF927EB80C200A5B08C /* CustomShape.swift in Sources */,
 				224B7A7428468C5A000B28CF /* ProfileFetcher.swift in Sources */,
+				226B9C8B2856097900A84BB3 /* AddressStepView.swift in Sources */,
 				22D3AD4527EB814400A5B08C /* ErrorView.swift in Sources */,
 				22175052281AD1A00096308D /* SettingsViewModel.swift in Sources */,
 			);
@@ -2041,6 +2140,7 @@
 				22D3AE3B27EB865A00A5B08C /* HttpClientStub.swift in Sources */,
 				22D3AE3F27EB865A00A5B08C /* EmailTests.swift in Sources */,
 				22D3AE4827EB865A00A5B08C /* AuthTests.swift in Sources */,
+				226B9CA028567DA200A84BB3 /* DateSerialzer.swift in Sources */,
 				22D3AE3C27EB865A00A5B08C /* DummyUserLogin.swift in Sources */,
 				22DCEC132835720600C98D58 /* ClampTest.swift in Sources */,
 			);

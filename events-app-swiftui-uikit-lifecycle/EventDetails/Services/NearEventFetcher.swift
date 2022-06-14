@@ -43,10 +43,14 @@ class NearEventFinder {
     private func respond(to statusCode: Int, decoding data: Data, with completion: @escaping (Result<[RemoteNearEvent], Error>) -> ()) {
         let decoder = JSONDecoder.withFractionalSecondISO8601
         if statusCode == 200 {
-            guard let remoteEvents = try? decoder.decode([RemoteNearEvent].self, from: data) else {
-                return completion(.failure(URLError.init(.badServerResponse)))
+            do {
+                let remoteEvents = try decoder.decode([RemoteNearEvent].self, from: data)
+                completion(.success(remoteEvents))
+            } catch  {
+                print(error)
+                print(error.localizedDescription)
+                completion(.failure(error))
             }
-            completion(.success(remoteEvents))
         }
         else if statusCode == 401 {
             completion(.failure(NetworkError.response([ErrorMessage(message: "deneme")])))

@@ -10,13 +10,14 @@ import Foundation
 struct EventCatalogCardViewModel: Identifiable {
     private var onSelected: ((EventCatalogCardViewModel) -> ())?
     private let _address: RemoteNearEventAddress
-    private let isOnline: Bool = true
+    private let isOnline: Bool
     let event: RemoteNearEvent
     var isFavorite: Bool = false
     
     init(_ event: RemoteNearEvent, select: ((EventCatalogCardViewModel) -> ())?) {
         self._address = event.address
         self.event = event
+        self.isOnline = event.environment != 0
         self.onSelected = select
     }
     
@@ -24,6 +25,13 @@ struct EventCatalogCardViewModel: Identifiable {
         self.init(event, select: nil)
     }
     
+    var streaming: Bool {
+        guard let liveStreamStartDate = event.liveStream.startedAt else {
+            return false
+        }
+        let now = Date()
+        return liveStreamStartDate < now
+    }
     
     var id: String {
         event.id

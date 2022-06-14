@@ -9,6 +9,7 @@ import XCTest
 @testable import events_app_swiftui_uikit_lifecycle
 import SwiftUI
 
+/*
 protocol HomeDelegate {
     func didSelect(_ event: RemoteNearEvent)
     func dismissedSigning()
@@ -96,9 +97,10 @@ class NonAnimatingNavigationController: UINavigationController {
 
 
 class TestHomeViewControllerFactory: HomeViewControllerFactory {
-    func controller(onEventClicked: @escaping (RemoteNearEvent) -> (), onSignButtonClicked: @escaping () -> ()) -> UINavigationController {
+    func controller(onEventClicked: @escaping (EventCatalogCardViewModel) -> (), onSignButtonClicked: @escaping () -> ()) -> UINavigationController {
         return NonAnimatingNavigationController()
     }
+
 }
 
 
@@ -188,3 +190,4 @@ extension HomeFlowTests {
     }
 
 }
+*/

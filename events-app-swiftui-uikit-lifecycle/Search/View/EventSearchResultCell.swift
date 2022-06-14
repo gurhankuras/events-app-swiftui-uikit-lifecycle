@@ -45,7 +45,7 @@ struct SearchedEvent: Identifiable, Decodable {
     let image: String
     let title: String
     let description: String
-    let createdAt: Date
+    //let createdAt: Date?
     let latitude: Double
     let longitute: Double
     let address: RemoteNearEventAddress

@@ -22,8 +22,12 @@ class EventCreationViewControllerFactory {
         return navigationController
     }
     
-    func mapController(onNext: @escaping (CLLocationCoordinate2D) -> ()) -> UIViewController {
+    func mapController(_ address: (country: String, city: String), onNext: @escaping (CLLocationCoordinate2D) -> ()) -> UIViewController {
+        let provider = GeoJsonFileReader(address: address)
+        let viewModel = MapStepViewModel(geoJsonProvider: provider)
+        // TODO: when used constructor injection, i get runtime error. find the reason
         var vc = MapViewController()
+        vc.viewModel = viewModel
         vc.onNext = onNext
         return vc
     }

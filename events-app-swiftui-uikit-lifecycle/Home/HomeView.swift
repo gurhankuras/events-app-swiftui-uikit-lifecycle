@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel: HomeView.ViewModel
-    let categories: [String] = ["All", "Business", "Culture", "Music", "Conference"]
+    //let categories: [String] = ["All", "Business", "Culture", "Music", "Conference"]
     let logger = AppLogger(type: HomeView.self)
     
     var body: some View {
@@ -56,7 +56,8 @@ struct HomeView: View {
     
     var scrollBody: some View {
         VStack {
-            EventCategoriesView(categories)
+            EventCategoriesView(viewModel.categories.map{ $0.name },
+                                onTappedCategory: { category in viewModel.fetch(for: category) })
             EventCatalog(title: "popular-title") {
                 ForEach(viewModel.events) { event in
                     if viewModel.loading {

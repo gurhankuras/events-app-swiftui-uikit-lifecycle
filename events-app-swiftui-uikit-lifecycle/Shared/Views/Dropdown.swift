@@ -52,11 +52,11 @@ struct Dropdown: View {
         }
         .frame(minHeight: min(CGFloat(options.count) * 30, 200), maxHeight: 250)
         .padding(.vertical, 5)
-        .background(Color(UIColor.systemBackground))
+        .background(Color(uiColor: .systemBackground))
         .cornerRadius(5)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
-                .stroke(Color(UIColor.systemGray), lineWidth: 1)
+                .stroke(Color(uiColor: .label), lineWidth: 1)
         )
     }
 }
@@ -80,7 +80,7 @@ struct DropdownSelector: View {
             HStack {
                 Text(selectedOption == nil ? placeholder : selectedOption!.value)
                     .font(.system(size: 14))
-                    .foregroundColor(selectedOption == nil ? Color.gray: Color.black)
+                    .foregroundColor(selectedOption == nil ? Color.gray: Color(uiColor: .label))
 
                 Spacer()
 
@@ -88,7 +88,7 @@ struct DropdownSelector: View {
                     .resizable()
                     .frame(width: 9, height: 5)
                     .font(Font.system(size: 9, weight: .medium))
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color(uiColor: .label))
             }
         }
         .padding(.horizontal)
@@ -97,7 +97,7 @@ struct DropdownSelector: View {
         .frame(height: self.buttonHeight)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
-                .stroke(Color.gray, lineWidth: 1)
+                .stroke(Color(uiColor: .label), lineWidth: 1)
         )
         .overlay(
             VStack {
@@ -114,7 +114,7 @@ struct DropdownSelector: View {
         )
         
         .background(
-            RoundedRectangle(cornerRadius: 5).fill(Color.white)
+            RoundedRectangle(cornerRadius: 5).fill(Color(uiColor: .systemBackground))
         )
     }
 }

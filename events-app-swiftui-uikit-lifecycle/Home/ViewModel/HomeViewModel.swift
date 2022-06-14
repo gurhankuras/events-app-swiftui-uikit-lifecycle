@@ -29,6 +29,7 @@ extension HomeView {
         let auth: AuthService
         let locationFetcher: LocationFetcher
         let api: NearEventFinder
+        let categories: [EventCategoryType] = EventCategoryType.allCases
         var onSignClick: (() -> Void)?
         var onEventSelected: ((EventCatalogCardViewModel) -> ())?
 
@@ -64,6 +65,10 @@ extension HomeView {
                 }
                 .store(in: &bag)
 
+        }
+        
+        func fetch(for category: EventCategoryType) {
+            
         }
         
        

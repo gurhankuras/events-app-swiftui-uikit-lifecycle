@@ -8,6 +8,10 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
+extension Color {
+    static var lime: Color { Color(r: 0, g: 255, b: 0) }
+}
+
 struct EventCardView: View {
     let event: EventCatalogCardViewModel
     let width = UIScreen.main.bounds.width * 0.65
@@ -34,6 +38,17 @@ struct EventCardView: View {
             .scaledToFill()
             .frame(width: width, height: 150)
             .clipShape(CustomShape(corner: [.topLeft, .topRight], radii: 15))
+            .overlay(alignment: .topLeading, content: {
+                Group {
+                    if event.streaming {
+                        Circle()
+                            .strokeBorder(.black)
+                            .background(Circle().fill(Color.lime))
+                            .frame(width: 12, height: 12)
+                            .offset(x: 5, y: 5)
+                    }
+                }
+            })
             .overlay(alignment: .bottom) {
                 EventCardHeader(event: event)
             }

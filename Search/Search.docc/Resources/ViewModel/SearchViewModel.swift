@@ -58,7 +58,7 @@ class SearchViewModel {
     private func load(for query: String, completion: @escaping (Result<[SearchedEvent], Error>) -> ()) {
         if query == "Gurhan" {
             completion(.success([query, "Gurhan2", "Gurhan3"].map({ title in
-                return .init(id: title, at: Date(), image: "", title: title, description: "Event description", createdAt: Date(), latitude: 11, longitute: 22, address: .init(city: "Istanbul", district: "Kadikoy", addressLine: nil))
+                return .init(id: title, at: Date(), image: "", title: title, description: "Event description", latitude: 11, longitute: 22, address: .init(city: "Istanbul", district: "Kadikoy", addressLine: nil))
             })))
         }
         else {

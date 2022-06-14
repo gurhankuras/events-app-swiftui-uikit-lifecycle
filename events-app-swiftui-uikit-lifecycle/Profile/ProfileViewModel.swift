@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import os
+import UIKit
 
 enum ProfileState {
     case initial
@@ -62,6 +63,23 @@ class ProfileViewModel: ObservableObject {
                     self?.state = .error
                     Self.logger.trace("Error while loading profile: \(error.localizedDescription)")
                 }
+            }
+        }
+    }
+    
+    func changeAvatar(with image: UIImage) {
+        let tokenStore = SecureTokenStore(keychain: .standard)
+        let client = HttpAPIClient.shared.tokenSender(store: tokenStore)
+        let fileUploader = FileUploader(session: .shared)
+        let fileService = FileService(fileManager: .default)
+        let manager = FileUploader2(client: client, fileUploader: fileUploader, fileService: fileService)
+        manager.fetch(image: image) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                BannerService.shared.show(icon: .failure, title: error.localizedDescription, action: .close)
+                print(error)
+            case .success(_):
+                self?.loadProfile()
             }
         }
     }

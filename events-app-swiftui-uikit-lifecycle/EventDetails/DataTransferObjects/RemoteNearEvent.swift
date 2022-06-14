@@ -13,11 +13,19 @@ struct RemoteNearEvent: Identifiable, Decodable {
     let image: String
     let title: String
     let description: String
-    let createdAt: Date
+    let environment: Int
+    //let createdAt: Date?
     let latitude: Double
     let longitute: Double
     let distance: Double
     let address: RemoteNearEventAddress
+    let liveStream: RemoteLiveStreamInfo
+}
+
+struct RemoteLiveStreamInfo: Decodable {
+    let startedAt: Date?
+    let finished: Bool?
+    let url: String?
 }
 
 struct RemoteNearEventAddress: Decodable {
@@ -37,13 +45,15 @@ extension RemoteNearEvent {
             image: "",
             title: "Xxxxxxxxx xxxxxxxxxx xxxxxxxx xxxxxx",
             description: "Xx xxx xxxxxxxxxxxxxx",
-            createdAt: Date(),
+            environment: 0,
+            //createdAt: nil,
             latitude: 40.885899148745175,
             longitute: 29.2455816165394,
             distance: 51.94696360946275,
             address: RemoteNearEventAddress(city: "Xxxxxxx",
                                             district: "Xxxxxx",
-                                            addressLine: nil)
+                                            addressLine: nil),
+            liveStream: .init(startedAt: nil, finished: nil, url: nil)
         )
     }
 }
