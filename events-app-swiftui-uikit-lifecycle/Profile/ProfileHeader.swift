@@ -13,6 +13,9 @@ struct ProfileHeader: View {
     let profileState: ProfileState
     let startLinkedinVerification: (() -> ())?
     let showAchievements: (() -> ())?
+    let onChangeAvatar: (UIImage) -> ()
+    @State var newProfileImage: UIImage?
+    @State var showingImagePicker: Bool = false
     
     var body: some View {
         VStack {
@@ -84,18 +87,45 @@ struct ProfileHeader: View {
     }
     
     func profileAvatar(image: String?) -> some View {
-        WebImage(url: URL(string: image ?? ""))
-            .resizable()
-            .placeholder(
-                Image("no-image")
-            )
-            .scaledToFill()
-            .size(75)
-            .clipped()
-            .clipShape(Circle())
-            .onTapGesture {
-                print(UserDefaults.standard.bool(forKey: "darkMode"))
+        ZStack(alignment: .topTrailing) {
+            WebImage(url: URL(string: image ?? ""))
+                .resizable()
+                .placeholder(
+                    Image("no-image")
+                )
+                .scaledToFill()
+                .size(75)
+                .clipped()
+                .clipShape(Circle())
+                .onTapGesture {
+                    print(UserDefaults.standard.bool(forKey: "darkMode"))
+                }
+            Circle()
+                .fill(.background)
+                .size(30)
+                .overlay {
+                    Image(systemName: "photo")
+                        .foregroundColor(.appTextColor)
+                }
+                .background(alignment: .center, content: {
+                    Circle()
+                        .shadow(color: .appTextColor.opacity(0.5), radius: 2, x: 0, y: 0)
+                })
+                .offset(x: 10)
+                .onTapGesture {
+                    showingImagePicker = true
+                }
+        }
+        .sheet(isPresented: $showingImagePicker) {
+            ImagePicker(image: $newProfileImage)
+        }
+        .onChange(of: newProfileImage) { newValue in
+            guard let img = newValue else {
+                return
             }
+            onChangeAvatar(img)
+        }
+        
     }
     
     func nameText(_ name: String) -> some View {
@@ -155,15 +185,24 @@ struct ProfileHeader: View {
 struct ProfileHeader2_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ProfileHeader(profileState: .initial, startLinkedinVerification: {}, showAchievements: {})
+            ProfileHeader(profileState: .initial,
+                          startLinkedinVerification: {},
+                          showAchievements: {},
+                          onChangeAvatar: {_ in })
                 .previewDisplayName("Initial")
-            ProfileHeader(profileState: .loading, startLinkedinVerification: {}, showAchievements: {})
+            ProfileHeader(profileState: .loading,
+                          startLinkedinVerification: {},
+                          showAchievements: {},
+                          onChangeAvatar: {_ in })
                 .previewDisplayName("Loading")
-            ProfileHeader(profileState: .success(.stub(verified: true)), startLinkedinVerification: {}, showAchievements: {})
+            
+            ProfileHeader(profileState: .success(.stub(verified: true)), startLinkedinVerification: {}, showAchievements: {}, onChangeAvatar: {_ in })
                 .previewDisplayName("Verified")
-            ProfileHeader(profileState: .success(.stub(verified: false)), startLinkedinVerification: {}, showAchievements: {})
+            ProfileHeader(profileState: .success(.stub(verified: false)), startLinkedinVerification: {}, showAchievements: {}, onChangeAvatar: {_ in })
+                .preferredColorScheme(.light)
                 .previewDisplayName("Not Verified")
-            ProfileHeader(profileState: .error, startLinkedinVerification: {}, showAchievements: {})
+            ProfileHeader(profileState: .error, startLinkedinVerification: {}, showAchievements: {},
+                          onChangeAvatar: {_ in })
                 .previewDisplayName("Error")
         }
         .previewLayout(.sizeThatFits)

@@ -22,7 +22,10 @@ class ProfileViewModel: ObservableObject {
     
     private let profileFetcher: ProfileFetcher
     private let authListener: AuthListener
-
+    private lazy var uploader: FileUploader2 = {
+        return self.makeUploader()
+    }()
+    
     var onTropiesClicked: (() -> ())?
     var onVerificationClicked: (() -> ())?
 
@@ -67,13 +70,18 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
-    func changeAvatar(with image: UIImage) {
+    private func makeUploader() -> FileUploader2 {
         let tokenStore = SecureTokenStore(keychain: .standard)
         let client = HttpAPIClient.shared.tokenSender(store: tokenStore)
         let fileUploader = FileUploader(session: .shared)
         let fileService = FileService(fileManager: .default)
-        let manager = FileUploader2(client: client, fileUploader: fileUploader, fileService: fileService)
-        manager.fetch(image: image) { [weak self] result in
+        let uploader = FileUploader2(client: client, fileUploader: fileUploader, fileService: fileService)
+        return uploader
+    }
+    
+    func changeAvatar(with image: UIImage) {
+        
+        uploader.fetch(image: image) { [weak self] result in
             switch result {
             case .failure(let error):
                 BannerService.shared.show(icon: .failure, title: error.localizedDescription, action: .close)

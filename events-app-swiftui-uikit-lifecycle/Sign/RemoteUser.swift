@@ -11,11 +11,12 @@ import Foundation
 struct RemoteUser: Codable {
     let id: String
     let email: String
+    let image: String
 }
 
 extension RemoteUser {
     var asUser: User {
-        return User(id: id, email: email)
+        return User(id: id, email: email, image: image)
     }
 }
 

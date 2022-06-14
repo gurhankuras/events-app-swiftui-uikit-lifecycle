@@ -19,12 +19,13 @@ struct ProfileUser: Identifiable, Codable, Equatable {
     let id: String
     let email: String
     let username: String
+    let image: String
     
     let linkedin: LinkedinInfo?
 }
 
 extension ProfileUser {
     static var stub: Self {
-        return .init(id: "1234", email: "gurhankuras@hotmail.com", username: "Gurhan", linkedin: nil)
+        return .init(id: "1234", email: "gurhankuras@hotmail.com", username: "Gurhan", image: "", linkedin: nil)
     }
 }

@@ -28,7 +28,7 @@ struct ProfileUserViewModel {
     init(_ userProfile: ProfileUser) {
         self.name = userProfile.username
         self.username = userProfile.email
-        self.image = ""
+        self.image = userProfile.image
         self.isPlaceholder = false
         self.isVerified = userProfile.linkedin != nil
     }

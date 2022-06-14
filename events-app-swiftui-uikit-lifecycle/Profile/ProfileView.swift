@@ -6,10 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
-
-
-
 struct ProfileView: View {
     @ObservedObject var profileViewModel: ProfileViewModel
     @StateObject var settingsViewModel: SettingsViewModel
@@ -18,7 +14,8 @@ struct ProfileView: View {
         VStack(spacing: 0) {
             ProfileHeader(profileState: profileViewModel.state,
                           startLinkedinVerification: profileViewModel.onVerificationClicked,
-                          showAchievements: profileViewModel.onTropiesClicked)
+                          showAchievements: profileViewModel.onTropiesClicked,
+                          onChangeAvatar: { [weak profileViewModel] image in profileViewModel?.changeAvatar(with: image) })
             SettingsView(settingsViewModel: settingsViewModel)
         }
         .navigationBarHidden(true)

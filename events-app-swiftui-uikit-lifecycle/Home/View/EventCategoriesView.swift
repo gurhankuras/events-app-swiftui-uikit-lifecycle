@@ -22,7 +22,7 @@ struct EventCategoriesView: View {
                 ForEach(categories, id: \.self) { category in
                         EventTypeChip(type: category)
                         .onTapGesture {
-                            guard let categoryType = EventCategoryType.init(rawValue: category) else {
+                            guard let categoryType = EventCategoryType.init(rawValue: category.lowercased()) else {
                                 fatalError("Category value not found in enum!")
                             }
                             onTappedCategory(categoryType)

@@ -7,9 +7,12 @@
 
 import Foundation
 import UIKit
-
+import os
 
 class FileUploader2 {
+    private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: String(describing: FileUploader2.self))
+    
+
     let fileUploader: FileUploader
     let fileService: FileService
     let client: HttpClient
@@ -22,7 +25,10 @@ class FileUploader2 {
     
     func fetch(image: UIImage, completion: @escaping (Result<Void, Error>) -> ()) {
         fetchUploadURL(for: "profile") { [weak self] result in
-            guard let self = self else { return }
+            guard let self = self else {
+                Self.logger.debug("SELF KACTI")
+                return
+            }
             switch result {
             case .success(let urlInfo):
                 var url: URL!
@@ -38,6 +44,7 @@ class FileUploader2 {
                     case .success(_):
                         completion(.success(()))
                     case .failure(let error):
+                        Self.logger.debug("\(error.localizedDescription)")
                         completion(.failure(error))
                     }
                 }

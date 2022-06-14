@@ -137,6 +137,7 @@ class AuthService: AuthListener {
         guard let decoded = decodedJwt(),
               let id = decoded["id"] as? String,
               let email = decoded["email"] as? String,
+              let image = decoded["image"] as? String,
               let exp = decoded["exp"] as? Double
         else {
             // if token expired and token stored in keychain we delete invalid token
@@ -150,7 +151,7 @@ class AuthService: AuthListener {
             tokenStore.delete()
             return
         }
-        userPublisher.send(.loggedIn(User(id: id, email: email)))
+        userPublisher.send(.loggedIn(User(id: id, email: email, image: image)))
     }
     
     
