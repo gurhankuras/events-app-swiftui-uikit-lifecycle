@@ -20,6 +20,7 @@ class BannerService {
     func show(icon: BannerIcon, title: String, action: BannerAction) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            HapticsService.shared.vibrate()
             if (self.banner == nil) {
                 self.setBannerFirstTime(icon: icon, title: title, action: action)
                 self.heightConstraint?.constant = 100

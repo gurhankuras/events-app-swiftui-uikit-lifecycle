@@ -14,6 +14,7 @@ struct HTTPResponseBundle {
 
 struct HttpClientOptions {
     let contentType: String
+    let invalidateCache: Bool = true
 }
 
 
@@ -28,6 +29,9 @@ class HttpAPIClient: HttpClient {
     
     func request(_ request: URLRequest, completion: @escaping (Result<HTTPResponseBundle, Error>) -> Void) -> () {
         var req = request
+        if options.invalidateCache {
+            req.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        }
         req.addValue(options.contentType, forHTTPHeaderField: "Content-Type")
         let task = session.dataTask(with: req) { data, response, error in
             if let error = error {

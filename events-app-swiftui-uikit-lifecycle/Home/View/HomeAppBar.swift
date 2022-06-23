@@ -37,7 +37,7 @@ struct HomeAppBar: View {
                 
             }
             
-            Text("\(222) near events")
+            Text("\(12) near events")
                 .font(.footnote)
                 .foregroundColor(.white)
                 .opacity(0.8)

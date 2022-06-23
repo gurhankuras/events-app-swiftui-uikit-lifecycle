@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ImageUploadView: View {
-    @State private var selectedImage: UIImage?
+    @Binding var selectedImage: UIImage?
     @State private var image: Image?
     @State private var showingImagePicker = false
     
@@ -56,6 +56,6 @@ struct ImageUploadView: View {
 
 struct ImageUploadView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageUploadView()
+        ImageUploadView(selectedImage: .constant(nil))
     }
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import SDWebImage
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private(set) static var shared: SceneDelegate?
@@ -30,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         Self.shared = self
         AppLogger.level = .debug
-
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow()
         window?.windowScene = windowScene

@@ -18,8 +18,10 @@ struct EventGeneralInfoStep {
     let description: String
     let startAt: Date
     let certification: Bool
+    let image: UIImage
     let placeType: EventPlaceType
 }
+
 import Combine
 /*
 func todayWithoutMilliseconds() -> Date {
@@ -50,11 +52,12 @@ class StepViewModel: ObservableObject {
         .store(in: &bag)
     }
     
-    func next() {
+    func next(image: UIImage) {
         _next(.init(title: title,
                     description: description,
                     startAt: startAt,
                     certification: hasCertification,
+                    image: image,
                     placeType: placeType
                    ))
     }
@@ -77,7 +80,7 @@ struct NewEventView: View {
         self.dismiss = dismiss
         self._step = ObservedObject(initialValue: viewModel)
     }
-   
+    @State var image: UIImage?
     @State var height: CGFloat = 150
     @State var selectionOpen: Bool = false
     @State var holdStatusOption: DropdownOption? = DropdownOption(key: "physical", value: "event-held-option-physical".localized())
@@ -98,7 +101,7 @@ struct NewEventView: View {
                     .padding(.bottom)
                     viewTitle
                     HStack(alignment: .top) {
-                        ImageUploadView()
+                        ImageUploadView(selectedImage: $image)
                             .cornerRadius(5)
                         VStack {
                             TextField("title-form-field-placeholder", text: $step.title)
@@ -132,7 +135,13 @@ struct NewEventView: View {
                     Spacer()
                     LongRoundedButton(text: "continue-button",
                                       active: .constant(true),
-                                      action: step.next)
+                                      action: {
+                                        guard let image = image else {
+                                            return
+                                        }
+
+                                        step.next(image: image)
+                                    })
                 }
                 .padding(.all)
                 .frame(maxWidth: .infinity)

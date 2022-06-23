@@ -40,6 +40,9 @@
 		2220583A2834021E00668639 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222058392834021E00668639 /* MapViewController.swift */; };
 		2220583C283407AA00668639 /* location.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 2220583B283407A900668639 /* location.geojson */; };
 		2220583E28340CCB00668639 /* tr-cities.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 2220583D28340CCB00668639 /* tr-cities.geojson */; };
+		222164362859E3A100AC2940 /* RecentEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222164352859E3A100AC2940 /* RecentEventsViewModel.swift */; };
+		222164382859EB3D00AC2940 /* NearEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222164372859EB3D00AC2940 /* NearEventsViewModel.swift */; };
+		2221643B2859EF3A00AC2940 /* EventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2221643A2859EF3A00AC2940 /* EventFetcher.swift */; };
 		2227653E2831212F003E94F8 /* EventCardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2227653D2831212F003E94F8 /* EventCardHeader.swift */; };
 		222765402831214B003E94F8 /* EventCardFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2227653F2831214B003E94F8 /* EventCardFooter.swift */; };
 		222765432831272A003E94F8 /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222765422831272A003E94F8 /* EventDetailsViewModel.swift */; };
@@ -116,6 +119,8 @@
 		2276D31A284F4F050099DAD1 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2276D319284F4F050099DAD1 /* FirebaseAnalytics */; };
 		2276D31C284F4F050099DAD1 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2276D31B284F4F050099DAD1 /* FirebaseMessaging */; };
 		2276D31F284F59E90099DAD1 /* Hostname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276D31E284F59E90099DAD1 /* Hostname.swift */; };
+		229235862863288B007BBF04 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229235852863288B007BBF04 /* CameraViewController.swift */; };
+		229235AA286333B6007BBF04 /* HapticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229235A9286333B6007BBF04 /* HapticsService.swift */; };
 		229C9743283A6549008DC37A /* HttpAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C9742283A6549008DC37A /* HttpAPIClient.swift */; };
 		229C9746283A658C008DC37A /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C9745283A658C008DC37A /* HttpClient.swift */; };
 		229C9749283A65D5008DC37A /* TokenSaverDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C9748283A65D5008DC37A /* TokenSaverDecorator.swift */; };
@@ -341,6 +346,9 @@
 		222058392834021E00668639 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		2220583B283407A900668639 /* location.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = location.geojson; sourceTree = "<group>"; };
 		2220583D28340CCB00668639 /* tr-cities.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "tr-cities.geojson"; sourceTree = "<group>"; };
+		222164352859E3A100AC2940 /* RecentEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentEventsViewModel.swift; sourceTree = "<group>"; };
+		222164372859EB3D00AC2940 /* NearEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearEventsViewModel.swift; sourceTree = "<group>"; };
+		2221643A2859EF3A00AC2940 /* EventFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFetcher.swift; sourceTree = "<group>"; };
 		2227653D2831212F003E94F8 /* EventCardHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardHeader.swift; sourceTree = "<group>"; };
 		2227653F2831214B003E94F8 /* EventCardFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardFooter.swift; sourceTree = "<group>"; };
 		222765422831272A003E94F8 /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -415,6 +423,8 @@
 		2276D316284F4D340099DAD1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2276D31D284F504E0099DAD1 /* events-app-swiftui-uikit-lifecycle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "events-app-swiftui-uikit-lifecycle.entitlements"; sourceTree = "<group>"; };
 		2276D31E284F59E90099DAD1 /* Hostname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hostname.swift; sourceTree = "<group>"; };
+		229235852863288B007BBF04 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		229235A9286333B6007BBF04 /* HapticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsService.swift; sourceTree = "<group>"; };
 		229C9742283A6549008DC37A /* HttpAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpAPIClient.swift; sourceTree = "<group>"; };
 		229C9745283A658C008DC37A /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		229C9748283A65D5008DC37A /* TokenSaverDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSaverDecorator.swift; sourceTree = "<group>"; };
@@ -715,6 +725,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		222164392859EF3000AC2940 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2221643A2859EF3A00AC2940 /* EventFetcher.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		2227653C28312114003E94F8 /* EventCard */ = {
 			isa = PBXGroup;
 			children = (
@@ -935,6 +953,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		229235842863277A007BBF04 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				229235852863288B007BBF04 /* CameraViewController.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		229C9741283A6538008DC37A /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -1025,6 +1051,7 @@
 		22D3AC5C27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle */ = {
 			isa = PBXGroup;
 			children = (
+				229235842863277A007BBF04 /* Camera */,
 				22A076F7284F72F6007152B1 /* NFC */,
 				2276D31D284F504E0099DAD1 /* events-app-swiftui-uikit-lifecycle.entitlements */,
 				2276D316284F4D340099DAD1 /* GoogleService-Info.plist */,
@@ -1334,6 +1361,7 @@
 				22D3ACF627EB80C200A5B08C /* TokenStore.swift */,
 				22D3ACF727EB80C200A5B08C /* PresignedURLFetcher.swift */,
 				224C7C2C282FDC920037AD45 /* LocationService.swift */,
+				229235A9286333B6007BBF04 /* HapticsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1436,6 +1464,7 @@
 		22D3AD5427EB81A300A5B08C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				222164392859EF3000AC2940 /* Services */,
 				22D3AD5927EB81A300A5B08C /* HomeView.swift */,
 				22D3AE5427EBB7E900A5B08C /* View */,
 				22D3AD5727EB81A300A5B08C /* ViewModel */,
@@ -1448,6 +1477,8 @@
 			isa = PBXGroup;
 			children = (
 				22D3AD5827EB81A300A5B08C /* HomeViewModel.swift */,
+				222164352859E3A100AC2940 /* RecentEventsViewModel.swift */,
+				222164372859EB3D00AC2940 /* NearEventsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1905,6 +1936,7 @@
 				221E240F27F246C600B8A939 /* RoomRealTimeListener.swift in Sources */,
 				221AD2A1284793DB00B191B4 /* ProfileFetcherStub.swift in Sources */,
 				22D3AD4027EB814400A5B08C /* Email.swift in Sources */,
+				222164362859E3A100AC2940 /* RecentEventsViewModel.swift in Sources */,
 				222A6022282BD958000CCCFE /* Banner.swift in Sources */,
 				22D3AD5F27EB81A300A5B08C /* HomeAppBar.swift in Sources */,
 				222058302833CB1200668639 /* ImageUploadView.swift in Sources */,
@@ -1945,11 +1977,13 @@
 				2254818528413C0400F33950 /* UrlEncodedFormDecoder.swift in Sources */,
 				22D3ACFD27EB80C200A5B08C /* JwtDecoder.swift in Sources */,
 				2276D31F284F59E90099DAD1 /* Hostname.swift in Sources */,
+				229235AA286333B6007BBF04 /* HapticsService.swift in Sources */,
 				22D3ACA727EB803C00A5B08C /* ChatMessagesView.swift in Sources */,
 				22A076FD284FC3AC007152B1 /* LiveStreamContainerViewController.swift in Sources */,
 				222A5FCA282A930E000CCCFE /* ProfileViewControllerFactory.swift in Sources */,
 				229CD29A284BB0BE00C58896 /* RemoteSearchedEvent.swift in Sources */,
 				222BEDE12858ED18005730F5 /* EventCategoryType+name.swift in Sources */,
+				222164382859EB3D00AC2940 /* NearEventsViewModel.swift in Sources */,
 				22D3AD2127EB80C200A5B08C /* TokenStore.swift in Sources */,
 				222A5FD8282AE766000CCCFE /* TabFlow.swift in Sources */,
 				22D3AC5E27EB7E5800A5B08C /* AppDelegate.swift in Sources */,
@@ -2101,7 +2135,9 @@
 				22D3AD0D27EB80C200A5B08C /* ImagePicker.swift in Sources */,
 				22D3ACF927EB80C200A5B08C /* CustomShape.swift in Sources */,
 				224B7A7428468C5A000B28CF /* ProfileFetcher.swift in Sources */,
+				2221643B2859EF3A00AC2940 /* EventFetcher.swift in Sources */,
 				226B9C8B2856097900A84BB3 /* AddressStepView.swift in Sources */,
+				229235862863288B007BBF04 /* CameraViewController.swift in Sources */,
 				22D3AD4527EB814400A5B08C /* ErrorView.swift in Sources */,
 				22175052281AD1A00096308D /* SettingsViewModel.swift in Sources */,
 			);
@@ -2300,6 +2336,7 @@
 				INFOPLIST_FILE = "events-app-swiftui-uikit-lifecycle/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = EventsApp;
 				INFOPLIST_KEY_NFCReaderUsageDescription = "Please allow to scan nfc tags";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app wants to take picture";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To show events near you, we request your location";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "To show events near you, we request your location";
 				INFOPLIST_KEY_NSLocationUsageDescription = "To show events near you, we request your location";
@@ -2337,6 +2374,7 @@
 				INFOPLIST_FILE = "events-app-swiftui-uikit-lifecycle/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = EventsApp;
 				INFOPLIST_KEY_NFCReaderUsageDescription = "Please allow to scan nfc tags";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app wants to take picture";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To show events near you, we request your location";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "To show events near you, we request your location";
 				INFOPLIST_KEY_NSLocationUsageDescription = "To show events near you, we request your location";

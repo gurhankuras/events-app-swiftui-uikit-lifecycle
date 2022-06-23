@@ -64,7 +64,7 @@ struct RemoteNewEvent: Decodable, Identifiable {
     let description: String
     let latitude: Double
     let longitute: Double
-    let image: String
+    let image: String?
     let address: Address
     let categories: [EventCategoryType]
     
@@ -119,6 +119,18 @@ class NewEventFlow: Flow {
     weak var rootViewController: UINavigationController?
     let show: (UIViewController) -> ()
     let close: () -> ()
+    var image: UIImage?
+
+    
+    
+    private lazy var service: EventService = {
+        let store = SecureTokenStore(keychain: .standard)
+        let client = HttpAPIClient.shared.tokenSender(store: store)
+        let fileUploader = FileUploader2(client: client, fileUploader: FileUploader(session: .shared), fileService: FileService(fileManager: .default))
+        let service = EventService(client: client, fileUploader: fileUploader)
+        return service
+    }()
+    
     /*
     var generalInfoStep: EventGeneralInfoStep?
     var addressStep: NewEventBillingAddressStep?
@@ -146,6 +158,7 @@ class NewEventFlow: Flow {
                 //self.generalInfoStep = prevStep
                 self.builder.generalInfo = prevStep
                 let placeType = prevStep.placeType
+                self.image = prevStep.image
                 print("[WARN] \(placeType.rawValue)")
                 switch placeType {
                 case .physical, .both:
@@ -197,9 +210,7 @@ class NewEventFlow: Flow {
     private func handle() {
         guard let request = builder.build() else { return }
 
-        let store = SecureTokenStore(keychain: .standard)
-        let client = HttpAPIClient.shared.tokenSender(store: store)
-        let service = EventService(client: client)
+        service.image = image
         service.create(request) {[weak self] result in
             switch result {
             case .success(let remoteEvent):
@@ -214,7 +225,9 @@ class NewEventFlow: Flow {
                     }
                 }
                
+            
                 Self.logger.debug("\(error.localizedDescription)")
+                print(error)
             }
         }
     }

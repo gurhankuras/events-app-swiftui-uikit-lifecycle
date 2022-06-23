@@ -26,6 +26,7 @@ class TabbarDelegate: NSObject, UITabBarControllerDelegate {
             }
             return false
         }
+        HapticsService.shared.vibrate()
         
         return true
     }

@@ -47,7 +47,7 @@ struct EventDetails: View {
                         Button {
                             viewModel.watchLiveStream?()
                         } label: {
-                            Text("İzle")
+                            Text("Watch")
                                 .foregroundColor(.white)
                                 .font(.system(size: 13, weight: .medium, design: .rounded))
                         }
@@ -152,7 +152,7 @@ struct EventHeader: View {
     
     // MARK: constructor
     let title: String
-    let image: String
+    let image: String?
     let height: CGFloat
     let dismiss: () -> ()
     
@@ -162,7 +162,7 @@ struct EventHeader: View {
                                        endPoint: .top)
     var body: some View {
         
-        WebImage(url: URL(string: image))
+        WebImage(url: URL(string: image ?? ""))
             .resizable()
             .scaledToFill()
             .frame(maxWidth: .infinity)
@@ -213,6 +213,7 @@ struct InterestedUsers: View {
             ImageStack(gap: 50/2, imageUrls: users, content: { image in
                     image
                     .resizable()
+                    .scaledToFill()
                     .clipShape(Circle())
                     .frame(width: 50, height: 50)
                     .background(
@@ -222,7 +223,7 @@ struct InterestedUsers: View {
                     )
                     
             }) {
-                Text("+5")
+                Text("+1")
                     .foregroundColor(.white)
             }
         }

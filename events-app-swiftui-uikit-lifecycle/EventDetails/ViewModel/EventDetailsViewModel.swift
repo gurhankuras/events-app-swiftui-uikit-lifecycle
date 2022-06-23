@@ -17,7 +17,7 @@ extension EventDetails {
         let longitute: Double
         let title: String
         let id: String = UUID().uuidString
-        let image: String
+        let image: String?
         let description: String
         var watchLiveStream: (() -> ())?
         
@@ -40,7 +40,7 @@ extension EventDetails {
         }
         
         var users: [String] {
-            ["concert", "concert", "concert"]
+            ["woman", "man", "no-image"]
         }
     }
 }

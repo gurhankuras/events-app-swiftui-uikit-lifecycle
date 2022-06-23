@@ -27,13 +27,21 @@ struct EventCardView: View {
                 .foregroundColor(.card)
         )
         .overlay(alignment: .topTrailing) {
-            distanceIndicator
+            Group {
+                if event.distance != nil {
+                    distanceIndicator
+                }
+            }
         }
         .onTapGesture(perform: event.select)
     }
     
     private var image: some View {
         WebImage(url: URL(string: event.image))
+            .placeholder(content: {
+                Rectangle()
+                    .fill(Color.appPurple)
+            })
             .resizable()
             .scaledToFill()
             .frame(width: width, height: 150)
@@ -55,7 +63,7 @@ struct EventCardView: View {
     }
     
     private var distanceIndicator: some View {
-        Text(event.distance)
+        Text(event.distance ?? "")
             .font(.system(size: 12,
                           weight: .bold,
                           design: .rounded)

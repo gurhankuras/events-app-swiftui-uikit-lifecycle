@@ -36,31 +36,39 @@ struct HomeView: View {
     
     @ViewBuilder
     var scroll: some View {
-        if viewModel.loading {
-            ScrollView {
-                scrollBody
-            }
-        }
-        else {
+        //if viewModel.loading {
+         //   ScrollView {
+         //       scrollBody
+         //   }
+        //}
+        //else {
             CustomRefreshView(lottieFileName: "loading") {
                 scrollBody
             } onRefresh: { refresher in
+                print("REFRESING")
                 viewModel.refresh(completion: {
+                    print("COMPLETED")
                     DispatchQueue.main.async {
                         refresher.stopRefreshing?()
                     }
                 })
             }
-        }
+        //}
     }
     
     var scrollBody: some View {
         VStack {
             EventCategoriesView(viewModel.categories.map{ $0.name },
-                                onTappedCategory: { category in viewModel.fetch(for: category) })
-            EventCatalog(title: "popular-title") {
-                ForEach(viewModel.events) { event in
-                    if viewModel.loading {
+                                onTappedCategory: { category in viewModel.recentEventsViewModel.fetch(for: category) })
+            
+            RecentEventsCatalogView(viewModel: viewModel.recentEventsViewModel)
+            NearEventsCatalogView(viewModel: viewModel.nearEventsViewModel)
+            NearEventsCatalogView(viewModel: viewModel.nearEventsViewModel)
+            
+            /*
+            EventCatalog(title: "Recently Created") {
+                ForEach(viewModel.recentEventsViewModel.recentEvents) { event in
+                    if viewModel.recentEventsViewModel.recentEventsLoading {
                         SkeletonEventCardView()
                     } else {
                         EventCardView(event: event)
@@ -69,10 +77,12 @@ struct HomeView: View {
                 .padding(.leading)
 
             }
+             */
 
+            /*
             EventCatalog(title: "popular-title") {
-                ForEach(viewModel.events) { event in
-                    if viewModel.loading {
+                ForEach(viewModel.nearEventsViewModel.nearEvents) { event in
+                    if viewModel.nearEventsLoading {
                         SkeletonEventCardView()
                     } else {
                         EventCardView(event: event)
@@ -80,9 +90,11 @@ struct HomeView: View {
                 }
                 .padding(.leading)
             }
+             */
+            /*
             EventCatalog(title: "popular-title") {
-                ForEach(viewModel.events) { event in
-                    if viewModel.loading {
+                ForEach(viewModel.nearEventsViewModel.nearEvents) { event in
+                    if viewModel.nearEventsLoading {
                         SkeletonEventCardView()
                     } else {
                         EventCardView(event: event)
@@ -90,8 +102,41 @@ struct HomeView: View {
                 }
                 .padding(.leading)
             }
+             */
         }
         .padding(.bottom)
+    }
+}
+
+struct RecentEventsCatalogView: View {
+    @ObservedObject var viewModel: RecentEventsViewModel
+    var body: some View {
+        EventCatalog(title: "Recently Created") {
+            ForEach(viewModel.recentEvents) { event in
+                if viewModel.recentEventsLoading {
+                    SkeletonEventCardView()
+                } else {
+                    EventCardView(event: event)
+                }
+            }
+            .padding(.leading)
+        }
+    }
+}
+
+struct NearEventsCatalogView: View {
+    @ObservedObject var viewModel: NearEventsViewModel
+    var body: some View {
+        EventCatalog(title: "popular-title") {
+            ForEach(viewModel.nearEvents) { event in
+                if viewModel.nearEventsLoading {
+                    SkeletonEventCardView()
+                } else {
+                    EventCardView(event: event)
+                }
+            }
+            .padding(.leading)
+        }
     }
 }
 

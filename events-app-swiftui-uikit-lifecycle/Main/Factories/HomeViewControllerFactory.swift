@@ -25,8 +25,17 @@ class HomeControllerFactory: HomeViewControllerFactory {
         let httpClient = HttpAPIClient.shared.tokenSender(store: store)
         let api = NearEventFinder(client: httpClient)
         let locationFetcher = LocationService(manager: .init())
-        let viewModel = HomeView.ViewModel(auth: auth, api: api, locationFetcher: locationFetcher)
-        viewModel.onEventSelected = onEventClicked
+        let eventService = EventFetcher(client: httpClient)
+        
+        let recentEventsViewModel = RecentEventsViewModel(eventService: eventService)
+        let nearEventsViewModel = NearEventsViewModel(locationFetcher: locationFetcher, api: api)
+        let viewModel = HomeView.ViewModel(auth: auth,
+                                           recentEventsViewModel: recentEventsViewModel,
+                                           nearEventsViewModel: nearEventsViewModel)
+        
+        recentEventsViewModel.onEventSelected = onEventClicked
+        nearEventsViewModel.onEventSelected = onEventClicked
+        
         let homeController = UINavigationController(rootView: HomeView(viewModel: viewModel))
         viewModel.onSignClick = onSignButtonClicked
         configureNavigationalOptions(navigationController: homeController)

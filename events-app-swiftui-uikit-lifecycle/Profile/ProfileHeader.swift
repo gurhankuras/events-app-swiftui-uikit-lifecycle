@@ -89,6 +89,11 @@ struct ProfileHeader: View {
     func profileAvatar(image: String?) -> some View {
         ZStack(alignment: .topTrailing) {
             WebImage(url: URL(string: image ?? ""))
+                
+                .onSuccess(perform: { img, data, cacheType in
+                    
+                    //SDImageCache.shared.removeImage(forKey: image)
+                })
                 .resizable()
                 .placeholder(
                     Image("no-image")
@@ -98,6 +103,7 @@ struct ProfileHeader: View {
                 .clipped()
                 .clipShape(Circle())
                 .onTapGesture {
+                    
                     print(UserDefaults.standard.bool(forKey: "darkMode"))
                 }
             Circle()

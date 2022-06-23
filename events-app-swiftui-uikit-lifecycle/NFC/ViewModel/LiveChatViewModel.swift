@@ -36,18 +36,19 @@ class LiveChatViewModel {
     
     func fireDemoMessages() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            let demo = LiveChatMessage(image: "user", timestamp: "9:35 AM", username: "Natalie Portie", text: "This is awesome")
+            let demo = LiveChatMessage(image: "hisoka", timestamp: "8:05 PM", username: "Gurhan", text: "Nice one")
             self?.addMessage(demo)
         }
-        
+        /*
         DispatchQueue.main.asyncAfter(deadline: .now() + 7) { [weak self] in
             let demo = LiveChatMessage(image: "user", timestamp: "9:35 AM", username: "Natalie Portie", text: "Not bad!")
             self?.addMessage(demo)
         }
+         */
     }
     
     func addMessage(_ message: LiveChatMessage) {
-        let finalMessages = messages.value.appended(LiveChatMessage(image: "user", timestamp: "9:35 AM", username: "Natalie Portie", text: "This is awesome"))
+        let finalMessages = messages.value.appended(LiveChatMessage(image: "hisoka", timestamp: "8:18 PM", username: "Gurhan", text: "Nice one"))
         messages.accept(finalMessages)
     }
 }

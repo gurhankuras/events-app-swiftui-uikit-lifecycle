@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 protocol EventCreator {
@@ -22,12 +23,38 @@ enum GenericNetworkError: Error {
 
 class EventService: EventCreator {
     let client: HttpClient
-
-    init(client: HttpClient) {
+    var fileUploader: FileUploader2
+    var image: UIImage?
+    
+    init(client: HttpClient, fileUploader: FileUploader2) {
         self.client = client
+        self.fileUploader = fileUploader
     }
     
+    
     func create(_ event: NewEventRequest, completion: @escaping (Result<RemoteNewEvent, Error>) -> ()) {
+        guard let image = image else {
+            return
+        }
+        _create(event) { [weak self] result in
+            switch result {
+            case .success(let newEvent):
+                self?.fileUploader.fileName = newEvent.id
+                self?.fileUploader.fetch(for: "event", image: image, completion: { uploadResult in
+                    switch uploadResult {
+                    case .success(_):
+                        completion(.success(newEvent))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                })
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func _create(_ event: NewEventRequest, completion: @escaping (Result<RemoteNewEvent, Error>) -> ()) {
         guard let httpRequest = makeRequest(event) else {
             completion(.failure(URLError(.badServerResponse)))
             return

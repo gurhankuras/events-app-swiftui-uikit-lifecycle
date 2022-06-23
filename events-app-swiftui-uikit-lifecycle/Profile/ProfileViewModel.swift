@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import os
 import UIKit
+import SDWebImageSwiftUI
 
 enum ProfileState {
     case initial
@@ -54,7 +55,9 @@ class ProfileViewModel: ObservableObject {
     
     func loadProfile() {
         Self.logger.trace("Loading profile...")
-        self.state = .loading
+        DispatchQueue.main.async {
+            self.state = .loading
+        }
         self.profileFetcher.fetchProfile(with: "2332") { [weak self] result in
             DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
                 switch result {
@@ -81,12 +84,16 @@ class ProfileViewModel: ObservableObject {
     
     func changeAvatar(with image: UIImage) {
         
-        uploader.fetch(image: image) { [weak self] result in
+        uploader.fetch(for: "profile", image: image) { [weak self] result in
             switch result {
             case .failure(let error):
                 BannerService.shared.show(icon: .failure, title: error.localizedDescription, action: .close)
                 print(error)
             case .success(_):
+                if case let .success(profile) = self?.state {
+                    SDImageCache.shared.removeImage(forKey: profile.image)
+                }
+                ProfileImagePublisher.shared.publisher.send(())
                 self?.loadProfile()
             }
         }

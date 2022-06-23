@@ -44,8 +44,9 @@ class LiveChatMessageCell: UITableViewCell {
     
     lazy var image: UIImageView = {
         
-        let image = UIImage(named: "concert")
+        let image = UIImage(named: "hisoka")
         let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .systemPink
         imageView.tintColor = .white
         imageView.layer.cornerRadius = 25

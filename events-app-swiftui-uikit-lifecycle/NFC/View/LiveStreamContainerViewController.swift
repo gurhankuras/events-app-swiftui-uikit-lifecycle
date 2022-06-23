@@ -22,7 +22,7 @@ class LiveStreamContainerViewController: UIViewController {
     
     lazy var videoPlayerController: AVPlayerViewController = {
        let viewController = AVPlayerViewController()
-        viewController.player = AVPlayer(url: URL(string: "http://\(hostName):8080/hls/test.m3u8")!)
+        viewController.player = AVPlayer(url: URL(string: "http://\(hostName):8080/hls/demo.m3u8")!)
         return viewController
     }()
     

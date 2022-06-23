@@ -47,7 +47,7 @@ struct NewEventAddressStep: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            RegularAppBar(title: "Payment", back: dismiss)
+            RegularAppBar(title: "Address", back: dismiss)
             billingAddressSection
             .padding(.horizontal)
             

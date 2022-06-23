@@ -21,6 +21,15 @@ struct EventCatalogCardViewModel: Identifiable {
         self.onSelected = select
     }
     
+    /*
+    init(_ event: RemoteEvent, select: ((EventCatalogCardViewModel) -> ())?) {
+        self._address = event.address
+        self.event = event
+        self.isOnline = event.environment != 0
+        self.onSelected = select
+    }
+     */
+    
     init(_ event: RemoteNearEvent) {
         self.init(event, select: nil)
     }
@@ -38,26 +47,34 @@ struct EventCatalogCardViewModel: Identifiable {
     }
     
     var startsAt: String {
-        "25 March 2022\n06.00 PM"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        dateFormatter.locale = Locale.current
+        return dateFormatter.string(from: event.at) ?? "-"
     }
     
     var address: String {
         if isOnline {
             return "Online"
         }
-        return "\(_address.district) / \(_address.city)"
+        var district = _address.district.isEmpty ? "-" : _address.district
+        return "\(district) / \(_address.city)"
     }
     
     var image: String {
-        return event.image
+        return event.image ?? ""
     }
     
     var title: String {
         return event.title
     }
     
-    var distance: String {
-        return "~\(Int(round(event.distance)))m"
+    var distance: String? {
+        guard let distance = event.distance else {
+            return nil
+        }
+        return "~\(Int(round(distance)))m"
     }
 
     func select() {

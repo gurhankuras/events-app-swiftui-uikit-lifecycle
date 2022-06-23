@@ -16,15 +16,17 @@ class FileUploader2 {
     let fileUploader: FileUploader
     let fileService: FileService
     let client: HttpClient
+    var fileName: String?
     
-    init(client: HttpClient, fileUploader: FileUploader, fileService: FileService) {
+    init(client: HttpClient, fileUploader: FileUploader, fileService: FileService, fileName: String? = nil) {
         self.client = client
         self.fileUploader = fileUploader
         self.fileService = fileService
+        self.fileName = fileName
     }
     
-    func fetch(image: UIImage, completion: @escaping (Result<Void, Error>) -> ()) {
-        fetchUploadURL(for: "profile") { [weak self] result in
+    func fetch(for section: String, image: UIImage, completion: @escaping (Result<Void, Error>) -> ()) {
+        fetchUploadURL(for: section, fileName: fileName) { [weak self] result in
             guard let self = self else {
                 Self.logger.debug("SELF KACTI")
                 return
@@ -55,11 +57,24 @@ class FileUploader2 {
         
     }
     
-    func fetchUploadURL(for type: String, completion: @escaping (Result<PresignedUrlInfo, Error>) -> ()) {
-        guard let url = URL(string: "http://\(hostName):\(port)/upload?type=\(type)") else {
+    func fetchUploadURL(for type: String, fileName: String?, completion: @escaping (Result<PresignedUrlInfo, Error>) -> ()) {
+        var components = URLComponents()
+        components.host = hostName
+        components.port = port
+        components.scheme = "http"
+        components.path = "/upload"
+        components.queryItems = [
+            URLQueryItem(name: "type", value: type)
+        ]
+        if let fileName = fileName {
+            components.queryItems?.append(URLQueryItem(name: "fileName", value: fileName))
+        }
+        
+        guard let url = components.url else {
             completion(.failure(URLError(.badURL)))
             return
         }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         client.request(request) { result in
