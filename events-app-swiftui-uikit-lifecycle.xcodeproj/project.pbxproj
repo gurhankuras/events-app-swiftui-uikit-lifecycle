@@ -284,6 +284,7 @@
 		22DCEC1A283576AF00C98D58 /* ResizebleLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DCEC19283576AF00C98D58 /* ResizebleLottieView.swift */; };
 		22DCEC1E283588EA00C98D58 /* not-found-search.json in Resources */ = {isa = PBXBuildFile; fileRef = 22DCEC1D283588EA00C98D58 /* not-found-search.json */; };
 		22E266B22854C7EE00B72C6D /* EventCatalogCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E266B12854C7EE00B72C6D /* EventCatalogCardViewModel.swift */; };
+		22EE12CE2873666400848444 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 22EE12CD2873666400848444 /* README.md */; };
 		52B4425A47726E96159E6B55 /* Pods_events_app_swiftui_uikit_lifecycleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E416C296D5D93F590128D3 /* Pods_events_app_swiftui_uikit_lifecycleTests.framework */; };
 		B3AAF07F23FF9F3CA8D18CEB /* Pods_events_app_swiftui_uikit_lifecycle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC95937D5BCFC16AEEC014BC /* Pods_events_app_swiftui_uikit_lifecycle.framework */; };
 /* End PBXBuildFile section */
@@ -589,6 +590,7 @@
 		22DCEC19283576AF00C98D58 /* ResizebleLottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizebleLottieView.swift; sourceTree = "<group>"; };
 		22DCEC1D283588EA00C98D58 /* not-found-search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "not-found-search.json"; sourceTree = "<group>"; };
 		22E266B12854C7EE00B72C6D /* EventCatalogCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCatalogCardViewModel.swift; sourceTree = "<group>"; };
+		22EE12CD2873666400848444 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		28E416C296D5D93F590128D3 /* Pods_events_app_swiftui_uikit_lifecycleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_events_app_swiftui_uikit_lifecycleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		540DFDB15FB17838D0E7425C /* Pods-events-app-swiftui-uikit-lifecycle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-events-app-swiftui-uikit-lifecycle.release.xcconfig"; path = "Target Support Files/Pods-events-app-swiftui-uikit-lifecycle/Pods-events-app-swiftui-uikit-lifecycle.release.xcconfig"; sourceTree = "<group>"; };
 		6A2CD88EE556DEF7E2844F24 /* Pods-events-app-swiftui-uikit-lifecycleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-events-app-swiftui-uikit-lifecycleTests.release.xcconfig"; path = "Target Support Files/Pods-events-app-swiftui-uikit-lifecycleTests/Pods-events-app-swiftui-uikit-lifecycleTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1030,6 +1032,7 @@
 		22D3AC5127EB7E5700A5B08C = {
 			isa = PBXGroup;
 			children = (
+				22EE12CD2873666400848444 /* README.md */,
 				224C7C31282FE7570037AD45 /* Settings.bundle */,
 				22D3AC5C27EB7E5800A5B08C /* events-app-swiftui-uikit-lifecycle */,
 				22D3AD8027EB83AA00A5B08C /* events-app-swiftui-uikit-lifecycleTests */,
@@ -1916,6 +1919,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22A0770928510C29007152B1 /* LiveChatRoom.swift in Sources */,
+				22EE12CE2873666400848444 /* README.md in Sources */,
 				229C974B283A65F7008DC37A /* JWTBearerTokenSender.swift in Sources */,
 				2220582E2833BB5100668639 /* NewEventView.swift in Sources */,
 				221E240D27F23D2100B8A939 /* ChatUser.swift in Sources */,
